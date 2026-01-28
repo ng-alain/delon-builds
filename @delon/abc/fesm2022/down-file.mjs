@@ -83,10 +83,10 @@ class DownFileDirective {
             error: err => this.error.emit(err)
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: DownFileDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.8", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: { classPropertyName: "httpData", publicName: "http-data", isSignal: true, isRequired: false, transformFunction: null }, httpBody: { classPropertyName: "httpBody", publicName: "http-body", isSignal: true, isRequired: false, transformFunction: null }, httpMethod: { classPropertyName: "httpMethod", publicName: "http-method", isSignal: true, isRequired: false, transformFunction: null }, httpUrl: { classPropertyName: "httpUrl", publicName: "http-url", isSignal: true, isRequired: true, transformFunction: null }, fileName: { classPropertyName: "fileName", publicName: "file-name", isSignal: true, isRequired: false, transformFunction: null }, pre: { classPropertyName: "pre", publicName: "pre", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: DownFileDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.1", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: { classPropertyName: "httpData", publicName: "http-data", isSignal: true, isRequired: false, transformFunction: null }, httpBody: { classPropertyName: "httpBody", publicName: "http-body", isSignal: true, isRequired: false, transformFunction: null }, httpMethod: { classPropertyName: "httpMethod", publicName: "http-method", isSignal: true, isRequired: false, transformFunction: null }, httpUrl: { classPropertyName: "httpUrl", publicName: "http-url", isSignal: true, isRequired: true, transformFunction: null }, fileName: { classPropertyName: "fileName", publicName: "file-name", isSignal: true, isRequired: false, transformFunction: null }, pre: { classPropertyName: "pre", publicName: "pre", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: DownFileDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: DownFileDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[down-file]',
@@ -99,11 +99,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
 
 const DIRECTIVES = [DownFileDirective];
 class DownFileModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: DownFileModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.8", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule, DownFileDirective], exports: [DownFileDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: DownFileModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.1", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule, DownFileDirective], exports: [DownFileDirective] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: DownFileModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: DownFileModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, AlainThemeModule, ...DIRECTIVES],

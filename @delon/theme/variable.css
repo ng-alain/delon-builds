@@ -1267,6 +1267,10 @@ html {
 .nz-animate-disabled.ant-popover {
   animation: none;
 }
+.nz-animate-disabled.ant-menu-submenu {
+  transition: none;
+  animation: none;
+}
 .ant-tooltip.ant-zoom-big-fast-enter .ant-tooltip-arrow,
 .ant-tooltip.ant-zoom-big-fast-leave .ant-tooltip-arrow {
   will-change: transform;

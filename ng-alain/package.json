@@ -1,6 +1,6 @@
 {
   "name": "ng-alain",
-  "version": "21.0.3-be765b4",
+  "version": "21.0.3-3877ce3",
   "description": "Schematics specific to NG-ALAIN",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
@@ -25,7 +25,7 @@
     "swagger-typescript-api": "^12.0.4",
     "ng-alain-sts": "^0.0.2",
     "ng-alain-plugin-theme": "^18.0.0",
-    "@angular/cdk": "^21.0.6"
+    "@angular/cdk": "^21.1.1"
   },
   "ng-update": {
     "migrations": "./migration.json",

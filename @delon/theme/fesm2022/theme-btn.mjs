@@ -69,8 +69,8 @@ class ThemeBtnComponent {
             this.doc.body.removeChild(el);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: ThemeBtnComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.8", type: ThemeBtnComponent, isStandalone: true, selector: "theme-btn", inputs: { types: { classPropertyName: "types", publicName: "types", isSignal: true, isRequired: false, transformFunction: null }, devTips: { classPropertyName: "devTips", publicName: "devTips", isSignal: true, isRequired: false, transformFunction: null }, deployUrl: { classPropertyName: "deployUrl", publicName: "deployUrl", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { themeChange: "themeChange" }, host: { properties: { "class.theme-btn-rtl": "dir() === 'rtl'" }, classAttribute: "theme-btn" }, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ThemeBtnComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.1", type: ThemeBtnComponent, isStandalone: true, selector: "theme-btn", inputs: { types: { classPropertyName: "types", publicName: "types", isSignal: true, isRequired: false, transformFunction: null }, devTips: { classPropertyName: "devTips", publicName: "devTips", isSignal: true, isRequired: false, transformFunction: null }, deployUrl: { classPropertyName: "deployUrl", publicName: "deployUrl", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { themeChange: "themeChange" }, host: { properties: { "class.theme-btn-rtl": "dir() === 'rtl'" }, classAttribute: "theme-btn" }, ngImport: i0, template: `
     <div
       class="ant-avatar ant-avatar-circle ant-avatar-icon"
       nz-dropdown
@@ -105,7 +105,7 @@ class ThemeBtnComponent {
     </div>
   `, isInline: true, dependencies: [{ kind: "directive", type: NzDropdownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzArrow", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "directive", type: NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: ThemeBtnComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ThemeBtnComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'theme-btn',
@@ -154,11 +154,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
 
 const COMPONENTS = [ThemeBtnComponent];
 class ThemeBtnModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: ThemeBtnModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.8", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropdownModule, NzTooltipModule, ThemeBtnComponent], exports: [ThemeBtnComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropdownModule, NzTooltipModule, COMPONENTS] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ThemeBtnModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.1", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropdownModule, NzTooltipModule, ThemeBtnComponent], exports: [ThemeBtnComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropdownModule, NzTooltipModule, COMPONENTS] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: ThemeBtnModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ThemeBtnModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzDropdownModule, NzTooltipModule, ...COMPONENTS],
