@@ -21,7 +21,7 @@ function addStylelintOrderLib() {
             json.devDependencies = {};
         }
         if (!json.devDependencies['stylelint-order']) {
-            json.devDependencies['stylelint-order'] = '@DEP-21.0.3';
+            json.devDependencies['stylelint-order'] = '@DEP-21.0.4';
         }
         (0, utils_1.writePackage)(tree, json);
         return tree;
