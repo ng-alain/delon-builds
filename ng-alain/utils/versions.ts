@@ -17,26 +17,26 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     tree,
     [
       `angular-eslint@^21.1.0`,
-      `@typescript-eslint/eslint-plugin@^8.54.0`,
-      `@typescript-eslint/parser@^8.54.0`,
-      `@typescript-eslint/utils@^8.54.0`,
+      `@typescript-eslint/eslint-plugin@^8.52.0`,
+      `@typescript-eslint/parser@^8.52.0`,
+      `@typescript-eslint/utils@^8.52.0`,
       `eslint@^9.39.2`,
       `eslint-config-prettier@^10.1.8`,
       `eslint-plugin-import@~2.32.0`,
-      `eslint-plugin-jsdoc@~62.4.1`,
+      `eslint-plugin-jsdoc@~62.0.0`,
       `eslint-plugin-prefer-arrow@~1.2.3`,
-      `eslint-plugin-prettier@~5.5.5`,
+      `eslint-plugin-prettier@~5.5.4`,
       `eslint-plugin-unused-imports@^4.3.0`,
       `typescript@~5.9.2`,
-      `typescript-eslint@8.54.0`,
-      `prettier@^3.8.1`,
+      `typescript-eslint@8.52.0`,
+      `prettier@^3.7.4`,
       `prettier-eslint@^9.39.2`,
       `husky@^9.1.7`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^18.0.0`,
       `source-map-explorer@^2.5.3`,
       `ngx-tinymce@^21.0.0`,
-      `@ng-util/monaco-editor@^21.1.0`,
+      `@ng-util/monaco-editor@^21.0.1`,
       `@delon/testing@${version}`,
       // vi test
       // `@playwright/test@undefined`,
@@ -53,7 +53,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.0.2`]);
+  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.0.1`]);
 }
 
 export function addESLintRule(projectName: string): Rule {

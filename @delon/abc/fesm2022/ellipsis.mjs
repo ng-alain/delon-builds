@@ -178,8 +178,8 @@ class EllipsisComponent {
             });
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: EllipsisComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.1", type: EllipsisComponent, isStandalone: true, selector: "ellipsis", inputs: { tooltip: { classPropertyName: "tooltip", publicName: "tooltip", isSignal: true, isRequired: false, transformFunction: null }, length: { classPropertyName: "length", publicName: "length", isSignal: true, isRequired: false, transformFunction: null }, lines: { classPropertyName: "lines", publicName: "lines", isSignal: true, isRequired: false, transformFunction: null }, fullWidthRecognition: { classPropertyName: "fullWidthRecognition", publicName: "fullWidthRecognition", isSignal: true, isRequired: false, transformFunction: null }, tail: { classPropertyName: "tail", publicName: "tail", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "orgEl", first: true, predicate: ["orgEl"], descendants: true, isSignal: true }, { propertyName: "shadowOrgEl", first: true, predicate: ["shadowOrgEl"], descendants: true, isSignal: true }, { propertyName: "shadowTextEl", first: true, predicate: ["shadowTextEl"], descendants: true, isSignal: true }], exportAs: ["ellipsis"], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: EllipsisComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.8", type: EllipsisComponent, isStandalone: true, selector: "ellipsis", inputs: { tooltip: { classPropertyName: "tooltip", publicName: "tooltip", isSignal: true, isRequired: false, transformFunction: null }, length: { classPropertyName: "length", publicName: "length", isSignal: true, isRequired: false, transformFunction: null }, lines: { classPropertyName: "lines", publicName: "lines", isSignal: true, isRequired: false, transformFunction: null }, fullWidthRecognition: { classPropertyName: "fullWidthRecognition", publicName: "fullWidthRecognition", isSignal: true, isRequired: false, transformFunction: null }, tail: { classPropertyName: "tail", publicName: "tail", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "orgEl", first: true, predicate: ["orgEl"], descendants: true, isSignal: true }, { propertyName: "shadowOrgEl", first: true, predicate: ["shadowOrgEl"], descendants: true, isSignal: true }, { propertyName: "shadowTextEl", first: true, predicate: ["shadowTextEl"], descendants: true, isSignal: true }], exportAs: ["ellipsis"], ngImport: i0, template: `
     <div (cdkObserveContent)="refresh()" #orgEl style="display: none"><ng-content /></div>
     <ng-template #tooltipTpl let-con>
       @if (tooltip()) {
@@ -225,7 +225,7 @@ class EllipsisComponent {
     }
   `, isInline: true, dependencies: [{ kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: EllipsisComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: EllipsisComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'ellipsis',
@@ -283,11 +283,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImpor
 
 const COMPONENTS = [EllipsisComponent];
 class EllipsisModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: EllipsisModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.1", ngImport: i0, type: EllipsisModule, imports: [CommonModule, ObserversModule, NzTooltipModule, EllipsisComponent], exports: [EllipsisComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: EllipsisModule, imports: [CommonModule, ObserversModule, NzTooltipModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: EllipsisModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.8", ngImport: i0, type: EllipsisModule, imports: [CommonModule, ObserversModule, NzTooltipModule, EllipsisComponent], exports: [EllipsisComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: EllipsisModule, imports: [CommonModule, ObserversModule, NzTooltipModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: EllipsisModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: EllipsisModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ObserversModule, NzTooltipModule, ...COMPONENTS],

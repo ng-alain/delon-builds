@@ -1168,10 +1168,6 @@ html {
 .nz-animate-disabled.ant-popover {
   animation: none;
 }
-.nz-animate-disabled.ant-menu-submenu {
-  transition: none;
-  animation: none;
-}
 .ant-tooltip.ant-zoom-big-fast-enter .ant-tooltip-arrow,
 .ant-tooltip.ant-zoom-big-fast-leave .ant-tooltip-arrow {
   will-change: transform;
@@ -37020,6 +37016,7 @@ body {
   margin-left: 2px;
 }
 .sv__detail {
+  overflow: hidden;
   /** contents 对 ie, edge 不支持，但对于子组件的支持会更友好 */
   display: table-cell;
   width: 100%;
@@ -37191,6 +37188,7 @@ body {
   margin-left: 2px;
 }
 .se__control {
+  overflow: hidden;
   flex: 1 0 0;
   width: 100%;
 }

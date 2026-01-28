@@ -1,8 +1,8 @@
 import * as i2 from '@delon/form';
 import { SFUISchemaItem, SFValue, ControlUIWidget, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
-import { Observable } from 'rxjs';
 import * as i3 from 'ng-zorro-antd/segmented';
 import { NzSegmentedOptions, NzSegmentedOption } from 'ng-zorro-antd/segmented';
+import { Observable } from 'rxjs';
 import * as i0 from '@angular/core';
 import * as i1 from '@angular/forms';
 

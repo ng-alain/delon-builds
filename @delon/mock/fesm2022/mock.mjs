@@ -2,7 +2,7 @@ import * as i0 from '@angular/core';
 import { InjectionToken, makeEnvironmentProviders, inject, Injectable } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
-import { of, isObservable, from, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
+import { of, from, isObservable, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
 
 class MockStatusError {
@@ -156,10 +156,10 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: MockService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: MockService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: MockService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: MockService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: MockService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [] });
