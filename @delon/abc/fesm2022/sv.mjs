@@ -1,5 +1,6 @@
 import * as i0 from '@angular/core';
 import { inject, computed, ViewEncapsulation, ChangeDetectionStrategy, Component, input, numberAttribute, booleanAttribute, Input, viewChild, afterNextRender, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/util/config';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzTooltipDirective, NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
@@ -35,6 +36,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
                 }]
         }], ctorParameters: () => [] });
 class SVContainerComponent {
+    cogSrv = inject(AlainConfigService);
     colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)),
         alias: 'sv-container' });
     title = input(...(ngDevMode ? [undefined, { debugName: "title" }] : []));
@@ -53,6 +55,15 @@ class SVContainerComponent {
             ? {}
             : { 'margin-left': `${-(this.gutter() / 2)}px`, 'margin-right': `${-(this.gutter() / 2)}px` };
     }, ...(ngDevMode ? [{ debugName: "margin" }] : []));
+    constructor() {
+        this.cogSrv.attach(this, 'sv', {
+            size: 'large',
+            gutter: 32,
+            layout: 'horizontal',
+            col: 3,
+            default: true
+        });
+    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: SVContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.8", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: { classPropertyName: "colInCon", publicName: "sv-container", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, size: { classPropertyName: "size", publicName: "size", isSignal: true, isRequired: false, transformFunction: null }, gutter: { classPropertyName: "gutter", publicName: "gutter", isSignal: true, isRequired: false, transformFunction: null }, layout: { classPropertyName: "layout", publicName: "layout", isSignal: true, isRequired: false, transformFunction: null }, labelWidth: { classPropertyName: "labelWidth", publicName: "labelWidth", isSignal: true, isRequired: false, transformFunction: null }, col: { classPropertyName: "col", publicName: "col", isSignal: true, isRequired: false, transformFunction: null }, default: { classPropertyName: "default", publicName: "default", isSignal: true, isRequired: false, transformFunction: null }, noColon: { classPropertyName: "noColon", publicName: "noColon", isSignal: true, isRequired: false, transformFunction: null }, bordered: { classPropertyName: "bordered", publicName: "bordered", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.sv__horizontal": "layout() === 'horizontal'", "class.sv__vertical": "layout() === 'vertical'", "class.sv__small": "size() === 'small'", "class.sv__large": "size() === 'large'", "class.sv__bordered": "bordered()", "class.clearfix": "true" }, classAttribute: "sv__container" }, exportAs: ["svContainer"], ngImport: i0, template: `
     <div class="ant-row" [style]="margin()">
@@ -95,7 +106,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [SVTitleComponent, NzStringTemplateOutletDirective]
                 }]
-        }], propDecorators: { colInCon: [{ type: i0.Input, args: [{ isSignal: true, alias: "sv-container", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], size: [{ type: i0.Input, args: [{ isSignal: true, alias: "size", required: false }] }], gutter: [{ type: i0.Input, args: [{ isSignal: true, alias: "gutter", required: false }] }], layout: [{ type: i0.Input, args: [{ isSignal: true, alias: "layout", required: false }] }], labelWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "labelWidth", required: false }] }], col: [{ type: i0.Input, args: [{ isSignal: true, alias: "col", required: false }] }], default: [{ type: i0.Input, args: [{ isSignal: true, alias: "default", required: false }] }], noColon: [{ type: i0.Input, args: [{ isSignal: true, alias: "noColon", required: false }] }], bordered: [{ type: i0.Input, args: [{ isSignal: true, alias: "bordered", required: false }] }] } });
+        }], ctorParameters: () => [], propDecorators: { colInCon: [{ type: i0.Input, args: [{ isSignal: true, alias: "sv-container", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], size: [{ type: i0.Input, args: [{ isSignal: true, alias: "size", required: false }] }], gutter: [{ type: i0.Input, args: [{ isSignal: true, alias: "gutter", required: false }] }], layout: [{ type: i0.Input, args: [{ isSignal: true, alias: "layout", required: false }] }], labelWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "labelWidth", required: false }] }], col: [{ type: i0.Input, args: [{ isSignal: true, alias: "col", required: false }] }], default: [{ type: i0.Input, args: [{ isSignal: true, alias: "default", required: false }] }], noColon: [{ type: i0.Input, args: [{ isSignal: true, alias: "noColon", required: false }] }], bordered: [{ type: i0.Input, args: [{ isSignal: true, alias: "bordered", required: false }] }] } });
 
 class SVValueComponent {
     prefix;

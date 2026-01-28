@@ -3,10 +3,12 @@ import { REP_TYPE } from '@delon/theme';
 import * as i1 from '@angular/common';
 
 declare class SGContainerComponent {
+    private readonly cogSrv;
     readonly gutter: _angular_core.InputSignalWithTransform<number, unknown>;
     readonly colInCon: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
     readonly col: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
     protected marginValue: _angular_core.Signal<number>;
+    constructor();
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<SGContainerComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SGContainerComponent, "sg-container, [sg-container]", ["sgContainer"], { "gutter": { "alias": "gutter"; "required": false; "isSignal": true; }; "colInCon": { "alias": "sg-container"; "required": false; "isSignal": true; }; "col": { "alias": "col"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }

@@ -1,5 +1,6 @@
 import * as i0 from '@angular/core';
 import { inject, computed, ViewEncapsulation, ChangeDetectionStrategy, Component, input, numberAttribute, booleanAttribute, DestroyRef, Injector, contentChild, viewChild, signal, linkedSignal, TemplateRef, effect, runInInjectionContext, afterNextRender, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/util/config';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -40,6 +41,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
                 }]
         }], ctorParameters: () => [] });
 class SEContainerComponent {
+    cogSrv = inject(AlainConfigService);
     colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)),
         alias: 'se-container' });
     labelWidth = input(150, { ...(ngDevMode ? { debugName: "labelWidth" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
@@ -56,6 +58,17 @@ class SEContainerComponent {
     _gutter = computed(() => (this.nzLayout() === 'horizontal' ? this.gutter() : 0), ...(ngDevMode ? [{ debugName: "_gutter" }] : []));
     _size = computed(() => (this.nzLayout() === 'inline' ? 'compact' : this.size()), ...(ngDevMode ? [{ debugName: "_size" }] : []));
     margin = computed(() => -(this._gutter() / 2), ...(ngDevMode ? [{ debugName: "margin" }] : []));
+    constructor() {
+        this.cogSrv.attach(this, 'se', {
+            size: 'default',
+            nzLayout: 'horizontal',
+            gutter: 32,
+            col: 2,
+            labelWidth: 150,
+            firstVisual: false,
+            ingoreDirty: false
+        });
+    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: SEContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.8", type: SEContainerComponent, isStandalone: true, selector: "se-container, [se-container]", inputs: { colInCon: { classPropertyName: "colInCon", publicName: "se-container", isSignal: true, isRequired: false, transformFunction: null }, labelWidth: { classPropertyName: "labelWidth", publicName: "labelWidth", isSignal: true, isRequired: false, transformFunction: null }, col: { classPropertyName: "col", publicName: "col", isSignal: true, isRequired: false, transformFunction: null }, noColon: { classPropertyName: "noColon", publicName: "noColon", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, gutter: { classPropertyName: "gutter", publicName: "gutter", isSignal: true, isRequired: false, transformFunction: null }, nzLayout: { classPropertyName: "nzLayout", publicName: "nzLayout", isSignal: true, isRequired: false, transformFunction: null }, size: { classPropertyName: "size", publicName: "size", isSignal: true, isRequired: false, transformFunction: null }, firstVisual: { classPropertyName: "firstVisual", publicName: "firstVisual", isSignal: true, isRequired: false, transformFunction: null }, ingoreDirty: { classPropertyName: "ingoreDirty", publicName: "ingoreDirty", isSignal: true, isRequired: false, transformFunction: null }, line: { classPropertyName: "line", publicName: "line", isSignal: true, isRequired: false, transformFunction: null }, errors: { classPropertyName: "errors", publicName: "errors", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.se__horizontal": "nzLayout() === 'horizontal'", "class.se__vertical": "nzLayout() === 'vertical'", "class.se__inline": "nzLayout() === 'inline'", "class.se__compact": "_size() === 'compact'", "style.margin-left.px": "margin()", "style.margin-right.px": "margin()" }, classAttribute: "ant-row se__container" }, exportAs: ["seContainer"], ngImport: i0, template: `
     @let tit = title();
@@ -94,7 +107,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [SETitleComponent, NzStringTemplateOutletDirective]
                 }]
-        }], propDecorators: { colInCon: [{ type: i0.Input, args: [{ isSignal: true, alias: "se-container", required: false }] }], labelWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "labelWidth", required: false }] }], col: [{ type: i0.Input, args: [{ isSignal: true, alias: "col", required: false }] }], noColon: [{ type: i0.Input, args: [{ isSignal: true, alias: "noColon", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], gutter: [{ type: i0.Input, args: [{ isSignal: true, alias: "gutter", required: false }] }], nzLayout: [{ type: i0.Input, args: [{ isSignal: true, alias: "nzLayout", required: false }] }], size: [{ type: i0.Input, args: [{ isSignal: true, alias: "size", required: false }] }], firstVisual: [{ type: i0.Input, args: [{ isSignal: true, alias: "firstVisual", required: false }] }], ingoreDirty: [{ type: i0.Input, args: [{ isSignal: true, alias: "ingoreDirty", required: false }] }], line: [{ type: i0.Input, args: [{ isSignal: true, alias: "line", required: false }] }], errors: [{ type: i0.Input, args: [{ isSignal: true, alias: "errors", required: false }] }] } });
+        }], ctorParameters: () => [], propDecorators: { colInCon: [{ type: i0.Input, args: [{ isSignal: true, alias: "se-container", required: false }] }], labelWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "labelWidth", required: false }] }], col: [{ type: i0.Input, args: [{ isSignal: true, alias: "col", required: false }] }], noColon: [{ type: i0.Input, args: [{ isSignal: true, alias: "noColon", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], gutter: [{ type: i0.Input, args: [{ isSignal: true, alias: "gutter", required: false }] }], nzLayout: [{ type: i0.Input, args: [{ isSignal: true, alias: "nzLayout", required: false }] }], size: [{ type: i0.Input, args: [{ isSignal: true, alias: "size", required: false }] }], firstVisual: [{ type: i0.Input, args: [{ isSignal: true, alias: "firstVisual", required: false }] }], ingoreDirty: [{ type: i0.Input, args: [{ isSignal: true, alias: "ingoreDirty", required: false }] }], line: [{ type: i0.Input, args: [{ isSignal: true, alias: "line", required: false }] }], errors: [{ type: i0.Input, args: [{ isSignal: true, alias: "errors", required: false }] }] } });
 
 const prefixCls = `se`;
 let nextUniqueId = 0;
