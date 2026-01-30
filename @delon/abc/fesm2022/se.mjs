@@ -42,10 +42,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImpor
         }], ctorParameters: () => [] });
 class SEContainerComponent {
     cogSrv = inject(AlainConfigService);
-    colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)),
+    colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)),
         alias: 'se-container' });
-    labelWidth = input(150, { ...(ngDevMode ? { debugName: "labelWidth" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
-    col = input(2, { ...(ngDevMode ? { debugName: "col" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
+    labelWidth = input(150, { ...(ngDevMode ? { debugName: "labelWidth" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)) });
+    col = input(2, { ...(ngDevMode ? { debugName: "col" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)) });
     noColon = input(false, { ...(ngDevMode ? { debugName: "noColon" } : {}), transform: booleanAttribute });
     title = input(...(ngDevMode ? [undefined, { debugName: "title" }] : []));
     gutter = input(32, { ...(ngDevMode ? { debugName: "gutter" } : {}), transform: numberAttribute });

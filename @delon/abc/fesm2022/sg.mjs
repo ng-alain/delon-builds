@@ -7,9 +7,9 @@ import { CommonModule } from '@angular/common';
 class SGContainerComponent {
     cogSrv = inject(AlainConfigService);
     gutter = input(32, { ...(ngDevMode ? { debugName: "gutter" } : {}), transform: numberAttribute });
-    colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)),
+    colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)),
         alias: 'sg-container' });
-    col = input(2, { ...(ngDevMode ? { debugName: "col" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
+    col = input(2, { ...(ngDevMode ? { debugName: "col" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)) });
     marginValue = computed(() => -(this.gutter() / 2), ...(ngDevMode ? [{ debugName: "marginValue" }] : []));
     constructor() {
         this.cogSrv.attach(this, 'sg', {
@@ -42,7 +42,7 @@ class SGComponent {
     rep = inject(ResponsiveService);
     parentComp = inject(SGContainerComponent, { host: true, optional: true });
     paddingValue = computed(() => this.parentComp.gutter() / 2, ...(ngDevMode ? [{ debugName: "paddingValue" }] : []));
-    col = input(null, { ...(ngDevMode ? { debugName: "col" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
+    col = input(null, { ...(ngDevMode ? { debugName: "col" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)) });
     cls = computed(() => {
         const col = this.col();
         const parent = this.parentComp;

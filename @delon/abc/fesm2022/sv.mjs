@@ -37,7 +37,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImpor
         }], ctorParameters: () => [] });
 class SVContainerComponent {
     cogSrv = inject(AlainConfigService);
-    colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)),
+    colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : {}), transform: (v) => (v == null ? null : numberAttribute(v, null)),
         alias: 'sv-container' });
     title = input(...(ngDevMode ? [undefined, { debugName: "title" }] : []));
     size = input('large', ...(ngDevMode ? [{ debugName: "size" }] : []));
