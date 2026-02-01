@@ -66,8 +66,8 @@ class ReuseTabContextMenuComponent {
             return;
         this.notify(null);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.1", type: ReuseTabContextMenuComponent, isStandalone: true, selector: "reuse-tab-context-menu", inputs: { i18n: "i18n", item: "item", event: "event", customContextMenu: "customContextMenu" }, outputs: { close: "close" }, host: { listeners: { "document:click": "closeMenu($event)", "document:contextmenu": "closeMenu($event)" } }, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.2", type: ReuseTabContextMenuComponent, isStandalone: true, selector: "reuse-tab-context-menu", inputs: { i18n: "i18n", item: "item", event: "event", customContextMenu: "customContextMenu" }, outputs: { close: "close" }, host: { listeners: { "document:click": "closeMenu($event)", "document:contextmenu": "closeMenu($event)" } }, ngImport: i0, template: `
     <ul nz-menu>
       @if (item.active) {
         <li nz-menu-item (click)="click($event, 'refresh')" data-type="refresh" [innerHTML]="i18n.refresh"></li>
@@ -102,7 +102,7 @@ class ReuseTabContextMenuComponent {
     </ul>
   `, isInline: true, dependencies: [{ kind: "directive", type: NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextMenuComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextMenuComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'reuse-tab-context-menu',
@@ -200,10 +200,10 @@ class ReuseTabContextService {
         }));
         comp.onDestroy(() => sub$.unsubscribe());
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextService, decorators: [{
             type: Injectable
         }] });
 
@@ -217,10 +217,10 @@ class ReuseTabContextComponent {
         this.srv.show.pipe(takeUntilDestroyed()).subscribe(context => this.srv.open(context));
         this.srv.close.pipe(takeUntilDestroyed()).subscribe(res => this.change.emit(res));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.1", type: ReuseTabContextComponent, isStandalone: true, selector: "reuse-tab-context", inputs: { i18n: "i18n" }, outputs: { change: "change" }, ngImport: i0, template: ``, isInline: true });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.1.2", type: ReuseTabContextComponent, isStandalone: true, selector: "reuse-tab-context", inputs: { i18n: "i18n" }, outputs: { change: "change" }, ngImport: i0, template: ``, isInline: true });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'reuse-tab-context',
@@ -245,10 +245,10 @@ class ReuseTabContextDirective {
         event.preventDefault();
         event.stopPropagation();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.1", type: ReuseTabContextDirective, isStandalone: true, selector: "[reuse-tab-context-menu]", inputs: { item: { classPropertyName: "item", publicName: "reuse-tab-context-menu", isSignal: true, isRequired: true, transformFunction: null }, customContextMenu: { classPropertyName: "customContextMenu", publicName: "customContextMenu", isSignal: true, isRequired: true, transformFunction: null } }, host: { listeners: { "contextmenu": "_onContextMenu($event)" } }, exportAs: ["reuseTabContextMenu"], ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.1.2", type: ReuseTabContextDirective, isStandalone: true, selector: "[reuse-tab-context-menu]", inputs: { item: { classPropertyName: "item", publicName: "reuse-tab-context-menu", isSignal: true, isRequired: true, transformFunction: null }, customContextMenu: { classPropertyName: "customContextMenu", publicName: "customContextMenu", isSignal: true, isRequired: true, transformFunction: null } }, host: { listeners: { "contextmenu": "_onContextMenu($event)" } }, exportAs: ["reuseTabContextMenu"], ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabContextDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabContextDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[reuse-tab-context-menu]',
@@ -883,10 +883,10 @@ class ReuseTabService {
             _router$.unsubscribe();
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabService, decorators: [{
             type: Injectable
         }], ctorParameters: () => [] });
 
@@ -1138,8 +1138,8 @@ class ReuseTabComponent {
         ``;
         this.srv.debug = this.debug();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.1", type: ReuseTabComponent, isStandalone: true, selector: "reuse-tab, [reuse-tab]", inputs: { mode: { classPropertyName: "mode", publicName: "mode", isSignal: true, isRequired: false, transformFunction: null }, i18n: { classPropertyName: "i18n", publicName: "i18n", isSignal: true, isRequired: false, transformFunction: null }, debug: { classPropertyName: "debug", publicName: "debug", isSignal: true, isRequired: false, transformFunction: null }, max: { classPropertyName: "max", publicName: "max", isSignal: true, isRequired: false, transformFunction: null }, tabMaxWidth: { classPropertyName: "tabMaxWidth", publicName: "tabMaxWidth", isSignal: true, isRequired: false, transformFunction: null }, excludes: { classPropertyName: "excludes", publicName: "excludes", isSignal: true, isRequired: false, transformFunction: null }, allowClose: { classPropertyName: "allowClose", publicName: "allowClose", isSignal: true, isRequired: false, transformFunction: null }, keepingScroll: { classPropertyName: "keepingScroll", publicName: "keepingScroll", isSignal: true, isRequired: false, transformFunction: null }, storageState: { classPropertyName: "storageState", publicName: "storageState", isSignal: true, isRequired: false, transformFunction: null }, keepingScrollContainer: { classPropertyName: "keepingScrollContainer", publicName: "keepingScrollContainer", isSignal: true, isRequired: false, transformFunction: null }, customContextMenu: { classPropertyName: "customContextMenu", publicName: "customContextMenu", isSignal: true, isRequired: false, transformFunction: null }, tabBarExtraContent: { classPropertyName: "tabBarExtraContent", publicName: "tabBarExtraContent", isSignal: true, isRequired: false, transformFunction: null }, tabBarGutter: { classPropertyName: "tabBarGutter", publicName: "tabBarGutter", isSignal: true, isRequired: false, transformFunction: null }, tabBarStyle: { classPropertyName: "tabBarStyle", publicName: "tabBarStyle", isSignal: true, isRequired: false, transformFunction: null }, tabType: { classPropertyName: "tabType", publicName: "tabType", isSignal: true, isRequired: false, transformFunction: null }, routeParamMatchMode: { classPropertyName: "routeParamMatchMode", publicName: "routeParamMatchMode", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null }, titleRender: { classPropertyName: "titleRender", publicName: "titleRender", isSignal: true, isRequired: false, transformFunction: null }, canClose: { classPropertyName: "canClose", publicName: "canClose", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { change: "change", close: "close" }, host: { properties: { "class.reuse-tab__line": "tabType() === 'line'", "class.reuse-tab__card": "tabType() === 'card'", "class.reuse-tab__disabled": "disabled()", "class.reuse-tab-rtl": "dir() === 'rtl'" }, classAttribute: "reuse-tab" }, providers: [ReuseTabContextService], viewQueries: [{ propertyName: "tabset", first: true, predicate: NzTabsComponent, descendants: true, isSignal: true }], exportAs: ["reuseTab"], usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.2", type: ReuseTabComponent, isStandalone: true, selector: "reuse-tab, [reuse-tab]", inputs: { mode: { classPropertyName: "mode", publicName: "mode", isSignal: true, isRequired: false, transformFunction: null }, i18n: { classPropertyName: "i18n", publicName: "i18n", isSignal: true, isRequired: false, transformFunction: null }, debug: { classPropertyName: "debug", publicName: "debug", isSignal: true, isRequired: false, transformFunction: null }, max: { classPropertyName: "max", publicName: "max", isSignal: true, isRequired: false, transformFunction: null }, tabMaxWidth: { classPropertyName: "tabMaxWidth", publicName: "tabMaxWidth", isSignal: true, isRequired: false, transformFunction: null }, excludes: { classPropertyName: "excludes", publicName: "excludes", isSignal: true, isRequired: false, transformFunction: null }, allowClose: { classPropertyName: "allowClose", publicName: "allowClose", isSignal: true, isRequired: false, transformFunction: null }, keepingScroll: { classPropertyName: "keepingScroll", publicName: "keepingScroll", isSignal: true, isRequired: false, transformFunction: null }, storageState: { classPropertyName: "storageState", publicName: "storageState", isSignal: true, isRequired: false, transformFunction: null }, keepingScrollContainer: { classPropertyName: "keepingScrollContainer", publicName: "keepingScrollContainer", isSignal: true, isRequired: false, transformFunction: null }, customContextMenu: { classPropertyName: "customContextMenu", publicName: "customContextMenu", isSignal: true, isRequired: false, transformFunction: null }, tabBarExtraContent: { classPropertyName: "tabBarExtraContent", publicName: "tabBarExtraContent", isSignal: true, isRequired: false, transformFunction: null }, tabBarGutter: { classPropertyName: "tabBarGutter", publicName: "tabBarGutter", isSignal: true, isRequired: false, transformFunction: null }, tabBarStyle: { classPropertyName: "tabBarStyle", publicName: "tabBarStyle", isSignal: true, isRequired: false, transformFunction: null }, tabType: { classPropertyName: "tabType", publicName: "tabType", isSignal: true, isRequired: false, transformFunction: null }, routeParamMatchMode: { classPropertyName: "routeParamMatchMode", publicName: "routeParamMatchMode", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null }, titleRender: { classPropertyName: "titleRender", publicName: "titleRender", isSignal: true, isRequired: false, transformFunction: null }, canClose: { classPropertyName: "canClose", publicName: "canClose", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { change: "change", close: "close" }, host: { properties: { "class.reuse-tab__line": "tabType() === 'line'", "class.reuse-tab__card": "tabType() === 'card'", "class.reuse-tab__disabled": "disabled()", "class.reuse-tab-rtl": "dir() === 'rtl'" }, classAttribute: "reuse-tab" }, providers: [ReuseTabContextService], viewQueries: [{ propertyName: "tabset", first: true, predicate: NzTabsComponent, descendants: true, isSignal: true }], exportAs: ["reuseTab"], usesOnChanges: true, ngImport: i0, template: `
     <nz-tabs
       [nzSelectedIndex]="pos()"
       [nzAnimated]="false"
@@ -1175,7 +1175,7 @@ class ReuseTabComponent {
     <reuse-tab-context [i18n]="i18n()" (change)="contextMenuChange($event)" />
   `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzTabsComponent, selector: "nz-tabs", inputs: ["nzSelectedIndex", "nzTabPosition", "nzTabBarExtraContent", "nzCanDeactivate", "nzAddIcon", "nzTabBarStyle", "nzType", "nzSize", "nzAnimated", "nzTabBarGutter", "nzHideAdd", "nzCentered", "nzHideAll", "nzLinkRouter", "nzLinkExact", "nzDestroyInactiveTabPane"], outputs: ["nzSelectChange", "nzSelectedIndexChange", "nzTabListScroll", "nzClose", "nzAdd"], exportAs: ["nzTabs"] }, { kind: "component", type: NzTabComponent, selector: "nz-tab", inputs: ["nzTitle", "nzClosable", "nzCloseIcon", "nzDisabled", "nzForceRender"], outputs: ["nzSelect", "nzDeselect", "nzClick", "nzContextmenu"], exportAs: ["nzTab"] }, { kind: "directive", type: ReuseTabContextDirective, selector: "[reuse-tab-context-menu]", inputs: ["reuse-tab-context-menu", "customContextMenu"], exportAs: ["reuseTabContextMenu"] }, { kind: "component", type: ReuseTabContextComponent, selector: "reuse-tab-context", inputs: ["i18n"], outputs: ["change"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'reuse-tab, [reuse-tab]',
@@ -1258,15 +1258,15 @@ class ReuseTabStrategy {
 const COMPONENTS = [ReuseTabComponent];
 const NOEXPORTS = [ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective];
 class ReuseTabModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabModule, imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabModule, imports: [CommonModule,
             RouterModule,
             DelonLocaleModule,
             NzMenuModule,
             NzTabsModule,
             NzIconModule,
             OverlayModule, ReuseTabComponent, ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective], exports: [ReuseTabComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabModule, providers: [
             {
                 provide: REUSE_TAB_STORAGE_KEY,
                 useValue: '_reuse-tab-state'
@@ -1287,7 +1287,7 @@ class ReuseTabModule {
             NzIconModule,
             OverlayModule, COMPONENTS, ReuseTabContextMenuComponent] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: ReuseTabModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: ReuseTabModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

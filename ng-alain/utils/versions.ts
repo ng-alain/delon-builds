@@ -16,14 +16,14 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
-      `angular-eslint@^21.1.0`,
+      `angular-eslint@^21.2.0`,
       `@typescript-eslint/eslint-plugin@^8.54.0`,
       `@typescript-eslint/parser@^8.54.0`,
       `@typescript-eslint/utils@^8.54.0`,
       `eslint@^9.39.2`,
       `eslint-config-prettier@^10.1.8`,
       `eslint-plugin-import@~2.32.0`,
-      `eslint-plugin-jsdoc@~62.4.1`,
+      `eslint-plugin-jsdoc@~62.5.0`,
       `eslint-plugin-prefer-arrow@~1.2.3`,
       `eslint-plugin-prettier@~5.5.5`,
       `eslint-plugin-unused-imports@^4.3.0`,

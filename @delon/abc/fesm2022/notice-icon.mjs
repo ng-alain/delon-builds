@@ -22,8 +22,8 @@ class NoticeIconTabComponent {
     onClear() {
         this.clear.emit(this.item().title);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconTabComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.1", type: NoticeIconTabComponent, isStandalone: true, selector: "notice-icon-tab", inputs: { locale: { classPropertyName: "locale", publicName: "locale", isSignal: true, isRequired: true, transformFunction: null }, item: { classPropertyName: "item", publicName: "item", isSignal: true, isRequired: true, transformFunction: null } }, outputs: { select: "select", clear: "clear" }, exportAs: ["noticeIconTab"], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconTabComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.2", type: NoticeIconTabComponent, isStandalone: true, selector: "notice-icon-tab", inputs: { locale: { classPropertyName: "locale", publicName: "locale", isSignal: true, isRequired: true, transformFunction: null }, item: { classPropertyName: "item", publicName: "item", isSignal: true, isRequired: true, transformFunction: null } }, outputs: { select: "select", clear: "clear" }, exportAs: ["noticeIconTab"], ngImport: i0, template: `
     @let d = item();
     @let list = d.list;
     @if (list && list.length > 0) {
@@ -75,7 +75,7 @@ class NoticeIconTabComponent {
     </ng-template>
   `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: NzListComponent, selector: "nz-list, [nz-list]", inputs: ["nzDataSource", "nzBordered", "nzGrid", "nzHeader", "nzFooter", "nzItemLayout", "nzRenderItem", "nzLoading", "nzLoadMore", "nzPagination", "nzSize", "nzSplit", "nzNoResult"], exportAs: ["nzList"] }, { kind: "component", type: NzListItemComponent, selector: "nz-list-item, [nz-list-item]", inputs: ["nzActions", "nzContent", "nzExtra", "nzNoFlex"], exportAs: ["nzListItem"] }, { kind: "component", type: NzListItemMetaComponent, selector: "nz-list-item-meta, [nz-list-item-meta]", inputs: ["nzAvatar", "nzTitle", "nzDescription"], exportAs: ["nzListItemMeta"] }, { kind: "component", type: NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked", "nzBordered"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }], encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconTabComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconTabComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'notice-icon-tab',
@@ -169,8 +169,8 @@ class NoticeIconComponent {
         this.delayShow.set(result);
         this.popoverVisibleChange.emit(result);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.1", type: NoticeIconComponent, isStandalone: true, selector: "notice-icon", inputs: { data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, count: { classPropertyName: "count", publicName: "count", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, popoverVisible: { classPropertyName: "popoverVisible", publicName: "popoverVisible", isSignal: true, isRequired: false, transformFunction: null }, btnClass: { classPropertyName: "btnClass", publicName: "btnClass", isSignal: true, isRequired: false, transformFunction: null }, btnIconClass: { classPropertyName: "btnIconClass", publicName: "btnIconClass", isSignal: true, isRequired: false, transformFunction: null }, centered: { classPropertyName: "centered", publicName: "centered", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { select: "select", clear: "clear", popoverVisibleChange: "popoverVisibleChange" }, host: { classAttribute: "notice-icon__btn" }, exportAs: ["noticeIcon"], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.1.2", type: NoticeIconComponent, isStandalone: true, selector: "notice-icon", inputs: { data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, count: { classPropertyName: "count", publicName: "count", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, popoverVisible: { classPropertyName: "popoverVisible", publicName: "popoverVisible", isSignal: true, isRequired: false, transformFunction: null }, btnClass: { classPropertyName: "btnClass", publicName: "btnClass", isSignal: true, isRequired: false, transformFunction: null }, btnIconClass: { classPropertyName: "btnIconClass", publicName: "btnIconClass", isSignal: true, isRequired: false, transformFunction: null }, centered: { classPropertyName: "centered", publicName: "centered", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { select: "select", clear: "clear", popoverVisibleChange: "popoverVisibleChange" }, host: { classAttribute: "notice-icon__btn" }, exportAs: ["noticeIcon"], ngImport: i0, template: `
     <ng-template #badgeTpl>
       <nz-badge [nzCount]="count()" [class]="btnClass()" [nzStyle]="{ 'box-shadow': 'none' }">
         <nz-icon nzType="bell" [class]="btnIconClass()" />
@@ -212,7 +212,7 @@ class NoticeIconComponent {
     }
   `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: NzDropdownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzArrow", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "component", type: NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { kind: "component", type: NzTabsComponent, selector: "nz-tabs", inputs: ["nzSelectedIndex", "nzTabPosition", "nzTabBarExtraContent", "nzCanDeactivate", "nzAddIcon", "nzTabBarStyle", "nzType", "nzSize", "nzAnimated", "nzTabBarGutter", "nzHideAdd", "nzCentered", "nzHideAll", "nzLinkRouter", "nzLinkExact", "nzDestroyInactiveTabPane"], outputs: ["nzSelectChange", "nzSelectedIndexChange", "nzTabListScroll", "nzClose", "nzAdd"], exportAs: ["nzTabs"] }, { kind: "component", type: NzTabComponent, selector: "nz-tab", inputs: ["nzTitle", "nzClosable", "nzCloseIcon", "nzDisabled", "nzForceRender"], outputs: ["nzSelect", "nzDeselect", "nzClick", "nzContextmenu"], exportAs: ["nzTab"] }, { kind: "component", type: NoticeIconTabComponent, selector: "notice-icon-tab", inputs: ["locale", "item"], outputs: ["select", "clear"], exportAs: ["noticeIconTab"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'notice-icon',
@@ -277,8 +277,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImpor
 
 const COMPONENTS = [NoticeIconComponent];
 class NoticeIconModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
             NzDropdownModule,
@@ -288,7 +288,7 @@ class NoticeIconModule {
             NzTabsModule,
             NzTagModule,
             NzOutletModule, NoticeIconComponent, NoticeIconTabComponent], exports: [NoticeIconComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
             NzDropdownModule,
@@ -299,7 +299,7 @@ class NoticeIconModule {
             NzTagModule,
             NzOutletModule, COMPONENTS, NoticeIconTabComponent] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.1", ngImport: i0, type: NoticeIconModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.1.2", ngImport: i0, type: NoticeIconModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
