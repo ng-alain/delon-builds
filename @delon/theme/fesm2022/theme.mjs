@@ -1012,7 +1012,7 @@ class ModalHelper {
                     el = btns[focus === 'ok' ? 1 : 0];
                 }
                 if (el != null) {
-                    el.focus();
+                    setTimeout(() => el.focus());
                     el.dataset.focused = focus;
                 }
             });
