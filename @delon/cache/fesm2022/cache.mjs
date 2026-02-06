@@ -2,7 +2,7 @@ import { Platform } from '@angular/cdk/platform';
 import { HttpClient, HttpContextToken, HttpResponseBase } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable } from '@angular/core';
-import { Observable, tap, map, of, BehaviorSubject } from 'rxjs';
+import { Observable, tap, from, of, switchMap, map, BehaviorSubject } from 'rxjs';
 import { addSeconds } from 'date-fns';
 import { AlainConfigService } from '@delon/util/config';
 import { deepGet } from '@delon/util/other';
@@ -68,8 +68,9 @@ class CacheService {
         this.meta.delete(key);
         this.saveMeta();
     }
-    loadMeta() {
-        const ret = this.store.get(this.cog.meta_key);
+    async loadMeta() {
+        const fn = this.store.get(this.cog.meta_key);
+        const ret = fn instanceof Promise ? await fn : fn;
         if (ret && ret.v) {
             ret.v.forEach(key => this.meta.add(key));
         }
@@ -122,19 +123,27 @@ class CacheService {
     get(key, options = {}) {
         if (!this.platform.isBrowser)
             return null;
+        const ret = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
+        const fnIsPromise = ret instanceof Promise;
+        const isValid = (value) => value != null && (value.e == 0 || (value.e > 0 && value.e > new Date().valueOf()));
         const isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
-        const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
-        if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
-            if (isPromise) {
-                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => deepGet(ret, this.cog.reName, ret)), tap(v => this.set(key, v, {
-                    type: options.type,
-                    expire: options.expire,
-                    emitNotify: options.emitNotify
-                })));
-            }
-            return null;
+        if (!isPromise) {
+            const retObj = ret;
+            return isValid(retObj) ? retObj?.v : null;
         }
-        return isPromise ? of(value.v) : value.v;
+        return (fnIsPromise ? from(ret) : of(ret)).pipe(switchMap((data) => {
+            if (isValid(data))
+                return of(data.v);
+            return this.cog.request ? this.cog.request(key) : this.http.get(key);
+        }), map(data => {
+            const v = deepGet(data, this.cog.reName, data);
+            this.set(key, v, {
+                type: options.type,
+                expire: options.expire,
+                emitNotify: options.emitNotify
+            });
+            return v;
+        }));
     }
     /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
     getNone(key) {
