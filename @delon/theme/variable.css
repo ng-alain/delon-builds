@@ -1154,7 +1154,7 @@ html {
   opacity: 0;
   transition: opacity 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
   pointer-events: auto;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: #000000;
 }
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
   opacity: 1;
@@ -1163,7 +1163,7 @@ html {
   opacity: 0.6;
 }
 .cdk-overlay-dark-backdrop {
-  background: rgba(0, 0, 0, 0.32);
+  background: #000000;
 }
 .cdk-overlay-transparent-backdrop {
   visibility: hidden;
@@ -5363,11 +5363,17 @@ nz-carousel {
   font-feature-settings: 'tnum';
   background-color: #fafafa;
   border: 1px solid #d9d9d9;
-  border-bottom: 0;
   border-radius: 2px;
+}
+.ant-collapse-rtl {
+  direction: rtl;
 }
 .ant-collapse > .ant-collapse-item {
   border-bottom: 1px solid #d9d9d9;
+}
+.ant-collapse > .ant-collapse-item:first-child,
+.ant-collapse > .ant-collapse-item:first-child > .ant-collapse-header {
+  border-radius: 2px 2px 0 0;
 }
 .ant-collapse > .ant-collapse-item:last-child,
 .ant-collapse > .ant-collapse-item:last-child > .ant-collapse-header {
@@ -5384,113 +5390,68 @@ nz-carousel {
   cursor: pointer;
   transition: all 0.3s, visibility 0s;
 }
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-  display: inline-block;
-  margin-right: 12px;
-  font-size: 12px;
-  vertical-align: -1px;
-}
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
-  transition: transform 0.24s;
-}
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-header-text {
+.ant-collapse > .ant-collapse-item > .ant-collapse-header > .ant-collapse-title {
   flex: auto;
 }
-.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-extra {
-  margin-left: auto;
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-expand-icon {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  margin-inline-end: 12px;
 }
-.ant-collapse > .ant-collapse-item > .ant-collapse-header:focus {
-  outline: none;
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
+  font-size: 12px;
+  transition: transform 0.3s;
 }
-.ant-collapse > .ant-collapse-item .ant-collapse-header-collapsible-only {
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
+  transition: transform 0.3s;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-title {
+  margin-inline-end: auto;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header:focus-visible {
+  outline: calc(1px * 3) solid var(--ant-primary-3);
+  outline-offset: 1px;
+  transition: outline-offset 0s, outline 0s;
+}
+.ant-collapse > .ant-collapse-item .ant-collapse-collapsible-header {
   cursor: default;
 }
-.ant-collapse > .ant-collapse-item .ant-collapse-header-collapsible-only .ant-collapse-header-text {
+.ant-collapse > .ant-collapse-item .ant-collapse-collapsible-header .ant-collapse-title {
   flex: none;
   cursor: pointer;
 }
-.ant-collapse > .ant-collapse-item .ant-collapse-icon-collapsible-only {
-  cursor: default;
+.ant-collapse > .ant-collapse-item .ant-collapse-collapsible-header .ant-collapse-expand-icon {
+  cursor: pointer;
 }
-.ant-collapse > .ant-collapse-item .ant-collapse-icon-collapsible-only .ant-collapse-expand-icon {
+.ant-collapse > .ant-collapse-item .ant-collapse-collapsible-icon {
+  cursor: unset;
+}
+.ant-collapse > .ant-collapse-item .ant-collapse-collapsible-icon .ant-collapse-expand-icon {
   cursor: pointer;
 }
 .ant-collapse > .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
   padding-left: 12px;
 }
-.ant-collapse-icon-position-end > .ant-collapse-item > .ant-collapse-header {
-  position: relative;
-  padding: 12px 16px;
-  padding-right: 40px;
-}
-.ant-collapse-icon-position-end > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  left: auto;
-  margin: 0;
-  transform: translateY(-50%);
-}
-.ant-collapse-content {
+.ant-collapse-panel {
   color: rgba(0, 0, 0, 0.85);
   background-color: #fff;
   border-top: 1px solid #d9d9d9;
 }
-.ant-collapse-content > .ant-collapse-content-box {
+.ant-collapse-panel > .ant-collapse-body {
   padding: 16px;
 }
-.ant-collapse-content-hidden {
+.ant-collapse-panel-hidden {
   display: none;
-}
-.ant-collapse-item:last-child > .ant-collapse-content {
-  border-radius: 0 0 2px 2px;
-}
-.ant-collapse-borderless {
-  background-color: #fafafa;
-  border: 0;
-}
-.ant-collapse-borderless > .ant-collapse-item {
-  border-bottom: 1px solid #d9d9d9;
-}
-.ant-collapse-borderless > .ant-collapse-item:last-child,
-.ant-collapse-borderless > .ant-collapse-item:last-child .ant-collapse-header {
-  border-radius: 0;
-}
-.ant-collapse-borderless > .ant-collapse-item:last-child {
-  border-bottom: 0;
-}
-.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content {
-  background-color: transparent;
-  border-top: 0;
-}
-.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
-  padding-top: 4px;
-}
-.ant-collapse-ghost {
-  background-color: transparent;
-  border: 0;
-}
-.ant-collapse-ghost > .ant-collapse-item {
-  border-bottom: 0;
-}
-.ant-collapse-ghost > .ant-collapse-item > .ant-collapse-content {
-  background-color: transparent;
-  border-top: 0;
-}
-.ant-collapse-ghost > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.ant-collapse .ant-collapse-item-disabled > .ant-collapse-header,
-.ant-collapse .ant-collapse-item-disabled > .ant-collapse-header > .arrow {
-  color: rgba(0, 0, 0, 0.25);
-  cursor: not-allowed;
 }
 .ant-collapse-small > .ant-collapse-item > .ant-collapse-header {
   padding: 8px 12px;
   padding-inline-start: 8px;
 }
-.ant-collapse-small > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
+.ant-collapse-small > .ant-collapse-item > .ant-collapse-expand-icon {
+  margin-inline-end: calc(12px - 8px);
+}
+.ant-collapse-small > .ant-collapse-item > .ant-collapse-panel > .ant-collapse-body {
   padding: 12px;
 }
 .ant-collapse-large > .ant-collapse-item {
@@ -5501,43 +5462,59 @@ nz-carousel {
   padding: 16px 24px;
   padding-inline-start: 16px;
 }
-.ant-collapse-large > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
+.ant-collapse-large > .ant-collapse-item > .ant-collapse-panel > .ant-collapse-body {
   padding: 24px;
 }
-.ant-collapse-rtl {
-  direction: rtl;
+.ant-collapse-item:last-child {
+  border-bottom: 0;
 }
-.ant-collapse-rtl.ant-collapse.ant-collapse-icon-position-end > .ant-collapse-item > .ant-collapse-header {
-  position: relative;
-  padding: 12px 16px;
-  padding-left: 40px;
+.ant-collapse-item:last-child > .ant-collapse-panel {
+  border-radius: 0 0 2px 2px;
 }
-.ant-collapse-rtl.ant-collapse.ant-collapse-icon-position-end > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-  position: absolute;
-  top: 50%;
-  right: auto;
-  left: 16px;
-  margin: 0;
-  transform: translateY(-50%);
+.ant-collapse .ant-collapse-item-disabled > .ant-collapse-header,
+.ant-collapse .ant-collapse-item-disabled > .ant-collapse-header > .arrow {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
 }
-.ant-collapse-rtl .ant-collapse > .ant-collapse-item > .ant-collapse-header {
-  padding: 12px 16px;
-  padding-right: 40px;
+.ant-collapse-icon-placement-end > .ant-collapse-item > .ant-collapse-header .ant-collapse-expand-icon {
+  order: 1;
+  margin-inline-end: 0;
+  margin-inline-start: 12px;
 }
-.ant-collapse-rtl.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-  margin-right: 0;
-  margin-left: 12px;
+.ant-collapse-borderless {
+  background-color: #fafafa;
+  border: 0;
 }
-.ant-collapse-rtl.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
-  transform: rotate(180deg);
+.ant-collapse-borderless > .ant-collapse-item {
+  border-bottom: 1px solid #d9d9d9;
 }
-.ant-collapse-rtl.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-extra {
-  margin-right: auto;
-  margin-left: 0;
+.ant-collapse-borderless > .ant-collapse-item:last-child,
+.ant-collapse-borderless > .ant-collapse-item:last-child > .ant-collapse-header {
+  border-radius: 0;
 }
-.ant-collapse-rtl.ant-collapse > .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
-  padding-right: 12px;
-  padding-left: 0;
+.ant-collapse-borderless > .ant-collapse-item:last-child {
+  border-bottom: 0;
+}
+.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-panel {
+  background-color: transparent;
+  border-top: 0;
+}
+.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-panel > .ant-collapse-body {
+  padding: 4px 12px 16px;
+}
+.ant-collapse-ghost {
+  background-color: transparent;
+  border: 0;
+}
+.ant-collapse-ghost > .ant-collapse-item {
+  border-bottom: 0;
+}
+.ant-collapse-ghost > .ant-collapse-item > .ant-collapse-panel {
+  background-color: transparent;
+  border: 0;
+}
+.ant-collapse-ghost > .ant-collapse-item > .ant-collapse-panel > .ant-collapse-body {
+  padding-block: 12px;
 }
 nz-collapse {
   display: block;
@@ -5987,6 +5964,10 @@ textarea.ant-picker-input > input {
 }
 .ant-picker-small {
   padding: 0px 7px 0px;
+}
+.ant-picker-prefix {
+  flex: 0 0 auto;
+  margin-right: 4px;
 }
 .ant-picker-suffix {
   display: flex;
@@ -22662,6 +22643,7 @@ span.ant-radio + * {
   border-left-width: 1px !important;
 }
 .ant-select-selection-item {
+  position: relative;
   flex: 1;
   overflow: hidden;
   font-weight: normal;
