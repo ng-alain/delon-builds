@@ -17,22 +17,22 @@ const utils_1 = require("../utils");
 let project;
 function fixImport(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const basicComponentPath = (0, core_1.normalize)(`${project.sourceRoot}/app/layout/basic/basic.component.ts`);
+        const basicComponentPath = (0, core_1.normalize)(`${project.sourceRoot}/app/layout/basic/basic.ts`);
         if (tree.exists(basicComponentPath)) {
             const content = (0, utils_1.readContent)(tree, basicComponentPath).replace(`<div nz-menu style="width: 200px;">`, `<div nz-menu style="width: 200px;"><div nz-menu-item><header-rtl /></div>`);
             tree.overwrite(basicComponentPath, content);
         }
         const isStandalone = yield (0, schematics_1.isStandaloneSchematic)(tree, options);
         if (isStandalone) {
-            // import HeaderRTLComponent
-            (0, utils_1.importInStandalone)(tree, basicComponentPath, 'HeaderRTLComponent', './widgets/rtl.component');
+            // import HeaderRTL
+            (0, utils_1.importInStandalone)(tree, basicComponentPath, 'HeaderRTL', './widgets/rtl');
         }
         else {
             // src/app/layout/layout.module.ts
             const layoutModulePath = (0, core_1.normalize)(`${project.sourceRoot}/app/layout/layout.module.ts`);
             if (tree.exists(layoutModulePath)) {
-                const rtlComponentName = 'HeaderRTLComponent';
-                (0, utils_1.addImportToModule)(tree, layoutModulePath, rtlComponentName, './basic/widgets/rtl.component');
+                const rtlComponentName = 'HeaderRTL';
+                (0, utils_1.addImportToModule)(tree, layoutModulePath, rtlComponentName, './basic/widgets/rtl');
                 (0, utils_1.addValueToVariable)(tree, layoutModulePath, 'HEADERCOMPONENTS', rtlComponentName);
             }
         }
