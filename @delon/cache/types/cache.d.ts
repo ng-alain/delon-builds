@@ -9,9 +9,9 @@ interface ICache {
     e: number;
 }
 interface ICacheStore {
-    get(key: string): ICache | null;
-    set(key: string, value: ICache): boolean;
-    remove(key: string): void;
+    get(key: string): ICache | PromiseLike<ICache> | null;
+    set(key: string, value: ICache): boolean | PromiseLike<boolean>;
+    remove(key: string): boolean | PromiseLike<boolean>;
 }
 type CacheNotifyType = 'set' | 'remove' | 'expire';
 interface CacheNotifyResult {
@@ -97,7 +97,9 @@ declare class CacheService implements OnDestroy {
         expire?: number;
         emitNotify?: boolean;
     }): any;
-    /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
+    /**
+     * 获取缓存数据，若 `key` 不存在或已过期则返回 null
+     */
     getNone<T>(key: string): T;
     /**
      * 获取缓存，若不存在则设置持久化缓存 `Observable` 对象

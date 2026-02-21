@@ -3,12 +3,12 @@ import { startPageGuard } from '@core';
 import { authSimpleCanActivate, authSimpleCanActivateChild } from '@delon/auth';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LayoutBasic } from '../layout';
+import { LayoutBasicComponent } from '../layout';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LayoutBasic,
+    component: LayoutBasicComponent,
     canActivate: [startPageGuard, authSimpleCanActivate],
     canActivateChild: [authSimpleCanActivateChild],
     data: {},
