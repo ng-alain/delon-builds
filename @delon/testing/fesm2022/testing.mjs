@@ -2,69 +2,6 @@ import { tick, TestBed, flush, discardPeriodicTasks } from '@angular/core/testin
 import { By } from '@angular/platform-browser';
 import { NzDropdownDirective } from 'ng-zorro-antd/dropdown';
 
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/** Creates a browser MouseEvent with the specified options. */
-function createMouseEvent(type, x = 0, y = 0) {
-    const event = document.createEvent('MouseEvent');
-    event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
-    return event;
-}
-/** Creates a browser TouchEvent with the specified pointer coordinates. */
-function createTouchEvent(type, pageX = 0, pageY = 0) {
-    // In favor of creating events that work for most of the browsers, the event is created
-    // as a basic UI Event. The necessary details for the event will be set manually.
-    const event = document.createEvent('UIEvent');
-    const touchDetails = { pageX, pageY };
-    event.initUIEvent(type, true, true, window, 0);
-    // Most of the browsers don't have a "initTouchEvent" method that can be used to define
-    // the touch details.
-    Object.defineProperties(event, {
-        touches: { value: [touchDetails] }
-    });
-    return event;
-}
-/** Dispatches a keydown event from an element. */
-function createKeyboardEvent(type, keyCode, target, key) {
-    const event = document.createEvent('KeyboardEvent');
-    // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
-    const initEventFn = (event.initKeyEvent || event.initKeyboardEvent).bind(event);
-    const originalPreventDefault = event.preventDefault;
-    initEventFn(type, true, true, window, 0, 0, 0, 0, 0, keyCode);
-    // Webkit Browsers don't set the keyCode when calling the init function.
-    // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
-    Object.defineProperties(event, {
-        keyCode: { get: () => keyCode },
-        key: { get: () => key },
-        target: { get: () => target }
-    });
-    // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-    event.preventDefault = function () {
-        Object.defineProperty(event, 'defaultPrevented', { get: () => true });
-        // eslint-disable-next-line prefer-rest-params
-        return originalPreventDefault.apply(this, arguments);
-    };
-    return event;
-}
-/** Creates a fake event object with any desired event type. */
-function createFakeEvent(type, canBubble = true, cancelable = true) {
-    const event = document.createEvent('Event');
-    event.initEvent(type, canBubble, cancelable);
-    return event;
-}
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 /** Utility to dispatch any event on a Node. */
 function dispatchEvent(node, event) {
     node.dispatchEvent(event);
@@ -72,19 +9,7 @@ function dispatchEvent(node, event) {
 }
 /** Shorthand to dispatch a fake event on a specified node. */
 function dispatchFakeEvent(node, type, canBubble) {
-    return dispatchEvent(node, typeof type === 'string' ? createFakeEvent(type, canBubble) : type);
-}
-/** Shorthand to dispatch a keyboard event with a specified key code. */
-function dispatchKeyboardEvent(node, type, keyCode, target) {
-    return dispatchEvent(node, createKeyboardEvent(type, keyCode, target));
-}
-/** Shorthand to dispatch a mouse event on the specified coordinates. */
-function dispatchMouseEvent(node, type, x = 0, y = 0, event = createMouseEvent(type, x, y)) {
-    return dispatchEvent(node, event);
-}
-/** Shorthand to dispatch a touch event on the specified coordinates. */
-function dispatchTouchEvent(node, type, x = 0, y = 0) {
-    return dispatchEvent(node, createTouchEvent(type, x, y));
+    return dispatchEvent(node, typeof type === 'string' ? new Event(type, { bubbles: canBubble }) : type);
 }
 
 /**
@@ -318,5 +243,5 @@ function cleanCdkOverlayHtml() {
  * Generated bundle index. Do not edit.
  */
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, cleanCdkOverlayHtml, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, cleanCdkOverlayHtml, createTestContext, dispatchDropDown, dispatchEvent, dispatchFakeEvent, typeInElement };
 //# sourceMappingURL=testing.mjs.map

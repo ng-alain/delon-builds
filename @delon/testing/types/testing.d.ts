@@ -1,41 +1,12 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DebugElement, Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { Chart } from '@antv/g2';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 /** Utility to dispatch any event on a Node. */
 declare function dispatchEvent(node: Node | Window, event: Event): Event;
 /** Shorthand to dispatch a fake event on a specified node. */
 declare function dispatchFakeEvent(node: Node | Window, type: string | Event, canBubble?: boolean): Event;
-/** Shorthand to dispatch a keyboard event with a specified key code. */
-declare function dispatchKeyboardEvent(node: Node, type: string, keyCode: number, target?: Element): KeyboardEvent;
-/** Shorthand to dispatch a mouse event on the specified coordinates. */
-declare function dispatchMouseEvent(node: Node, type: string, x?: number, y?: number, event?: MouseEvent): MouseEvent;
-/** Shorthand to dispatch a touch event on the specified coordinates. */
-declare function dispatchTouchEvent(node: Node, type: string, x?: number, y?: number): Event;
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/** Creates a browser MouseEvent with the specified options. */
-declare function createMouseEvent(type: string, x?: number, y?: number): MouseEvent;
-/** Creates a browser TouchEvent with the specified pointer coordinates. */
-declare function createTouchEvent(type: string, pageX?: number, pageY?: number): UIEvent;
-/** Dispatches a keydown event from an element. */
-declare function createKeyboardEvent(type: string, keyCode: number, target?: Element, key?: string): NzSafeAny;
-/** Creates a fake event object with any desired event type. */
-declare function createFakeEvent(type: string, canBubble?: boolean, cancelable?: boolean): Event;
 
 /**
  * @license
@@ -118,5 +89,5 @@ declare const createTestContext: <T>(component: Type<T>) => TestContext<T>;
  */
 declare function cleanCdkOverlayHtml(): void;
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, cleanCdkOverlayHtml, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, cleanCdkOverlayHtml, createTestContext, dispatchDropDown, dispatchEvent, dispatchFakeEvent, typeInElement };
 export type { PageG2Type };
