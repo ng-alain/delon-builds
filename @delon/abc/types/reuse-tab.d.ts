@@ -217,7 +217,7 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     _to(index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
     /**
-     * 设置激活路由的实例，在 `src/app/layout/basic/basic.component.ts` 修改：
+     * 设置激活路由的实例，在 `src/app/layout/basic/basic.ts` 修改：
      *
      * @example
      * <reuse-tab #reuseTab></reuse-tab>
