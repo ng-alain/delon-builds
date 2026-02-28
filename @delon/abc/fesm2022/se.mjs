@@ -195,7 +195,6 @@ class SEComponent {
                 .statusChanges.pipe(takeUntilDestroyed(this.destroy$))
                 .subscribe(res => this.updateStatus(res === 'INVALID'));
             // set unique id
-            let id = this.id() ?? `_se-${++nextUniqueId}`;
             const controlAccessor = this.ngControl()?.valueAccessor;
             const controlEl = (controlAccessor?.elementRef ?? controlAccessor?._elementRef)?.nativeElement;
             if (controlEl) {
@@ -203,7 +202,9 @@ class SEComponent {
                     this._id.set(controlEl.id);
                 }
                 else {
+                    const id = this.id() ?? `_se-${++nextUniqueId}`;
                     controlEl.id = id;
+                    this._id.set(id);
                 }
             }
             // auto required
