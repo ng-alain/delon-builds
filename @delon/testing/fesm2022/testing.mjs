@@ -9,7 +9,7 @@ function dispatchEvent(node, event) {
 }
 /** Shorthand to dispatch a fake event on a specified node. */
 function dispatchFakeEvent(node, type, canBubble) {
-    return dispatchEvent(node, typeof type === 'string' ? new Event(type, { bubbles: canBubble }) : type);
+    return dispatchEvent(node, typeof type === 'string' ? new Event(type, { bubbles: canBubble ?? true }) : type);
 }
 
 /**
