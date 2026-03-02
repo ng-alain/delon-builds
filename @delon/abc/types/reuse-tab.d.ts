@@ -180,7 +180,7 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     private readonly tabset;
     private destroy$;
     protected dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
-    protected list: _angular_core.WritableSignal<ReuseItem[]>;
+    readonly list: _angular_core.WritableSignal<ReuseItem[]>;
     protected item?: ReuseItem;
     protected pos: _angular_core.WritableSignal<number>;
     readonly mode: _angular_core.InputSignal<ReuseTabMatchMode>;
