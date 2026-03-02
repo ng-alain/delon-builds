@@ -180,8 +180,8 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     private readonly tabset;
     private destroy$;
     protected dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
-    list: _angular_core.WritableSignal<ReuseItem[]>;
-    item?: ReuseItem;
+    protected list: _angular_core.WritableSignal<ReuseItem[]>;
+    protected item?: ReuseItem;
     protected pos: _angular_core.WritableSignal<number>;
     readonly mode: _angular_core.InputSignal<ReuseTabMatchMode>;
     readonly i18n: _angular_core.InputSignal<ReuseContextI18n | undefined>;
@@ -204,6 +204,7 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
         $implicit: ReuseItem;
     }> | undefined>;
     readonly canClose: _angular_core.InputSignal<ReuseCanClose | undefined>;
+    readonly trackByFn: _angular_core.InputSignal<(item: ReuseItem) => NzSafeAny>;
     readonly change: _angular_core.OutputEmitterRef<ReuseItem>;
     readonly close: _angular_core.OutputEmitterRef<ReuseItem | null>;
     private genTit;
@@ -230,7 +231,7 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": { "alias": "mode"; "required": false; "isSignal": true; }; "i18n": { "alias": "i18n"; "required": false; "isSignal": true; }; "debug": { "alias": "debug"; "required": false; "isSignal": true; }; "max": { "alias": "max"; "required": false; "isSignal": true; }; "tabMaxWidth": { "alias": "tabMaxWidth"; "required": false; "isSignal": true; }; "excludes": { "alias": "excludes"; "required": false; "isSignal": true; }; "allowClose": { "alias": "allowClose"; "required": false; "isSignal": true; }; "keepingScroll": { "alias": "keepingScroll"; "required": false; "isSignal": true; }; "storageState": { "alias": "storageState"; "required": false; "isSignal": true; }; "keepingScrollContainer": { "alias": "keepingScrollContainer"; "required": false; "isSignal": true; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; "isSignal": true; }; "tabBarExtraContent": { "alias": "tabBarExtraContent"; "required": false; "isSignal": true; }; "tabBarGutter": { "alias": "tabBarGutter"; "required": false; "isSignal": true; }; "tabBarStyle": { "alias": "tabBarStyle"; "required": false; "isSignal": true; }; "tabType": { "alias": "tabType"; "required": false; "isSignal": true; }; "routeParamMatchMode": { "alias": "routeParamMatchMode"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "titleRender": { "alias": "titleRender"; "required": false; "isSignal": true; }; "canClose": { "alias": "canClose"; "required": false; "isSignal": true; }; }, { "change": "change"; "close": "close"; }, never, never, true, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": { "alias": "mode"; "required": false; "isSignal": true; }; "i18n": { "alias": "i18n"; "required": false; "isSignal": true; }; "debug": { "alias": "debug"; "required": false; "isSignal": true; }; "max": { "alias": "max"; "required": false; "isSignal": true; }; "tabMaxWidth": { "alias": "tabMaxWidth"; "required": false; "isSignal": true; }; "excludes": { "alias": "excludes"; "required": false; "isSignal": true; }; "allowClose": { "alias": "allowClose"; "required": false; "isSignal": true; }; "keepingScroll": { "alias": "keepingScroll"; "required": false; "isSignal": true; }; "storageState": { "alias": "storageState"; "required": false; "isSignal": true; }; "keepingScrollContainer": { "alias": "keepingScrollContainer"; "required": false; "isSignal": true; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; "isSignal": true; }; "tabBarExtraContent": { "alias": "tabBarExtraContent"; "required": false; "isSignal": true; }; "tabBarGutter": { "alias": "tabBarGutter"; "required": false; "isSignal": true; }; "tabBarStyle": { "alias": "tabBarStyle"; "required": false; "isSignal": true; }; "tabType": { "alias": "tabType"; "required": false; "isSignal": true; }; "routeParamMatchMode": { "alias": "routeParamMatchMode"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "titleRender": { "alias": "titleRender"; "required": false; "isSignal": true; }; "canClose": { "alias": "canClose"; "required": false; "isSignal": true; }; "trackByFn": { "alias": "trackByFn"; "required": false; "isSignal": true; }; }, { "change": "change"; "close": "close"; }, never, never, true, never>;
 }
 
 declare class ReuseTabService implements OnDestroy {
