@@ -35,7 +35,6 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `typescript@~5.9.2`,
         `typescript-eslint@^8.56.0`,
         `prettier@^3.8.1`,
-        `prettier-eslint@^9.39.2`,
         `husky@^9.1.7`,
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^18.0.0`,
