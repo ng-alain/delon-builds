@@ -1,7 +1,5 @@
 import { DebugElement, Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
-import { Chart } from '@antv/g2';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 /** Utility to dispatch any event on a Node. */
 declare function dispatchEvent(node: Node | Window, event: Event): Event;
@@ -30,45 +28,6 @@ declare const DROPDOWN_MIN_TIME = 1000;
  */
 declare function dispatchDropDown(dl: DebugElement, trigger: 'mouseleave' | 'click', allowNull?: boolean): boolean;
 
-type PageG2Type = 'geometries' | 'views';
-declare const PageG2DataCount = 2;
-declare const PageG2Height = 100;
-declare class PageG2<T> {
-    fixture: ComponentFixture<T> | null;
-    constructor(fixture?: ComponentFixture<T> | null);
-    get dl(): DebugElement;
-    get context(): T;
-    get comp(): NzSafeAny;
-    get chart(): Chart;
-    genComp(comp: Type<T>, dc?: boolean): this;
-    dcFirst(): this;
-    dc(): this;
-    end(): this;
-    destroy(): void;
-    newData(data: NzSafeAny): this;
-    getEls(cls: string): NodeListOf<HTMLElement>;
-    getEl(cls: string): HTMLElement;
-    getController(type: 'axis' | 'legend'): NzSafeAny;
-    isCanvas(stauts?: boolean): this;
-    isText(cls: string, value: string): this;
-    isExists(cls: string, stauts?: boolean): this;
-    checkOptions(key: string, value: NzSafeAny): this;
-    checkAttrOptions(type: PageG2Type, key: string, value: NzSafeAny): this;
-    isXScalesCount(num: number): this;
-    isYScalesCount(num: number): this;
-    isDataCount(type: PageG2Type, num: number): this;
-    get firstDataPoint(): {
-        x: number;
-        y: number;
-    };
-    checkTooltip(_includeText: string | null, point?: {
-        x: number;
-        y: number;
-    }): this;
-    checkClickItem(): this;
-}
-declare function checkDelay<T>(comp: Type<T>, page?: PageG2<T> | null): void;
-
 declare class TestContext<T> {
     fixture: ComponentFixture<T>;
     constructor(fixture: ComponentFixture<T>);
@@ -89,5 +48,4 @@ declare const createTestContext: <T>(component: Type<T>) => TestContext<T>;
  */
 declare function cleanCdkOverlayHtml(): void;
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, cleanCdkOverlayHtml, createTestContext, dispatchDropDown, dispatchEvent, dispatchFakeEvent, typeInElement };
-export type { PageG2Type };
+export { DROPDOWN_MIN_TIME, TestContext, cleanCdkOverlayHtml, createTestContext, dispatchDropDown, dispatchEvent, dispatchFakeEvent, typeInElement };
