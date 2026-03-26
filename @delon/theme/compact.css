@@ -1346,6 +1346,31 @@ nz-alert {
 .ant-alert-icon {
   line-height: 1;
 }
+.ant-alert-marquee {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.ant-alert-marquee-track {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-width: 100%;
+  white-space: nowrap;
+  animation: alertMarquee 20s linear infinite;
+}
+.ant-alert-marquee.ant-alert-marquee-pause-on-hover:hover .ant-alert-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes alertMarquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
 .ant-anchor {
   box-sizing: border-box;
   margin: 0;
@@ -5013,6 +5038,11 @@ nz-carousel {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.slick-list,
+.slick-track,
+.slick-slide {
+  height: auto;
 }
 .slick-dots {
   display: block;
@@ -14310,6 +14340,10 @@ textarea.ant-input {
   align-items: center;
   margin: auto;
 }
+.ant-input-out-of-range .ant-input,
+.ant-input-out-of-range .ant-input-show-count-suffix {
+  color: #ff4d4f;
+}
 .ant-input-compact-item:not(.ant-input-compact-last-item):not(.ant-input-compact-item-rtl) {
   margin-right: -1px;
 }
@@ -22987,7 +23021,6 @@ span.ant-radio + * {
   direction: rtl;
 }
 .ant-select-dropdown {
-  position: relative;
   top: 100%;
   left: 0;
   display: block;
@@ -29164,7 +29197,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
   min-width: 111px;
   height: 180px;
   margin: 0;
-  padding: 4px 0;
+  padding: 4px;
   overflow: auto;
   vertical-align: top;
   list-style: none;
@@ -29362,6 +29395,9 @@ div.ant-typography-edit-content.ant-typography-rtl {
   top: 0;
   margin-right: 0;
   margin-left: 4px;
+}
+.ant-cascader-dropdown {
+  padding: 0;
 }
 .ant-cascader-menus {
   position: relative;

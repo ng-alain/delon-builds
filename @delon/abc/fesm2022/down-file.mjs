@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common';
 class DownFileDirective {
     el = inject(ElementRef).nativeElement;
     _http = inject(_HttpClient);
-    httpData = input(undefined, { ...(ngDevMode ? { debugName: "httpData" } : {}), alias: 'http-data' });
-    httpBody = input(undefined, { ...(ngDevMode ? { debugName: "httpBody" } : {}), alias: 'http-body' });
-    httpMethod = input('get', { ...(ngDevMode ? { debugName: "httpMethod" } : {}), alias: 'http-method' });
-    httpUrl = input.required({ ...(ngDevMode ? { debugName: "httpUrl" } : {}), alias: 'http-url' });
-    fileName = input(undefined, { ...(ngDevMode ? { debugName: "fileName" } : {}), alias: 'file-name' });
-    pre = input(...(ngDevMode ? [undefined, { debugName: "pre" }] : []));
+    httpData = input(undefined, { ...(ngDevMode ? { debugName: "httpData" } : /* istanbul ignore next */ {}), alias: 'http-data' });
+    httpBody = input(undefined, { ...(ngDevMode ? { debugName: "httpBody" } : /* istanbul ignore next */ {}), alias: 'http-body' });
+    httpMethod = input('get', { ...(ngDevMode ? { debugName: "httpMethod" } : /* istanbul ignore next */ {}), alias: 'http-method' });
+    httpUrl = input.required({ ...(ngDevMode ? { debugName: "httpUrl" } : /* istanbul ignore next */ {}), alias: 'http-url' });
+    fileName = input(undefined, { ...(ngDevMode ? { debugName: "fileName" } : /* istanbul ignore next */ {}), alias: 'file-name' });
+    pre = input(...(ngDevMode ? [undefined, { debugName: "pre" }] : /* istanbul ignore next */ []));
     success = output();
     error = output();
     getDisposition(data) {
@@ -83,10 +83,10 @@ class DownFileDirective {
             error: err => this.error.emit(err)
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DownFileDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.0", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: { classPropertyName: "httpData", publicName: "http-data", isSignal: true, isRequired: false, transformFunction: null }, httpBody: { classPropertyName: "httpBody", publicName: "http-body", isSignal: true, isRequired: false, transformFunction: null }, httpMethod: { classPropertyName: "httpMethod", publicName: "http-method", isSignal: true, isRequired: false, transformFunction: null }, httpUrl: { classPropertyName: "httpUrl", publicName: "http-url", isSignal: true, isRequired: true, transformFunction: null }, fileName: { classPropertyName: "fileName", publicName: "file-name", isSignal: true, isRequired: false, transformFunction: null }, pre: { classPropertyName: "pre", publicName: "pre", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DownFileDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.6", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: { classPropertyName: "httpData", publicName: "http-data", isSignal: true, isRequired: false, transformFunction: null }, httpBody: { classPropertyName: "httpBody", publicName: "http-body", isSignal: true, isRequired: false, transformFunction: null }, httpMethod: { classPropertyName: "httpMethod", publicName: "http-method", isSignal: true, isRequired: false, transformFunction: null }, httpUrl: { classPropertyName: "httpUrl", publicName: "http-url", isSignal: true, isRequired: true, transformFunction: null }, fileName: { classPropertyName: "fileName", publicName: "file-name", isSignal: true, isRequired: false, transformFunction: null }, pre: { classPropertyName: "pre", publicName: "pre", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DownFileDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DownFileDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[down-file]',
@@ -99,11 +99,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImpor
 
 const DIRECTIVES = [DownFileDirective];
 class DownFileModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DownFileModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.0", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule, DownFileDirective], exports: [DownFileDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DownFileModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.6", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule, DownFileDirective], exports: [DownFileDirective] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DownFileModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DownFileModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, AlainThemeModule, ...DIRECTIVES],

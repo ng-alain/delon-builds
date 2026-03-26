@@ -26,35 +26,35 @@ class PageHeaderComponent {
     settings = inject(SettingsService);
     cogSrv = inject(AlainConfigService);
     conTpl = viewChild.required('conTpl');
-    affix = viewChild(NzAffixComponent, ...(ngDevMode ? [{ debugName: "affix" }] : []));
+    affix = viewChild(NzAffixComponent, ...(ngDevMode ? [{ debugName: "affix" }] : /* istanbul ignore next */ []));
     isBrowser = inject(Platform).isBrowser;
     dir = inject(Directionality).valueSignal;
     get menus() {
         return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb());
     }
-    paths = signal([], ...(ngDevMode ? [{ debugName: "paths" }] : []));
-    titleIsTpl = computed(() => this.title() instanceof TemplateRef, ...(ngDevMode ? [{ debugName: "titleIsTpl" }] : []));
-    titleText = signal(null, ...(ngDevMode ? [{ debugName: "titleText" }] : []));
-    titleSub = input(...(ngDevMode ? [undefined, { debugName: "titleSub" }] : []));
+    paths = signal([], ...(ngDevMode ? [{ debugName: "paths" }] : /* istanbul ignore next */ []));
+    titleIsTpl = computed(() => this.title() instanceof TemplateRef, ...(ngDevMode ? [{ debugName: "titleIsTpl" }] : /* istanbul ignore next */ []));
+    titleText = signal(null, ...(ngDevMode ? [{ debugName: "titleText" }] : /* istanbul ignore next */ []));
+    titleSub = input(...(ngDevMode ? [undefined, { debugName: "titleSub" }] : /* istanbul ignore next */ []));
     // #region fields
-    title = input(...(ngDevMode ? [undefined, { debugName: "title" }] : []));
-    loading = input(false, { ...(ngDevMode ? { debugName: "loading" } : {}), transform: booleanAttribute });
-    wide = input(false, { ...(ngDevMode ? { debugName: "wide" } : {}), transform: booleanAttribute });
-    home = input(...(ngDevMode ? [undefined, { debugName: "home" }] : []));
-    homeLink = input('/', ...(ngDevMode ? [{ debugName: "homeLink" }] : []));
-    homeI18n = input(...(ngDevMode ? [undefined, { debugName: "homeI18n" }] : []));
-    autoBreadcrumb = input(true, { ...(ngDevMode ? { debugName: "autoBreadcrumb" } : {}), transform: booleanAttribute });
-    autoTitle = input(true, { ...(ngDevMode ? { debugName: "autoTitle" } : {}), transform: booleanAttribute });
-    syncTitle = input(true, { ...(ngDevMode ? { debugName: "syncTitle" } : {}), transform: booleanAttribute });
-    fixed = input(false, { ...(ngDevMode ? { debugName: "fixed" } : {}), transform: booleanAttribute });
-    fixedOffsetTop = input(64, { ...(ngDevMode ? { debugName: "fixedOffsetTop" } : {}), transform: numberAttribute });
-    breadcrumb = input(null, ...(ngDevMode ? [{ debugName: "breadcrumb" }] : []));
-    recursiveBreadcrumb = input(false, { ...(ngDevMode ? { debugName: "recursiveBreadcrumb" } : {}), transform: booleanAttribute });
-    logo = input(null, ...(ngDevMode ? [{ debugName: "logo" }] : []));
-    action = input(null, ...(ngDevMode ? [{ debugName: "action" }] : []));
-    content = input(null, ...(ngDevMode ? [{ debugName: "content" }] : []));
-    extra = input(null, ...(ngDevMode ? [{ debugName: "extra" }] : []));
-    tab = input(null, ...(ngDevMode ? [{ debugName: "tab" }] : []));
+    title = input(...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
+    loading = input(false, { ...(ngDevMode ? { debugName: "loading" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    wide = input(false, { ...(ngDevMode ? { debugName: "wide" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    home = input(...(ngDevMode ? [undefined, { debugName: "home" }] : /* istanbul ignore next */ []));
+    homeLink = input('/', ...(ngDevMode ? [{ debugName: "homeLink" }] : /* istanbul ignore next */ []));
+    homeI18n = input(...(ngDevMode ? [undefined, { debugName: "homeI18n" }] : /* istanbul ignore next */ []));
+    autoBreadcrumb = input(true, { ...(ngDevMode ? { debugName: "autoBreadcrumb" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    autoTitle = input(true, { ...(ngDevMode ? { debugName: "autoTitle" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    syncTitle = input(true, { ...(ngDevMode ? { debugName: "syncTitle" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    fixed = input(false, { ...(ngDevMode ? { debugName: "fixed" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    fixedOffsetTop = input(64, { ...(ngDevMode ? { debugName: "fixedOffsetTop" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    breadcrumb = input(null, ...(ngDevMode ? [{ debugName: "breadcrumb" }] : /* istanbul ignore next */ []));
+    recursiveBreadcrumb = input(false, { ...(ngDevMode ? { debugName: "recursiveBreadcrumb" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    logo = input(null, ...(ngDevMode ? [{ debugName: "logo" }] : /* istanbul ignore next */ []));
+    action = input(null, ...(ngDevMode ? [{ debugName: "action" }] : /* istanbul ignore next */ []));
+    content = input(null, ...(ngDevMode ? [{ debugName: "content" }] : /* istanbul ignore next */ []));
+    extra = input(null, ...(ngDevMode ? [{ debugName: "extra" }] : /* istanbul ignore next */ []));
+    tab = input(null, ...(ngDevMode ? [{ debugName: "tab" }] : /* istanbul ignore next */ []));
     // #endregion
     locale = inject(DelonLocaleService).getData('pageHeader');
     constructor() {
@@ -131,8 +131,8 @@ class PageHeaderComponent {
             this.renderer.removeAttribute(el, 'hidden');
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: PageHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.0", type: PageHeaderComponent, isStandalone: true, selector: "page-header", inputs: { titleSub: { classPropertyName: "titleSub", publicName: "titleSub", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, wide: { classPropertyName: "wide", publicName: "wide", isSignal: true, isRequired: false, transformFunction: null }, home: { classPropertyName: "home", publicName: "home", isSignal: true, isRequired: false, transformFunction: null }, homeLink: { classPropertyName: "homeLink", publicName: "homeLink", isSignal: true, isRequired: false, transformFunction: null }, homeI18n: { classPropertyName: "homeI18n", publicName: "homeI18n", isSignal: true, isRequired: false, transformFunction: null }, autoBreadcrumb: { classPropertyName: "autoBreadcrumb", publicName: "autoBreadcrumb", isSignal: true, isRequired: false, transformFunction: null }, autoTitle: { classPropertyName: "autoTitle", publicName: "autoTitle", isSignal: true, isRequired: false, transformFunction: null }, syncTitle: { classPropertyName: "syncTitle", publicName: "syncTitle", isSignal: true, isRequired: false, transformFunction: null }, fixed: { classPropertyName: "fixed", publicName: "fixed", isSignal: true, isRequired: false, transformFunction: null }, fixedOffsetTop: { classPropertyName: "fixedOffsetTop", publicName: "fixedOffsetTop", isSignal: true, isRequired: false, transformFunction: null }, breadcrumb: { classPropertyName: "breadcrumb", publicName: "breadcrumb", isSignal: true, isRequired: false, transformFunction: null }, recursiveBreadcrumb: { classPropertyName: "recursiveBreadcrumb", publicName: "recursiveBreadcrumb", isSignal: true, isRequired: false, transformFunction: null }, logo: { classPropertyName: "logo", publicName: "logo", isSignal: true, isRequired: false, transformFunction: null }, action: { classPropertyName: "action", publicName: "action", isSignal: true, isRequired: false, transformFunction: null }, content: { classPropertyName: "content", publicName: "content", isSignal: true, isRequired: false, transformFunction: null }, extra: { classPropertyName: "extra", publicName: "extra", isSignal: true, isRequired: false, transformFunction: null }, tab: { classPropertyName: "tab", publicName: "tab", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], descendants: true, isSignal: true }, { propertyName: "affix", first: true, predicate: NzAffixComponent, descendants: true, isSignal: true }], exportAs: ["pageHeader"], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: PageHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.6", type: PageHeaderComponent, isStandalone: true, selector: "page-header", inputs: { titleSub: { classPropertyName: "titleSub", publicName: "titleSub", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, wide: { classPropertyName: "wide", publicName: "wide", isSignal: true, isRequired: false, transformFunction: null }, home: { classPropertyName: "home", publicName: "home", isSignal: true, isRequired: false, transformFunction: null }, homeLink: { classPropertyName: "homeLink", publicName: "homeLink", isSignal: true, isRequired: false, transformFunction: null }, homeI18n: { classPropertyName: "homeI18n", publicName: "homeI18n", isSignal: true, isRequired: false, transformFunction: null }, autoBreadcrumb: { classPropertyName: "autoBreadcrumb", publicName: "autoBreadcrumb", isSignal: true, isRequired: false, transformFunction: null }, autoTitle: { classPropertyName: "autoTitle", publicName: "autoTitle", isSignal: true, isRequired: false, transformFunction: null }, syncTitle: { classPropertyName: "syncTitle", publicName: "syncTitle", isSignal: true, isRequired: false, transformFunction: null }, fixed: { classPropertyName: "fixed", publicName: "fixed", isSignal: true, isRequired: false, transformFunction: null }, fixedOffsetTop: { classPropertyName: "fixedOffsetTop", publicName: "fixedOffsetTop", isSignal: true, isRequired: false, transformFunction: null }, breadcrumb: { classPropertyName: "breadcrumb", publicName: "breadcrumb", isSignal: true, isRequired: false, transformFunction: null }, recursiveBreadcrumb: { classPropertyName: "recursiveBreadcrumb", publicName: "recursiveBreadcrumb", isSignal: true, isRequired: false, transformFunction: null }, logo: { classPropertyName: "logo", publicName: "logo", isSignal: true, isRequired: false, transformFunction: null }, action: { classPropertyName: "action", publicName: "action", isSignal: true, isRequired: false, transformFunction: null }, content: { classPropertyName: "content", publicName: "content", isSignal: true, isRequired: false, transformFunction: null }, extra: { classPropertyName: "extra", publicName: "extra", isSignal: true, isRequired: false, transformFunction: null }, tab: { classPropertyName: "tab", publicName: "tab", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], descendants: true, isSignal: true }, { propertyName: "affix", first: true, predicate: NzAffixComponent, descendants: true, isSignal: true }], exportAs: ["pageHeader"], ngImport: i0, template: `
     @if (isBrowser && fixed()) {
       <nz-affix #affix [nzOffsetTop]="fixedOffsetTop()">
         <ng-template [ngTemplateOutlet]="phTpl" />
@@ -218,7 +218,7 @@ class PageHeaderComponent {
     </ng-template>
   `, isInline: true, dependencies: [{ kind: "component", type: NzAffixComponent, selector: "nz-affix", inputs: ["nzTarget", "nzOffsetTop", "nzOffsetBottom"], outputs: ["nzChange"], exportAs: ["nzAffix"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { kind: "component", type: NzBreadCrumbComponent, selector: "nz-breadcrumb", inputs: ["nzAutoGenerate", "nzSeparator", "nzRouteLabel", "nzRouteLabelFn", "nzRouteFn"], exportAs: ["nzBreadcrumb"] }, { kind: "component", type: NzBreadCrumbItemComponent, selector: "nz-breadcrumb-item", inputs: ["nzOverlay"], exportAs: ["nzBreadcrumbItem"] }, { kind: "directive", type: RouterLink, selector: "[routerLink]", inputs: ["target", "queryParams", "fragment", "queryParamsHandling", "state", "info", "relativeTo", "preserveFragment", "skipLocationChange", "replaceUrl", "routerLink"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: PageHeaderComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: PageHeaderComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'page-header',
@@ -325,15 +325,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImpor
 
 const COMPONENTS = [PageHeaderComponent];
 class PageHeaderModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: PageHeaderModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.0", ngImport: i0, type: PageHeaderModule, imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: PageHeaderModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.6", ngImport: i0, type: PageHeaderModule, imports: [CommonModule,
             RouterModule,
             ObserversModule,
             NzAffixModule,
             NzSkeletonModule,
             NzBreadCrumbModule,
             NzOutletModule, PageHeaderComponent], exports: [PageHeaderComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: PageHeaderModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: PageHeaderModule, imports: [CommonModule,
             RouterModule,
             ObserversModule,
             NzAffixModule,
@@ -341,7 +341,7 @@ class PageHeaderModule {
             NzBreadCrumbModule,
             NzOutletModule, COMPONENTS] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: PageHeaderModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: PageHeaderModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

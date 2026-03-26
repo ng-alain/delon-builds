@@ -21,14 +21,14 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `angular-eslint@^21.2.0`,
-        `@typescript-eslint/eslint-plugin@^8.56.1`,
-        `@typescript-eslint/parser@^8.56.1`,
-        `@typescript-eslint/utils@^8.56.1`,
+        `angular-eslint@^21.3.1`,
+        `@typescript-eslint/eslint-plugin@^8.57.2`,
+        `@typescript-eslint/parser@^8.57.2`,
+        `@typescript-eslint/utils@^8.57.2`,
         `eslint@^9.39.3`,
         `eslint-config-prettier@^10.1.8`,
         `eslint-plugin-import@~2.32.0`,
-        `eslint-plugin-jsdoc@~62.7.1`,
+        `eslint-plugin-jsdoc@~62.8.1`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@~5.5.5`,
         `eslint-plugin-unused-imports@^4.4.1`,
@@ -55,7 +55,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `vitest@^4.0.16`,
         `jsdom@^27.4.0`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.1.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.2.0`]);
 }
 function addESLintRule(projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {

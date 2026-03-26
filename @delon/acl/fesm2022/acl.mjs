@@ -193,10 +193,10 @@ class ACLService {
     canAbility(value) {
         return this.can(this.parseAbility(value));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [] });
@@ -207,10 +207,10 @@ class ACLIfDirective {
     d$ = inject(DestroyRef);
     _thenViewRef = null;
     _elseViewRef = null;
-    aclIf = input.required(...(ngDevMode ? [{ debugName: "aclIf" }] : []));
-    aclIfThen = input(inject((TemplateRef)), ...(ngDevMode ? [{ debugName: "aclIfThen" }] : []));
-    aclIfElse = input(...(ngDevMode ? [undefined, { debugName: "aclIfElse" }] : []));
-    except = input(false, { ...(ngDevMode ? { debugName: "except" } : {}), transform: booleanAttribute });
+    aclIf = input.required(...(ngDevMode ? [{ debugName: "aclIf" }] : /* istanbul ignore next */ []));
+    aclIfThen = input(inject((TemplateRef)), ...(ngDevMode ? [{ debugName: "aclIfThen" }] : /* istanbul ignore next */ []));
+    aclIfElse = input(...(ngDevMode ? [undefined, { debugName: "aclIfElse" }] : /* istanbul ignore next */ []));
+    except = input(false, { ...(ngDevMode ? { debugName: "except" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     constructor() {
         effect(() => this.updateView());
         afterNextRender(() => {
@@ -243,10 +243,10 @@ class ACLIfDirective {
             }
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLIfDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.0", type: ACLIfDirective, isStandalone: true, selector: "[aclIf]", inputs: { aclIf: { classPropertyName: "aclIf", publicName: "aclIf", isSignal: true, isRequired: true, transformFunction: null }, aclIfThen: { classPropertyName: "aclIfThen", publicName: "aclIfThen", isSignal: true, isRequired: false, transformFunction: null }, aclIfElse: { classPropertyName: "aclIfElse", publicName: "aclIfElse", isSignal: true, isRequired: false, transformFunction: null }, except: { classPropertyName: "except", publicName: "except", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["aclIf"], ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLIfDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.6", type: ACLIfDirective, isStandalone: true, selector: "[aclIf]", inputs: { aclIf: { classPropertyName: "aclIf", publicName: "aclIf", isSignal: true, isRequired: true, transformFunction: null }, aclIfThen: { classPropertyName: "aclIfThen", publicName: "aclIfThen", isSignal: true, isRequired: false, transformFunction: null }, aclIfElse: { classPropertyName: "aclIfElse", publicName: "aclIfElse", isSignal: true, isRequired: false, transformFunction: null }, except: { classPropertyName: "except", publicName: "except", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["aclIf"], ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLIfDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLIfDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[aclIf]',
@@ -259,8 +259,8 @@ class ACLDirective {
     renderer = inject(Renderer2);
     srv = inject(ACLService);
     _value;
-    acl = input(undefined, { ...(ngDevMode ? { debugName: "acl" } : {}), transform: (v) => this.set(v) });
-    ability = input(undefined, { ...(ngDevMode ? { debugName: "ability" } : {}), alias: 'acl-ability',
+    acl = input(undefined, { ...(ngDevMode ? { debugName: "acl" } : /* istanbul ignore next */ {}), transform: (v) => this.set(v) });
+    ability = input(undefined, { ...(ngDevMode ? { debugName: "ability" } : /* istanbul ignore next */ {}), alias: 'acl-ability',
         transform: (v) => this.set(this.srv.parseAbility(v)) });
     constructor() {
         this.srv.change
@@ -278,10 +278,10 @@ class ACLDirective {
             this.renderer.addClass(el, CLS);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.0", type: ACLDirective, isStandalone: true, selector: "[acl]", inputs: { acl: { classPropertyName: "acl", publicName: "acl", isSignal: true, isRequired: false, transformFunction: null }, ability: { classPropertyName: "ability", publicName: "acl-ability", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["acl"], ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.6", type: ACLDirective, isStandalone: true, selector: "[acl]", inputs: { acl: { classPropertyName: "acl", publicName: "acl", isSignal: true, isRequired: false, transformFunction: null }, ability: { classPropertyName: "ability", publicName: "acl-ability", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["acl"], ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[acl]',
@@ -314,10 +314,10 @@ class ACLGuardService {
             this.router.navigateByUrl(data.guard_url);
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLGuardService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLGuardService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: ACLGuardService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: ACLGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }] });
@@ -360,11 +360,11 @@ const aclCanMatch = route => inject(ACLGuardService).process(route.data);
 
 const COMPONENTS = [ACLDirective, ACLIfDirective];
 class DelonACLModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DelonACLModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.0", ngImport: i0, type: DelonACLModule, imports: [CommonModule, ACLDirective, ACLIfDirective], exports: [ACLDirective, ACLIfDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DelonACLModule, imports: [CommonModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DelonACLModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.6", ngImport: i0, type: DelonACLModule, imports: [CommonModule, ACLDirective, ACLIfDirective], exports: [ACLDirective, ACLIfDirective] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DelonACLModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.0", ngImport: i0, type: DelonACLModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.6", ngImport: i0, type: DelonACLModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ...COMPONENTS],
