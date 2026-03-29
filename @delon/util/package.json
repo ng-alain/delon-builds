@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "21.1.0",
+  "version": "21.1.0-21d55ad",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -90,5 +90,6 @@
       "default": "./fesm2022/token.mjs"
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "type": "module"
 }

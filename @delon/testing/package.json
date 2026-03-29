@@ -1,6 +1,6 @@
 {
   "name": "@delon/testing",
-  "version": "21.1.0",
+  "version": "21.1.0-21d55ad",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -29,6 +29,7 @@
     }
   },
   "sideEffects": false,
+  "type": "module",
   "dependencies": {
     "tslib": "^2.3.0"
   }
