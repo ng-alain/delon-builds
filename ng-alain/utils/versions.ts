@@ -40,9 +40,9 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       // vi test
       // `@playwright/test@undefined`,
       // `@vitest/browser-playwright@undefined`,
-      // `@vitest/coverage-v8@^4.1.2`,
-      // `vitest@^4.1.2`,
-      // `jsdom@^28.1.0`,
+      // `@vitest/coverage-v8@undefined`,
+      // `vitest@undefined`,
+      // `jsdom@undefined`,
       // When use vitest
       `@playwright/test@^1.57.0`,
       `@vitest/browser-playwright@^4.0.17`,

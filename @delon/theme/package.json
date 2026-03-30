@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "21.1.0-21d55ad",
+  "version": "21.1.0-fab78de",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,10 +22,10 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^21.2.0",
-    "@delon/acl": "^21.1.0-21d55ad",
-    "@delon/abc": "^21.1.0-21d55ad",
-    "@delon/form": "^21.1.0-21d55ad",
-    "@delon/util": "^21.1.0-21d55ad",
+    "@delon/acl": "^21.1.0-fab78de",
+    "@delon/abc": "^21.1.0-fab78de",
+    "@delon/form": "^21.1.0-fab78de",
+    "@delon/util": "^21.1.0-fab78de",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/theme.mjs",
@@ -55,6 +55,5 @@
       "default": "./fesm2022/theme-btn.mjs"
     }
   },
-  "sideEffects": false,
-  "type": "module"
+  "sideEffects": false
 }
