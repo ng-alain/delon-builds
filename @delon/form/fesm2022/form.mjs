@@ -818,7 +818,7 @@ class StringProperty extends AtomicProperty {
         return null;
     }
     setValue(value, onlySelf) {
-        this._value = value == null ? '' : value;
+        this._value = value;
         this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
