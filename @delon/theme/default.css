@@ -18910,7 +18910,7 @@ textarea.ant-mentions {
 }
 .ant-mentions-dropdown {
   position: relative;
-  top: 100%;
+  top: 0;
   left: 12px;
   width: 100%;
   margin-top: 8px;
@@ -22501,7 +22501,7 @@ span.ant-radio + * {
   background-color: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .ant-select:not(.ant-select-customize-input) .ant-select-selector input {
   cursor: pointer;
@@ -23021,7 +23021,8 @@ span.ant-radio + * {
   direction: rtl;
 }
 .ant-select-dropdown {
-  top: 100%;
+  position: relative;
+  top: 0;
   left: 0;
   display: block;
   width: 100%;
@@ -29400,6 +29401,11 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-cascader-dropdown {
   padding: 0;
 }
+.ant-cascader-dropdown.ant-select-dropdown {
+  position: relative;
+  top: 0;
+  left: 0;
+}
 .ant-cascader-menus {
   position: relative;
   margin-top: 2px;
@@ -30437,7 +30443,7 @@ nz-tree {
 }
 .ant-select-dropdown.ant-select-tree-dropdown {
   position: relative;
-  top: 100%;
+  top: 0;
   left: 0;
   width: 100%;
   margin-top: 4px;

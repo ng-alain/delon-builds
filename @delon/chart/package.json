@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "21.1.0-4c1837e",
+  "version": "21.1.0-e6e4e6f",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.12",
     "echarts": "^6.0.0",
-    "@delon/util": "^21.1.0-4c1837e",
-    "@delon/theme": "^21.1.0-4c1837e",
+    "@delon/util": "^21.1.0-e6e4e6f",
+    "@delon/theme": "^21.1.0-e6e4e6f",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -111,5 +111,6 @@
       "default": "./fesm2022/water-wave.mjs"
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "type": "module"
 }
