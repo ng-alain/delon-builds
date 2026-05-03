@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "21.1.0-8c00e7b",
+  "version": "21.1.0-6dba8c4",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -16,7 +16,6 @@
     "ng-alain",
     "alain",
     "mock",
-    "mockjs",
     "angular-mock",
     "ng mock",
     "ngx-mock",
@@ -26,9 +25,8 @@
     "component"
   ],
   "dependencies": {
-    "mockjs": "^1.1.0",
-    "@types/mockjs": "^1.0.10",
-    "@delon/util": "^21.1.0-8c00e7b",
+    "@faker-js/faker": "undefined",
+    "@delon/util": "^21.1.0-6dba8c4",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/mock.mjs",
