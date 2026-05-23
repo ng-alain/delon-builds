@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "21.2.0-91a2dbe",
+  "version": "21.2.0-28d4163",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -30,9 +30,9 @@
   "dependencies": {
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "@delon/theme": "^21.2.0-91a2dbe",
-    "@delon/acl": "^21.2.0-91a2dbe",
-    "@delon/util": "^21.2.0-91a2dbe",
+    "@delon/theme": "^21.2.0-28d4163",
+    "@delon/acl": "^21.2.0-28d4163",
+    "@delon/util": "^21.2.0-28d4163",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/form.mjs",
