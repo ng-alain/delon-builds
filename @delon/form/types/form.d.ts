@@ -1368,6 +1368,8 @@ interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema, Error
      * ACL 配置
      */
     acl?: ACLCanType | null;
+    /** 标记该字段在表单折叠状态下隐藏 */
+    collapse?: boolean;
 }
 /**
  * UI Schema，KEY名**务必**是 `$` 开头（例如：`$name`、`$id`），以便能区分KEY值还是UI选项
@@ -1592,6 +1594,8 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     _btn: SFButton;
     _schema: SFSchema;
     _ui: SFUISchema;
+    expandable: i0.InputSignal<boolean>;
+    expanded: i0.ModelSignal<boolean>;
     get btnGrid(): NzSafeAny;
     /** 表单布局，等同 `nzLayout`，默认：horizontal */
     layout: SFLayout;
@@ -1754,7 +1758,7 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private cleanRootSub;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "layout": { "alias": "layout"; "required": false; }; "schema": { "alias": "schema"; "required": false; }; "ui": { "alias": "ui"; "required": false; }; "formData": { "alias": "formData"; "required": false; }; "button": { "alias": "button"; "required": false; }; "liveValidate": { "alias": "liveValidate"; "required": false; }; "autocomplete": { "alias": "autocomplete"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "onlyVisual": { "alias": "onlyVisual"; "required": false; }; "compact": { "alias": "compact"; "required": false; }; "mode": { "alias": "mode"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "cleanValue": { "alias": "cleanValue"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "expandable": { "alias": "expandable"; "required": false; "isSignal": true; }; "expanded": { "alias": "expanded"; "required": false; "isSignal": true; }; "layout": { "alias": "layout"; "required": false; }; "schema": { "alias": "schema"; "required": false; }; "ui": { "alias": "ui"; "required": false; }; "formData": { "alias": "formData"; "required": false; }; "button": { "alias": "button"; "required": false; }; "liveValidate": { "alias": "liveValidate"; "required": false; }; "autocomplete": { "alias": "autocomplete"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "onlyVisual": { "alias": "onlyVisual"; "required": false; }; "compact": { "alias": "compact"; "required": false; }; "mode": { "alias": "mode"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "cleanValue": { "alias": "cleanValue"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "expanded": "expandedChange"; "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"], false, never>;
     static ngAcceptInputType_liveValidate: unknown;
     static ngAcceptInputType_firstVisual: unknown;
     static ngAcceptInputType_onlyVisual: unknown;

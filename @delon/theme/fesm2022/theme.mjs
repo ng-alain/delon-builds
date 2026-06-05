@@ -1597,6 +1597,8 @@ var zhCN = {
         addText: '添加',
         removeText: '移除',
         checkAllText: '全选',
+        expand: '展开',
+        collapse: '收起',
         error: {
             'false schema': `布尔模式出错`,
             $ref: `无法找到引用{ref}`,
@@ -1754,6 +1756,8 @@ var enUS = {
         addText: 'Add',
         removeText: 'Remove',
         checkAllText: 'Check all',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolean schema is false`,
             $ref: `Can't resolve reference {ref}`,
@@ -1855,6 +1859,8 @@ var zhHK = {
         addText: '新增',
         removeText: '移除',
         checkAllText: '全選',
+        expand: '展開',
+        collapse: '收起',
         error: {
             'false schema': `佈爾模式出錯`,
             $ref: `無法找到引用{ref}`,
@@ -1956,6 +1962,8 @@ var zhTW = {
         addText: '添加',
         removeText: '移除',
         checkAllText: '全選',
+        expand: '展開',
+        collapse: '收起',
         error: {
             'false schema': `佈爾模式出錯`,
             $ref: `無法找到引用{ref}`,
@@ -2057,6 +2065,8 @@ var trTR = {
         addText: 'Ekle',
         removeText: 'Kaldır',
         checkAllText: 'Tümünü kontrol et',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolean schema is false`,
             $ref: `Can't resolve reference {ref}`,
@@ -2158,6 +2168,8 @@ var plPL = {
         addText: 'Dodaj',
         removeText: 'Usuń',
         checkAllText: 'Zaznacz wszystkie',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolean schema is false`,
             $ref: `Can't resolve reference {ref}`,
@@ -2259,6 +2271,8 @@ var elGR = {
         addText: 'Προσθήκη',
         removeText: 'Αφαίρεση',
         checkAllText: 'Επιλογή όλων',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Η δυαδική δομή είναι ψευδής`,
             $ref: `Δεν είναι δυνατή η επίλυση της αναφοράς {ref}`,
@@ -2360,6 +2374,8 @@ var koKR = {
         addText: '추가',
         removeText: '제거',
         checkAllText: '모두 확인',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolean schema is false`,
             $ref: `Can't resolve reference {ref}`,
@@ -2460,7 +2476,9 @@ var hrHR = {
         edit: 'Spremi',
         addText: 'Dodaj',
         removeText: 'Ukloni',
-        checkAllText: 'Označi sve'
+        checkAllText: 'Označi sve',
+        expand: 'Expand',
+        collapse: 'Collapse'
     },
     onboarding: {
         skip: `Preskočiti`,
@@ -2526,6 +2544,8 @@ var jaJP = {
         addText: '追加',
         removeText: '削除',
         checkAllText: '全選択',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `真偽値スキーマが不正です`,
             $ref: `参照を解決できません: {ref}`,
@@ -2626,6 +2646,8 @@ var slSI = {
         addText: 'Dodaj',
         removeText: 'Odstrani',
         checkAllText: 'Preveri vse',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolova shema je napačna`,
             $ref: `Referenc ni mogoče razrešiti {ref}`,
@@ -2727,6 +2749,8 @@ var frFR = {
         addText: 'Ajouter',
         removeText: 'Supprimer',
         checkAllText: 'Cochez toutes',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolean schema is false`,
             $ref: `Can't resolve reference {ref}`,
@@ -2828,6 +2852,8 @@ var esES = {
         addText: 'Añadir',
         removeText: 'Eliminar',
         checkAllText: 'Comprobar todo',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Boolean schema is false`,
             $ref: `Can't resolve reference {ref}`,
@@ -2929,6 +2955,8 @@ var itIT = {
         addText: 'Aggiungi',
         removeText: 'Rimuovi',
         checkAllText: 'Seleziona tutto',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Lo schema booleano è falso`,
             $ref: `Impossibile risolvere il riferimento {ref}`,
@@ -3030,6 +3058,8 @@ var viVN = {
         addText: 'Thêm',
         removeText: 'Xóa',
         checkAllText: 'Chọn tất cả',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Mô hình Boolean sai`,
             $ref: `Không thể giải quyết tham chiếu {ref}`,
@@ -3131,6 +3161,8 @@ var arSA = {
         addText: 'إضافة',
         removeText: 'حذف',
         checkAllText: 'تحديد الكل',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `القيمة المنطقية خاطئة`,
             $ref: `المرجع "{{ref}}" غير موجود`,
@@ -3232,6 +3264,8 @@ var idID = {
         addText: 'Tambah',
         removeText: 'Hapus',
         checkAllText: 'Pilih semua',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Skema boolean salah`,
             $ref: `Tidak dapat menyelesaikan referensi {ref}`,
@@ -3333,6 +3367,8 @@ var kmKH = {
         addText: 'បន្ថែម',
         removeText: 'លុបចេញ',
         checkAllText: 'ពិនិត្យទាំងអស់',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `ស្កីម៉ាមិនត្រឹមត្រូវទេ`,
             $ref: `មិនអាចដោះស្រាយយោង {ref} បានទេ`,
@@ -3434,6 +3470,8 @@ var msMY = {
         addText: 'Tambah',
         removeText: 'Padam',
         checkAllText: 'Tanda semua',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `Skema boolean adalah palsu`,
             $ref: `Tidak dapat menyelesaikan rujukan {ref}`,
@@ -3535,6 +3573,8 @@ var thTH = {
         addText: 'เพิ่ม',
         removeText: 'ลบ',
         checkAllText: 'เลือกทั้งหมด',
+        expand: 'Expand',
+        collapse: 'Collapse',
         error: {
             'false schema': `สคีมาแบบบูลีนเป็นเท็จ`,
             $ref: `ไม่สามารถแก้ไขการอ้างอิง {ref} ได้`,
