@@ -1334,6 +1334,7 @@ interface AlainSFConfig {
      * 是否延迟渲染，需要手动调用 `refreshSchema()`
      */
     delay?: boolean;
+    expandable?: boolean;
 }
 
 interface AlainConfig {

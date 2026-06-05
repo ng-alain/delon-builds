@@ -33030,6 +33030,9 @@ fieldset {
   font-weight: 700;
   text-align: left;
 }
+.sf__collapse .sf__collapse-item {
+  display: none !important;
+}
 .sf__object-card .ant-card-body {
   padding-left: 0;
 }
