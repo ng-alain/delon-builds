@@ -2478,7 +2478,7 @@ var hrHR = {
         removeText: 'Ukloni',
         checkAllText: 'Označi sve',
         expand: 'Proširi',
-        collapse: 'Skupi',
+        collapse: 'Skupi'
     },
     onboarding: {
         skip: `Preskočiti`,
