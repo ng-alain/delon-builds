@@ -70,7 +70,11 @@ class LayoutDefaultService {
             .subscribe(type => this.collapsedIcon.set(`menu-${type}`));
     }
     checkMedia(value) {
-        this.settings.setLayout('collapsed', value);
+        // 仅当匹配媒体（移动端）时自动折叠侧边栏
+        // 不匹配时（桌面端）不应覆盖用户已持久化的 collapsed 偏好
+        if (value) {
+            this.settings.setLayout('collapsed', true);
+        }
     }
     /**
      * Set layout configuration
