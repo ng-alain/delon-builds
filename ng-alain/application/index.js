@@ -301,9 +301,10 @@ function addTailwindcss(options) {
         (tree) => {
             // Add devDependencies
             (0, utils_1.addPackage)(tree, [
-                'tailwindcss@DEP-21.2.0',
-                '@tailwindcss/postcss@DEP-21.2.0',
-                'postcss@DEP-21.2.0'
+                'tailwindcss@^4.3.0',
+                '@tailwindcss/postcss@^4.1.12',
+                'postcss@^8.5.3',
+                'postcss-less@^6.0.0'
             ], 'devDependencies');
             // Create .postcssrc.json
             tree.create('.postcssrc.json', `${JSON.stringify({ plugins: { '@tailwindcss/postcss': {} } }, null, 2)}\n`);
