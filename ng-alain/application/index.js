@@ -292,6 +292,50 @@ function fixNgAlainJson() {
         (0, utils_1.writeNgAlainJson)(tree, json);
     };
 }
+function addTailwindcss(options) {
+    if (!options.tailwindcss)
+        return (0, schematics_1.noop)();
+    const sourceRoot = project.sourceRoot;
+    const prefix = mulitProject ? `projects/${projectName}/` : '';
+    return (0, schematics_1.chain)([
+        (tree) => {
+            // Add devDependencies
+            (0, utils_1.addPackage)(tree, [
+                'tailwindcss@DEP-21.2.0',
+                '@tailwindcss/postcss@DEP-21.2.0',
+                'postcss@DEP-21.2.0'
+            ], 'devDependencies');
+            // Create .postcssrc.json
+            tree.create('.postcssrc.json', `${JSON.stringify({ plugins: { '@tailwindcss/postcss': {} } }, null, 2)}\n`);
+            // Create src/tailwind.css
+            tree.create(`${sourceRoot}/tailwind.css`, `@layer theme, base, ng-alain, utilities;\n\n@import 'tailwindcss';\n`);
+            // Wrap styles.less in @layer ng-alain
+            const stylesLessPath = `${sourceRoot}/styles.less`;
+            if (tree.exists(stylesLessPath)) {
+                const content = tree.read(stylesLessPath).toString('utf8');
+                const wrappedContent = `/* stylelint-disable no-invalid-position-at-import-rule */\n@layer ng-alain {\n${content}}\n`;
+                tree.overwrite(stylesLessPath, wrappedContent);
+            }
+            // Create/update .vscode/extensions.json with tailwindcss recommendation
+            const extPath = '.vscode/extensions.json';
+            const extId = 'bradlc.vscode-tailwindcss';
+            if (tree.exists(extPath)) {
+                const json = (0, utils_1.readJSON)(tree, extPath);
+                if (!json.recommendations)
+                    json.recommendations = [];
+                if (!json.recommendations.includes(extId))
+                    json.recommendations.push(extId);
+                (0, utils_1.writeJSON)(tree, extPath, json);
+            }
+            else {
+                tree.create(extPath, `${JSON.stringify({ recommendations: [extId] }, null, 2)}\n`);
+            }
+            return tree;
+        },
+        // Add src/tailwind.css to angular.json styles
+        (0, utils_1.addAssetsToTarget)([{ type: 'style', value: `${prefix}src/tailwind.css` }], 'add', [utils_1.BUILD_TARGET_BUILD], projectName, false)
+    ]);
+}
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         const res = yield (0, utils_1.getProject)(tree, options.project);
@@ -318,6 +362,7 @@ function default_1(options) {
             addFilesToRoot(options),
             forceLess(),
             addStyle(),
+            addTailwindcss(options),
             fixLang(options),
             fixAngularJson(),
             fixBrowserBuilderBudgets(),
