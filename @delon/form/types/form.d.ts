@@ -555,15 +555,16 @@ interface SFNumberWidgetSchema extends SFUISchemaItem {
      */
     hideStep?: boolean;
     /**
-     * Whether to enable mouse wheel control, default is `true`
-     *
-     * 是否启用鼠标滚轮控制，默认 `true`
-     */
-    changeOnWheel?: boolean;
-    /**
      * 变更事件
      */
     change?: (val?: number) => void;
+    /**
+     * Change on mouse wheel. Default is true
+     *
+     * 启用鼠标滚轮控制。默认启用
+     *
+     */
+    changeOnWheel?: boolean;
 }
 
 declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> implements OnInit {
