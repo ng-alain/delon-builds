@@ -10,6 +10,7 @@ import { ModalOptions } from 'ng-zorro-antd/modal';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import { NzTableSortOrder } from 'ng-zorro-antd/table';
 import { NzImagePreviewOptions } from 'ng-zorro-antd/image';
+import { Locale } from 'date-fns/locale';
 import { Options } from 'ajv';
 
 interface AlainErrorCollectConfig {

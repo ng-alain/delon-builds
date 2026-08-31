@@ -105,7 +105,13 @@ class PageG2 {
         this.comp.ngOnDestroy();
     }
     newData(data) {
-        this.context['data'] = data;
+        const ctx = this.context;
+        if (typeof ctx.data === 'function' && typeof ctx.data.set === 'function') {
+            ctx.data.set(data);
+        }
+        else {
+            ctx.data = data;
+        }
         this.dc();
         return this;
     }
@@ -158,7 +164,9 @@ class PageG2 {
         return this;
     }
     get firstDataPoint() {
-        return this.chart.getXY(this.context['data'][0]);
+        const data = this.context['data'];
+        const list = typeof data === 'function' ? data() : data;
+        return this.chart.getXY(list[0]);
     }
     checkTooltip(_includeText, point) {
         if (!point) {
@@ -188,7 +196,12 @@ function checkDelay(comp, page = null) {
         console.warn(`You muse be dinfed "delay" property in test component`);
         return;
     }
-    context.delay = 100;
+    if (typeof context.delay === 'function' && typeof context.delay.set === 'function') {
+        context.delay.set(100);
+    }
+    else {
+        context.delay = 100;
+    }
     page.dc();
     page.comp.ngOnDestroy();
     expect(page.chart == null).toBe(true);

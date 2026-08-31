@@ -1,10 +1,43 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pluginIcon = pluginIcon;
 const core_1 = require("@angular-devkit/core");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const parse5_1 = require("parse5");
-const ts = require("typescript");
+const ts = __importStar(require("typescript"));
 const utils_1 = require("../utils");
 // includes ng-zorro-antd & @delon/*
 const WHITE_ICONS = [
@@ -122,7 +155,7 @@ function genByComp(node) {
     const themes = getNgValue(theme);
     if (themes == null || themes.length === 0)
         return types;
-    return [].concat(...types.map(a => themes.map(b => `${a}#${b}`)));
+    return types.flatMap(a => themes.map(b => `${a}#${b}`));
 }
 function genByAttribute(node) {
     if (!ATTRIBUTE_NAMES.includes(node.nodeName))
@@ -255,7 +288,7 @@ export const ICONS = [ ];
     }
     const source = (0, utils_1.getSourceFile)(tree, path);
     const allImports = (0, ast_utils_1.findNodes)(source, ts.SyntaxKind.ImportDeclaration);
-    const iconImport = allImports.find((w) => w.moduleSpecifier.getText().includes('@ant-design/icons-angular/icons'));
+    const iconImport = allImports.find(w => w.moduleSpecifier.getText().includes('@ant-design/icons-angular/icons'));
     if (!iconImport)
         return;
     iconImport.importClause.namedBindings.elements.forEach(v => WHITE_ICONS.push(v.getText().trim()));

@@ -25,7 +25,7 @@ function writeJSON(tree, jsonFile, json) {
 }
 function modifyJSON(tree, jsonPath, modifies, options) {
     if (!tree.exists(jsonPath))
-        return null;
+        return;
     let sourceText = tree.read(jsonPath).toString('utf-8');
     (Array.isArray(modifies) ? modifies : [modifies])
         .map(item => (0, jsonc_parser_1.modify)(sourceText, item.path, item.value, options !== null && options !== void 0 ? options : {

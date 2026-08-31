@@ -1,4 +1,37 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -16,7 +49,7 @@ const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const change_1 = require("@schematics/angular/utility/change");
 const find_module_1 = require("@schematics/angular/utility/find-module");
 const parse_name_1 = require("@schematics/angular/utility/parse-name");
-const ts = require("typescript");
+const ts = __importStar(require("typescript"));
 const utils_1 = require("../utils");
 function addDeclarationToNgModule(options) {
     return (tree) => {
@@ -100,12 +133,13 @@ function addServiceToNgModule(options) {
             ? `${basePath}${utils_1.ROUTINS_FILENAME.split('.')[0]}`
             : `${basePath}${core_1.strings.dasherize(options.name)}.module`);
         const importServicePath = (0, find_module_1.buildRelativePath)(importModulePath, servicePath);
-        (0, utils_1.addServiceToModuleOrStandalone)(tree, options.standalone, `${importModulePath}.ts`, serviceName, importServicePath);
+        (0, utils_1.addServiceToModuleOrStandalone)(tree, !!options.standalone, `${importModulePath}.ts`, serviceName, importServicePath);
         return tree;
     };
 }
 function default_1(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
+        var _a;
         const proj = yield (0, utils_1.getProject)(tree, schema.project);
         (0, utils_1.refreshPathRoot)(proj.project, schema, proj.alainProject);
         if (schema.module) {
@@ -117,7 +151,7 @@ function default_1(schema) {
         schema.routing = true;
         schema.flat = false;
         // standalone
-        schema.standalone = yield (0, utils_1.isStandalone)(tree, schema.standalone, proj.name);
+        schema.standalone = yield (0, utils_1.isStandalone)(tree, (_a = schema.standalone) !== null && _a !== void 0 ? _a : false, proj.name);
         const templateSource = (0, schematics_1.apply)((0, schematics_1.url)('./files'), [
             schema.service === 'ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
             schema.routing ? (0, schematics_1.noop)() : (0, schematics_1.filter)(path => !path.endsWith('-routing.module.ts')),

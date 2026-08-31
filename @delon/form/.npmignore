@@ -1,2 +1,16 @@
 # Nested package.json's are only needed for development.
-**/package.json
+widgets/autocomplete/package.json
+widgets/cascader/package.json
+widgets/color/package.json
+widgets/mention/package.json
+widgets/qr-code/package.json
+widgets/rate/package.json
+widgets/segmented/package.json
+widgets/slider/package.json
+widgets/tag/package.json
+widgets/time/package.json
+widgets/transfer/package.json
+widgets/upload/package.json
+widgets/tree-select/package.json
+widgets-third/monaco-editor/package.json
+widgets-third/tinymce/package.json

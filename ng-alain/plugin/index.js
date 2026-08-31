@@ -27,14 +27,15 @@ function installPackages() {
 }
 function default_1(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
+        var _a, _b;
         const res = yield (0, utils_1.getProject)(tree, options.project);
         const project = res.project;
         const pluginOptions = {
             type: options.type,
             name: res.name,
-            projectPrefix: project.prefix,
+            projectPrefix: (_a = project.prefix) !== null && _a !== void 0 ? _a : '',
             root: project.root,
-            sourceRoot: project.sourceRoot,
+            sourceRoot: (_b = project.sourceRoot) !== null && _b !== void 0 ? _b : 'src',
             project: options.project
         };
         const rules = [];

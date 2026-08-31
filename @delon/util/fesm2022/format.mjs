@@ -357,6 +357,7 @@ class CurrencyService {
             dec: ['角', '分', '厘', '毫']
         };
         if (inWords) {
+            // eslint-disable-next-line no-useless-assignment
             value = (+value).toFixed(5).toString();
         }
         let integerRes = '';
@@ -413,10 +414,10 @@ class CurrencyService {
                 : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
         return ret;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: CurrencyService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: CurrencyService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: CurrencyService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: CurrencyService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: CurrencyService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: CurrencyService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [] });

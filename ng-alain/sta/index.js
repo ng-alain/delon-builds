@@ -59,7 +59,8 @@ function tagsMapping(res, config) {
     if (config.tagsMapping != null && Object.keys(config.tagsMapping).length <= 0)
         return;
     (_a = res.configuration.routes.combined) === null || _a === void 0 ? void 0 : _a.forEach(v => {
-        const newModuleName = config.tagsMapping[v.moduleName];
+        var _a;
+        const newModuleName = (_a = config.tagsMapping) === null || _a === void 0 ? void 0 : _a[v.moduleName];
         if (newModuleName != null) {
             v.moduleName = newModuleName;
             v.routes.forEach(route => {
@@ -69,6 +70,7 @@ function tagsMapping(res, config) {
     });
 }
 function fix(output, res, tree, context, config) {
+    var _a;
     tagsMapping(res, config);
     const indexList = [`models`, `_base.service`];
     const basePath = (0, core_1.normalize)((0, path_1.join)(project.root, output.replace(process.cwd(), '')));
@@ -84,7 +86,7 @@ function fix(output, res, tree, context, config) {
         // Tag Service
         const dtoTypeTpl = res.getTemplate({ name: 'dto-type', fileName: 'dto-type.eta' });
         const serviceTpl = res.getTemplate({ name: 'service', fileName: 'service.eta' });
-        res.configuration.routes.combined.forEach(route => {
+        (_a = res.configuration.routes.combined) === null || _a === void 0 ? void 0 : _a.forEach(route => {
             const routeIndex = [];
             // dto
             const dtoContent = res.formatTSContent(res.renderTemplate(dtoTypeTpl, Object.assign(Object.assign({}, res.configuration), { route })));
@@ -125,7 +127,8 @@ function genProxy(config) {
             const options = Object.assign({ name: `${config.name}.ts`, url: config.url, input: config.filePath, spec: config.spec, output,
                 templates, toJS: false, modular: true, cleanOutput: true, generateUnionEnums: true, generateClient: true, extractRequestParams: false, generateResponses: false, generateRouteTypes: true, generateApi: true, silent: true, disableStrictSSL: true, moduleNameFirstTag: true, defaultResponseType: 'any', typePrefix: config.modelTypePrefix, hooks: {
                     onInit: (c) => {
-                        c.httpClientType = config.httpClientType;
+                        var _a;
+                        c.httpClientType = (_a = config.httpClientType) !== null && _a !== void 0 ? _a : '';
                         return c;
                     },
                     onPrepareConfig: c => {
@@ -204,6 +207,7 @@ function tryLoadConfig(context, configPath) {
     catch (err) {
         throw new schematics_1.SchematicsException(`Invalid config file ${err}`);
     }
+    return null;
 }
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {

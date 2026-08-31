@@ -10,17 +10,18 @@ class SGContainerComponent {
     colInCon = input(null, { ...(ngDevMode ? { debugName: "colInCon" } : /* istanbul ignore next */ {}), transform: (v) => (v == null ? null : numberAttribute(v, null)),
         alias: 'sg-container' });
     col = input(2, { ...(ngDevMode ? { debugName: "col" } : /* istanbul ignore next */ {}), transform: (v) => (v == null ? null : numberAttribute(v, null)) });
-    marginValue = computed(() => -(this.gutter() / 2), ...(ngDevMode ? [{ debugName: "marginValue" }] : /* istanbul ignore next */ []));
+    marginValue = computed(() => -(this.gutter() / 2), /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "marginValue" }] : /* istanbul ignore next */ []));
     constructor() {
         this.cogSrv.attach(this, 'sg', {
             gutter: 32,
             col: 2
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.2.11", type: SGContainerComponent, isStandalone: true, selector: "sg-container, [sg-container]", inputs: { gutter: { classPropertyName: "gutter", publicName: "gutter", isSignal: true, isRequired: false, transformFunction: null }, colInCon: { classPropertyName: "colInCon", publicName: "sg-container", isSignal: true, isRequired: false, transformFunction: null }, col: { classPropertyName: "col", publicName: "col", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "style.margin-left.px": "marginValue()", "style.margin-right.px": "marginValue()", "class.ant-row": "true", "class.sg__wrap": "true" } }, exportAs: ["sgContainer"], ngImport: i0, template: ` <ng-content /> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.1.4", type: SGContainerComponent, isStandalone: true, selector: "sg-container, [sg-container]", inputs: { gutter: { classPropertyName: "gutter", publicName: "gutter", isSignal: true, isRequired: false, transformFunction: null }, colInCon: { classPropertyName: "colInCon", publicName: "sg-container", isSignal: true, isRequired: false, transformFunction: null }, col: { classPropertyName: "col", publicName: "col", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "style.margin-left.px": "marginValue()", "style.margin-right.px": "marginValue()", "class.ant-row": "true", "class.sg__wrap": "true" } }, exportAs: ["sgContainer"], ngImport: i0, template: ` <ng-content /> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGContainerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGContainerComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'sg-container, [sg-container]',
@@ -41,7 +42,8 @@ const prefixCls = `sg`;
 class SGComponent {
     rep = inject(ResponsiveService);
     parentComp = inject(SGContainerComponent, { host: true, optional: true });
-    paddingValue = computed(() => this.parentComp.gutter() / 2, ...(ngDevMode ? [{ debugName: "paddingValue" }] : /* istanbul ignore next */ []));
+    paddingValue = computed(() => this.parentComp.gutter() / 2, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "paddingValue" }] : /* istanbul ignore next */ []));
     col = input(null, { ...(ngDevMode ? { debugName: "col" } : /* istanbul ignore next */ {}), transform: (v) => (v == null ? null : numberAttribute(v, null)) });
     cls = computed(() => {
         const col = this.col();
@@ -49,16 +51,17 @@ class SGComponent {
         const parentCol = parent.colInCon() ?? parent.col();
         const arr = this.rep.genCls(col != null ? col : parentCol, parentCol);
         return arr.concat(`${prefixCls}__item`);
-    }, ...(ngDevMode ? [{ debugName: "cls" }] : /* istanbul ignore next */ []));
+    }, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "cls" }] : /* istanbul ignore next */ []));
     constructor() {
         if (this.parentComp == null) {
             throw new Error(`[sg] must include 'sg-container' component`);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.2.11", type: SGComponent, isStandalone: true, selector: "sg", inputs: { col: { classPropertyName: "col", publicName: "col", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "style.padding-left.px": "paddingValue()", "style.padding-right.px": "paddingValue()", "class": "cls()" } }, exportAs: ["sg"], ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.1.4", type: SGComponent, isStandalone: true, selector: "sg", inputs: { col: { classPropertyName: "col", publicName: "col", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "style.padding-left.px": "paddingValue()", "style.padding-right.px": "paddingValue()", "class": "cls()" } }, exportAs: ["sg"], ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'sg',
@@ -76,11 +79,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
 
 const COMPONENTS = [SGContainerComponent, SGComponent];
 class SGModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.11", ngImport: i0, type: SGModule, imports: [CommonModule, SGContainerComponent, SGComponent], exports: [SGContainerComponent, SGComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGModule, imports: [CommonModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.4", ngImport: i0, type: SGModule, imports: [CommonModule, SGContainerComponent, SGComponent], exports: [SGContainerComponent, SGComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: SGModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: SGModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ...COMPONENTS],

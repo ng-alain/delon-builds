@@ -79,8 +79,10 @@ function fixAngularJson(): Rule {
     const p = getProjectFromWorkspace(workspace, projectName);
     // Add proxy.conf.js
     const serveTarget = p.targets?.get(BUILD_TARGET_SERVE);
-    if (serveTarget.options == null) serveTarget.options = {};
-    serveTarget.options.proxyConfig = 'proxy.conf.js';
+    if (serveTarget != null) {
+      if (serveTarget.options == null) serveTarget.options = {};
+      serveTarget.options.proxyConfig = 'proxy.conf.js';
+    }
 
     addStyleResources(workspace, projectName);
     addStylePreprocessorOptions(workspace, projectName);
@@ -192,12 +194,12 @@ function addCodeStylesToPackageJson(): Rule {
       tree,
       [
         `husky@^9.1.7`,
-        `lint-staged@^16.4.0`,
-        `prettier@^3.8.3`,
-        `stylelint@^17.9.1`,
+        `lint-staged@^17.4.1`,
+        `prettier@^3.9.6`,
+        `stylelint@^17.14.1`,
         `stylelint-config-standard@^40.0.0`,
         `stylelint-declaration-block-no-ignored-properties@^3.0.0`,
-        `stylelint-config-clean-order@^8.0.1`,
+        `stylelint-config-clean-order@^10.0.0`,
         `stylelint-order@^8.1.1`
       ],
       'devDependencies'
@@ -209,7 +211,7 @@ function addCodeStylesToPackageJson(): Rule {
 function addSchematics(options: ApplicationOptions): Rule {
   return updateWorkspace(async workspace => {
     const p = getProjectFromWorkspace(workspace, options.project);
-    const schematics = p.extensions.schematics;
+    const schematics = (p.extensions.schematics ??= {}) as Record<string, object>;
     schematics['ng-alain:module'] = {
       routing: true
     };
@@ -290,7 +292,7 @@ function addFilesToRoot(options: ApplicationOptions): Rule {
           VERSION,
           ZORROVERSION
         }),
-        move(project.sourceRoot)
+        move(project.sourceRoot!)
       ]),
       MergeStrategy.Overwrite
     ),
@@ -328,7 +330,7 @@ function fixLang(options: ApplicationOptions): Rule {
   };
 }
 
-function fixLangInHtml(tree: Tree, p: string, langs: unknown): void {
+function fixLangInHtml(tree: Tree, p: string, langs: Record<string, string>): void {
   let html = tree.get(p)!.content.toString('utf8');
   let matchCount = 0;
   // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | i18n }}
@@ -397,9 +399,9 @@ function addTailwindcss(options: ApplicationOptions): Rule {
       addPackage(
         tree,
         [
-          'tailwindcss@^4.3.0',
-          '@tailwindcss/postcss@^4.1.12',
-          'postcss@^8.5.3',
+          'tailwindcss@^4.3.3',
+          '@tailwindcss/postcss@^4.3.3',
+          'postcss@^8.5.26',
           'postcss-less@^6.0.0'
         ],
         'devDependencies'

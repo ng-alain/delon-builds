@@ -28,7 +28,7 @@ interface SFTagWidgetSchema extends SFUISchemaItem {
 
 declare class TagWidget extends ControlUIWidget<SFTagWidgetSchema> {
     static readonly KEY = "tag";
-    data: SFSchemaEnum[];
+    protected readonly data: i0.WritableSignal<SFSchemaEnum[]>;
     reset(value: SFValue): void;
     onChange(item: SFSchemaEnum): void;
     _close(e: MouseEvent): void;

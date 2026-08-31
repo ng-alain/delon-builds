@@ -1,4 +1,37 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -20,9 +53,9 @@ const change_1 = require("@schematics/angular/utility/change");
 const find_module_1 = require("@schematics/angular/utility/find-module");
 const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const validation_1 = require("@schematics/angular/utility/validation");
-const fs = require("fs");
-const path = require("path");
-const ts = require("typescript");
+const fs = __importStar(require("fs"));
+const path = __importStar(require("path"));
+const ts = __importStar(require("typescript"));
 const ast_1 = require("./ast");
 const standalone_1 = require("./standalone");
 const workspace_1 = require("./workspace");
@@ -68,6 +101,7 @@ function refreshPathRoot(project, schema, alainProject) {
     }
 }
 function resolveSchema(tree, project, schema, alainProject) {
+    var _a;
     // module name
     if (!schema.module) {
         throw new schematics_1.SchematicsException(`Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`);
@@ -115,7 +149,7 @@ function resolveSchema(tree, project, schema, alainProject) {
         schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
     }
     // html selector
-    schema.selector = schema.selector || buildSelector(schema, project.prefix);
+    schema.selector = schema.selector || buildSelector(schema, (_a = project.prefix) !== null && _a !== void 0 ? _a : '');
     (0, validation_1.validateHtmlSelector)(schema.selector);
 }
 function addImportToModule(tree, filePath, symbolName, fileName) {
@@ -161,20 +195,21 @@ function addDeclaration(schema) {
         }
         // service
         if (schema.service === 'none') {
-            (0, ast_1.addServiceToModuleOrStandalone)(tree, schema.standalone, schema.importModulePath, schema.serviceName, getRelativePath(schema.importModulePath, schema, 'service'));
+            (0, ast_1.addServiceToModuleOrStandalone)(tree, !!schema.standalone, schema.importModulePath, schema.serviceName, getRelativePath(schema.importModulePath, schema, 'service'));
         }
         return tree;
     };
 }
 function buildAlain(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
+        var _a;
         const res = yield (0, workspace_1.getProject)(tree, schema.project);
         if (schema.project && res.name !== schema.project) {
             throw new schematics_1.SchematicsException(`The specified project does not match '${schema.project}', current: ${res.name}`);
         }
         const project = res.project;
         // standalone
-        schema.standalone = yield (0, standalone_1.isStandalone)(tree, schema.standalone, res.name);
+        schema.standalone = yield (0, standalone_1.isStandalone)(tree, (_a = schema.standalone) !== null && _a !== void 0 ? _a : false, res.name);
         resolveSchema(tree, project, schema, res.alainProject);
         schema.componentName = buildName(schema, 'Component');
         schema.serviceName = buildName(schema, 'Service');

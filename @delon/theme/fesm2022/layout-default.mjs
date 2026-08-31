@@ -17,17 +17,20 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 
 class LayoutDefaultHeaderItemComponent {
-    host = viewChild('host', ...(ngDevMode ? [{ debugName: "host" }] : /* istanbul ignore next */ []));
-    hidden = input('none', ...(ngDevMode ? [{ debugName: "hidden" }] : /* istanbul ignore next */ []));
-    direction = input('right', ...(ngDevMode ? [{ debugName: "direction" }] : /* istanbul ignore next */ []));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultHeaderItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "21.2.11", type: LayoutDefaultHeaderItemComponent, isStandalone: true, selector: "layout-default-header-item", inputs: { hidden: { classPropertyName: "hidden", publicName: "hidden", isSignal: true, isRequired: false, transformFunction: null }, direction: { classPropertyName: "direction", publicName: "direction", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], descendants: true, isSignal: true }], ngImport: i0, template: `
+    host = viewChild('host', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "host" }] : /* istanbul ignore next */ []));
+    hidden = input('none', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "hidden" }] : /* istanbul ignore next */ []));
+    direction = input('right', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "direction" }] : /* istanbul ignore next */ []));
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "22.1.4", type: LayoutDefaultHeaderItemComponent, isStandalone: true, selector: "layout-default-header-item", inputs: { hidden: { classPropertyName: "hidden", publicName: "hidden", isSignal: true, isRequired: false, transformFunction: null }, direction: { classPropertyName: "direction", publicName: "direction", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], descendants: true, isSignal: true }], ngImport: i0, template: `
     <ng-template #host>
       <ng-content />
     </ng-template>
   `, isInline: true });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultHeaderItemComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderItemComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'layout-default-header-item',
@@ -51,8 +54,10 @@ const DEFAULT = {
 class LayoutDefaultService {
     settings = inject(SettingsService);
     bm = inject(BreakpointObserver);
-    options = signal(DEFAULT, ...(ngDevMode ? [{ debugName: "options" }] : /* istanbul ignore next */ []));
-    collapsedIcon = signal('', ...(ngDevMode ? [{ debugName: "collapsedIcon" }] : /* istanbul ignore next */ []));
+    options = signal(DEFAULT, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "options" }] : /* istanbul ignore next */ []));
+    collapsedIcon = signal('', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "collapsedIcon" }] : /* istanbul ignore next */ []));
     constructor() {
         const mobileMedia = 'only screen and (max-width: 767.99px)';
         this.bm
@@ -95,10 +100,10 @@ class LayoutDefaultService {
     toggleCollapsed(status) {
         this.settings.setLayout('collapsed', status != null ? status : !this.settings.layout.collapsed);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [] });
@@ -106,13 +111,17 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
 class LayoutDefaultHeaderComponent {
     app = inject(SettingsService).app;
     srv = inject(LayoutDefaultService);
-    items = input.required(...(ngDevMode ? [{ debugName: "items" }] : /* istanbul ignore next */ []));
-    left = computed(() => this.items().filter(i => i.direction() === 'left'), ...(ngDevMode ? [{ debugName: "left" }] : /* istanbul ignore next */ []));
-    middle = computed(() => this.items().filter(i => i.direction() === 'middle'), ...(ngDevMode ? [{ debugName: "middle" }] : /* istanbul ignore next */ []));
-    right = computed(() => this.items().filter(i => i.direction() === 'right'), ...(ngDevMode ? [{ debugName: "right" }] : /* istanbul ignore next */ []));
+    items = input.required(/* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "items" }] : /* istanbul ignore next */ []));
+    left = computed(() => this.items().filter(i => i.direction() === 'left'), /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "left" }] : /* istanbul ignore next */ []));
+    middle = computed(() => this.items().filter(i => i.direction() === 'middle'), /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "middle" }] : /* istanbul ignore next */ []));
+    right = computed(() => this.items().filter(i => i.direction() === 'right'), /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "right" }] : /* istanbul ignore next */ []));
     opt = this.srv.options;
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.11", type: LayoutDefaultHeaderComponent, isStandalone: true, selector: "layout-default-header", inputs: { items: { classPropertyName: "items", publicName: "items", isSignal: true, isRequired: true, transformFunction: null } }, host: { classAttribute: "alain-default__header" }, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: LayoutDefaultHeaderComponent, isStandalone: true, selector: "layout-default-header", inputs: { items: { classPropertyName: "items", publicName: "items", isSignal: true, isRequired: true, transformFunction: null } }, host: { classAttribute: "alain-default__header" }, ngImport: i0, template: `
     <ng-template #render let-ls>
       @for (i of ls; track $index) {
         <li [class.hidden-mobile]="i.hidden() === 'mobile'" [class.hidden-pc]="i.hidden() === 'pc'">
@@ -151,9 +160,9 @@ class LayoutDefaultHeaderComponent {
         <ng-template [ngTemplateOutlet]="render" [ngTemplateOutletContext]="{ $implicit: right() }" />
       </ul>
     </div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: RouterLink, selector: "[routerLink]", inputs: ["target", "queryParams", "fragment", "queryParamsHandling", "state", "info", "relativeTo", "preserveFragment", "skipLocationChange", "replaceUrl", "routerLink"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: RouterLink, selector: "[routerLink]", inputs: ["target", "queryParams", "fragment", "queryParamsHandling", "state", "info", "relativeTo", "preserveFragment", "skipLocationChange", "replaceUrl", "browserUrl", "routerLink"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultHeaderComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'layout-default-header',
@@ -216,12 +225,14 @@ class LayoutDefaultNavComponent {
     bodyEl = this.doc.querySelector('body');
     floatingEl;
     dir = inject(Directionality).valueSignal;
-    list = signal([], ...(ngDevMode ? [{ debugName: "list" }] : /* istanbul ignore next */ []));
+    list = signal([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "list" }] : /* istanbul ignore next */ []));
     disabledAcl = input(false, { ...(ngDevMode ? { debugName: "disabledAcl" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     autoCloseUnderPad = input(true, { ...(ngDevMode ? { debugName: "autoCloseUnderPad" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     recursivePath = input(true, { ...(ngDevMode ? { debugName: "recursivePath" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     hideEmptyChildren = input(true, { ...(ngDevMode ? { debugName: "hideEmptyChildren" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
-    openStrictly = input(...(ngDevMode ? [undefined, { debugName: "openStrictly" }] : /* istanbul ignore next */ []));
+    openStrictly = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "openStrictly" }] : /* istanbul ignore next */ []));
     maxLevelIcon = input(3, { ...(ngDevMode ? { debugName: "maxLevelIcon" } : /* istanbul ignore next */ {}), transform: numberAttribute });
     select = output();
     get collapsed() {
@@ -418,8 +429,8 @@ class LayoutDefaultNavComponent {
     ngOnDestroy() {
         this.clearFloating();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultNavComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.11", type: LayoutDefaultNavComponent, isStandalone: true, selector: "layout-default-nav", inputs: { disabledAcl: { classPropertyName: "disabledAcl", publicName: "disabledAcl", isSignal: true, isRequired: false, transformFunction: null }, autoCloseUnderPad: { classPropertyName: "autoCloseUnderPad", publicName: "autoCloseUnderPad", isSignal: true, isRequired: false, transformFunction: null }, recursivePath: { classPropertyName: "recursivePath", publicName: "recursivePath", isSignal: true, isRequired: false, transformFunction: null }, hideEmptyChildren: { classPropertyName: "hideEmptyChildren", publicName: "hideEmptyChildren", isSignal: true, isRequired: false, transformFunction: null }, openStrictly: { classPropertyName: "openStrictly", publicName: "openStrictly", isSignal: true, isRequired: false, transformFunction: null }, maxLevelIcon: { classPropertyName: "maxLevelIcon", publicName: "maxLevelIcon", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { select: "select" }, host: { listeners: { "click": "_click()", "document:click": "closeSubMenu()" }, classAttribute: "d-block" }, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultNavComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: LayoutDefaultNavComponent, isStandalone: true, selector: "layout-default-nav", inputs: { disabledAcl: { classPropertyName: "disabledAcl", publicName: "disabledAcl", isSignal: true, isRequired: false, transformFunction: null }, autoCloseUnderPad: { classPropertyName: "autoCloseUnderPad", publicName: "autoCloseUnderPad", isSignal: true, isRequired: false, transformFunction: null }, recursivePath: { classPropertyName: "recursivePath", publicName: "recursivePath", isSignal: true, isRequired: false, transformFunction: null }, hideEmptyChildren: { classPropertyName: "hideEmptyChildren", publicName: "hideEmptyChildren", isSignal: true, isRequired: false, transformFunction: null }, openStrictly: { classPropertyName: "openStrictly", publicName: "openStrictly", isSignal: true, isRequired: false, transformFunction: null }, maxLevelIcon: { classPropertyName: "maxLevelIcon", publicName: "maxLevelIcon", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { select: "select" }, host: { listeners: { "click": "_click()", "document:click": "closeSubMenu()" }, classAttribute: "d-block" }, ngImport: i0, template: `
     <ng-template #icon let-i>
       @if (i) {
         @switch (i.type) {
@@ -518,9 +529,9 @@ class LayoutDefaultNavComponent {
         <ng-template [ngTemplateOutlet]="tree" [ngTemplateOutletContext]="{ $implicit: group.children }" />
       }
     </ul>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultNavComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultNavComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'layout-default-nav',
@@ -644,20 +655,28 @@ class LayoutDefaultComponent {
     headerItems = contentChildren(LayoutDefaultHeaderItemComponent, { ...(ngDevMode ? { debugName: "headerItems" } : /* istanbul ignore next */ {}), descendants: false });
     opt = this.srv.options;
     layout = this.settings.layoutSignal;
-    options = input(...(ngDevMode ? [undefined, { debugName: "options" }] : /* istanbul ignore next */ []));
-    asideUser = input(...(ngDevMode ? [undefined, { debugName: "asideUser" }] : /* istanbul ignore next */ []));
-    asideBottom = input(...(ngDevMode ? [undefined, { debugName: "asideBottom" }] : /* istanbul ignore next */ []));
-    nav = input(...(ngDevMode ? [undefined, { debugName: "nav" }] : /* istanbul ignore next */ []));
-    content = input(...(ngDevMode ? [undefined, { debugName: "content" }] : /* istanbul ignore next */ []));
-    customError = input(...(ngDevMode ? [undefined, { debugName: "customError" }] : /* istanbul ignore next */ []));
+    options = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "options" }] : /* istanbul ignore next */ []));
+    asideUser = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "asideUser" }] : /* istanbul ignore next */ []));
+    asideBottom = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "asideBottom" }] : /* istanbul ignore next */ []));
+    nav = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "nav" }] : /* istanbul ignore next */ []));
+    content = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "content" }] : /* istanbul ignore next */ []));
+    customError = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "customError" }] : /* istanbul ignore next */ []));
     fetchingStrictly = input(false, { ...(ngDevMode ? { debugName: "fetchingStrictly" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     fetching = input(false, { ...(ngDevMode ? { debugName: "fetching" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
-    isFetching = signal(false, ...(ngDevMode ? [{ debugName: "isFetching" }] : /* istanbul ignore next */ []));
+    isFetching = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "isFetching" }] : /* istanbul ignore next */ []));
     showFetching = computed(() => {
         if (this.fetchingStrictly())
             return this.fetching();
         return this.isFetching();
-    }, ...(ngDevMode ? [{ debugName: "showFetching" }] : /* istanbul ignore next */ []));
+    }, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "showFetching" }] : /* istanbul ignore next */ []));
     constructor() {
         this.router.events
             .pipe(takeUntilDestroyed(), filter(() => !this.fetchingStrictly()))
@@ -692,8 +711,8 @@ class LayoutDefaultComponent {
             }, 100);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.11", type: LayoutDefaultComponent, isStandalone: true, selector: "layout-default", inputs: { options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, asideUser: { classPropertyName: "asideUser", publicName: "asideUser", isSignal: true, isRequired: false, transformFunction: null }, asideBottom: { classPropertyName: "asideBottom", publicName: "asideBottom", isSignal: true, isRequired: false, transformFunction: null }, nav: { classPropertyName: "nav", publicName: "nav", isSignal: true, isRequired: false, transformFunction: null }, content: { classPropertyName: "content", publicName: "content", isSignal: true, isRequired: false, transformFunction: null }, customError: { classPropertyName: "customError", publicName: "customError", isSignal: true, isRequired: false, transformFunction: null }, fetchingStrictly: { classPropertyName: "fetchingStrictly", publicName: "fetchingStrictly", isSignal: true, isRequired: false, transformFunction: null }, fetching: { classPropertyName: "fetching", publicName: "fetching", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.alain-default__fixed": "layout().fixed", "class.alain-default__collapsed": "layout().collapsed", "class.alain-default__hide-aside": "opt().hideAside", "class.alain-default__hide-header": "opt().hideHeader" }, classAttribute: "alain-default" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent, isSignal: true }], exportAs: ["layoutDefault"], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: LayoutDefaultComponent, isStandalone: true, selector: "layout-default", inputs: { options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, asideUser: { classPropertyName: "asideUser", publicName: "asideUser", isSignal: true, isRequired: false, transformFunction: null }, asideBottom: { classPropertyName: "asideBottom", publicName: "asideBottom", isSignal: true, isRequired: false, transformFunction: null }, nav: { classPropertyName: "nav", publicName: "nav", isSignal: true, isRequired: false, transformFunction: null }, content: { classPropertyName: "content", publicName: "content", isSignal: true, isRequired: false, transformFunction: null }, customError: { classPropertyName: "customError", publicName: "customError", isSignal: true, isRequired: false, transformFunction: null }, fetchingStrictly: { classPropertyName: "fetchingStrictly", publicName: "fetchingStrictly", isSignal: true, isRequired: false, transformFunction: null }, fetching: { classPropertyName: "fetching", publicName: "fetching", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.alain-default__fixed": "layout().fixed", "class.alain-default__collapsed": "layout().collapsed", "class.alain-default__hide-aside": "opt().hideAside", "class.alain-default__hide-header": "opt().hideHeader" }, classAttribute: "alain-default" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent, isSignal: true }], exportAs: ["layoutDefault"], ngImport: i0, template: `
     @let _opt = opt();
     @if (showFetching()) {
       <div class="alain-default__progress-bar"></div>
@@ -729,9 +748,9 @@ class LayoutDefaultComponent {
       <ng-container *ngTemplateOutlet="content()" />
       <ng-content />
     </section>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: ["items"] }, { kind: "component", type: LayoutDefaultNavComponent, selector: "layout-default-nav", inputs: ["disabledAcl", "autoCloseUnderPad", "recursivePath", "hideEmptyChildren", "openStrictly", "maxLevelIcon"], outputs: ["select"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }] });
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: ["items"] }, { kind: "component", type: LayoutDefaultNavComponent, selector: "layout-default-nav", inputs: ["disabledAcl", "autoCloseUnderPad", "recursivePath", "hideEmptyChildren", "openStrictly", "maxLevelIcon"], outputs: ["select"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont"], exportAs: ["nzIcon"] }] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'layout-default',
@@ -785,10 +804,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
         }], ctorParameters: () => [], propDecorators: { headerItems: [{ type: i0.ContentChildren, args: [i0.forwardRef(() => LayoutDefaultHeaderItemComponent), { ...{ descendants: false }, isSignal: true }] }], options: [{ type: i0.Input, args: [{ isSignal: true, alias: "options", required: false }] }], asideUser: [{ type: i0.Input, args: [{ isSignal: true, alias: "asideUser", required: false }] }], asideBottom: [{ type: i0.Input, args: [{ isSignal: true, alias: "asideBottom", required: false }] }], nav: [{ type: i0.Input, args: [{ isSignal: true, alias: "nav", required: false }] }], content: [{ type: i0.Input, args: [{ isSignal: true, alias: "content", required: false }] }], customError: [{ type: i0.Input, args: [{ isSignal: true, alias: "customError", required: false }] }], fetchingStrictly: [{ type: i0.Input, args: [{ isSignal: true, alias: "fetchingStrictly", required: false }] }], fetching: [{ type: i0.Input, args: [{ isSignal: true, alias: "fetching", required: false }] }] } });
 
 class LayoutDefaultHeaderItemTriggerDirective {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultHeaderItemTriggerDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.2.11", type: LayoutDefaultHeaderItemTriggerDirective, isStandalone: true, selector: "[layout-default-header-item-trigger]", host: { classAttribute: "alain-default__nav-item" }, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderItemTriggerDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "22.1.4", type: LayoutDefaultHeaderItemTriggerDirective, isStandalone: true, selector: "[layout-default-header-item-trigger]", host: { classAttribute: "alain-default__nav-item" }, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultHeaderItemTriggerDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderItemTriggerDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[layout-default-header-item-trigger]',
@@ -799,10 +818,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
 class LayoutDefaultTopMenuItemComponent {
     selected = input(false, { ...(ngDevMode ? { debugName: "selected" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     disabled = input(false, { ...(ngDevMode ? { debugName: "disabled" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultTopMenuItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.2.11", type: LayoutDefaultTopMenuItemComponent, isStandalone: true, selector: "layout-default-top-menu-item", inputs: { selected: { classPropertyName: "selected", publicName: "selected", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.alain-default__nav-item": "true", "class.alain-default__top-menu-item": "true", "class.alain-default__top-menu-item-selected": "selected()", "class.alain-default__top-menu-item-disabled": "disabled()" } }, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultTopMenuItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.1.4", type: LayoutDefaultTopMenuItemComponent, isStandalone: true, selector: "layout-default-top-menu-item", inputs: { selected: { classPropertyName: "selected", publicName: "selected", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.alain-default__nav-item": "true", "class.alain-default__top-menu-item": "true", "class.alain-default__top-menu-item-selected": "selected()", "class.alain-default__top-menu-item-disabled": "disabled()" } }, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultTopMenuItemComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultTopMenuItemComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'layout-default-top-menu-item',
@@ -827,8 +846,8 @@ const COMPONENTS = [
     LayoutDefaultTopMenuItemComponent
 ];
 class LayoutDefaultModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
             RouterModule,
             NzTooltipModule,
             NzIconModule,
@@ -845,7 +864,7 @@ class LayoutDefaultModule {
             LayoutDefaultHeaderItemComponent,
             LayoutDefaultHeaderItemTriggerDirective,
             LayoutDefaultTopMenuItemComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
             RouterModule,
             NzTooltipModule,
             NzIconModule,
@@ -854,7 +873,7 @@ class LayoutDefaultModule {
             NzBadgeModule, LayoutDefaultComponent,
             LayoutDefaultNavComponent] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: LayoutDefaultModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -21,31 +21,31 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `angular-eslint@^21.3.1`,
-        `@typescript-eslint/eslint-plugin@^8.59.1`,
-        `@typescript-eslint/parser@^8.59.1`,
-        `@typescript-eslint/utils@^8.59.1`,
-        `eslint@^9.39.4`,
-        `eslint-config-prettier@^10.1.8`,
-        `eslint-plugin-import@~2.32.0`,
-        `eslint-plugin-jsdoc@~62.9.0`,
-        `eslint-plugin-prefer-arrow@~1.2.3`,
-        `eslint-plugin-prettier@~5.5.5`,
+        `angular-eslint@^22.1.0`,
+        `@typescript-eslint/eslint-plugin@undefined`,
+        `@typescript-eslint/parser@undefined`,
+        `@typescript-eslint/utils@undefined`,
+        `eslint@^10.8.1`,
+        `eslint-config-prettier@undefined`,
+        `eslint-plugin-import@undefined`,
+        `eslint-plugin-jsdoc@^64.2.0`,
+        `eslint-plugin-prefer-arrow@undefined`,
+        `eslint-plugin-prettier@^5.5.6`,
         `eslint-plugin-unused-imports@^4.4.1`,
-        `typescript@~5.9.2`,
-        `typescript-eslint@^8.59.1`,
-        `prettier@^3.8.3`,
+        `typescript@~6.0.2`,
+        `typescript-eslint@^8.67.0`,
+        `prettier@^3.9.6`,
         `husky@^9.1.7`,
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^18.0.0`,
         `source-map-explorer@^2.5.3`,
-        `ngx-tinymce@^21.0.0`,
-        `@ng-util/monaco-editor@^21.2.0`,
+        `ngx-tinymce@^22.0.0`,
+        `@ng-util/monaco-editor@^22.0.0`,
         `@delon/testing@${version}`,
         // vi test
         // `@playwright/test@undefined`,
         // `@vitest/browser-playwright@undefined`,
-        // `@vitest/coverage-v8@undefined`,
+        // `@vitest/coverage-v8@^4.1.10`,
         // `vitest@undefined`,
         // `jsdom@undefined`,
         // When use vitest
@@ -55,7 +55,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `vitest@^4.0.16`,
         `jsdom@^27.4.0`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.2.2`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^22.0.1`]);
 }
 function addESLintRule(projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {

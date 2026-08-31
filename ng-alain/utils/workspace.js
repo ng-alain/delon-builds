@@ -55,14 +55,14 @@ function isMulitProject(tree) {
 }
 function getProject(tree, projectName) {
     return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         const workspace = yield (0, workspace_1.getWorkspace)(tree);
-        projectName = getProjectName(workspace, projectName);
+        projectName = (_a = getProjectName(workspace, projectName)) !== null && _a !== void 0 ? _a : undefined;
         if (!projectName || !workspace.projects.has(projectName)) {
             throw new schematics_1.SchematicsException(`No project named "${projectName}" exists.`);
         }
         const project = getProjectFromWorkspace(workspace, projectName);
-        const alainProject = (_c = ((_b = (_a = getNgAlainJson(tree)) === null || _a === void 0 ? void 0 : _a.projects) !== null && _b !== void 0 ? _b : {})[projectName]) !== null && _c !== void 0 ? _c : {};
+        const alainProject = (_d = ((_c = (_b = getNgAlainJson(tree)) === null || _b === void 0 ? void 0 : _b.projects) !== null && _c !== void 0 ? _c : {})[projectName]) !== null && _d !== void 0 ? _d : {};
         return { project, name: projectName, alainProject };
     });
 }
@@ -133,7 +133,7 @@ function addAllowSyntheticDefaultImports(value = true) {
 function getProjectFromWorkspace(workspace, projectName) {
     var _a;
     if (!projectName) {
-        projectName = (_a = Array.from(workspace.projects.keys()).pop()) !== null && _a !== void 0 ? _a : null;
+        projectName = (_a = Array.from(workspace.projects.keys()).pop()) !== null && _a !== void 0 ? _a : '';
     }
     const project = workspace.projects.get(projectName);
     if (!project) {
@@ -150,23 +150,22 @@ function getProjectTarget(project, buildTarget, type = 'options') {
     return options;
 }
 function addStylePreprocessorOptions(workspace, projectName) {
-    var _a;
+    var _a, _b;
+    var _c;
     const project = getProjectFromWorkspace(workspace, projectName);
     if (project == null)
         return;
     const build = project.targets.get(exports.BUILD_TARGET_BUILD);
     if (build == null || build.options == null)
         return;
-    if (build.options.stylePreprocessorOptions == null) {
-        build.options.stylePreprocessorOptions = {};
-    }
-    let includePaths = (_a = build.options.stylePreprocessorOptions['includePaths']) !== null && _a !== void 0 ? _a : [];
+    const stylePreprocessorOptions = ((_a = (_c = build.options).stylePreprocessorOptions) !== null && _a !== void 0 ? _a : (_c.stylePreprocessorOptions = {}));
+    let includePaths = (_b = stylePreprocessorOptions.includePaths) !== null && _b !== void 0 ? _b : [];
     if (!Array.isArray(includePaths))
         includePaths = [];
     if (includePaths.includes(`node_modules/`))
         return;
     includePaths.push(`node_modules/`);
-    build.options.stylePreprocessorOptions['includePaths'] = includePaths;
+    stylePreprocessorOptions.includePaths = includePaths;
 }
 function addStyleResources(workspace, projectName) {
     const project = getProjectFromWorkspace(workspace, projectName);
@@ -180,34 +179,31 @@ function addStyleResources(workspace, projectName) {
     build.options.assets.push(`src/assets`);
 }
 function addSchematicCollections(workspace) {
-    const cli = workspace.extensions.cli;
-    if (cli && cli.schematicCollections)
+    var _a, _b;
+    var _c;
+    const cli = ((_a = (_c = workspace.extensions).cli) !== null && _a !== void 0 ? _a : (_c.cli = {}));
+    if (cli.schematicCollections)
         return;
-    if (cli == null)
-        workspace.extensions.cli = {};
-    let schematicCollections = workspace.extensions.cli['schematicCollections'];
-    if (!Array.isArray(schematicCollections))
-        schematicCollections = [];
+    const schematicCollections = (_b = cli.schematicCollections) !== null && _b !== void 0 ? _b : [];
     if (!schematicCollections.includes(`@schematics/angular`))
         schematicCollections.push(`@schematics/angular`);
     if (!schematicCollections.includes(`ng-alain`))
         schematicCollections.push(`ng-alain`);
-    workspace.extensions.cli['schematicCollections'] = schematicCollections;
+    cli.schematicCollections = schematicCollections;
 }
 function addFileReplacements(workspace, projectName) {
+    var _a, _b;
+    var _c;
     const project = getProjectFromWorkspace(workspace, projectName);
     if (project == null)
         return;
     const build = project.targets.get(exports.BUILD_TARGET_BUILD);
     if (build == null || build.options == null)
         return;
-    if (build.configurations == null)
-        build.configurations = {};
-    if (build.configurations.production == null)
-        build.configurations.production = {};
-    if (!Array.isArray(build.configurations.production.fileReplacements))
-        build.configurations.production.fileReplacements = [];
-    build.configurations.production.fileReplacements.push({
+    const production = ((_b = (_c = ((_a = build.configurations) !== null && _a !== void 0 ? _a : (build.configurations = {}))).production) !== null && _b !== void 0 ? _b : (_c.production = {}));
+    if (!Array.isArray(production.fileReplacements))
+        production.fileReplacements = [];
+    production.fileReplacements.push({
         replace: 'src/environments/environment.ts',
         with: 'src/environments/environment.prod.ts'
     });

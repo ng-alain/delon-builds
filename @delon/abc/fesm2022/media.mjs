@@ -39,10 +39,10 @@ class MediaService {
     notify() {
         return this.notify$.asObservable().pipe(share());
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }] });
@@ -55,9 +55,12 @@ class MediaComponent {
     platform = inject(Platform);
     _p;
     videoEl;
-    type = input('video', ...(ngDevMode ? [{ debugName: "type" }] : /* istanbul ignore next */ []));
-    source = input(...(ngDevMode ? [undefined, { debugName: "source" }] : /* istanbul ignore next */ []));
-    options = input(...(ngDevMode ? [undefined, { debugName: "options" }] : /* istanbul ignore next */ []));
+    type = input('video', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "type" }] : /* istanbul ignore next */ []));
+    source = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "source" }] : /* istanbul ignore next */ []));
+    options = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "options" }] : /* istanbul ignore next */ []));
     delay = input(0, { ...(ngDevMode ? { debugName: "delay" } : /* istanbul ignore next */ {}), transform: numberAttribute });
     ready = output();
     get player() {
@@ -114,10 +117,10 @@ class MediaComponent {
     ngOnDestroy() {
         this.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.2.11", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, source: { classPropertyName: "source", publicName: "source", isSignal: true, isRequired: false, transformFunction: null }, options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, delay: { classPropertyName: "delay", publicName: "delay", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { ready: "ready" }, host: { classAttribute: "d-block" }, exportAs: ["mediaComponent"], ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.1.4", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, source: { classPropertyName: "source", publicName: "source", isSignal: true, isRequired: false, transformFunction: null }, options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, delay: { classPropertyName: "delay", publicName: "delay", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { ready: "ready" }, host: { classAttribute: "d-block" }, exportAs: ["mediaComponent"], ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'media, [media]',
@@ -133,11 +136,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
 
 const COMPONENTS = [MediaComponent];
 class MediaModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.11", ngImport: i0, type: MediaModule, imports: [CommonModule, MediaComponent], exports: [MediaComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaModule, imports: [CommonModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.4", ngImport: i0, type: MediaModule, imports: [CommonModule, MediaComponent], exports: [MediaComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: MediaModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MediaModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ...COMPONENTS],

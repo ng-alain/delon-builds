@@ -44,9 +44,11 @@ function fixAngularJson() {
         const p = (0, utils_1.getProjectFromWorkspace)(workspace, projectName);
         // Add proxy.conf.js
         const serveTarget = (_a = p.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_SERVE);
-        if (serveTarget.options == null)
-            serveTarget.options = {};
-        serveTarget.options.proxyConfig = 'proxy.conf.js';
+        if (serveTarget != null) {
+            if (serveTarget.options == null)
+                serveTarget.options = {};
+            serveTarget.options.proxyConfig = 'proxy.conf.js';
+        }
         (0, utils_1.addStyleResources)(workspace, projectName);
         (0, utils_1.addStylePreprocessorOptions)(workspace, projectName);
         (0, utils_1.addSchematicCollections)(workspace);
@@ -145,12 +147,12 @@ function addCodeStylesToPackageJson() {
         // dependencies
         (0, utils_1.addPackage)(tree, [
             `husky@^9.1.7`,
-            `lint-staged@^16.4.0`,
-            `prettier@^3.8.3`,
-            `stylelint@^17.9.1`,
+            `lint-staged@^17.4.1`,
+            `prettier@^3.9.6`,
+            `stylelint@^17.14.1`,
             `stylelint-config-standard@^40.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^3.0.0`,
-            `stylelint-config-clean-order@^8.0.1`,
+            `stylelint-config-clean-order@^10.0.0`,
             `stylelint-order@^8.1.1`
         ], 'devDependencies');
         return tree;
@@ -158,8 +160,10 @@ function addCodeStylesToPackageJson() {
 }
 function addSchematics(options) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+        var _a;
+        var _b;
         const p = (0, utils_1.getProjectFromWorkspace)(workspace, options.project);
-        const schematics = p.extensions.schematics;
+        const schematics = ((_a = (_b = p.extensions).schematics) !== null && _a !== void 0 ? _a : (_b.schematics = {}));
         schematics['ng-alain:module'] = {
             routing: true
         };
@@ -301,9 +305,9 @@ function addTailwindcss(options) {
         (tree) => {
             // Add devDependencies
             (0, utils_1.addPackage)(tree, [
-                'tailwindcss@^4.3.0',
-                '@tailwindcss/postcss@^4.1.12',
-                'postcss@^8.5.3',
+                'tailwindcss@^4.3.3',
+                '@tailwindcss/postcss@^4.3.3',
+                'postcss@^8.5.26',
                 'postcss-less@^6.0.0'
             ], 'devDependencies');
             // Create .postcssrc.json

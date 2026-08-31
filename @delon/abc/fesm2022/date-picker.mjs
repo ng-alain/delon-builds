@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
 import { viewChild, Component, inject, ViewContainerRef, input, model, Directive, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzDatePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
@@ -11,11 +11,12 @@ import { deepMergeKey, assert } from '@delon/util/other';
 import { toBoolean } from 'ng-zorro-antd/core/util';
 
 class RangePickerShortcutTplComponent {
-    tpl = viewChild.required('tpl');
+    tpl = viewChild.required('tpl', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "tpl" }] : /* istanbul ignore next */ []));
     list = [];
     click(_) { }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: RangePickerShortcutTplComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.2.11", type: RangePickerShortcutTplComponent, isStandalone: true, selector: "ng-component", viewQueries: [{ propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true, isSignal: true }], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: RangePickerShortcutTplComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: RangePickerShortcutTplComponent, isStandalone: true, selector: "ng-component", viewQueries: [{ propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true, isSignal: true }], ngImport: i0, template: `
     <ng-template #tpl>
       @for (i of list; track $index) {
         <a (click)="click(i)" [innerHTML]="i._text" [class.ml-sm]="!$first"></a>
@@ -23,7 +24,7 @@ class RangePickerShortcutTplComponent {
     </ng-template>
   `, isInline: true });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: RangePickerShortcutTplComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: RangePickerShortcutTplComponent, decorators: [{
             type: Component,
             args: [{
                     selector: '',
@@ -40,7 +41,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
 class RangePickerDirective {
     dom = inject(DomSanitizer);
     vcr = inject(ViewContainerRef);
-    nativeComp = inject(NzRangePickerComponent, { host: true, optional: true });
+    nativeComp = inject(NzDatePickerComponent, { host: true, optional: true });
     cogSrv = inject(AlainConfigService);
     defaultShortcuts;
     _shortcut = null;
@@ -57,9 +58,10 @@ class RangePickerDirective {
             this.refreshShortcut();
             return cog;
         } });
-    ngModelEnd = model.required(...(ngDevMode ? [{ debugName: "ngModelEnd" }] : /* istanbul ignore next */ []));
+    ngModelEnd = model.required(/* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "ngModelEnd" }] : /* istanbul ignore next */ []));
     get dp() {
-        return this.nativeComp.datePicker;
+        return this.nativeComp;
     }
     get srv() {
         return this.dp.datePickerService;
@@ -185,7 +187,7 @@ class RangePickerDirective {
             };
             extraFooter = instance.tpl();
         }
-        this.nativeComp.datePicker.extraFooter = extraFooter;
+        this.nativeComp.extraFooter = extraFooter;
         Promise.resolve().then(() => this.cd());
     }
     ngAfterViewInit() {
@@ -195,10 +197,10 @@ class RangePickerDirective {
     ngOnDestroy() {
         this.shortcutFactory?.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: RangePickerDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.2.11", type: RangePickerDirective, isStandalone: true, selector: "nz-range-picker[extend]", inputs: { shortcut: { classPropertyName: "shortcut", publicName: "shortcut", isSignal: true, isRequired: false, transformFunction: null }, ngModelEnd: { classPropertyName: "ngModelEnd", publicName: "ngModelEnd", isSignal: true, isRequired: true, transformFunction: null } }, outputs: { ngModelEnd: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: RangePickerDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "22.1.4", type: RangePickerDirective, isStandalone: true, selector: "nz-range-picker[extend]", inputs: { shortcut: { classPropertyName: "shortcut", publicName: "shortcut", isSignal: true, isRequired: false, transformFunction: null }, ngModelEnd: { classPropertyName: "ngModelEnd", publicName: "ngModelEnd", isSignal: true, isRequired: true, transformFunction: null } }, outputs: { ngModelEnd: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: RangePickerDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: RangePickerDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: 'nz-range-picker[extend]',
@@ -208,11 +210,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImpo
 
 const COMPONENTS = [RangePickerDirective, RangePickerShortcutTplComponent];
 class DatePickerModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: DatePickerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.2.11", ngImport: i0, type: DatePickerModule, imports: [CommonModule, FormsModule, NzDatePickerModule, RangePickerDirective, RangePickerShortcutTplComponent], exports: [RangePickerDirective, RangePickerShortcutTplComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: DatePickerModule, imports: [CommonModule, FormsModule, NzDatePickerModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: DatePickerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.4", ngImport: i0, type: DatePickerModule, imports: [CommonModule, FormsModule, NzDatePickerModule, RangePickerDirective, RangePickerShortcutTplComponent], exports: [RangePickerDirective, RangePickerShortcutTplComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: DatePickerModule, imports: [CommonModule, FormsModule, NzDatePickerModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.2.11", ngImport: i0, type: DatePickerModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: DatePickerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, FormsModule, NzDatePickerModule, ...COMPONENTS],
