@@ -1,7 +1,7 @@
 # Nested package.json's are only needed for development.
 array/package.json
-config/package.json
 browser/package.json
+config/package.json
 date-time/package.json
 decorator/package.json
 form/package.json

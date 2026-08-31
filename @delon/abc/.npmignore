@@ -20,11 +20,11 @@ onboarding/package.json
 page-header/package.json
 pdf/package.json
 quick-menu/package.json
+se/package.json
 reuse-tab/package.json
 sg/package.json
 st/package.json
 sv/package.json
-se/package.json
 tag-select/package.json
-zip/package.json
 xlsx/package.json
+zip/package.json
