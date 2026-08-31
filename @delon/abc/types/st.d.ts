@@ -1083,7 +1083,7 @@ interface STColumnButton<T extends STData = any> {
     /**
      * 气泡确认框参数，若 `string` 类型表示标题
      */
-    pop?: boolean | string | STColumnButtonPop;
+    pop?: boolean | string | STColumnButtonPop<T>;
     /**
      * 对话框参数
      */
@@ -1207,8 +1207,9 @@ interface STColumnButtonDrawerConfig {
 interface STColumnButtonPop<T extends STData = any> {
     /**
      * Title of the popover, default: `确认删除吗？`
+     * - 函数：以返回值为标题，`null`/`undefined` 表示不显示气泡确认框
      */
-    title?: string;
+    title?: string | STColumnButtonPopFn<T>;
     titleI18n?: string;
     /**
      * Popover trigger mode, default: `click`
@@ -1249,6 +1250,14 @@ interface STColumnButtonPop<T extends STData = any> {
      */
     condition?: (item: T) => boolean;
 }
+/**
+ * 气泡确认框标题函数，返回 `null`/`undefined` 表示不显示气泡确认框
+ */
+type STColumnButtonPopFn<T extends STData = any> = (data: {
+    item: T;
+    btn: STColumnButton<T>;
+    column: STColumn;
+}) => string | null | undefined;
 interface STReqReNameType {
     pi?: string;
     ps?: string;
@@ -1715,4 +1724,4 @@ interface STWidgetProvideConfig {
 declare function provideSTWidgets(...widgets: STWidgetProvideConfig[]): EnvironmentProviders;
 
 export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetHostDirective, STWidgetRegistry, ST_DEFAULT_CONFIG, provideSTWidgets };
-export type { IifBehaviorType, STChange, STChangeRowClick, STChangeSort, STChangeType, STClickRowClassName, STClickRowClassNameType, STColumn, STColumnBadge, STColumnBadgeValue, STColumnButton, STColumnButtonDrawer, STColumnButtonDrawerConfig, STColumnButtonModal, STColumnButtonModalConfig, STColumnButtonPop, STColumnFilter, STColumnFilterHandle, STColumnFilterMenu, STColumnGroupType, STColumnMaxMultipleButton, STColumnSafeType, STColumnSelection, STColumnSort, STColumnSourceProcessOptions, STColumnTag, STColumnTagValue, STColumnTitle, STColumnYn, STContextmenuFn, STContextmenuItem, STContextmenuOptions, STCustomRequestOptions, STData, STDataSourceOptions, STDataSourceResult, STDragOptions, STError, STExportOptions, STIcon, STLoadOptions, STMultiSort, STMultiSortResultType, STOnCellResult, STPage, STReq, STReqReNameType, STRequestOptions, STRes, STResReNameType, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STSortMap, STStatistical, STStatisticalFn, STStatisticalResult, STStatisticalResults, STStatisticalType, STWidgetColumn, STWidgetProvideConfig, STWidthMode, STcolumnCurrency, _STColumn, _STColumnButton, _STDataValue, _STHeader, _STTdNotify, _STTdNotifyType };
+export type { IifBehaviorType, STChange, STChangeRowClick, STChangeSort, STChangeType, STClickRowClassName, STClickRowClassNameType, STColumn, STColumnBadge, STColumnBadgeValue, STColumnButton, STColumnButtonDrawer, STColumnButtonDrawerConfig, STColumnButtonModal, STColumnButtonModalConfig, STColumnButtonPop, STColumnButtonPopFn, STColumnFilter, STColumnFilterHandle, STColumnFilterMenu, STColumnGroupType, STColumnMaxMultipleButton, STColumnSafeType, STColumnSelection, STColumnSort, STColumnSourceProcessOptions, STColumnTag, STColumnTagValue, STColumnTitle, STColumnYn, STContextmenuFn, STContextmenuItem, STContextmenuOptions, STCustomRequestOptions, STData, STDataSourceOptions, STDataSourceResult, STDragOptions, STError, STExportOptions, STIcon, STLoadOptions, STMultiSort, STMultiSortResultType, STOnCellResult, STPage, STReq, STReqReNameType, STRequestOptions, STRes, STResReNameType, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STSortMap, STStatistical, STStatisticalFn, STStatisticalResult, STStatisticalResults, STStatisticalType, STWidgetColumn, STWidgetProvideConfig, STWidthMode, STcolumnCurrency, _STColumn, _STColumnButton, _STDataValue, _STHeader, _STTdNotify, _STTdNotifyType };
