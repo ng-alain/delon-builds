@@ -1,4 +1,5 @@
 import { strings } from '@angular-devkit/core';
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   apply,
   chain,
@@ -13,7 +14,7 @@ import {
   Tree,
   url
 } from '@angular-devkit/schematics';
-import { ProjectDefinition, updateWorkspace } from '@schematics/angular/utility/workspace';
+import { updateWorkspace } from '@schematics/angular/utility/workspace';
 
 import { getLangData } from '../core/lang.config';
 import {
