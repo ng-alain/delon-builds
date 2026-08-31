@@ -1,7 +1,7 @@
 # Nested package.json's are only needed for development.
 card/package.json
-chart-echarts/package.json
 bar/package.json
+chart-echarts/package.json
 core/package.json
 custom/package.json
 gauge/package.json
