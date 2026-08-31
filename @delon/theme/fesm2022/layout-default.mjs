@@ -123,7 +123,7 @@ class LayoutDefaultHeaderComponent {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: LayoutDefaultHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: LayoutDefaultHeaderComponent, isStandalone: true, selector: "layout-default-header", inputs: { items: { classPropertyName: "items", publicName: "items", isSignal: true, isRequired: true, transformFunction: null } }, host: { classAttribute: "alain-default__header" }, ngImport: i0, template: `
     <ng-template #render let-ls>
-      @for (i of ls; track $index) {
+      @for (i of ls; track i) {
         <li [class.hidden-mobile]="i.hidden() === 'mobile'" [class.hidden-pc]="i.hidden() === 'pc'">
           <ng-container *ngTemplateOutlet="i.host()" />
         </li>
@@ -168,7 +168,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
                     selector: 'layout-default-header',
                     template: `
     <ng-template #render let-ls>
-      @for (i of ls; track $index) {
+      @for (i of ls; track i) {
         <li [class.hidden-mobile]="i.hidden() === 'mobile'" [class.hidden-pc]="i.hidden() === 'pc'">
           <ng-container *ngTemplateOutlet="i.host()" />
         </li>
@@ -461,7 +461,7 @@ class LayoutDefaultNavComponent {
       }
     </ng-template>
     <ng-template #tree let-ls>
-      @for (i of ls; track $index) {
+      @for (i of ls; track i._id) {
         @if (i._hidden !== true) {
           @if (i.render_type === 'divider') {
             <li class="sidebar-nav__divider"></li>
@@ -520,7 +520,7 @@ class LayoutDefaultNavComponent {
       }
     </ng-template>
     <ul class="sidebar-nav">
-      @for (group of list(); track $index) {
+      @for (group of list(); track group._id) {
         @if (group.group) {
           <li class="sidebar-nav__item sidebar-nav__group-title">
             <span [innerHTML]="group._text"></span>
@@ -566,7 +566,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       }
     </ng-template>
     <ng-template #tree let-ls>
-      @for (i of ls; track $index) {
+      @for (i of ls; track i._id) {
         @if (i._hidden !== true) {
           @if (i.render_type === 'divider') {
             <li class="sidebar-nav__divider"></li>
@@ -625,7 +625,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       }
     </ng-template>
     <ul class="sidebar-nav">
-      @for (group of list(); track $index) {
+      @for (group of list(); track group._id) {
         @if (group.group) {
           <li class="sidebar-nav__item sidebar-nav__group-title">
             <span [innerHTML]="group._text"></span>
