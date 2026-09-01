@@ -17,11 +17,12 @@ import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDrawerService, NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { HttpClient, HttpParams, HttpContextToken } from '@angular/common/http';
 import { formatDate } from '@delon/util/date-time';
-import { NzI18nService, NzI18nModule, provideNzI18n, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
+import { NzI18nService, NzI18nModule, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline, MenuFoldOutline, MenuUnfoldOutline } from '@ant-design/icons-angular/icons';
 import * as i1 from 'ng-zorro-antd/icon';
 import { NzIconService } from 'ng-zorro-antd/icon';
+import { provideNzDateFnsAdapter } from 'ng-zorro-antd/core/time';
 
 function stepPreloader() {
     const doc = inject(DOCUMENT);
@@ -3787,10 +3788,7 @@ function provideAlain(options) {
     ];
     if (lang) {
         registerLocaleData(lang.ng, lang.abbr);
-        provides.push({ provide: LOCALE_ID, useValue: lang.abbr }, provideNzI18n(lang.zorro), {
-            provide: NZ_DATE_LOCALE,
-            useValue: lang.date
-        });
+        provides.push({ provide: LOCALE_ID, useValue: lang.abbr }, provideNzI18n(lang.zorro), provideNzDateFnsAdapter(lang.date));
     }
     const i18nCls = options?.i18nClass;
     if (i18nCls) {
@@ -3831,7 +3829,7 @@ class PreloadOptionalModules {
     }
 }
 
-const VERSION = new Version('22.0.0-next.1');
+const VERSION = new Version('21.3.0');
 
 /**
  * Generated bundle index. Do not edit.
