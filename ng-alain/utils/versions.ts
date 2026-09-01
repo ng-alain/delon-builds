@@ -16,15 +16,15 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
+      `@eslint/js@^10.0.1`,
+      `@eslint/markdown@^8.0.3`,
       `angular-eslint@^22.1.0`,
       `@typescript-eslint/eslint-plugin@undefined`,
       `@typescript-eslint/parser@undefined`,
       `@typescript-eslint/utils@undefined`,
       `eslint@^10.8.1`,
-      `eslint-config-prettier@undefined`,
-      `eslint-plugin-import@undefined`,
+      `eslint-plugin-import-x@^4.17.1`,
       `eslint-plugin-jsdoc@^64.2.0`,
-      `eslint-plugin-prefer-arrow@undefined`,
       `eslint-plugin-prettier@^5.5.6`,
       `eslint-plugin-unused-imports@^4.4.1`,
       `typescript@~6.0.2`,
@@ -44,11 +44,11 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       // `vitest@undefined`,
       // `jsdom@undefined`,
       // When use vitest
-      `@playwright/test@^1.57.0`,
-      `@vitest/browser-playwright@^4.0.17`,
-      `@vitest/coverage-v8@^4.0.16`,
-      `vitest@^4.0.16`,
-      `jsdom@^27.4.0`
+      `@playwright/test@^1.62.1`,
+      `@vitest/browser-playwright@^4.1.11`,
+      `@vitest/coverage-v8@^4.1.11`,
+      `vitest@^4.1.11`,
+      `jsdom@^30.0.1`
     ],
     'devDependencies'
   );

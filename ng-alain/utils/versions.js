@@ -21,15 +21,15 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
+        `@eslint/js@^10.0.1`,
+        `@eslint/markdown@^8.0.3`,
         `angular-eslint@^22.1.0`,
         `@typescript-eslint/eslint-plugin@undefined`,
         `@typescript-eslint/parser@undefined`,
         `@typescript-eslint/utils@undefined`,
         `eslint@^10.8.1`,
-        `eslint-config-prettier@undefined`,
-        `eslint-plugin-import@undefined`,
+        `eslint-plugin-import-x@^4.17.1`,
         `eslint-plugin-jsdoc@^64.2.0`,
-        `eslint-plugin-prefer-arrow@undefined`,
         `eslint-plugin-prettier@^5.5.6`,
         `eslint-plugin-unused-imports@^4.4.1`,
         `typescript@~6.0.2`,
@@ -49,11 +49,11 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         // `vitest@undefined`,
         // `jsdom@undefined`,
         // When use vitest
-        `@playwright/test@^1.57.0`,
-        `@vitest/browser-playwright@^4.0.17`,
-        `@vitest/coverage-v8@^4.0.16`,
-        `vitest@^4.0.16`,
-        `jsdom@^27.4.0`
+        `@playwright/test@^1.62.1`,
+        `@vitest/browser-playwright@^4.1.11`,
+        `@vitest/coverage-v8@^4.1.11`,
+        `vitest@^4.1.11`,
+        `jsdom@^30.0.1`
     ], 'devDependencies');
     (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^22.0.1`]);
 }

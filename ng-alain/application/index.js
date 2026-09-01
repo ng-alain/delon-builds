@@ -114,13 +114,19 @@ function addPathsToTsConfig() {
         }
         const commandPrefix = mulitProject ? `projects/${projectName}/` : '';
         const tsConfigPath = 'tsconfig.json';
-        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: ['compilerOptions', 'baseUrl'], value: './' });
+        // https://github.com/ng-alain/ng-alain/pull/2636: remove `baseUrl`, use relative paths instead
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: ['compilerOptions', 'baseUrl'], value: undefined });
         const basePath = ['compilerOptions', 'paths'];
         (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: basePath, value: {} });
-        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@shared`], value: [`${commandPrefix}src/app/shared/index`] });
-        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@core`], value: [`${commandPrefix}src/app/core/index`] });
-        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@env/*`], value: [`${commandPrefix}src/environments/*`] });
-        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@_mock`], value: [`_mock/index`] });
+        // NOTE: jsonc-parser emits overlapping edits when inserting multiple keys
+        // into the same parent, so each alias must be applied in its own pass.
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, {
+            path: [...basePath, `@shared`],
+            value: [`./${commandPrefix}src/app/shared/index`]
+        });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@core`], value: [`./${commandPrefix}src/app/core/index`] });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@env/*`], value: [`./${commandPrefix}src/environments/*`] });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@_mock`], value: [`./_mock/index`] });
         return tree;
     };
 }
@@ -155,6 +161,42 @@ function addCodeStylesToPackageJson() {
             `stylelint-config-clean-order@^10.0.0`,
             `stylelint-order@^8.1.1`
         ], 'devDependencies');
+        return tree;
+    };
+}
+/**
+ * Packages that need to be hoisted to `node_modules` root when using pnpm
+ * https://github.com/ng-alain/ng-alain/pull/2636
+ */
+const PNPM_PUBLIC_HOIST_PATTERN = [
+    `@antv/g2`,
+    `jszip`,
+    `ngx-countdown`,
+    `@faker-js/faker`,
+    `date-fns`,
+    `@ant-design/icons-angular`
+];
+function isUsePnpm(tree) {
+    var _a, _b, _c, _d;
+    const workspace = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH);
+    if (((_a = workspace === null || workspace === void 0 ? void 0 : workspace.cli) === null || _a === void 0 ? void 0 : _a.packageManager) === 'pnpm')
+        return true;
+    // https://nodejs.org/api/packages.html#packagemanager, e.g. `pnpm@11.24.0`
+    if ((_c = (_b = (0, utils_1.readPackage)(tree)) === null || _b === void 0 ? void 0 : _b.packageManager) === null || _c === void 0 ? void 0 : _c.startsWith('pnpm'))
+        return true;
+    if (tree.exists('pnpm-lock.yaml'))
+        return true;
+    return /pnpm/i.test((_d = process.env.npm_config_user_agent) !== null && _d !== void 0 ? _d : '');
+}
+/**
+ * When installing dependencies with pnpm, `pnpm-workspace.yaml` must include
+ * `publicHoistPattern` to hoist the packages referenced by the scaffold to the root `node_modules`.
+ */
+function addPnpmWorkspace() {
+    return (tree) => {
+        if (!isUsePnpm(tree) || tree.exists('pnpm-workspace.yaml'))
+            return tree;
+        tree.create('pnpm-workspace.yaml', `publicHoistPattern:\n${PNPM_PUBLIC_HOIST_PATTERN.map(p => `  - '${p}'`).join('\n')}\n`);
         return tree;
     };
 }
@@ -358,6 +400,7 @@ function default_1(options) {
             // ci
             addRunScriptToPackageJson(),
             addPathsToTsConfig(),
+            addPnpmWorkspace(),
             // code style
             addCodeStylesToPackageJson(),
             addSchematics(options),

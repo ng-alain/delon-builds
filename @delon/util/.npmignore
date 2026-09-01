@@ -1,8 +1,8 @@
 # Nested package.json's are only needed for development.
-browser/package.json
 array/package.json
-config/package.json
+browser/package.json
 date-time/package.json
+config/package.json
 decorator/package.json
 form/package.json
 format/package.json
@@ -10,6 +10,6 @@ math/package.json
 other/package.json
 pipes/package.json
 token/package.json
-pipes/currency/package.json
 pipes/filter/package.json
+pipes/currency/package.json
 pipes/format/package.json

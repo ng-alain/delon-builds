@@ -29,7 +29,7 @@ function createNgRunner() {
 function createAlainRunner() {
     return new testing_1.SchematicTestRunner('schematics', exports.collectionPath);
 }
-function createAlainApp(ngAddOptions) {
+function createAlainApp(ngAddOptions, modify) {
     return __awaiter(this, void 0, void 0, function* () {
         const baseRunner = createNgRunner();
         const workspaceTree = yield baseRunner.runSchematic('workspace', {
@@ -46,6 +46,7 @@ function createAlainApp(ngAddOptions) {
             skipTests: false,
             skipPackageJson: false
         }, workspaceTree);
+        modify === null || modify === void 0 ? void 0 : modify(appTree);
         const alainRunner = createAlainRunner();
         const tree = yield alainRunner.runSchematic('ng-add', Object.assign({ skipPackageJson: false }, ngAddOptions), appTree);
         return { runner: alainRunner, tree };
