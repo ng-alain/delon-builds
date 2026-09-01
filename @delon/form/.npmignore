@@ -3,9 +3,9 @@ widgets/autocomplete/package.json
 widgets/cascader/package.json
 widgets/color/package.json
 widgets/mention/package.json
+widgets/qr-code/package.json
 widgets/rate/package.json
 widgets/segmented/package.json
-widgets/qr-code/package.json
 widgets/slider/package.json
 widgets/tag/package.json
 widgets/time/package.json
