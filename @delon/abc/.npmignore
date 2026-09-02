@@ -1,7 +1,7 @@
 # Nested package.json's are only needed for development.
 auto-focus/package.json
-count-down/package.json
 cell/package.json
+count-down/package.json
 date-picker/package.json
 down-file/package.json
 ellipsis/package.json
@@ -21,8 +21,8 @@ page-header/package.json
 pdf/package.json
 quick-menu/package.json
 reuse-tab/package.json
-sg/package.json
 se/package.json
+sg/package.json
 st/package.json
 sv/package.json
 tag-select/package.json
