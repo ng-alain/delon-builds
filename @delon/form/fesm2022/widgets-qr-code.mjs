@@ -30,9 +30,11 @@ class QrCodeWidget extends ControlUIWidget {
       [nzSize]="ui.qrSize ?? 160"
       [nzIcon]="ui.icon ?? ''"
       [nzIconSize]="ui.iconSize ?? 40"
-      [nzBordered]="ui.bordered ?? false"
+      [nzBordered]="ui.bordered ?? true"
+      [nzType]="ui.type ?? 'canvas'"
       [nzStatus]="ui.status ?? 'active'"
       [nzLevel]="ui.level ?? 'M'"
+      [nzBoostLevel]="ui.boostLevel ?? true"
       (nzRefresh)="refresh($event)"
     />
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzQRCodeModule }, { kind: "component", type: i2.NzQRCodeComponent, selector: "nz-qrcode", inputs: ["nzValue", "nzType", "nzColor", "nzBgColor", "nzSize", "nzIcon", "nzIconSize", "nzBordered", "nzStatus", "nzLevel", "nzStatusRender", "nzBoostLevel", "nzPadding"], outputs: ["nzRefresh"], exportAs: ["nzQRCode"] }], encapsulation: i0.ViewEncapsulation.None });
@@ -57,9 +59,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzSize]="ui.qrSize ?? 160"
       [nzIcon]="ui.icon ?? ''"
       [nzIconSize]="ui.iconSize ?? 40"
-      [nzBordered]="ui.bordered ?? false"
+      [nzBordered]="ui.bordered ?? true"
+      [nzType]="ui.type ?? 'canvas'"
       [nzStatus]="ui.status ?? 'active'"
       [nzLevel]="ui.level ?? 'M'"
+      [nzBoostLevel]="ui.boostLevel ?? true"
       (nzRefresh)="refresh($event)"
     />
   </sf-item-wrap>`,

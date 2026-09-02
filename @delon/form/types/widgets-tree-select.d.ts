@@ -4,9 +4,10 @@ import * as i0 from '@angular/core';
 import { TemplateRef, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NzTreeNode, NzTreeNodeOptions, NzFormatEmitEvent } from 'ng-zorro-antd/core/tree';
-import { NzSizeLDSType, NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
-import * as i1 from '@angular/forms';
+import { NzSizeLDSType, NzVariant, NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import * as i3 from 'ng-zorro-antd/tree-select';
+import { NzPlacementType } from 'ng-zorro-antd/tree-select';
+import * as i1 from '@angular/forms';
 
 interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
     /**
@@ -14,7 +15,19 @@ interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
      */
     asyncData?: () => Observable<SFSchemaEnumType[]>;
     size?: NzSizeLDSType;
+    /**
+     * 变体，默认：`outlined`
+     */
+    variant?: NzVariant;
     placeholder?: string;
+    /**
+     * 支持搜索，默认：`false`
+     */
+    showSearch?: boolean;
+    /**
+     * 浮层位置，默认：`bottomLeft`
+     */
+    placement?: NzPlacementType;
     /**
      * 支持清除，默认：`false`
      */
@@ -116,6 +129,14 @@ interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
      * 点击展开树节点图标调用
      */
     expandChange?: (e: NzFormatEmitEvent) => Observable<SFSchemaEnum[]>;
+    /**
+     * 下拉菜单打开关闭回调函数
+     */
+    openChange?: (status: boolean) => void;
+    /**
+     * 自定义的选择框后缀图标
+     */
+    suffixIcon?: TemplateRef<NzSafeAny> | string;
     change?: (value: NzSafeAny[] | NzSafeAny) => void;
 }
 
@@ -127,6 +148,7 @@ declare class TreeSelectWidget extends ControlUIWidget<SFTreeSelectWidgetSchema>
     ngOnInit(): void;
     reset(value: SFValue): void;
     change(value: NzSafeAny[] | NzSafeAny): void;
+    openChange(status: boolean): void;
     expandChange(e: NzFormatEmitEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TreeSelectWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<TreeSelectWidget, "sf-tree-select", never, {}, {}, never, never, true, never>;

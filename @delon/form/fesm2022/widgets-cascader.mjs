@@ -12,7 +12,7 @@ class CascaderWidget extends ControlUIWidget {
     clearText;
     showArrow;
     showInput;
-    triggerAction;
+    triggerAction = ['click'];
     data = [];
     loadData;
     ngOnInit() {
@@ -31,9 +31,9 @@ class CascaderWidget extends ControlUIWidget {
             this.detectChanges();
         });
     }
-    _visibleChange(status) {
-        if (this.ui.visibleChange)
-            this.ui.visibleChange(status);
+    _openChange(status) {
+        if (this.ui.openChange)
+            this.ui.openChange(status);
     }
     _change(value) {
         this.setValue(value == null ? this.ui.clearValue : value);
@@ -83,8 +83,11 @@ class CascaderWidget extends ControlUIWidget {
       [nzShowInput]="showInput"
       [nzShowSearch]="ui.showSearch!"
       [nzMultiple]="ui.multiple"
+      [nzTriggerAction]="triggerAction"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      [nzSuffixIcon]="ui.suffixIcon!"
       (nzClear)="_clear()"
-      (nzVisibleChange)="_visibleChange($event)"
+      (nzOpenChange)="_openChange($event)"
       (nzSelectionChange)="_selectionChange($event)"
     />
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzCascaderModule }, { kind: "component", type: i3.NzCascaderComponent, selector: "nz-cascader, [nz-cascader]", inputs: ["nzOpen", "nzOptions", "nzOptionRender", "nzShowInput", "nzShowArrow", "nzAllowClear", "nzAutoFocus", "nzChangeOnSelect", "nzDisabled", "nzColumnClassName", "nzExpandTrigger", "nzValueProperty", "nzLabelProperty", "nzLabelRender", "nzVariant", "nzNotFoundContent", "nzSize", "nzBackdrop", "nzShowSearch", "nzPlaceHolder", "nzMenuClassName", "nzMenuStyle", "nzMouseLeaveDelay", "nzMouseEnterDelay", "nzStatus", "nzMultiple", "nzMaxTagCount", "nzPlacement", "nzTriggerAction", "nzChangeOn", "nzLoadData", "nzPrefix", "nzSuffixIcon", "nzExpandIcon", "nzPopupRender"], outputs: ["nzVisibleChange", "nzOpenChange", "nzSelectionChange", "nzRemoved", "nzClear"], exportAs: ["nzCascader"] }], encapsulation: i0.ViewEncapsulation.None });
@@ -125,8 +128,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzShowInput]="showInput"
       [nzShowSearch]="ui.showSearch!"
       [nzMultiple]="ui.multiple"
+      [nzTriggerAction]="triggerAction"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      [nzSuffixIcon]="ui.suffixIcon!"
       (nzClear)="_clear()"
-      (nzVisibleChange)="_visibleChange($event)"
+      (nzOpenChange)="_openChange($event)"
       (nzSelectionChange)="_selectionChange($event)"
     />
   </sf-item-wrap>`,

@@ -22,7 +22,7 @@ class UploadWidget extends ControlUIWidget {
     fileList = [];
     btnType = '';
     ngOnInit() {
-        const { type, text, hint, action, accept, limit, filter, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, limitFileCount } = this.ui;
+        const { type, text, hint, action, accept, limit, maxCount, filter, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, limitFileCount } = this.ui;
         const res = {
             type: type ?? 'select',
             text: text ?? '点击上传',
@@ -31,6 +31,7 @@ class UploadWidget extends ControlUIWidget {
             directory: toBool(directory, false),
             openFileDialogOnClick: toBool(openFileDialogOnClick, true),
             limit: limit == null ? 0 : +limit,
+            maxCount: maxCount,
             filter: filter == null ? [] : filter,
             size: fileSize == null ? 0 : +fileSize,
             fileType: fileType ?? '',
@@ -120,6 +121,7 @@ class UploadWidget extends ControlUIWidget {
       [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
       [nzAccept]="i.accept"
       [nzLimit]="i.limit"
+      [nzMaxCount]="i.maxCount"
       [nzFilter]="i.filter"
       [nzSize]="i.size"
       [nzFileType]="i.fileType"
@@ -177,6 +179,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
       [nzAccept]="i.accept"
       [nzLimit]="i.limit"
+      [nzMaxCount]="i.maxCount"
       [nzFilter]="i.filter"
       [nzSize]="i.size"
       [nzFileType]="i.fileType"

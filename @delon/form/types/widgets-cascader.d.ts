@@ -1,10 +1,10 @@
 import * as i2 from '@delon/form';
 import { SFUISchemaItem, ControlUIWidget, SFSchemaEnum, SFValue, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
 import * as i0 from '@angular/core';
-import { OnInit } from '@angular/core';
+import { TemplateRef, OnInit } from '@angular/core';
 import * as i3 from 'ng-zorro-antd/cascader';
-import { NzCascaderOption, NzCascaderPlacement, NzShowSearchOptions, NzCascaderExpandTrigger } from 'ng-zorro-antd/cascader';
-import { NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
+import { NzCascaderOption, NzCascaderPlacement, NzCascaderSize, NzShowSearchOptions, NzCascaderExpandTrigger, NzCascaderTriggerType } from 'ng-zorro-antd/cascader';
+import { NzVariant, NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import * as i1 from '@angular/forms';
 
 interface SFCascaderWidgetSchema extends SFUISchemaItem {
@@ -17,6 +17,22 @@ interface SFCascaderWidgetSchema extends SFUISchemaItem {
      */
     placeholder?: string;
     placement?: NzCascaderPlacement;
+    /**
+     * 输入框大小，默认：`default`
+     */
+    size?: NzCascaderSize;
+    /**
+     * 变体，默认：`outlined`
+     */
+    variant?: NzVariant;
+    /**
+     * 默认获取焦点，默认：`false`
+     */
+    autoFocus?: boolean;
+    /**
+     * 自定义的选择框后缀图标
+     */
+    suffixIcon?: TemplateRef<NzSafeAny> | string;
     /**
      * 是否支持搜索，默认：`false`
      */
@@ -58,10 +74,6 @@ interface SFCascaderWidgetSchema extends SFUISchemaItem {
      */
     columnClassName?: string;
     /**
-     * 是否缓存异步加载的数据，若每次异步加载的数据都是变化的，需将该值设置为 `false`，默认：`true`
-     */
-    enableCache?: boolean;
-    /**
      * 次级菜单的展开方式，默认：`click`
      */
     expandTrigger?: NzCascaderExpandTrigger;
@@ -90,9 +102,9 @@ interface SFCascaderWidgetSchema extends SFUISchemaItem {
      */
     multiple?: boolean;
     /**
-     * 异步加载事件
+     * 下拉菜单打开关闭回调函数
      */
-    visibleChange?: (value: boolean) => void;
+    openChange?: (status: boolean) => void;
     /**
      * 选项值变更事件
      */
@@ -112,12 +124,12 @@ declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSchema> imp
     clearText: string;
     showArrow: boolean;
     showInput: boolean;
-    triggerAction: string[];
+    triggerAction: NzCascaderTriggerType[];
     data: SFSchemaEnum[];
     loadData?: (node: NzCascaderOption, index: number) => PromiseLike<NzSafeAny>;
     ngOnInit(): void;
     reset(value: SFValue): void;
-    _visibleChange(status: boolean): void;
+    _openChange(status: boolean): void;
     _change(value: NzSafeAny[] | null): void;
     _selectionChange(options: NzCascaderOption[]): void;
     _clear(): void;

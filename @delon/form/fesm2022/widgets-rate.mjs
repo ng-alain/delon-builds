@@ -18,6 +18,10 @@ class RateWidget extends ControlUIWidget {
     get text() {
         return this.ui.text.replace('{{value}}', this.formProperty.value);
     }
+    hoverChange(value) {
+        if (this.ui.hoverChange)
+            this.ui.hoverChange(value);
+    }
     ngOnInit() {
         const { schema, ui } = this;
         this.count = schema.maximum ?? 5;
@@ -44,6 +48,8 @@ class RateWidget extends ControlUIWidget {
       [nzTooltips]="ui.tooltips ?? []"
       [nzAutoFocus]="autoFocus"
       [nzCount]="$any(count)"
+      [nzCharacter]="ui.character!"
+      (nzOnHoverChange)="hoverChange($event)"
     />
     @if (hasText && formProperty.value) {
       <span class="ant-rate-text">{{ text }}</span>
@@ -71,6 +77,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzTooltips]="ui.tooltips ?? []"
       [nzAutoFocus]="autoFocus"
       [nzCount]="$any(count)"
+      [nzCharacter]="ui.character!"
+      (nzOnHoverChange)="hoverChange($event)"
     />
     @if (hasText && formProperty.value) {
       <span class="ant-rate-text">{{ text }}</span>

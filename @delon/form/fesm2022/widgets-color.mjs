@@ -18,6 +18,11 @@ class ColorWidget extends ControlUIWidget {
         if (this.ui.formatChange)
             this.ui.formatChange(ev);
     }
+    _clear() {
+        this.setValue('');
+        if (this.ui.onClear)
+            this.ui.onClear();
+    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: ColorWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: ColorWidget, isStandalone: true, selector: "sf-color", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
@@ -42,8 +47,11 @@ class ColorWidget extends ControlUIWidget {
         [nzFlipFlop]="$any(ui.flipFlop)"
         [nzShowText]="ui.showText"
         [nzAllowClear]="ui.allowClear"
+        [nzDisabledAlpha]="ui.disabledAlpha"
+        [nzPresets]="ui.presets ?? null"
         (nzOnChange)="_change($event)"
         (nzOnFormatChange)="_formatChange($event)"
+        (nzOnClear)="_clear()"
       />
     }
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzColorPickerModule }, { kind: "component", type: i3.NzColorPickerComponent, selector: "nz-color-picker", inputs: ["nzFormat", "nzValue", "nzSize", "nzDefaultValue", "nzTrigger", "nzTitle", "nzFlipFlop", "nzShowText", "nzOpen", "nzAllowClear", "nzDisabled", "nzDisabledAlpha", "nzPresets"], outputs: ["nzOnChange", "nzOnFormatChange", "nzOnClear", "nzOnOpenChange"], exportAs: ["nzColorPicker"] }, { kind: "component", type: i3.NzColorBlockComponent, selector: "nz-color-block", inputs: ["nzColor", "nzSize"], outputs: ["nzOnClick"], exportAs: ["nzColorBlock"] }], encapsulation: i0.ViewEncapsulation.None });
@@ -75,8 +83,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
         [nzFlipFlop]="$any(ui.flipFlop)"
         [nzShowText]="ui.showText"
         [nzAllowClear]="ui.allowClear"
+        [nzDisabledAlpha]="ui.disabledAlpha"
+        [nzPresets]="ui.presets ?? null"
         (nzOnChange)="_change($event)"
         (nzOnFormatChange)="_formatChange($event)"
+        (nzOnClear)="_clear()"
       />
     }
   </sf-item-wrap>`,
