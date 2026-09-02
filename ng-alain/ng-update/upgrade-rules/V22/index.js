@@ -89,7 +89,16 @@ function v22Rule() {
         (0, versions_1.UpgradeMainVersions)(tree);
         // Remove eslint plugins no longer used by the v22 config
         // https://github.com/ng-alain/ng-alain/pull/2636
-        (0, utils_1.removePackage)(tree, ['eslint-config-prettier', 'eslint-plugin-import', 'eslint-plugin-prefer-arrow'], 'devDependencies');
+        (0, utils_1.removePackage)(tree, [
+            'eslint-config-prettier',
+            'eslint-plugin-import',
+            'eslint-plugin-prefer-arrow',
+            // Angular 22 drops the explicit `@typescript-eslint/*` deps in favor of the
+            // `typescript-eslint` umbrella package (see ng-alain/delon#2045)
+            '@typescript-eslint/eslint-plugin',
+            '@typescript-eslint/parser',
+            '@typescript-eslint/utils'
+        ], 'devDependencies');
         (0, utils_1.logInfo)(context, `Upgrade dependency version number`);
         return (0, schematics_1.chain)([updateEslintConfig(), updateNvmrc(), fixTsConfigPaths, finished()]);
     });
