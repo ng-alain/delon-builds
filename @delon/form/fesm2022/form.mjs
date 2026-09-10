@@ -1637,7 +1637,7 @@ class SFComponent {
                 return;
             }
             property.ui._render = tpl;
-            property.widget.cd.markForCheck();
+            property.widget?.cd.markForCheck();
         });
     }
     /**
