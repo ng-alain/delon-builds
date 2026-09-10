@@ -35,7 +35,7 @@ class TransferWidget extends ControlUIWidget {
             this.list = list;
             this._data = list.filter(w => w.direction === 'right');
             this.notify();
-            this.detectChanges(true);
+            this.detectChanges();
         });
     }
     notify() {
@@ -58,12 +58,12 @@ class TransferWidget extends ControlUIWidget {
     _searchChange(options) {
         if (this.ui.searchChange)
             this.ui.searchChange(options);
-        this.detectChanges(true);
+        this.detectChanges();
     }
     _selectChange(options) {
         if (this.ui.selectChange)
             this.ui.selectChange(options);
-        this.detectChanges(true);
+        this.detectChanges();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: TransferWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.4", type: TransferWidget, isStandalone: true, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
@@ -75,7 +75,6 @@ class TransferWidget extends ControlUIWidget {
     [showTitle]="schema.title"
   >
     <nz-transfer
-      [nzDisabled]="disabled"
       [nzDataSource]="$any(list)"
       [nzTitles]="i.titles"
       [nzOperations]="i.operations"
@@ -83,7 +82,6 @@ class TransferWidget extends ControlUIWidget {
       [nzItemUnit]="i.itemUnit"
       [nzItemsUnit]="i.itemsUnit"
       [nzShowSearch]="ui.showSearch"
-      [nzShowSelectAll]="ui.showSelectAll!"
       [nzFilterOption]="ui.filterOption"
       [nzSearchPlaceholder]="ui.searchPlaceholder"
       [nzNotFoundContent]="ui.notFoundContent"
@@ -108,7 +106,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     [showTitle]="schema.title"
   >
     <nz-transfer
-      [nzDisabled]="disabled"
       [nzDataSource]="$any(list)"
       [nzTitles]="i.titles"
       [nzOperations]="i.operations"
@@ -116,7 +113,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzItemUnit]="i.itemUnit"
       [nzItemsUnit]="i.itemsUnit"
       [nzShowSearch]="ui.showSearch"
-      [nzShowSelectAll]="ui.showSelectAll!"
       [nzFilterOption]="ui.filterOption"
       [nzSearchPlaceholder]="ui.searchPlaceholder"
       [nzNotFoundContent]="ui.notFoundContent"
