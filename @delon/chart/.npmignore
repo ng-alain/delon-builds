@@ -1,6 +1,6 @@
 # Nested package.json's are only needed for development.
-bar/package.json
 card/package.json
+bar/package.json
 chart-echarts/package.json
 core/package.json
 custom/package.json
