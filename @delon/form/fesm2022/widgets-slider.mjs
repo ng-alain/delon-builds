@@ -18,7 +18,7 @@ class SliderWidget extends ControlUIWidget {
         const { minimum, maximum, multipleOf } = this.schema;
         this.min = minimum ?? 0;
         this.max = maximum ?? 100;
-        this.step = multipleOf ?? 1;
+        this.step = this.ui.step === undefined ? (multipleOf ?? 1) : this.ui.step;
         const { marks, included } = this.ui;
         this.marks = marks ?? null;
         this.included = typeof included === 'undefined' ? true : included;
@@ -55,6 +55,9 @@ class SliderWidget extends ControlUIWidget {
       [nzDots]="ui.dots"
       [nzIncluded]="included"
       [nzVertical]="ui.vertical"
+      [nzReverse]="ui.reverse"
+      [nzTooltipVisible]="ui.tooltipVisible!"
+      [nzTooltipPlacement]="ui.tooltipPlacement!"
       [nzTipFormatter]="_formatter"
       (nzOnAfterChange)="_afterChange($event)"
     />
@@ -84,6 +87,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzDots]="ui.dots"
       [nzIncluded]="included"
       [nzVertical]="ui.vertical"
+      [nzReverse]="ui.reverse"
+      [nzTooltipVisible]="ui.tooltipVisible!"
+      [nzTooltipPlacement]="ui.tooltipPlacement!"
       [nzTipFormatter]="_formatter"
       (nzOnAfterChange)="_afterChange($event)"
     />

@@ -65,6 +65,11 @@ class MentionWidget extends ControlUIWidget {
             this.detectChanges(true);
         });
     }
+    _clear() {
+        this.setValue('');
+        if (this.ui.onClear)
+            this.ui.onClear();
+    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: MentionWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.4", type: MentionWidget, isStandalone: true, selector: "sf-mention", viewQueries: [{ propertyName: "mentionChild", first: true, predicate: ["mentions"], descendants: true, static: true }], usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
@@ -82,8 +87,11 @@ class MentionWidget extends ControlUIWidget {
       [nzNotFoundContent]="i.notFoundContent"
       [nzPlacement]="i.placement"
       [nzPrefix]="i.prefix"
+      [nzAllowClear]="ui.allowClear!"
+      [nzVariant]="ui.variant ?? 'outlined'"
       (nzOnSelect)="_select($event)"
       (nzOnSearchChange)="_search($event)"
+      (nzOnClear)="_clear()"
     >
       @if (ui.inputStyle === 'textarea') {
         <textarea
@@ -140,8 +148,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzNotFoundContent]="i.notFoundContent"
       [nzPlacement]="i.placement"
       [nzPrefix]="i.prefix"
+      [nzAllowClear]="ui.allowClear!"
+      [nzVariant]="ui.variant ?? 'outlined'"
       (nzOnSelect)="_select($event)"
       (nzOnSearchChange)="_search($event)"
+      (nzOnClear)="_clear()"
     >
       @if (ui.inputStyle === 'textarea') {
         <textarea
