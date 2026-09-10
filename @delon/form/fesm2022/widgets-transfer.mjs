@@ -35,7 +35,7 @@ class TransferWidget extends ControlUIWidget {
             this.list = list;
             this._data = list.filter(w => w.direction === 'right');
             this.notify();
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     notify() {
@@ -58,12 +58,12 @@ class TransferWidget extends ControlUIWidget {
     _searchChange(options) {
         if (this.ui.searchChange)
             this.ui.searchChange(options);
-        this.detectChanges();
+        this.detectChanges(true);
     }
     _selectChange(options) {
         if (this.ui.selectChange)
             this.ui.selectChange(options);
-        this.detectChanges();
+        this.detectChanges(true);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: TransferWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.4", type: TransferWidget, isStandalone: true, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap

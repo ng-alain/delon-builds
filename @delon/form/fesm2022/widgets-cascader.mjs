@@ -22,13 +22,13 @@ class CascaderWidget extends ControlUIWidget {
         this.showInput = toBool(showInput, true);
         this.triggerAction = triggerAction ?? ['click'];
         if (asyncData) {
-            this.loadData = (node, index) => asyncData(node, index, this).then(() => this.detectChanges());
+            this.loadData = (node, index) => asyncData(node, index, this).then(() => this.detectChanges(true));
         }
     }
     reset(value) {
         getData(this.schema, {}, value).subscribe(list => {
             this.data = list;
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     _openChange(status) {

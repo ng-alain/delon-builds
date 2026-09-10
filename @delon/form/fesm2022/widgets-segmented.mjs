@@ -15,7 +15,7 @@ class SegmentedWidget extends ControlUIWidget {
     reset(value) {
         getData(this.schema, this.ui, value).subscribe(list => {
             this._list = list;
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     valueChange(v) {

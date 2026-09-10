@@ -46,7 +46,7 @@ class MentionWidget extends ControlUIWidget {
     reset() {
         getData(this.schema, this.ui, null).subscribe(list => {
             this.data = list;
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     _select(options) {

@@ -33,7 +33,7 @@ class TreeSelectWidget extends ControlUIWidget {
     reset(value) {
         getData(this.schema, this.ui, value).subscribe(list => {
             this.data = list;
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     change(value) {
@@ -52,7 +52,7 @@ class TreeSelectWidget extends ControlUIWidget {
         ui.expandChange(e).subscribe(res => {
             e.node.clearChildren();
             e.node.addChildren(res);
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: TreeSelectWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });

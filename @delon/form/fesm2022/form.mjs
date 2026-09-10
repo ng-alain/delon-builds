@@ -1637,6 +1637,7 @@ class SFComponent {
                 return;
             }
             property.ui._render = tpl;
+            property.widget.cd.markForCheck();
         });
     }
     /**
@@ -2280,7 +2281,7 @@ class CheckboxWidget extends ControlUIWidget {
     }
     _setValue(value) {
         this.setValue(value);
-        this.detectChanges();
+        this.detectChanges(true);
         this.notifyChange(value);
     }
     notifySet() {
@@ -2308,7 +2309,7 @@ class CheckboxWidget extends ControlUIWidget {
         else {
             this.indeterminate = true;
         }
-        this.detectChanges();
+        this.detectChanges(true);
         return this;
     }
     notifyChange(res) {
@@ -2617,7 +2618,7 @@ class DateWidget extends ControlUIWidget {
         else {
             this.displayValue = value;
         }
-        this.detectChanges();
+        this.detectChanges(true);
         // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
         if (this.displayValue) {
             setTimeout(() => this._change(this.displayValue, false));
@@ -3265,7 +3266,7 @@ class RadioWidget extends ControlUIWidget {
         this.styleType = (this.ui.styleType ?? 'default') === 'default';
         getData(this.schema, this.ui, value).subscribe(list => {
             this.data = list;
-            this.detectChanges();
+            this.cd.markForCheck();
         });
     }
     _setValue(value) {
@@ -3380,7 +3381,7 @@ class SelectWidget extends ControlUIWidget {
                 this.data = list;
                 this.checkGroup(list);
                 this.loading = false;
-                this.detectChanges();
+                this.detectChanges(true);
             });
         }
     }
@@ -3391,7 +3392,7 @@ class SelectWidget extends ControlUIWidget {
             if (onSearch == null)
                 this.data = list;
             this.checkGroup(list);
-            this.detectChanges();
+            this.detectChanges(true);
         });
         if (value && onSearch != null)
             this.search$.next(value);
