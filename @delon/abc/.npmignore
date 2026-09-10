@@ -1,7 +1,7 @@
 # Nested package.json's are only needed for development.
 auto-focus/package.json
-count-down/package.json
 cell/package.json
+count-down/package.json
 date-picker/package.json
 down-file/package.json
 ellipsis/package.json
