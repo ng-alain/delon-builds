@@ -35,7 +35,7 @@ import * as i4$1 from 'ng-zorro-antd/checkbox';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import * as i2$2 from 'ng-zorro-antd/date-picker';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import * as i4$3 from 'ng-zorro-antd/input';
+import * as i2$5 from 'ng-zorro-antd/input';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import * as i2$3 from 'ng-zorro-antd/input-number';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
@@ -2275,7 +2275,7 @@ class CheckboxWidget extends ControlUIWidget {
             this.grid_span = span && span > 0 ? span : 0;
             this.updateAllChecked();
             this.inited = true;
-            this.cd.markForCheck();
+            this.detectChanges();
         });
     }
     _setValue(value) {
@@ -2323,7 +2323,6 @@ class CheckboxWidget extends ControlUIWidget {
           nz-checkbox
           class="sf__checkbox-all mr-sm"
           [(ngModel)]="allChecked"
-          [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="onAllChecked()"
           [nzIndeterminate]="indeterminate"
         >
@@ -2342,13 +2341,7 @@ class CheckboxWidget extends ControlUIWidget {
     >
       @if (inited) {
         @if (data.length === 0) {
-          <label
-            nz-checkbox
-            [nzDisabled]="disabled"
-            [ngModel]="value"
-            (ngModelChange)="_setValue($event)"
-            [ngModelOptions]="{ standalone: true }"
-          >
+          <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="_setValue($event)">
             {{ schema.title }}
             <span class="sf__optional">
               {{ ui.optional }}
@@ -2370,20 +2363,9 @@ class CheckboxWidget extends ControlUIWidget {
         } @else {
           @if (grid_span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
-            <nz-checkbox-group
-              [nzDisabled]="disabled"
-              [ngModel]="value"
-              [ngModelOptions]="{ standalone: true }"
-              [nzOptions]="$any(data)"
-              (ngModelChange)="groupInGridChange($event)"
-            />
+            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="groupInGridChange($event)" />
           } @else {
-            <nz-checkbox-group
-              class="sf__checkbox-list"
-              [ngModel]="value"
-              (ngModelChange)="groupInGridChange($event)"
-              [ngModelOptions]="{ standalone: true }"
-            >
+            <nz-checkbox-group class="sf__checkbox-list" [ngModel]="value" (ngModelChange)="groupInGridChange($event)">
               <div nz-row>
                 @if (ui.checkAll) {
                   <div nz-col [nzSpan]="grid_span">
@@ -2392,13 +2374,7 @@ class CheckboxWidget extends ControlUIWidget {
                 }
                 @for (i of data; track $index) {
                   <div nz-col [nzSpan]="grid_span">
-                    <label
-                      nz-checkbox
-                      [nzValue]="i.value"
-                      [ngModel]="i.checked"
-                      [ngModelOptions]="{ standalone: true }"
-                      [nzDisabled]="disabled || i.disabled"
-                    >
+                    <label nz-checkbox [nzValue]="i.value" [ngModel]="i.checked" [nzDisabled]="i.disabled">
                       {{ i.label }}
                     </label>
                   </div>
@@ -2422,7 +2398,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           nz-checkbox
           class="sf__checkbox-all mr-sm"
           [(ngModel)]="allChecked"
-          [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="onAllChecked()"
           [nzIndeterminate]="indeterminate"
         >
@@ -2441,13 +2416,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     >
       @if (inited) {
         @if (data.length === 0) {
-          <label
-            nz-checkbox
-            [nzDisabled]="disabled"
-            [ngModel]="value"
-            (ngModelChange)="_setValue($event)"
-            [ngModelOptions]="{ standalone: true }"
-          >
+          <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="_setValue($event)">
             {{ schema.title }}
             <span class="sf__optional">
               {{ ui.optional }}
@@ -2469,20 +2438,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
         } @else {
           @if (grid_span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
-            <nz-checkbox-group
-              [nzDisabled]="disabled"
-              [ngModel]="value"
-              [ngModelOptions]="{ standalone: true }"
-              [nzOptions]="$any(data)"
-              (ngModelChange)="groupInGridChange($event)"
-            />
+            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="groupInGridChange($event)" />
           } @else {
-            <nz-checkbox-group
-              class="sf__checkbox-list"
-              [ngModel]="value"
-              (ngModelChange)="groupInGridChange($event)"
-              [ngModelOptions]="{ standalone: true }"
-            >
+            <nz-checkbox-group class="sf__checkbox-list" [ngModel]="value" (ngModelChange)="groupInGridChange($event)">
               <div nz-row>
                 @if (ui.checkAll) {
                   <div nz-col [nzSpan]="grid_span">
@@ -2491,13 +2449,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
                 }
                 @for (i of data; track $index) {
                   <div nz-col [nzSpan]="grid_span">
-                    <label
-                      nz-checkbox
-                      [nzValue]="i.value"
-                      [ngModel]="i.checked"
-                      [ngModelOptions]="{ standalone: true }"
-                      [nzDisabled]="disabled || i.disabled"
-                    >
+                    <label nz-checkbox [nzValue]="i.value" [ngModel]="i.checked" [nzDisabled]="i.disabled">
                       {{ i.label }}
                     </label>
                   </div>
@@ -2675,7 +2627,6 @@ class DateWidget extends ControlUIWidget {
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2697,7 +2648,6 @@ class DateWidget extends ControlUIWidget {
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2719,7 +2669,6 @@ class DateWidget extends ControlUIWidget {
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2740,7 +2689,6 @@ class DateWidget extends ControlUIWidget {
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2769,7 +2717,6 @@ class DateWidget extends ControlUIWidget {
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2812,7 +2759,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2834,7 +2780,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2856,7 +2801,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2877,7 +2821,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2906,7 +2849,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           [nzId]="id"
           [nzDisabled]="disabled"
           [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
           [nzFormat]="displayFormat"
           [(ngModel)]="displayValue"
           (ngModelChange)="_change($event)"
@@ -2976,12 +2918,6 @@ class NumberWidget extends ControlUIWidget {
         this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
         this.ui.change?.(this.value);
     }
-    focus() {
-        this.ui.focus?.();
-    }
-    blur() {
-        this.ui.blur?.();
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: NumberWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.4", type: NumberWidget, isStandalone: false, selector: "sf-number", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
@@ -2997,7 +2933,6 @@ class NumberWidget extends ControlUIWidget {
       (ngModelChange)="_setValue($event)"
       [nzDisabled]="disabled"
       [nzSize]="ui.size!"
-      [nzVariant]="ui.variant ?? 'outlined'"
       [nzMin]="min"
       [nzMax]="max"
       [nzStep]="step"
@@ -3006,11 +2941,6 @@ class NumberWidget extends ControlUIWidget {
       [nzPrecision]="ui.precision ?? null"
       [nzPlaceHolder]="ui.placeholder ?? ''"
       [nzChangeOnWheel]="ui.changeOnWheel ?? true"
-      [nzAutoFocus]="ui.autofocus"
-      [nzAddonBefore]="ui.addOnBefore!"
-      [nzAddonAfter]="ui.addOnAfter!"
-      (nzFocus)="focus()"
-      (nzBlur)="blur()"
       [style.width]="width"
       [class.ant-input-number__hide-step]="ui.hideStep"
     />
@@ -3034,7 +2964,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       (ngModelChange)="_setValue($event)"
       [nzDisabled]="disabled"
       [nzSize]="ui.size!"
-      [nzVariant]="ui.variant ?? 'outlined'"
       [nzMin]="min"
       [nzMax]="max"
       [nzStep]="step"
@@ -3043,11 +2972,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzPrecision]="ui.precision ?? null"
       [nzPlaceHolder]="ui.placeholder ?? ''"
       [nzChangeOnWheel]="ui.changeOnWheel ?? true"
-      [nzAutoFocus]="ui.autofocus"
-      [nzAddonBefore]="ui.addOnBefore!"
-      [nzAddonAfter]="ui.addOnAfter!"
-      (nzFocus)="focus()"
-      (nzBlur)="blur()"
       [style.width]="width"
       [class.ant-input-number__hide-step]="ui.hideStep"
     />
@@ -3573,14 +3497,11 @@ class StringWidget extends ControlUIWidget {
     type;
     change$ = null;
     ngOnInit() {
-        const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon, allowClear, autofocus } = this.ui;
+        const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon, autofocus } = this.ui;
         this.type =
             addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon
                 ? 'addon'
                 : '';
-        if (allowClear === true && this.type === '') {
-            this.type = 'addon';
-        }
         if (autofocus === true) {
             setTimeout(() => {
                 this.injector.get(ElementRef).nativeElement.querySelector(`#${this.id}`).focus();
@@ -3642,7 +3563,6 @@ class StringWidget extends ControlUIWidget {
           [nzAddonAfter]="ui.addOnAfter"
           [nzPrefix]="ui.prefix"
           [nzSuffix]="ui.suffix"
-          [nzAllowClear]="ui.allowClear"
         >
           <input
             nz-input
@@ -3684,7 +3604,7 @@ class StringWidget extends ControlUIWidget {
         />
       }
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i4$3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i4$3.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$5.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i2$5.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: StringWidget, decorators: [{
             type: Component,
@@ -3705,7 +3625,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
           [nzAddonAfter]="ui.addOnAfter"
           [nzPrefix]="ui.prefix"
           [nzSuffix]="ui.suffix"
-          [nzAllowClear]="ui.allowClear"
         >
           <input
             nz-input
@@ -3885,15 +3804,9 @@ class TextareaWidget extends ControlUIWidget {
         </textarea>
       </nz-textarea-count>
     } @else {
-      @if (ui.allowClear) {
-        <nz-input-wrapper [nzAllowClear]="true">
-          <ng-template [ngTemplateOutlet]="ipt" />
-        </nz-input-wrapper>
-      } @else {
-        <ng-template [ngTemplateOutlet]="ipt" />
-      }
+      <ng-template [ngTemplateOutlet]="ipt" />
     }
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i3$1.CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }, { kind: "component", type: i4$3.NzTextareaCountComponent, selector: "nz-textarea-count", inputs: ["nzMaxCharacterCount", "nzComputeCharacterCount", "nzFormatter"] }, { kind: "directive", type: i4$3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i4$3.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i3$1.CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }, { kind: "component", type: i2$5.NzTextareaCountComponent, selector: "nz-textarea-count", inputs: ["nzMaxCharacterCount", "nzComputeCharacterCount", "nzFormatter"] }, { kind: "directive", type: i2$5.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: TextareaWidget, decorators: [{
             type: Component,
@@ -3955,13 +3868,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
         </textarea>
       </nz-textarea-count>
     } @else {
-      @if (ui.allowClear) {
-        <nz-input-wrapper [nzAllowClear]="true">
-          <ng-template [ngTemplateOutlet]="ipt" />
-        </nz-input-wrapper>
-      } @else {
-        <ng-template [ngTemplateOutlet]="ipt" />
-      }
+      <ng-template [ngTemplateOutlet]="ipt" />
     }
   </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,

@@ -1,8 +1,8 @@
 # Nested package.json's are only needed for development.
-cell/package.json
-count-down/package.json
 auto-focus/package.json
+cell/package.json
 date-picker/package.json
+count-down/package.json
 down-file/package.json
 ellipsis/package.json
 error-collect/package.json
@@ -26,5 +26,5 @@ sg/package.json
 st/package.json
 sv/package.json
 tag-select/package.json
-zip/package.json
 xlsx/package.json
+zip/package.json

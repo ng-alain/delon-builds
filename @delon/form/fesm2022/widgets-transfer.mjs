@@ -75,7 +75,6 @@ class TransferWidget extends ControlUIWidget {
     [showTitle]="schema.title"
   >
     <nz-transfer
-      [nzDisabled]="disabled"
       [nzDataSource]="$any(list)"
       [nzTitles]="i.titles"
       [nzOperations]="i.operations"
@@ -83,7 +82,6 @@ class TransferWidget extends ControlUIWidget {
       [nzItemUnit]="i.itemUnit"
       [nzItemsUnit]="i.itemsUnit"
       [nzShowSearch]="ui.showSearch"
-      [nzShowSelectAll]="ui.showSelectAll!"
       [nzFilterOption]="ui.filterOption"
       [nzSearchPlaceholder]="ui.searchPlaceholder"
       [nzNotFoundContent]="ui.notFoundContent"
@@ -108,7 +106,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     [showTitle]="schema.title"
   >
     <nz-transfer
-      [nzDisabled]="disabled"
       [nzDataSource]="$any(list)"
       [nzTitles]="i.titles"
       [nzOperations]="i.operations"
@@ -116,7 +113,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzItemUnit]="i.itemUnit"
       [nzItemsUnit]="i.itemsUnit"
       [nzShowSearch]="ui.showSearch"
-      [nzShowSelectAll]="ui.showSelectAll!"
       [nzFilterOption]="ui.filterOption"
       [nzSearchPlaceholder]="ui.searchPlaceholder"
       [nzNotFoundContent]="ui.notFoundContent"

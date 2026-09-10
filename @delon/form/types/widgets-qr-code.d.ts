@@ -17,16 +17,12 @@ interface SFQrCodeWidgetSchema extends SFUISchemaItem {
     icon?: string;
     /** The size of the icon in the QR code */
     iconSize?: number;
-    /** Whether has border style, default: `true` */
+    /** Whether has border style */
     bordered?: boolean;
-    /** Rendering type, default: `canvas` */
-    type?: 'canvas' | 'svg';
     /** QR code status */
-    status?: 'active' | 'expired' | 'loading' | 'scanned';
+    status?: 'active' | 'expired' | 'loading';
     /** Error Code Level */
     level?: 'L' | 'M' | 'Q' | 'H';
-    /** If enabled, automatically raises the error correction level, default: `true` */
-    boostLevel?: boolean;
     /** Callback */
     refresh?: (qr: string) => void;
 }
