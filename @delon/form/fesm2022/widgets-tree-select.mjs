@@ -33,13 +33,17 @@ class TreeSelectWidget extends ControlUIWidget {
     reset(value) {
         getData(this.schema, this.ui, value).subscribe(list => {
             this.data = list;
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     change(value) {
         if (this.ui.change)
             this.ui.change(value);
         this.setValue(value == null ? this.ui.clearValue : value);
+    }
+    openChange(status) {
+        if (this.ui.openChange)
+            this.ui.openChange(status);
     }
     expandChange(e) {
         const { ui } = this;
@@ -48,7 +52,7 @@ class TreeSelectWidget extends ControlUIWidget {
         ui.expandChange(e).subscribe(res => {
             e.node.clearChildren();
             e.node.addChildren(res);
-            this.detectChanges();
+            this.detectChanges(true);
         });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.4", ngImport: i0, type: TreeSelectWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
@@ -91,8 +95,12 @@ class TreeSelectWidget extends ControlUIWidget {
       [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
       [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
       [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
+      [nzPlacement]="ui.placement ?? 'bottomLeft'"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      [nzSuffixIcon]="ui.suffixIcon!"
       (ngModelChange)="change($event)"
       (nzExpandChange)="expandChange($event)"
+      (nzOpenChange)="openChange($event)"
     />
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTreeSelectModule }, { kind: "component", type: i3.NzTreeSelectComponent, selector: "nz-tree-select", inputs: ["nzId", "nzAllowClear", "nzShowExpand", "nzShowLine", "nzDropdownMatchSelectWidth", "nzCheckable", "nzHideUnMatched", "nzShowIcon", "nzShowSearch", "nzDisabled", "nzAsyncData", "nzMultiple", "nzDefaultExpandAll", "nzCheckStrictly", "nzVirtualItemSize", "nzVirtualMaxBufferPx", "nzVirtualMinBufferPx", "nzVirtualHeight", "nzExpandedIcon", "nzNotFoundContent", "nzNodes", "nzOpen", "nzSize", "nzVariant", "nzPlaceHolder", "nzDropdownStyle", "nzDropdownClassName", "nzBackdrop", "nzStatus", "nzPlacement", "nzExpandedKeys", "nzPrefix", "nzSuffixIcon", "nzDisplayWith", "nzMaxTagCount", "nzMaxTagPlaceholder", "nzTreeTemplate"], outputs: ["nzOpenChange", "nzCleared", "nzRemoved", "nzExpandChange", "nzTreeClick", "nzTreeCheckboxChange"], exportAs: ["nzTreeSelect"] }], encapsulation: i0.ViewEncapsulation.None });
 }
@@ -139,8 +147,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
       [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
       [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
+      [nzPlacement]="ui.placement ?? 'bottomLeft'"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      [nzSuffixIcon]="ui.suffixIcon!"
       (ngModelChange)="change($event)"
       (nzExpandChange)="expandChange($event)"
+      (nzOpenChange)="openChange($event)"
     />
   </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,

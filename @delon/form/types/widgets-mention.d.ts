@@ -2,7 +2,7 @@ import * as i2 from '@delon/form';
 import { SFUISchemaItem, SFSchemaEnumType, ControlUIWidget, SFSchemaEnum, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
 import * as i0 from '@angular/core';
 import { OnInit } from '@angular/core';
-import { NzSizeLDSType, NzSafeAny } from 'ng-zorro-antd/core/types';
+import { NzSizeLDSType, NzVariant, NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i3 from 'ng-zorro-antd/mention';
 import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
 import { Observable } from 'rxjs';
@@ -17,9 +17,17 @@ interface SFMentionWidgetSchema extends SFUISchemaItem {
     asyncData?: () => Observable<SFSchemaEnumType[]>;
     size?: NzSizeLDSType;
     /**
+     * 变体，默认：`outlined`
+     */
+    variant?: NzVariant;
+    /**
      * 在文字框中显示提示讯息
      */
     placeholder?: string;
+    /**
+     * 允许清除，默认：`false`
+     */
+    allowClear?: boolean;
     /**
      * 实时数据
      */
@@ -29,9 +37,9 @@ interface SFMentionWidgetSchema extends SFUISchemaItem {
      */
     notFoundContent?: string;
     /**
-     * 建议框位置，默认：`button`
+     * 建议框位置，默认：`bottom`
      */
-    placement?: 'button' | 'top';
+    placement?: 'bottom' | 'top';
     /**
      * 触发弹出下拉框的字符，默认：`@`
      */
@@ -44,6 +52,10 @@ interface SFMentionWidgetSchema extends SFUISchemaItem {
      * 下拉框选择建议时回调
      */
     select?: (value: NzSafeAny) => void;
+    /**
+     * 内容被清除时的回调函数
+     */
+    onClear?: () => void;
     /**
      * 文本框类型，默认：`text`
      */
@@ -67,6 +79,7 @@ declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema> imple
     reset(): void;
     _select(options: NzSafeAny): void;
     _search(option: MentionOnSearchTypes): void;
+    _clear(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MentionWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<MentionWidget, "sf-mention", never, {}, {}, never, never, true, never>;
 }

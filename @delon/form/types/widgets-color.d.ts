@@ -1,7 +1,7 @@
 import * as i3 from '@delon/form';
 import { SFUISchemaItem, ControlUIWidget, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
 import * as i4 from 'ng-zorro-antd/color-picker';
-import { NzColorPickerFormatType, NzColor, NzColorPickerTriggerType } from 'ng-zorro-antd/color-picker';
+import { NzColorPickerFormatType, NzColor, NzColorPickerTriggerType, NzPresetColor } from 'ng-zorro-antd/color-picker';
 import * as i0 from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import * as i1 from '@angular/forms';
@@ -37,12 +37,24 @@ interface SFColorWidgetSchema extends SFUISchemaItem {
      */
     allowClear?: boolean;
     /**
+     * Disable alpha selector
+     */
+    disabledAlpha?: boolean;
+    /**
+     * Preset color list
+     */
+    presets?: NzPresetColor[];
+    /**
      * Callback when value is changed
      */
     change?: (ev: {
         color: NzColor;
         format: string;
     }) => void;
+    /**
+     * Callback when the clear button is clicked
+     */
+    onClear?: () => void;
     /**
      * Callback when `format` is changed
      */
@@ -60,6 +72,7 @@ declare class ColorWidget extends ControlUIWidget<SFColorWidgetSchema> {
         format: string;
     }): void;
     _formatChange(ev: NzColorPickerFormatType): void;
+    _clear(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ColorWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ColorWidget, "sf-color", never, {}, {}, never, never, true, never>;
 }
