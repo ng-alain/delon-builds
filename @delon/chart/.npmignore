@@ -2,8 +2,8 @@
 card/package.json
 bar/package.json
 chart-echarts/package.json
-core/package.json
 custom/package.json
+core/package.json
 gauge/package.json
 mini-area/package.json
 mini-bar/package.json
