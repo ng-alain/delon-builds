@@ -182,7 +182,7 @@ function addCodeStylesToPackageJson(): Rule {
     json.scripts.lint = `npm run lint:ts && npm run lint:style`;
     json.scripts['lint:ts'] = `ng lint`;
     json.scripts['lint:style'] = `npx stylelint \\"src/**/*.less\\" --fix`;
-    json.scripts['prepare'] = 'husky';
+    json.scripts['prepare'] = 'husky install';
     // remove prettier node
     if (json.prettier) {
       delete json.prettier;

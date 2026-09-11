@@ -35,7 +35,7 @@ class TimeWidget extends ControlUIWidget {
     reset(value) {
         if (value instanceof Date) {
             this.displayValue = value;
-            this.detectChanges();
+            this.detectChanges(true);
             return;
         }
         let v = value != null && value.toString().length ? new Date(value) : null;
@@ -47,7 +47,7 @@ class TimeWidget extends ControlUIWidget {
             v = new Date(`1970-1-1 ${value}`);
         }
         this.displayValue = v;
-        this.detectChanges();
+        this.detectChanges(true);
     }
     _change(value) {
         if (this.ui.change) {
