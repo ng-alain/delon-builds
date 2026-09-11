@@ -15,7 +15,7 @@ class SegmentedWidget extends ControlUIWidget {
     reset(value) {
         getData(this.schema, this.ui, value).subscribe(list => {
             this._list = list;
-            this.detectChanges(true);
+            this.detectChanges();
         });
     }
     valueChange(v) {
@@ -40,8 +40,6 @@ class SegmentedWidget extends ControlUIWidget {
       [nzDisabled]="disabled"
       [nzSize]="$any(ui.size)"
       [nzBlock]="ui.block ?? false"
-      [nzVertical]="ui.vertical"
-      [nzShape]="ui.shape ?? 'default'"
       [nzOptions]="list"
       (nzValueChange)="valueChange($event)"
     />
@@ -65,8 +63,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
       [nzDisabled]="disabled"
       [nzSize]="$any(ui.size)"
       [nzBlock]="ui.block ?? false"
-      [nzVertical]="ui.vertical"
-      [nzShape]="ui.shape ?? 'default'"
       [nzOptions]="list"
       (nzValueChange)="valueChange($event)"
     />

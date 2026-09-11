@@ -475,10 +475,6 @@ interface SFStringWidgetSchema extends SFUISchemaItem {
      */
     suffix?: string;
     /**
-     * 可以点击清除图标删除内容，默认：`false`
-     */
-    allowClear?: boolean;
-    /**
      * 变体
      */
     variant?: NzVariant;
@@ -529,22 +525,6 @@ declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> impleme
 interface SFNumberWidgetSchema extends SFUISchemaItem {
     size?: NzSizeLDSType;
     /**
-     * 变体，默认：`outlined`
-     */
-    variant?: NzVariant;
-    /**
-     * 带标签的 input，设置前置标签
-     */
-    addOnBefore?: string;
-    /**
-     * 带标签的 input，设置后置标签
-     */
-    addOnAfter?: string;
-    /**
-     * 自动获取焦点，默认：`false`
-     */
-    autofocus?: boolean;
-    /**
      * 前缀，简化 `nzFormatter`、`nzParser` 的使用
      */
     prefix?: string;
@@ -579,14 +559,6 @@ interface SFNumberWidgetSchema extends SFUISchemaItem {
      */
     change?: (val?: number) => void;
     /**
-     * 获得焦点时回调
-     */
-    focus?: () => void;
-    /**
-     * 失去焦点时回调
-     */
-    blur?: () => void;
-    /**
      * Change on mouse wheel. Default is true
      *
      * 启用鼠标滚轮控制。默认启用
@@ -604,8 +576,6 @@ declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> impleme
     width: string;
     ngOnInit(): void;
     _setValue(val: number): void;
-    focus(): void;
-    blur(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumberWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never, false, never>;
 }
@@ -699,14 +669,6 @@ interface SFDateWidgetSchema extends SFUISchemaItem {
      * Whether to show the week number on each row (Only supported by date picker. Week picker always shows week numbers)
      */
     showWeekNumber?: boolean;
-    /**
-     * Preset ranges for quick selection, only valid in `range` mode
-     */
-    ranges?: Record<string, Date[] | (() => Date[])>;
-    /**
-     * get focus when component mounted, default: `false`
-     */
-    autoFocus?: boolean;
     /**
      * Callback when click ok button
      */
@@ -854,12 +816,6 @@ interface SFTextareaWidgetSchema extends SFUISchemaItem {
      * 变体
      */
     variant?: NzVariant;
-    /**
-     * 允许清除，默认：`false`
-     *
-     * @note 与 `maxCharacterCount` 互斥（结构限制），同时设置时以 `maxCharacterCount` 优先
-     */
-    allowClear?: boolean;
     /**
      * `textarea` maximum character count displayed
      */
