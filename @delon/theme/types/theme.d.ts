@@ -206,7 +206,7 @@ declare class MenuService implements OnDestroy {
     }): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MenuService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<MenuService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 interface App {
@@ -276,7 +276,7 @@ declare class SettingsService<L extends Layout = Layout, U extends User = User, 
     setUser(value: U): void;
     getUser<T>(): T;
     static ɵfac: i0.ɵɵFactoryDeclaration<SettingsService<any, any, any>, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<SettingsService<any, any, any>>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare const REP_MAX = 6;
@@ -288,7 +288,7 @@ declare class ResponsiveService {
     constructor();
     genCls(count: number, defaultCol?: number): string[];
     static ɵfac: i0.ɵɵFactoryDeclaration<ResponsiveService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ResponsiveService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare const HTML_DIR = "dir";
@@ -334,7 +334,7 @@ declare class RTLService {
     private updateHtml;
     private updateLibConfig;
     static ɵfac: i0.ɵɵFactoryDeclaration<RTLService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<RTLService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 interface RouteTitle {
@@ -404,7 +404,7 @@ declare class TitleService implements OnDestroy {
     setTitleByI18n(key: string, params?: unknown): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TitleService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TitleService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 interface AlainI18NService {
@@ -486,13 +486,13 @@ declare abstract class AlainI18nBaseService implements AlainI18NService {
     abstract getLangs(): NzSafeAny[];
     fanyi(path: string, params?: unknown | unknown[]): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18nBaseService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18nBaseService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 declare class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang: string, data: Record<string, unknown>): void;
     getLangs(): NzSafeAny[];
     static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18NServiceFake, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18NServiceFake>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare class I18nPipe implements PipeTransform {
@@ -507,7 +507,7 @@ declare class AlainI18NGuardService {
     private readonly cogSrv;
     process(route: ActivatedRouteSnapshot): Observable<boolean>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18NGuardService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18NGuardService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 /**
  * Internationalization guard, automatically recognizes the language in Url and triggers the `ALAIN_I18N_TOKEN.use` method
@@ -607,7 +607,7 @@ declare class ModalHelper {
      */
     createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<NzSafeAny>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ModalHelper, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ModalHelper>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 interface DrawerHelperOptions {
@@ -674,7 +674,7 @@ declare class DrawerHelper {
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<NzSafeAny>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DrawerHelper, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<DrawerHelper>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 type _HttpHeaders = HttpHeaders | Record<string, string | string[]>;
@@ -1241,7 +1241,7 @@ declare class _HttpClient {
         context?: HttpContext;
     }): Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<_HttpClient, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<_HttpClient>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 /**
@@ -1254,7 +1254,7 @@ declare class _HttpClient {
 declare abstract class BaseApi {
     protected readonly injector: Injector;
     static ɵfac: i0.ɵɵFactoryDeclaration<BaseApi, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<BaseApi>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 interface HttpOptions {
     /** ACL配置，若导入 `@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值 */
@@ -1517,7 +1517,7 @@ declare class DelonLocaleService {
     get locale(): FullLocaleData;
     getData<K extends keyof FullLocaleData>(key: K): FullLocaleData[K];
     static ɵfac: i0.ɵɵFactoryDeclaration<DelonLocaleService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<DelonLocaleService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 declare function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist: DelonLocaleService): DelonLocaleService;
 declare const DELON_LOCALE_SERVICE_PROVIDER: Provider;

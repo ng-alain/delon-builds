@@ -21,7 +21,7 @@ declare class ChartEChartsService implements OnDestroy {
     get notify(): Observable<void>;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ChartEChartsService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 type ChartECharts = _echarts.ECharts;

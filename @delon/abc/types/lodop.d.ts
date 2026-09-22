@@ -264,7 +264,7 @@ declare class LodopService implements OnDestroy {
     print(code: string, contextObj: NzSafeAny, parser?: RegExp): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LodopService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<LodopService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare class LodopModule {

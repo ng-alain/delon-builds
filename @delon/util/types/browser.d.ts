@@ -60,7 +60,7 @@ declare class CookieService {
      */
     removeAll(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CookieService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<CookieService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 /**
@@ -108,7 +108,7 @@ declare class ScrollService {
      */
     scrollToTop(topOffset?: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ScrollService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ScrollService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 /**

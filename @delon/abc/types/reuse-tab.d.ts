@@ -165,7 +165,7 @@ declare class ReuseTabContextService {
     remove(): void;
     open(context: ReuseContextEvent): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabContextService, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<ReuseTabContextService>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
 }
 
 declare class ReuseTabComponent implements OnInit, OnChanges {
@@ -418,7 +418,7 @@ declare class ReuseTabService implements OnDestroy {
     private initScroll;
     ngOnDestroy(): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabService, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<ReuseTabService>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
 }
 
 declare class ReuseTabStrategy implements RouteReuseStrategy {
