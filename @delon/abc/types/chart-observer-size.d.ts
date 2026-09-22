@@ -10,7 +10,7 @@ declare class SizeObserver implements OnDestroy {
     private _unobserveElement;
     private _cleanupObserver;
     static ɵfac: i0.ɵɵFactoryDeclaration<SizeObserver, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SizeObserver>;
 }
 declare class ObserverSize {
     private readonly _obs;

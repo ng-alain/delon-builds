@@ -111,7 +111,7 @@ declare class ACLService {
      */
     canAbility(value: ACLCanType): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<ACLService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ACLService>;
 }
 
 declare class ACLIfDirective {
@@ -151,7 +151,7 @@ declare class ACLGuardService {
     private readonly injector;
     process(data?: ACLGuardData): Observable<boolean>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ACLGuardService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ACLGuardService>;
 }
 /**
  * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).

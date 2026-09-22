@@ -81,7 +81,7 @@ declare class LoadingService implements OnDestroy {
     close(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LoadingService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LoadingService>;
 }
 
 declare class LoadingModule {

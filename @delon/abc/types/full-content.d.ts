@@ -31,7 +31,7 @@ declare class FullContentService {
     toggle(): void;
     get change(): Observable<boolean | null>;
     static ɵfac: i0.ɵɵFactoryDeclaration<FullContentService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FullContentService>;
 }
 
 declare class FullContentToggleDirective {

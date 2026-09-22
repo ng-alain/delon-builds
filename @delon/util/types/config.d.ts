@@ -1383,7 +1383,7 @@ declare class AlainConfigService {
     attach<T extends AlainConfigKey>(componentThis: unknown, componentName: T, defaultValues: AlainConfig[T]): void;
     set<T extends AlainConfigKey>(componentName: T, value: AlainConfig[T]): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlainConfigService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AlainConfigService>;
 }
 
 export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig, provideAlainConfig };

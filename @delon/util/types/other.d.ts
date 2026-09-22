@@ -80,7 +80,7 @@ declare class LazyService {
      */
     loadStyle(path: string, options?: LazyLoadOptions): Promise<LazyResult>;
     static ɵfac: i0.ɵɵFactoryDeclaration<LazyService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LazyService>;
 }
 
 /**

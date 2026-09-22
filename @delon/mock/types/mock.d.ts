@@ -63,7 +63,7 @@ declare class MockService implements OnDestroy {
     get rules(): MockCachedRule[];
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MockService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<MockService>;
 }
 
 declare const mockInterceptor: HttpInterceptorFn;

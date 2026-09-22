@@ -42,7 +42,7 @@ declare class MediaService {
     load(): this;
     notify(): Observable<void>;
     static ɵfac: i0.ɵɵFactoryDeclaration<MediaService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<MediaService>;
 }
 
 declare class MediaModule {

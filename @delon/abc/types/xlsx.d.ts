@@ -50,7 +50,7 @@ declare class XlsxService {
      */
     numberToSchema(val: number): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<XlsxService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<XlsxService>;
 }
 
 declare class XlsxDirective {

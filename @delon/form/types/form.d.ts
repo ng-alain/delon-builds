@@ -259,7 +259,7 @@ declare abstract class SchemaValidatorFactory {
         debug: boolean;
     }): (value: SFValue) => ErrorData[];
     static ɵfac: i0.ɵɵFactoryDeclaration<SchemaValidatorFactory, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SchemaValidatorFactory>;
 }
 declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     private readonly ngZone;
@@ -272,7 +272,7 @@ declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
         debug: boolean;
     }): (value: SFValue) => ErrorData[];
     static ɵfac: i0.ɵɵFactoryDeclaration<AjvSchemaValidatorFactory, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AjvSchemaValidatorFactory>;
 }
 
 declare class FormPropertyFactory {
@@ -1106,7 +1106,7 @@ declare class WidgetFactory {
     private readonly registry;
     createWidget(container: ViewContainerRef, type: string): ComponentRef<Widget<FormProperty, SFUISchemaItem>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<WidgetFactory, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<WidgetFactory>;
 }
 
 declare class NzWidgetRegistry extends WidgetRegistry {

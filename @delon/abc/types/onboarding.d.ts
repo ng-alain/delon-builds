@@ -156,7 +156,7 @@ declare class OnboardingService implements OnDestroy {
     done(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<OnboardingService>;
 }
 
 declare class OnboardingComponent implements OnDestroy {

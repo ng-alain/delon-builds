@@ -299,7 +299,7 @@ declare class CellService {
     fixOptions(options?: CellOptions): CellOptions;
     get(value: unknown, options?: CellOptions): Observable<CellTextResult>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<CellService, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<CellService>;
 }
 
 interface CellWidgetProvideConfig {

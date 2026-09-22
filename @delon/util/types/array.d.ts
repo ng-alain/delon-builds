@@ -142,7 +142,7 @@ declare class ArrayService {
      */
     uniq<T>(array: readonly T[], predicate?: string | ((value: T) => string | number | boolean)): T[];
     static ɵfac: i0.ɵɵFactoryDeclaration<ArrayService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ArrayService>;
 }
 
 export { ArrayService };

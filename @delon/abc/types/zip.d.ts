@@ -58,7 +58,7 @@ declare class ZipService {
      */
     save(zip: jsZipType | null, options?: ZipSaveOptions): Promise<void>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ZipService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ZipService>;
 }
 
 export { ZipService };

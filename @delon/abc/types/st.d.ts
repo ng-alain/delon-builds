@@ -1594,7 +1594,7 @@ declare class STColumnSource {
     updateDefault(filter: STColumnFilter): this;
     cleanFilter(col: _STColumn): this;
     static ɵfac: i0.ɵɵFactoryDeclaration<STColumnSource, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<STColumnSource>;
 }
 
 interface STDataSourceOptions {
@@ -1664,7 +1664,7 @@ declare class STDataSource {
     private getValues;
     private getSum;
     static ɵfac: i0.ɵɵFactoryDeclaration<STDataSource, [null, { host: true; }, { host: true; }, { host: true; }, null, null]>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<STDataSource>;
 }
 
 declare class STExport {
@@ -1673,7 +1673,7 @@ declare class STExport {
     private genSheet;
     export(opt: STExportOptions): Promise<XlsxExportResult>;
     static ɵfac: i0.ɵɵFactoryDeclaration<STExport, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<STExport>;
 }
 
 declare class STWidgetRegistry {
@@ -1683,7 +1683,7 @@ declare class STWidgetRegistry {
     has(type: string): boolean;
     get(type: string): NzSafeAny;
     static ɵfac: i0.ɵɵFactoryDeclaration<STWidgetRegistry, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<STWidgetRegistry>;
 }
 
 declare class STWidgetHostDirective implements OnInit {

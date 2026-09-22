@@ -233,7 +233,7 @@ declare class CurrencyService {
      */
     cny(value: number | string, options?: CurrencyCNYOptions): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CurrencyService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<CurrencyService>;
 }
 
 export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, formatMask, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl };
