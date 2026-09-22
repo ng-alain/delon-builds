@@ -42,6 +42,7 @@ class RateWidget extends ControlUIWidget {
     <nz-rate
       [nzDisabled]="disabled"
       [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="setValue($event)"
       [nzAllowClear]="allowClear"
       [nzAllowHalf]="allowHalf"
@@ -71,6 +72,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     <nz-rate
       [nzDisabled]="disabled"
       [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="setValue($event)"
       [nzAllowClear]="allowClear"
       [nzAllowHalf]="allowHalf"

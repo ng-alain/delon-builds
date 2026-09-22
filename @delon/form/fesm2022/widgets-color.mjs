@@ -37,6 +37,7 @@ class ColorWidget extends ControlUIWidget {
     } @else {
       <nz-color-picker
         [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="setValue($event)"
         [nzDisabled]="disabled"
         [nzSize]="$any(ui.size)"
@@ -73,6 +74,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     } @else {
       <nz-color-picker
         [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="setValue($event)"
         [nzDisabled]="disabled"
         [nzSize]="$any(ui.size)"

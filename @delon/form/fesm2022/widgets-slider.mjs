@@ -45,6 +45,7 @@ class SliderWidget extends ControlUIWidget {
   >
     <nz-slider
       [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="setValue($event)"
       [nzDisabled]="disabled"
       [nzRange]="ui.range"
@@ -77,6 +78,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
   >
     <nz-slider
       [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="setValue($event)"
       [nzDisabled]="disabled"
       [nzRange]="ui.range"

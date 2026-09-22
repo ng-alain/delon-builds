@@ -80,6 +80,7 @@ class TimeWidget extends ControlUIWidget {
     <nz-time-picker
       [nzId]="id"
       [(ngModel)]="displayValue"
+      [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="_change($event)"
       [nzDisabled]="disabled"
       [nzSize]="$any(ui.size)"
@@ -118,6 +119,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     <nz-time-picker
       [nzId]="id"
       [(ngModel)]="displayValue"
+      [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="_change($event)"
       [nzDisabled]="disabled"
       [nzSize]="$any(ui.size)"

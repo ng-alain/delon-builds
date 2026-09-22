@@ -29,6 +29,7 @@ class TinymceWidget extends ControlUIWidget {
     >
       <tinymce
         [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="change($event)"
         [config]="ui.config"
         [inline]="ui.inline ?? false"
@@ -54,6 +55,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     >
       <tinymce
         [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="change($event)"
         [config]="ui.config"
         [inline]="ui.inline ?? false"

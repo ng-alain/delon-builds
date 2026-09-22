@@ -29,6 +29,7 @@ class MonacoEditorWidget extends ControlUIWidget {
     >
       <nu-monaco-editor
         [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="_change($event)"
         [options]="ui.options ?? {}"
         [disabled]="disabled"
@@ -56,6 +57,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.4", ngImpor
     >
       <nu-monaco-editor
         [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
         (ngModelChange)="_change($event)"
         [options]="ui.options ?? {}"
         [disabled]="disabled"
