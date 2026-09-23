@@ -164,7 +164,7 @@ declare class CacheService implements OnDestroy {
     clearNotify(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CacheService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<CacheService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 /**

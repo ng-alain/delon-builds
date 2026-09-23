@@ -153,9 +153,9 @@ function addCodeStylesToPackageJson() {
         // dependencies
         (0, utils_1.addPackage)(tree, [
             `husky@^9.1.7`,
-            `lint-staged@^17.4.1`,
-            `prettier@^3.9.6`,
-            `stylelint@^17.14.1`,
+            `lint-staged@^17.5.1`,
+            `prettier@^3.9.8`,
+            `stylelint@^17.15.0`,
             `stylelint-config-standard@^40.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^3.0.0`,
             `stylelint-config-clean-order@^10.0.0`,
@@ -358,7 +358,7 @@ function addTailwindcss(options) {
             (0, utils_1.addPackage)(tree, [
                 'tailwindcss@^4.3.3',
                 '@tailwindcss/postcss@^4.3.3',
-                'postcss@^8.5.26',
+                'postcss@^8.5.28',
                 'postcss-less@^6.0.0'
             ], 'devDependencies');
             // Create .postcssrc.json

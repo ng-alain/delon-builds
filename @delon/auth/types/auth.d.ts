@@ -104,7 +104,7 @@ declare class SocialService implements OnDestroy {
     callback(rawData?: ITokenModel | string | null): ITokenModel;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SocialService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<SocialService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare const DA_STORE_TOKEN: InjectionToken<IStore>;
@@ -172,7 +172,7 @@ declare class AuthJWTGuardService {
     private readonly srv;
     process(url?: string): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<AuthJWTGuardService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AuthJWTGuardService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 /**
  * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
@@ -271,7 +271,7 @@ declare class AuthSimpleGuardService {
     private readonly srv;
     process(url?: string): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<AuthSimpleGuardService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AuthSimpleGuardService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 /**
  * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
@@ -349,7 +349,7 @@ declare class TokenService implements ITokenService, OnDestroy {
     private cleanRefresh;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TokenService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TokenService>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 /**

@@ -24,7 +24,7 @@ declare class G2Service implements OnDestroy {
     get notify(): Observable<void>;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2Service, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<G2Service>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDestroy {

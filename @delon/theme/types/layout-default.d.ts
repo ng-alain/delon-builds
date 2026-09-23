@@ -101,7 +101,7 @@ declare class LayoutDefaultService {
      */
     toggleCollapsed(status?: boolean): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultService, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<LayoutDefaultService>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
 }
 
 declare class LayoutDefaultComponent {
