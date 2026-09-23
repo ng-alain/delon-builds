@@ -2,8 +2,8 @@
 browser/package.json
 array/package.json
 config/package.json
-decorator/package.json
 date-time/package.json
+decorator/package.json
 form/package.json
 format/package.json
 math/package.json
@@ -11,5 +11,5 @@ other/package.json
 pipes/package.json
 token/package.json
 pipes/currency/package.json
-pipes/format/package.json
 pipes/filter/package.json
+pipes/format/package.json

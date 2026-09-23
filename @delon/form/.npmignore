@@ -1,8 +1,8 @@
 # Nested package.json's are only needed for development.
 widgets/autocomplete/package.json
 widgets/cascader/package.json
-widgets/mention/package.json
 widgets/color/package.json
+widgets/mention/package.json
 widgets/qr-code/package.json
 widgets/rate/package.json
 widgets/segmented/package.json

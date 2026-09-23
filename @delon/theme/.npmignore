@@ -1,5 +1,5 @@
 # Nested package.json's are only needed for development.
-layout-blank/package.json
 layout-default/package.json
+layout-blank/package.json
 setting-drawer/package.json
 theme-btn/package.json
