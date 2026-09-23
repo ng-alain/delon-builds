@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { ViewEncapsulation, Component, NgModule } from '@angular/core';
+import { ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NuMonacoEditorComponent } from '@ng-util/monaco-editor';
@@ -10,12 +10,10 @@ class MonacoEditorWidget extends ControlUIWidget {
     static KEY = 'monaco-editor';
     _change(value) {
         this.setValue(value);
-        if (this.ui.change)
-            this.ui.change(value);
+        this.ui.change?.(value);
     }
     _event(ev) {
-        if (this.ui.event)
-            this.ui.event(ev);
+        this.ui.event?.(ev);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: MonacoEditorWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: MonacoEditorWidget, isStandalone: true, selector: "sf-widget-monaco-editor", usesInheritance: true, ngImport: i0, template: `
@@ -40,7 +38,7 @@ class MonacoEditorWidget extends ControlUIWidget {
         (event)="_event($event)"
       />
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: NuMonacoEditorComponent, selector: "nu-monaco-editor", inputs: ["placeholder", "model", "autoFormat", "maxHeight", "minHeight"], exportAs: ["nuMonacoEditor"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: NuMonacoEditorComponent, selector: "nu-monaco-editor", inputs: ["placeholder", "model", "autoFormat", "maxHeight", "minHeight"], exportAs: ["nuMonacoEditor"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: MonacoEditorWidget, decorators: [{
             type: Component,
@@ -69,6 +67,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       />
     </sf-item-wrap>
   `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NuMonacoEditorComponent]
                 }]

@@ -101,7 +101,7 @@ interface SFTimeWidgetSchema extends SFUISchemaItem {
 declare class TimeWidget extends ControlUIWidget<SFTimeWidgetSchema> implements OnInit {
     static readonly KEY = "time";
     private valueFormat;
-    displayValue: Date | null;
+    protected readonly displayValue: i0.WritableSignal<Date | null>;
     i: NzSafeAny;
     ngOnInit(): void;
     reset(value: SFValue): void;

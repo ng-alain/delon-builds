@@ -1,8 +1,8 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { ViewChild, ViewEncapsulation, Component, NgModule } from '@angular/core';
+import { signal, viewChild, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
-import { FormsModule, NgModel } from '@angular/forms';
+import { NgModel, FormsModule } from '@angular/forms';
 import { debounceTime, startWith, mergeMap, map, takeUntil, of } from 'rxjs';
 import * as i1$1 from '@delon/form';
 import { ControlUIWidget, toBool, getEnum, getCopyEnum, DelonFormModule } from '@delon/form';
@@ -13,20 +13,25 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 
 class AutoCompleteWidget extends ControlUIWidget {
     static KEY = 'autocomplete';
-    i = {};
-    list;
-    typing = '';
-    ngModel;
-    filterOption;
-    isAsync = false;
-    fixData = [];
+    i = signal({}, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "i" }] : /* istanbul ignore next */ []));
+    list = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "list" }] : /* istanbul ignore next */ []));
+    typing = signal('', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "typing" }] : /* istanbul ignore next */ []));
+    ngModel = viewChild.required(NgModel, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "ngModel" }] : /* istanbul ignore next */ []));
+    filterOption = signal((i, o) => (o.label ?? '').toLowerCase().indexOf((i ?? '').toLowerCase()) > -1, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "filterOption" }] : /* istanbul ignore next */ []));
+    isAsync = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "isAsync" }] : /* istanbul ignore next */ []));
+    fixData = signal([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "fixData" }] : /* istanbul ignore next */ []));
     updateValue(item) {
-        this.typing = item.nzLabel;
+        this.typing.set(item.nzLabel);
         const data = item.nzValue;
         this.setValue(data.value);
-        if (this.ui.change) {
-            this.ui.change(item, data);
-        }
+        this.ui.change?.(item, data);
     }
     _setValue(item) {
         let val = item.toString();
@@ -36,39 +41,39 @@ class AutoCompleteWidget extends ControlUIWidget {
         this.setValue(val);
     }
     afterViewInit() {
-        const { backfill, defaultActiveFirstOption, nzWidth, filterOption, asyncData, compareWith } = this.ui;
-        this.i = {
+        const { backfill, defaultActiveFirstOption, nzWidth, filterOption: uiFilterOption, asyncData, compareWith } = this.ui;
+        this.i.set({
             backfill: toBool(backfill, false),
             defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
             width: nzWidth ?? undefined,
             compareWith: compareWith ?? ((o1, o2) => o1 === o2)
-        };
-        let filterOptionValue = filterOption == null ? true : filterOption;
+        });
+        let filterOptionValue = uiFilterOption == null ? true : uiFilterOption;
         if (typeof filterOptionValue === 'boolean') {
             filterOptionValue = (input, option) => option.label.toLowerCase().indexOf((input ?? '').toLowerCase()) > -1;
         }
-        this.filterOption = filterOptionValue;
-        this.isAsync = !!asyncData;
+        this.filterOption.set(filterOptionValue);
+        this.isAsync.set(!!asyncData);
         const orgTime = +(this.ui.debounceTime ?? 0);
-        const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-        this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), mergeMap(input => (this.isAsync ? asyncData(input) : this.filterData(input))), map(res => getEnum(res, null, this.schema.readOnly)));
+        const time = Math.max(0, this.isAsync() ? Math.max(50, orgTime) : orgTime);
+        this.list.set(this.ngModel().valueChanges.pipe(debounceTime(time), startWith(''), mergeMap(input => (this.isAsync() ? asyncData(input) : this.filterData(input))), map(res => getEnum(res, null, this.schema.readOnly))));
     }
     reset(value) {
-        if (this.isAsync) {
+        if (this.isAsync()) {
             this.ui.asyncData(value)
                 .pipe(takeUntil(this.sfItemComp.destroy$), map(res => getEnum(res, null, this.schema.readOnly)))
                 .subscribe(data => {
-                this.typing = data.find(w => w.value === this.value)?.label ?? '';
+                this.typing.set(data.find(w => w.value === this.value)?.label ?? '');
             });
             return;
         }
-        this.typing = value;
+        this.typing.set(value);
         switch (this.ui.type) {
             case 'email':
-                this.fixData = getCopyEnum(this.schema.enum ?? this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
+                this.fixData.set(getCopyEnum(this.schema.enum ?? this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly));
                 break;
             default:
-                this.fixData = getCopyEnum(this.schema.enum, value, this.schema.readOnly);
+                this.fixData.set(getCopyEnum(this.schema.enum, value, this.schema.readOnly));
                 break;
         }
     }
@@ -76,103 +81,113 @@ class AutoCompleteWidget extends ControlUIWidget {
         switch (this.ui.type) {
             case 'email':
                 return this.addEmailSuffix(input);
-            default:
-                return of(this.fixData.filter(option => this.filterOption(input, option)));
+            default: {
+                const filterFn = this.filterOption();
+                return of(this.fixData().filter(option => filterFn(input, option)));
+            }
         }
     }
     addEmailSuffix(value) {
         const res = !value || typeof value !== 'string' || value?.indexOf('@') !== -1
             ? []
-            : this.fixData.map(domain => `${value}@${domain.label}`);
+            : this.fixData().map(domain => `${value}@${domain.label}`);
         return of(res);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: AutoCompleteWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: AutoCompleteWidget, isStandalone: true, selector: "sf-autocomplete", viewQueries: [{ propertyName: "ngModel", first: true, predicate: NgModel, descendants: true }], usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <input
-      nz-input
-      [nzAutocomplete]="auto"
-      [attr.id]="id"
-      [disabled]="disabled"
-      [attr.disabled]="disabled"
-      [nzSize]="ui.size!"
-      [ngModel]="typing"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="_setValue($event)"
-      [attr.maxLength]="schema.maxLength ?? null"
-      [attr.placeholder]="ui.placeholder"
-      autocomplete="off"
-    />
-    <nz-autocomplete
-      #auto
-      [nzBackfill]="i.backfill"
-      [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
-      [nzWidth]="i.width"
-      [nzOverlayStyle]="ui.overlayStyle ?? {}"
-      [nzOverlayClassName]="ui.overlayClassName ?? ''"
-      [compareWith]="i.compareWith"
-      (selectionChange)="updateValue($event)"
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: AutoCompleteWidget, isStandalone: true, selector: "sf-autocomplete", viewQueries: [{ propertyName: "ngModel", first: true, predicate: NgModel, descendants: true, isSignal: true }], usesInheritance: true, ngImport: i0, template: `
+    @let i = this.i();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @for (i of list | async; track i) {
-        <nz-auto-option [nzValue]="i" [nzLabel]="i.label" [nzDisabled]="i.disabled"> {{ i.label }} </nz-auto-option>
-      }
-    </nz-autocomplete>
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzInputModule }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "ngmodule", type: NzAutocompleteModule }, { kind: "component", type: i4.NzAutocompleteComponent, selector: "nz-autocomplete", inputs: ["nzWidth", "nzOverlayClassName", "nzOverlayStyle", "nzDefaultActiveFirstOption", "nzBackfill", "nzDropdownMatchSelectWidth", "compareWith", "nzDataSource"], outputs: ["selectionChange"], exportAs: ["nzAutocomplete"] }, { kind: "component", type: i4.NzAutocompleteOptionComponent, selector: "nz-auto-option", inputs: ["nzValue", "nzLabel", "nzDisabled"], outputs: ["selectionChange", "mouseEntered"], exportAs: ["nzAutoOption"] }, { kind: "directive", type: i4.NzAutocompleteTriggerDirective, selector: "input[nzAutocomplete], textarea[nzAutocomplete]", inputs: ["nzAutocomplete", "nzAutocompleteConnectedTo"], exportAs: ["nzAutocompleteTrigger"] }, { kind: "pipe", type: AsyncPipe, name: "async" }], encapsulation: i0.ViewEncapsulation.None });
+      <input
+        nz-input
+        [nzAutocomplete]="auto"
+        [attr.id]="id"
+        [disabled]="disabled"
+        [attr.disabled]="disabled"
+        [nzSize]="ui.size!"
+        [ngModel]="typing()"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="_setValue($event)"
+        [attr.maxLength]="schema.maxLength ?? null"
+        [attr.placeholder]="ui.placeholder"
+        autocomplete="off"
+      />
+      <nz-autocomplete
+        #auto
+        [nzBackfill]="i.backfill"
+        [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
+        [nzWidth]="i.width"
+        [nzOverlayStyle]="ui.overlayStyle ?? {}"
+        [nzOverlayClassName]="ui.overlayClassName ?? ''"
+        [compareWith]="i.compareWith"
+        (selectionChange)="updateValue($event)"
+      >
+        @for (item of list() | async; track item) {
+          <nz-auto-option [nzValue]="item" [nzLabel]="item.label" [nzDisabled]="item.disabled">
+            {{ item.label }}
+          </nz-auto-option>
+        }
+      </nz-autocomplete>
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzInputModule }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "ngmodule", type: NzAutocompleteModule }, { kind: "component", type: i4.NzAutocompleteComponent, selector: "nz-autocomplete", inputs: ["nzWidth", "nzOverlayClassName", "nzOverlayStyle", "nzDefaultActiveFirstOption", "nzBackfill", "nzDropdownMatchSelectWidth", "compareWith", "nzDataSource"], outputs: ["selectionChange"], exportAs: ["nzAutocomplete"] }, { kind: "component", type: i4.NzAutocompleteOptionComponent, selector: "nz-auto-option", inputs: ["nzValue", "nzLabel", "nzDisabled"], outputs: ["selectionChange", "mouseEntered"], exportAs: ["nzAutoOption"] }, { kind: "directive", type: i4.NzAutocompleteTriggerDirective, selector: "input[nzAutocomplete], textarea[nzAutocomplete]", inputs: ["nzAutocomplete", "nzAutocompleteConnectedTo"], exportAs: ["nzAutocompleteTrigger"] }, { kind: "pipe", type: AsyncPipe, name: "async" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: AutoCompleteWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-autocomplete',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <input
-      nz-input
-      [nzAutocomplete]="auto"
-      [attr.id]="id"
-      [disabled]="disabled"
-      [attr.disabled]="disabled"
-      [nzSize]="ui.size!"
-      [ngModel]="typing"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="_setValue($event)"
-      [attr.maxLength]="schema.maxLength ?? null"
-      [attr.placeholder]="ui.placeholder"
-      autocomplete="off"
-    />
-    <nz-autocomplete
-      #auto
-      [nzBackfill]="i.backfill"
-      [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
-      [nzWidth]="i.width"
-      [nzOverlayStyle]="ui.overlayStyle ?? {}"
-      [nzOverlayClassName]="ui.overlayClassName ?? ''"
-      [compareWith]="i.compareWith"
-      (selectionChange)="updateValue($event)"
+                    template: `
+    @let i = this.i();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @for (i of list | async; track i) {
-        <nz-auto-option [nzValue]="i" [nzLabel]="i.label" [nzDisabled]="i.disabled"> {{ i.label }} </nz-auto-option>
-      }
-    </nz-autocomplete>
-  </sf-item-wrap>`,
+      <input
+        nz-input
+        [nzAutocomplete]="auto"
+        [attr.id]="id"
+        [disabled]="disabled"
+        [attr.disabled]="disabled"
+        [nzSize]="ui.size!"
+        [ngModel]="typing()"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="_setValue($event)"
+        [attr.maxLength]="schema.maxLength ?? null"
+        [attr.placeholder]="ui.placeholder"
+        autocomplete="off"
+      />
+      <nz-autocomplete
+        #auto
+        [nzBackfill]="i.backfill"
+        [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
+        [nzWidth]="i.width"
+        [nzOverlayStyle]="ui.overlayStyle ?? {}"
+        [nzOverlayClassName]="ui.overlayClassName ?? ''"
+        [compareWith]="i.compareWith"
+        (selectionChange)="updateValue($event)"
+      >
+        @for (item of list() | async; track item) {
+          <nz-auto-option [nzValue]="item" [nzLabel]="item.label" [nzDisabled]="item.disabled">
+            {{ item.label }}
+          </nz-auto-option>
+        }
+      </nz-autocomplete>
+    </sf-item-wrap>
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [AsyncPipe, FormsModule, DelonFormModule, NzInputModule, NzAutocompleteModule]
                 }]
-        }], propDecorators: { ngModel: [{
-                type: ViewChild,
-                args: [NgModel, { static: false }]
-            }] } });
+        }], propDecorators: { ngModel: [{ type: i0.ViewChild, args: [i0.forwardRef(() => NgModel), { isSignal: true }] }] } });
 
 class AutoCompleteWidgetModule {
     constructor(widgetRegistry) {
