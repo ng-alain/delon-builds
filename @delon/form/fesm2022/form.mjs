@@ -3,7 +3,7 @@ import * as i0 from '@angular/core';
 import { signal, computed, afterNextRender, Injectable, inject, NgZone, input, viewChild, ViewContainerRef, effect, ViewEncapsulation, ChangeDetectionStrategy, Component, ElementRef, Renderer2, numberAttribute, Directive, booleanAttribute, model, linkedSignal, output, Injector, TemplateRef, ChangeDetectorRef, DestroyRef, NgModule, provideEnvironmentInitializer, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
-import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, merge, filter, skip, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
+import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, merge, filter, skip, takeUntil, debounceTime, switchMap, catchError, timer, take } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
@@ -752,6 +752,7 @@ class FormProperty {
         }
     }
     // #endregion
+    /** 更新 widget 反馈状态：写 `ui.feedback`（模板类名），并推给 `NzFormStatusService`（与 `sf-item-wrap` 的 `effect` 同一通道） */
     updateFeedback(status = '') {
         this.ui.feedback = status;
         this.widget?.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
@@ -1247,6 +1248,7 @@ class SFItemComponent {
         this.formProperty().widget = widget;
     }
     ngOnInit() {
+        // `refreshSchema()` 会通过 `TerminatorService` 通知旧属性树上的 widget 容器清理
         this.terminator.onDestroy.subscribe(() => this.ngOnDestroy());
     }
     ngOnDestroy() {
@@ -1389,6 +1391,11 @@ class SFComponent {
     set _valid(value) {
         this._valid$.set(value);
     }
+    /**
+     * Whether the form is valid
+     *
+     * 表单是否有效
+     */
     get valid() {
         return this._valid$();
     }
@@ -1532,11 +1539,6 @@ class SFComponent {
     formError = output();
     // #endregion
     /**
-     * Whether the form is valid
-     *
-     * 表单是否有效
-     */
-    /**
      * The value of the form
      *
      * 表单值
@@ -1662,7 +1664,9 @@ class SFComponent {
         const { definitions } = _schema;
         // 重置折叠检测状态
         this._hasCollapse.set(false);
+        // 递归展开一层 schema：为每个属性算出最终 ui 写入 `uiRes['$key']`，并就地修正 schema
         const inFn = (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) => {
+            // 供下面的 `hidden` 分支剔除，先保证 `required` 存在
             if (!Array.isArray(schema.required))
                 schema.required = [];
             Object.keys(schema.properties).forEach(key => {
@@ -1676,7 +1680,7 @@ class SFComponent {
                 const ui = {
                     ...this._defUi,
                     ...parentUiSchema,
-                    // 忽略部分会引起呈现的属性
+                    // 这四项只对当前层有意义，从父级继承会误伤子字段（如父级 `hidden` 会隐藏所有子字段），固定清空
                     visibleIf: undefined,
                     hidden: undefined,
                     optional: undefined,
@@ -1689,6 +1693,7 @@ class SFComponent {
                         : null),
                     ...curUi
                 };
+                // `$` 开头的键属于子级，不属于当前 widget 的 ui
                 Object.keys(ui)
                     .filter(key => key.startsWith(uiKeyPrefix))
                     .forEach(key => delete ui[key]);
@@ -1727,6 +1732,8 @@ class SFComponent {
                     ui.spanLabel = null;
                     ui.spanControl = null;
                 }
+                // 区间日期：`ui.end` 指向的结束字段不出现在表单里，改为隐藏并复用 date widget，
+                // 整个区间由起始端渲染；schema 中找不到该字段时退化为单值日期
                 if (ui.widget === 'date' && ui.end != null) {
                     const dateEndProperty = schema.properties[ui.end];
                     if (dateEndProperty) {
@@ -1781,12 +1788,14 @@ class SFComponent {
                 uiRes[uiKey] = ui;
                 delete property.ui;
                 if (ui.hidden === true) {
+                    // 隐藏字段不参与必填校验
                     const idx = schema.required.indexOf(key);
                     if (idx !== -1) {
                         schema.required.splice(idx, 1);
                     }
                 }
                 if (property.items) {
+                    // 数组项：项级 ui 收在 `$items` 上，并以 item 的 schema 作为下一层继续展开
                     ui.$items = {
                         ...property.items.ui,
                         ...uiSchema[uiKey],
@@ -1796,12 +1805,14 @@ class SFComponent {
                     delete property.items.ui;
                 }
                 if (property.properties && Object.keys(property.properties).length) {
+                    // 对象子属性：以当前层的 ui 作为父级 ui 继续展开
                     inFn(property, schema, uiSchema[uiKey] ?? {}, ui, ui);
                 }
             });
         };
         if (this._uiValue$() == null)
             this._uiValue$.set({});
+        // 默认 ui 的合并顺序（后写覆盖先写）：options 三个字段的初值 → `options.ui` → schema 的 `ui` → `ui['*']`（通配默认值）
         this._defUi = {
             onlyVisual: this.options.onlyVisual,
             size: this.options.size,
@@ -1817,10 +1828,10 @@ class SFComponent {
         if (this.layout() === 'inline') {
             delete this._defUi.grid;
         }
-        // root
         this._ui = { ...this._defUi };
         inFn(_schema, _schema, this._uiValue$(), this._uiValue$(), this._ui);
-        // cond
+        // 把 JSON Schema 的 `if/then/else` 编译成子字段的 `visibleIf`：`then.required` 的字段在条件
+        // 成立时可见，`else.required` 的字段在条件不成立时可见；两边的 `required` 同时合并进当前层
         resolveIfSchema(_schema, this._ui);
         this._schema = _schema;
         delete _schema.ui;
@@ -2358,6 +2369,7 @@ class ArrayWidget extends ArrayLayoutWidget {
         this.addType = addType ?? 'dashed';
         this.removeTitle = removable === false ? null : (removeTitle ?? this.l.removeText);
     }
+    /** 增删后的统一收尾：`onlySelf: false` 让变更沿父链传播；默认不抛 `valueChanges`，删除时才显式打开并带上路径 */
     reValid(options) {
         this.formProperty.updateValueAndValidity({
             onlySelf: false,
@@ -2372,6 +2384,7 @@ class ArrayWidget extends ArrayLayoutWidget {
         this.ui.add?.(property);
     }
     removeItem(index) {
+        // 必须在删除前取下标的 path：`remove()` 会把后续兄弟节点重新编号
         const updatePath = this.formProperty.properties[index].path;
         this.formProperty.remove(index);
         this.reValid({ updatePath, emitValueEvent: true });
@@ -2838,6 +2851,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                 }]
         }] });
 
+/** 自定义模板 widget：模板里的 `ui._render` 由 `SFTemplateDirective` 注册，经 `SFComponent.attachCustomRender()` 注入 */
 class CustomWidget extends ControlUIWidget {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: CustomWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: CustomWidget, isStandalone: false, selector: "sf-custom", usesInheritance: true, ngImport: i0, template: `
@@ -3294,6 +3308,7 @@ class NumberWidget extends ControlUIWidget {
     ngOnInit() {
         const { minimum, exclusiveMinimum, maximum, exclusiveMaximum, multipleOf, type } = this.schema;
         this.step = multipleOf ?? 1;
+        // `exclusiveMinimum` / `exclusiveMaximum` 的语义是「不含边界」，这里按 ± 一个 step 收敛到最近的可选值
         if (typeof minimum !== 'undefined') {
             this.min = exclusiveMinimum ? minimum + this.step : minimum;
         }
@@ -3306,6 +3321,7 @@ class NumberWidget extends ControlUIWidget {
             this.step = Math.trunc(this.step);
         }
         const ui = this.ui;
+        // `prefix` 与 `unit` 写的是同一组 formatter/parser，同时配置时 `unit` 覆盖 `prefix`
         if (ui.prefix != null) {
             ui.formatter = value => (value == null ? '' : `${ui.prefix} ${value}`);
             ui.parser = value => +value.replace(`${ui.prefix} `, '');
@@ -3423,6 +3439,7 @@ class ObjectWidget extends ObjectLayoutWidget {
         this.showExpand = toBool(ui.showExpand, true);
         this.expand.set(toBool(ui.expand, true));
         this.type = type ?? 'default';
+        // 默认渲染下只有「非根字段、父级不是数组、且显式 showTitle === true」才用 schema.title 作标题
         if (this.type === 'card' ||
             (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
             this.title = this.schema.title;
@@ -3431,6 +3448,7 @@ class ObjectWidget extends ObjectLayoutWidget {
         const list = [];
         for (const key of formProperty.propertiesId) {
             const property = formProperty.properties[key];
+            // `show` 只看 `ui.hidden === false`（未显式设置即隐藏），与动态的 `property.visible` 是两个来源
             const item = {
                 property,
                 grid: property.ui.grid ?? grid ?? {},
@@ -3442,6 +3460,7 @@ class ObjectWidget extends ObjectLayoutWidget {
         this.list = list;
     }
     changeExpand() {
+        // 标题上的点击始终绑定，`showExpand` 为 false 时只能在这里拦截
         if (!this.showExpand) {
             return;
         }
@@ -3742,6 +3761,8 @@ class SelectWidget extends ControlUIWidget {
         };
         const onSearch = this.ui.onSearch;
         if (onSearch) {
+            // 订阅随 `sf-item` 销毁结束：widget 会随 `ui.widget` 变化重建，旧搜索不能再写回
+            // `catchError(() => [])` 必须留在管道内，否则一次失败会终止整条订阅、后续搜索全部失效
             this.search$
                 .pipe(takeUntil(this.sfItemComp.destroy$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime ?? 300), switchMap(text => onSearch(text)), catchError(() => []))
                 .subscribe(list => {
@@ -3953,9 +3974,13 @@ class StringWidget extends ControlUIWidget {
             this.type = 'addon';
         }
         if (autofocus === true) {
-            setTimeout(() => {
-                this.injector.get(ElementRef).nativeElement.querySelector(`#${this.id}`).focus();
-            }, 20);
+            // `ngOnInit` 时输入框尚未渲染：等一拍再按 id 聚焦；widget 在这之前被销毁则不再执行
+            timer(20)
+                .pipe(takeUntil(this.sfItemComp.destroy$), take(1))
+                .subscribe(() => {
+                const root = this.injector.get(ElementRef).nativeElement;
+                root.querySelector(`#${this.id}`).focus();
+            });
         }
         this.initChange();
     }
@@ -4134,6 +4159,7 @@ class TextWidget extends ControlUIWidget {
     text = signal('', /* @ts-ignore */
     ...(ngDevMode ? [{ debugName: "text" }] : /* istanbul ignore next */ []));
     ngOnInit() {
+        // 只做展示：置空 `_required`，否则空值会走必填校验、标题也带上必填标记
         this.ui._required = false;
         this.ui.html = toBool(this.ui.html, true);
     }

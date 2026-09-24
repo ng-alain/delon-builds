@@ -387,6 +387,7 @@ declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     get addDisabled(): boolean;
     get showRemove(): boolean;
     ngOnInit(): void;
+    /** 增删后的统一收尾：`onlySelf: false` 让变更沿父链传播；默认不抛 `valueChanges`，删除时才显式打开并带上路径 */
     private reValid;
     addItem(): void;
     removeItem(index: number): void;
@@ -1080,6 +1081,7 @@ declare class TextWidget extends ControlUIWidget<SFTextWidgetSchema> implements 
 
 type SFCustomWidgetSchema = SFUISchemaItem;
 
+/** 自定义模板 widget：模板里的 `ui._render` 由 `SFTemplateDirective` 注册，经 `SFComponent.attachCustomRender()` 注入 */
 declare class CustomWidget extends ControlUIWidget<SFCustomWidgetSchema> {
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<CustomWidget, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<CustomWidget, "sf-custom", never, {}, {}, never, never, false, never>;
@@ -1276,6 +1278,7 @@ declare abstract class FormProperty {
      */
     setVisible(visible: boolean): this;
     _bindVisibility(): void;
+    /** 更新 widget 反馈状态：写 `ui.feedback`（模板类名），并推给 `NzFormStatusService`（与 `sf-item-wrap` 的 `effect` 同一通道） */
     updateFeedback(status?: NzFormControlStatusType): void;
 }
 declare abstract class PropertyGroup extends FormProperty {
@@ -1682,6 +1685,11 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit
     readonly expanded: _angular_core.ModelSignal<boolean>;
     private readonly _valid$;
     set _valid(value: boolean);
+    /**
+     * Whether the form is valid
+     *
+     * 表单是否有效
+     */
     get valid(): boolean;
     private readonly _locale$;
     get locale(): LocaleData;
@@ -1768,11 +1776,6 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit
     readonly formSubmit: _angular_core.OutputEmitterRef<Record<string, unknown>>;
     readonly formReset: _angular_core.OutputEmitterRef<Record<string, unknown>>;
     readonly formError: _angular_core.OutputEmitterRef<ErrorData[]>;
-    /**
-     * Whether the form is valid
-     *
-     * 表单是否有效
-     */
     /**
      * The value of the form
      *

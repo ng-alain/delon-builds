@@ -1,6 +1,6 @@
 # Nested package.json's are only needed for development.
-bar/package.json
 card/package.json
+bar/package.json
 chart-echarts/package.json
 core/package.json
 custom/package.json
@@ -9,10 +9,10 @@ mini-area/package.json
 mini-bar/package.json
 mini-progress/package.json
 number-info/package.json
-radar/package.json
 pie/package.json
-tag-cloud/package.json
+radar/package.json
 single-bar/package.json
+tag-cloud/package.json
 timeline/package.json
 trend/package.json
 water-wave/package.json
