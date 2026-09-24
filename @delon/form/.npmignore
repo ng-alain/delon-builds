@@ -7,8 +7,8 @@ widgets/qr-code/package.json
 widgets/rate/package.json
 widgets/segmented/package.json
 widgets/slider/package.json
-widgets/time/package.json
 widgets/tag/package.json
+widgets/time/package.json
 widgets/transfer/package.json
 widgets/tree-select/package.json
 widgets/upload/package.json

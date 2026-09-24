@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { signal, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ViewEncapsulation, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i1$1 from '@delon/form';
@@ -10,8 +10,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 class TreeSelectWidget extends ControlUIWidget {
     static KEY = 'tree-select';
     i;
-    data = signal([], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    data = [];
     asyncData = false;
     ngOnInit() {
         const { ui } = this;
@@ -33,132 +32,131 @@ class TreeSelectWidget extends ControlUIWidget {
     }
     reset(value) {
         getData(this.schema, this.ui, value).subscribe(list => {
-            this.data.set(list);
+            this.data = list;
+            this.detectChanges(true);
         });
     }
     change(value) {
-        this.ui.change?.(value);
+        if (this.ui.change)
+            this.ui.change(value);
         this.setValue(value == null ? this.ui.clearValue : value);
     }
     openChange(status) {
-        this.ui.openChange?.(status);
+        if (this.ui.openChange)
+            this.ui.openChange(status);
     }
     expandChange(e) {
-        const ui = this.ui;
+        const { ui } = this;
         if (typeof ui.expandChange !== 'function')
             return;
         ui.expandChange(e).subscribe(res => {
-            e.node?.clearChildren();
-            e.node?.addChildren(res);
+            e.node.clearChildren();
+            e.node.addChildren(res);
+            this.detectChanges(true);
         });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TreeSelectWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: TreeSelectWidget, isStandalone: true, selector: "sf-tree-select", usesInheritance: true, ngImport: i0, template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-tree-select
-        [nzId]="id"
-        [nzAllowClear]="i.allowClear"
-        [nzPlaceHolder]="ui.placeholder!"
-        [nzDropdownStyle]="ui.dropdownStyle!"
-        [nzDropdownClassName]="ui.dropdownClassName"
-        [nzSize]="ui.size!"
-        [nzExpandedKeys]="ui.expandedKeys!"
-        [nzNotFoundContent]="ui.notFoundContent"
-        [nzMaxTagCount]="ui.maxTagCount!"
-        [nzMaxTagPlaceholder]="ui.maxTagPlaceholder ?? null"
-        [nzTreeTemplate]="ui.treeTemplate!"
-        [nzDisabled]="disabled"
-        [nzShowSearch]="i.showSearch"
-        [nzShowIcon]="i.showIcon"
-        [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
-        [nzMultiple]="i.multiple"
-        [nzHideUnMatched]="i.hideUnMatched"
-        [nzCheckable]="i.checkable"
-        [nzShowExpand]="i.showExpand"
-        [nzShowLine]="i.showLine"
-        [nzCheckStrictly]="i.checkStrictly"
-        [nzAsyncData]="asyncData"
-        [nzNodes]="$any(data())"
-        [nzDefaultExpandAll]="i.defaultExpandAll"
-        [nzDisplayWith]="i.displayWith!"
-        [ngModel]="value"
-        [ngModelOptions]="{ standalone: true }"
-        [nzVirtualHeight]="ui.virtualHeight!"
-        [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
-        [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
-        [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
-        [nzPlacement]="ui.placement ?? 'bottomLeft'"
-        [nzVariant]="ui.variant ?? 'outlined'"
-        [nzSuffixIcon]="ui.suffixIcon!"
-        (ngModelChange)="change($event)"
-        (nzExpandChange)="expandChange($event)"
-        (nzOpenChange)="openChange($event)"
-      />
-    </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTreeSelectModule }, { kind: "component", type: i3.NzTreeSelectComponent, selector: "nz-tree-select", inputs: ["nzId", "nzAllowClear", "nzShowExpand", "nzShowLine", "nzDropdownMatchSelectWidth", "nzCheckable", "nzHideUnMatched", "nzShowIcon", "nzShowSearch", "nzDisabled", "nzAsyncData", "nzMultiple", "nzDefaultExpandAll", "nzCheckStrictly", "nzVirtualItemSize", "nzVirtualMaxBufferPx", "nzVirtualMinBufferPx", "nzVirtualHeight", "nzExpandedIcon", "nzNotFoundContent", "nzNodes", "nzOpen", "nzSize", "nzVariant", "nzPlaceHolder", "nzDropdownStyle", "nzDropdownClassName", "nzBackdrop", "nzStatus", "nzPlacement", "nzExpandedKeys", "nzPrefix", "nzSuffixIcon", "nzDisplayWith", "nzMaxTagCount", "nzMaxTagPlaceholder", "nzTreeTemplate"], outputs: ["nzOpenChange", "nzCleared", "nzRemoved", "nzExpandChange", "nzTreeClick", "nzTreeCheckboxChange"], exportAs: ["nzTreeSelect"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: TreeSelectWidget, isStandalone: true, selector: "sf-tree-select", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-tree-select
+      [nzId]="id"
+      [nzAllowClear]="i.allowClear"
+      [nzPlaceHolder]="ui.placeholder!"
+      [nzDropdownStyle]="ui.dropdownStyle!"
+      [nzDropdownClassName]="ui.dropdownClassName"
+      [nzSize]="ui.size!"
+      [nzExpandedKeys]="ui.expandedKeys!"
+      [nzNotFoundContent]="ui.notFoundContent"
+      [nzMaxTagCount]="ui.maxTagCount!"
+      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder ?? null"
+      [nzTreeTemplate]="ui.treeTemplate!"
+      [nzDisabled]="disabled"
+      [nzShowSearch]="i.showSearch"
+      [nzShowIcon]="i.showIcon"
+      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
+      [nzMultiple]="i.multiple"
+      [nzHideUnMatched]="i.hideUnMatched"
+      [nzCheckable]="i.checkable"
+      [nzShowExpand]="i.showExpand"
+      [nzShowLine]="i.showLine"
+      [nzCheckStrictly]="i.checkStrictly"
+      [nzAsyncData]="asyncData"
+      [nzNodes]="$any(data)"
+      [nzDefaultExpandAll]="i.defaultExpandAll"
+      [nzDisplayWith]="i.displayWith!"
+      [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
+      [nzVirtualHeight]="ui.virtualHeight!"
+      [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
+      [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
+      [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
+      [nzPlacement]="ui.placement ?? 'bottomLeft'"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      [nzSuffixIcon]="ui.suffixIcon!"
+      (ngModelChange)="change($event)"
+      (nzExpandChange)="expandChange($event)"
+      (nzOpenChange)="openChange($event)"
+    />
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTreeSelectModule }, { kind: "component", type: i3.NzTreeSelectComponent, selector: "nz-tree-select", inputs: ["nzId", "nzAllowClear", "nzShowExpand", "nzShowLine", "nzDropdownMatchSelectWidth", "nzCheckable", "nzHideUnMatched", "nzShowIcon", "nzShowSearch", "nzDisabled", "nzAsyncData", "nzMultiple", "nzDefaultExpandAll", "nzCheckStrictly", "nzVirtualItemSize", "nzVirtualMaxBufferPx", "nzVirtualMinBufferPx", "nzVirtualHeight", "nzExpandedIcon", "nzNotFoundContent", "nzNodes", "nzOpen", "nzSize", "nzVariant", "nzPlaceHolder", "nzDropdownStyle", "nzDropdownClassName", "nzBackdrop", "nzStatus", "nzPlacement", "nzExpandedKeys", "nzPrefix", "nzSuffixIcon", "nzDisplayWith", "nzMaxTagCount", "nzMaxTagPlaceholder", "nzTreeTemplate"], outputs: ["nzOpenChange", "nzCleared", "nzRemoved", "nzExpandChange", "nzTreeClick", "nzTreeCheckboxChange"], exportAs: ["nzTreeSelect"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TreeSelectWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-tree-select',
-                    template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-tree-select
-        [nzId]="id"
-        [nzAllowClear]="i.allowClear"
-        [nzPlaceHolder]="ui.placeholder!"
-        [nzDropdownStyle]="ui.dropdownStyle!"
-        [nzDropdownClassName]="ui.dropdownClassName"
-        [nzSize]="ui.size!"
-        [nzExpandedKeys]="ui.expandedKeys!"
-        [nzNotFoundContent]="ui.notFoundContent"
-        [nzMaxTagCount]="ui.maxTagCount!"
-        [nzMaxTagPlaceholder]="ui.maxTagPlaceholder ?? null"
-        [nzTreeTemplate]="ui.treeTemplate!"
-        [nzDisabled]="disabled"
-        [nzShowSearch]="i.showSearch"
-        [nzShowIcon]="i.showIcon"
-        [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
-        [nzMultiple]="i.multiple"
-        [nzHideUnMatched]="i.hideUnMatched"
-        [nzCheckable]="i.checkable"
-        [nzShowExpand]="i.showExpand"
-        [nzShowLine]="i.showLine"
-        [nzCheckStrictly]="i.checkStrictly"
-        [nzAsyncData]="asyncData"
-        [nzNodes]="$any(data())"
-        [nzDefaultExpandAll]="i.defaultExpandAll"
-        [nzDisplayWith]="i.displayWith!"
-        [ngModel]="value"
-        [ngModelOptions]="{ standalone: true }"
-        [nzVirtualHeight]="ui.virtualHeight!"
-        [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
-        [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
-        [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
-        [nzPlacement]="ui.placement ?? 'bottomLeft'"
-        [nzVariant]="ui.variant ?? 'outlined'"
-        [nzSuffixIcon]="ui.suffixIcon!"
-        (ngModelChange)="change($event)"
-        (nzExpandChange)="expandChange($event)"
-        (nzOpenChange)="openChange($event)"
-      />
-    </sf-item-wrap>
-  `,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-tree-select
+      [nzId]="id"
+      [nzAllowClear]="i.allowClear"
+      [nzPlaceHolder]="ui.placeholder!"
+      [nzDropdownStyle]="ui.dropdownStyle!"
+      [nzDropdownClassName]="ui.dropdownClassName"
+      [nzSize]="ui.size!"
+      [nzExpandedKeys]="ui.expandedKeys!"
+      [nzNotFoundContent]="ui.notFoundContent"
+      [nzMaxTagCount]="ui.maxTagCount!"
+      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder ?? null"
+      [nzTreeTemplate]="ui.treeTemplate!"
+      [nzDisabled]="disabled"
+      [nzShowSearch]="i.showSearch"
+      [nzShowIcon]="i.showIcon"
+      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth"
+      [nzMultiple]="i.multiple"
+      [nzHideUnMatched]="i.hideUnMatched"
+      [nzCheckable]="i.checkable"
+      [nzShowExpand]="i.showExpand"
+      [nzShowLine]="i.showLine"
+      [nzCheckStrictly]="i.checkStrictly"
+      [nzAsyncData]="asyncData"
+      [nzNodes]="$any(data)"
+      [nzDefaultExpandAll]="i.defaultExpandAll"
+      [nzDisplayWith]="i.displayWith!"
+      [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
+      [nzVirtualHeight]="ui.virtualHeight!"
+      [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
+      [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
+      [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
+      [nzPlacement]="ui.placement ?? 'bottomLeft'"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      [nzSuffixIcon]="ui.suffixIcon!"
+      (ngModelChange)="change($event)"
+      (nzExpandChange)="expandChange($event)"
+      (nzOpenChange)="openChange($event)"
+    />
+  </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzTreeSelectModule]
                 }]

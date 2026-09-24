@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { signal, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ViewEncapsulation, Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import * as i1 from '@delon/form';
@@ -9,11 +9,9 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
 
 class TransferWidget extends ControlUIWidget {
     static KEY = 'transfer';
-    list = signal([], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "list" }] : /* istanbul ignore next */ []));
+    list = [];
     i;
-    _data = signal([], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "_data" }] : /* istanbul ignore next */ []));
+    _data = [];
     ngOnInit() {
         const { titles, operations, itemUnit, itemsUnit } = this.ui;
         this.i = {
@@ -24,110 +22,111 @@ class TransferWidget extends ControlUIWidget {
         };
     }
     reset(value) {
-        getData(this.schema, this.ui, null).subscribe(items => {
+        getData(this.schema, this.ui, null).subscribe(list => {
             let formData = value;
             if (!Array.isArray(formData)) {
                 formData = [formData];
             }
-            items.forEach((item) => {
+            list.forEach((item) => {
                 if (~formData.indexOf(item.value)) {
                     item.direction = 'right';
                 }
             });
-            this.list.set(items);
-            this._data.set(items.filter(w => w.direction === 'right'));
+            this.list = list;
+            this._data = list.filter(w => w.direction === 'right');
             this.notify();
+            this.detectChanges(true);
         });
     }
     notify() {
-        this.formProperty.setValue(this._data().map(i => i.value), false);
+        this.formProperty.setValue(this._data.map(i => i.value), false);
     }
     _canMove = (arg) => {
         return this.ui.canMove ? this.ui.canMove(arg) : of(arg.list);
     };
     _change(options) {
         if (options.to === 'right') {
-            this._data.set(this._data().concat(...options.list));
+            this._data = this._data.concat(...options.list);
         }
         else {
-            this._data.set(this._data().filter((w) => options.list.indexOf(w) === -1));
+            this._data = this._data.filter((w) => options.list.indexOf(w) === -1);
         }
-        this.ui.change?.(options);
+        if (this.ui.change)
+            this.ui.change(options);
         this.notify();
     }
     _searchChange(options) {
-        this.ui.searchChange?.(options);
+        if (this.ui.searchChange)
+            this.ui.searchChange(options);
+        this.detectChanges(true);
     }
     _selectChange(options) {
-        this.ui.selectChange?.(options);
+        if (this.ui.selectChange)
+            this.ui.selectChange(options);
+        this.detectChanges(true);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TransferWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: TransferWidget, isStandalone: true, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-transfer
-        [nzDisabled]="disabled"
-        [nzDataSource]="$any(list())"
-        [nzTitles]="i.titles"
-        [nzOperations]="i.operations"
-        [nzListStyle]="ui.listStyle!"
-        [nzItemUnit]="i.itemUnit"
-        [nzItemsUnit]="i.itemsUnit"
-        [nzShowSearch]="ui.showSearch"
-        [nzShowSelectAll]="ui.showSelectAll!"
-        [nzFilterOption]="ui.filterOption"
-        [nzSearchPlaceholder]="ui.searchPlaceholder"
-        [nzNotFoundContent]="ui.notFoundContent"
-        [nzOneWay]="ui.oneWay"
-        [nzCanMove]="_canMove"
-        (nzChange)="_change($event)"
-        (nzSearchChange)="_searchChange($event)"
-        (nzSelectChange)="_selectChange($event)"
-      />
-    </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTransferModule }, { kind: "component", type: i2.NzTransferComponent, selector: "nz-transfer", inputs: ["nzDisabled", "nzDataSource", "nzTitles", "nzOperations", "nzListStyle", "nzShowSelectAll", "nzItemUnit", "nzItemsUnit", "nzCanMove", "nzRenderList", "nzRender", "nzFooter", "nzShowSearch", "nzFilterOption", "nzSearchPlaceholder", "nzNotFoundContent", "nzTargetKeys", "nzSelectedKeys", "nzStatus", "nzOneWay"], outputs: ["nzChange", "nzSearchChange", "nzSelectChange"], exportAs: ["nzTransfer"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: TransferWidget, isStandalone: true, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-transfer
+      [nzDisabled]="disabled"
+      [nzDataSource]="$any(list)"
+      [nzTitles]="i.titles"
+      [nzOperations]="i.operations"
+      [nzListStyle]="ui.listStyle!"
+      [nzItemUnit]="i.itemUnit"
+      [nzItemsUnit]="i.itemsUnit"
+      [nzShowSearch]="ui.showSearch"
+      [nzShowSelectAll]="ui.showSelectAll!"
+      [nzFilterOption]="ui.filterOption"
+      [nzSearchPlaceholder]="ui.searchPlaceholder"
+      [nzNotFoundContent]="ui.notFoundContent"
+      [nzOneWay]="ui.oneWay"
+      [nzCanMove]="_canMove"
+      (nzChange)="_change($event)"
+      (nzSearchChange)="_searchChange($event)"
+      (nzSelectChange)="_selectChange($event)"
+    />
+  </sf-item-wrap> `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTransferModule }, { kind: "component", type: i2.NzTransferComponent, selector: "nz-transfer", inputs: ["nzDisabled", "nzDataSource", "nzTitles", "nzOperations", "nzListStyle", "nzShowSelectAll", "nzItemUnit", "nzItemsUnit", "nzCanMove", "nzRenderList", "nzRender", "nzFooter", "nzShowSearch", "nzFilterOption", "nzSearchPlaceholder", "nzNotFoundContent", "nzTargetKeys", "nzSelectedKeys", "nzStatus", "nzOneWay"], outputs: ["nzChange", "nzSearchChange", "nzSelectChange"], exportAs: ["nzTransfer"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TransferWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-transfer',
-                    template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-transfer
-        [nzDisabled]="disabled"
-        [nzDataSource]="$any(list())"
-        [nzTitles]="i.titles"
-        [nzOperations]="i.operations"
-        [nzListStyle]="ui.listStyle!"
-        [nzItemUnit]="i.itemUnit"
-        [nzItemsUnit]="i.itemsUnit"
-        [nzShowSearch]="ui.showSearch"
-        [nzShowSelectAll]="ui.showSelectAll!"
-        [nzFilterOption]="ui.filterOption"
-        [nzSearchPlaceholder]="ui.searchPlaceholder"
-        [nzNotFoundContent]="ui.notFoundContent"
-        [nzOneWay]="ui.oneWay"
-        [nzCanMove]="_canMove"
-        (nzChange)="_change($event)"
-        (nzSearchChange)="_searchChange($event)"
-        (nzSelectChange)="_selectChange($event)"
-      />
-    </sf-item-wrap>
-  `,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-transfer
+      [nzDisabled]="disabled"
+      [nzDataSource]="$any(list)"
+      [nzTitles]="i.titles"
+      [nzOperations]="i.operations"
+      [nzListStyle]="ui.listStyle!"
+      [nzItemUnit]="i.itemUnit"
+      [nzItemsUnit]="i.itemsUnit"
+      [nzShowSearch]="ui.showSearch"
+      [nzShowSelectAll]="ui.showSelectAll!"
+      [nzFilterOption]="ui.filterOption"
+      [nzSearchPlaceholder]="ui.searchPlaceholder"
+      [nzNotFoundContent]="ui.notFoundContent"
+      [nzOneWay]="ui.oneWay"
+      [nzCanMove]="_canMove"
+      (nzChange)="_change($event)"
+      (nzSearchChange)="_searchChange($event)"
+      (nzSelectChange)="_selectChange($event)"
+    />
+  </sf-item-wrap> `,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzTransferModule]
                 }]

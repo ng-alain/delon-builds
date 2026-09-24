@@ -1,6 +1,6 @@
 import { AlainSFConfig, AlainConfigService } from '@delon/util/config';
-import * as _angular_core from '@angular/core';
-import { Injector, OnInit, OnDestroy, TemplateRef, ViewContainerRef, ComponentRef, AfterViewInit, OnChanges, SimpleChange, SimpleChanges, ModuleWithProviders, EnvironmentProviders } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injector, OnInit, OnChanges, OnDestroy, TemplateRef, ViewContainerRef, ComponentRef, AfterViewInit, ChangeDetectorRef, EventEmitter, SimpleChange, SimpleChanges, ModuleWithProviders, EnvironmentProviders } from '@angular/core';
 import * as i20 from '@delon/theme';
 import { LocaleData } from '@delon/theme';
 import { NzSafeAny, NzVariant, NzSizeLDSType, NzSizeDSType, NgClassType, NgStyleInterface } from 'ng-zorro-antd/core/types';
@@ -258,8 +258,8 @@ declare abstract class SchemaValidatorFactory {
         ingoreKeywords: string[];
         debug: boolean;
     }): (value: SFValue) => ErrorData[];
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SchemaValidatorFactory, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SchemaValidatorFactory, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     private readonly ngZone;
@@ -271,8 +271,8 @@ declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
         ingoreKeywords: string[];
         debug: boolean;
     }): (value: SFValue) => ErrorData[];
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<AjvSchemaValidatorFactory, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AjvSchemaValidatorFactory, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare class FormPropertyFactory {
@@ -294,6 +294,7 @@ declare class ArrayProperty extends PropertyGroup {
     _updateValue(): void;
     private addProperty;
     private resetProperties;
+    private clearErrors;
     add(formData: Record<string, unknown>): FormProperty;
     remove(index: number): void;
 }
@@ -310,20 +311,21 @@ declare class ObjectProperty extends PropertyGroup {
     _updateValue(): void;
 }
 
-declare class SFItemComponent implements OnInit, OnDestroy {
+declare class SFItemComponent implements OnInit, OnChanges, OnDestroy {
     private readonly widgetFactory;
     private readonly terminator;
+    private ref;
     readonly destroy$: Subject<void>;
     widget: Widget<FormProperty, SFUISchemaItem> | null;
-    readonly formProperty: _angular_core.InputSignal<FormProperty>;
-    readonly footer: _angular_core.InputSignal<TemplateRef<void> | null>;
-    private readonly container;
-    constructor();
+    formProperty: FormProperty;
+    footer: TemplateRef<void> | null;
+    private container;
     onWidgetInstanciated(widget: Widget<FormProperty, SFUISchemaItem>): void;
     ngOnInit(): void;
+    ngOnChanges(): void;
     ngOnDestroy(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SFItemComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SFItemComponent, "sf-item", ["sfItem"], { "formProperty": { "alias": "formProperty"; "required": true; "isSignal": true; }; "footer": { "alias": "footer"; "required": false; "isSignal": true; }; }, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SFItemComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFItemComponent, "sf-item", ["sfItem"], { "formProperty": { "alias": "formProperty"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; }, {}, never, never, false, never>;
 }
 
 type SFObjectWidgetRenderType = 'card' | 'default';
@@ -372,11 +374,11 @@ declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
     list: NzSafeAny[];
     title?: string;
     showExpand: boolean;
-    protected readonly expand: _angular_core.WritableSignal<boolean>;
+    expand: boolean;
     ngOnInit(): void;
     changeExpand(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ObjectWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ObjectWidget, "sf-object", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ObjectWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ObjectWidget, "sf-object", never, {}, {}, never, never, false, never>;
 }
 
 declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
@@ -387,12 +389,11 @@ declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     get addDisabled(): boolean;
     get showRemove(): boolean;
     ngOnInit(): void;
-    /** 增删后的统一收尾：`onlySelf: false` 让变更沿父链传播；默认不抛 `valueChanges`，删除时才显式打开并带上路径 */
     private reValid;
     addItem(): void;
     removeItem(index: number): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ArrayWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ArrayWidget, "sf-array", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ArrayWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ArrayWidget, "sf-array", never, {}, {}, never, never, false, never>;
 }
 
 interface SFArrayWidgetSchema extends SFUISchemaItem {
@@ -521,8 +522,8 @@ declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> impleme
     focus(e: FocusEvent): void;
     blur(e: FocusEvent): void;
     enter(e: Event): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<StringWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<StringWidget, "sf-string", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StringWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StringWidget, "sf-string", never, {}, {}, never, never, false, never>;
 }
 
 interface SFNumberWidgetSchema extends SFUISchemaItem {
@@ -605,8 +606,8 @@ declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> impleme
     _setValue(val: number): void;
     focus(): void;
     blur(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<NumberWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NumberWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never, false, never>;
 }
 
 interface SFDateWidgetSchema extends SFUISchemaItem {
@@ -721,7 +722,7 @@ declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements 
     private endFormat?;
     private flatRange;
     mode: string;
-    protected readonly displayValue: _angular_core.WritableSignal<Date | Date[] | null>;
+    displayValue: Date | Date[] | null;
     displayFormat: string;
     i: {
         allowClear: boolean;
@@ -734,8 +735,8 @@ declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements 
     _ok(value: NzSafeAny): void;
     private get endProperty();
     private setEnd;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<DateWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<DateWidget, "sf-date", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DateWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DateWidget, "sf-date", never, {}, {}, never, never, false, never>;
 }
 
 interface SFRadioWidgetSchema extends SFUISchemaItem {
@@ -759,12 +760,12 @@ interface SFRadioWidgetSchema extends SFUISchemaItem {
 }
 
 declare class RadioWidget extends ControlUIWidget<SFRadioWidgetSchema> {
-    protected readonly data: _angular_core.WritableSignal<SFSchemaEnum[]>;
-    protected readonly styleType: _angular_core.WritableSignal<boolean>;
+    data: SFSchemaEnum[];
+    styleType: boolean;
     reset(value: SFValue): void;
     _setValue(value: SFValue): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<RadioWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<RadioWidget, "sf-radio", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<RadioWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<RadioWidget, "sf-radio", never, {}, {}, never, never, false, never>;
 }
 
 interface SFCheckboxWidgetSchema extends SFUISchemaItem {
@@ -795,23 +796,21 @@ interface SFCheckboxWidgetSchema extends SFUISchemaItem {
 }
 
 declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSchema> {
-    protected readonly data: _angular_core.WritableSignal<SFSchemaEnum[]>;
-    protected readonly allChecked: _angular_core.WritableSignal<boolean>;
-    protected readonly indeterminate: _angular_core.WritableSignal<boolean>;
-    protected readonly grid_span: _angular_core.WritableSignal<number>;
-    protected readonly labelTitle: _angular_core.WritableSignal<string>;
-    protected readonly inited: _angular_core.WritableSignal<boolean>;
+    data: SFSchemaEnum[];
+    allChecked: boolean;
+    indeterminate: boolean;
+    grid_span: number;
+    labelTitle: string;
+    inited: boolean;
     reset(value: SFValue): void;
     _setValue(value: SFValue): void;
     notifySet(): void;
     groupInGridChange(values: SFValue[]): void;
     onAllChecked(): void;
     updateAllChecked(): this;
-    /** 元素级 `item.checked` 是就地修改的，用数组身份替换让 OnPush 视图刷新 */
-    private bumpData;
     private notifyChange;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<CheckboxWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CheckboxWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never, false, never>;
 }
 
 interface SFBooleanWidgetSchema extends SFUISchemaItem {
@@ -834,8 +833,8 @@ interface SFBooleanWidgetSchema extends SFUISchemaItem {
 }
 
 declare class BooleanWidget extends ControlUIWidget<SFBooleanWidgetSchema> {
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<BooleanWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<BooleanWidget, "sf-boolean", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<BooleanWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BooleanWidget, "sf-boolean", never, {}, {}, never, never, false, never>;
 }
 
 interface SFTextareaWidgetSchema extends SFUISchemaItem {
@@ -892,8 +891,8 @@ declare class TextareaWidget extends ControlUIWidget<SFTextareaWidgetSchema> imp
     change(val: string): void;
     focus(e: FocusEvent): void;
     blur(e: FocusEvent): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<TextareaWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<TextareaWidget, "sf-textarea", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TextareaWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextareaWidget, "sf-textarea", never, {}, {}, never, never, false, never>;
 }
 
 interface SFSelectWidgetSchema extends SFUISchemaItem {
@@ -1039,11 +1038,10 @@ interface SFSelectWidgetSchema extends SFUISchemaItem {
 declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> implements OnInit {
     private search$;
     i: SFSelectWidgetSchema;
-    protected readonly data: _angular_core.WritableSignal<SFSchemaEnum[]>;
-    protected readonly _value: _angular_core.WritableSignal<any>;
-    protected readonly loading: _angular_core.WritableSignal<boolean>;
-    /** 模板读取，且在异步 `checkGroup()` 中写入，必须是 signal 才能保证 OnPush 刷新 */
-    protected readonly hasGroup: _angular_core.WritableSignal<boolean>;
+    data: SFSchemaEnum[];
+    _value: NzSafeAny;
+    hasGroup: boolean;
+    loading: boolean;
     private checkGroup;
     ngOnInit(): void;
     reset(value: SFValue): void;
@@ -1052,8 +1050,8 @@ declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> impleme
     openChange(status: boolean): void;
     scrollToBottom(): void;
     onSearch(value: string): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SelectWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SelectWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never, false, never>;
 }
 
 interface SFTextWidgetSchema extends SFUISchemaItem {
@@ -1072,28 +1070,27 @@ interface SFTextWidgetSchema extends SFUISchemaItem {
 }
 
 declare class TextWidget extends ControlUIWidget<SFTextWidgetSchema> implements OnInit {
-    protected readonly text: _angular_core.WritableSignal<string>;
+    text: string;
     ngOnInit(): void;
     reset(value: SFValue): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<TextWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<TextWidget, "sf-text", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TextWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextWidget, "sf-text", never, {}, {}, never, never, false, never>;
 }
 
 type SFCustomWidgetSchema = SFUISchemaItem;
 
-/** 自定义模板 widget：模板里的 `ui._render` 由 `SFTemplateDirective` 注册，经 `SFComponent.attachCustomRender()` 注入 */
 declare class CustomWidget extends ControlUIWidget<SFCustomWidgetSchema> {
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<CustomWidget, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<CustomWidget, "sf-custom", never, {}, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CustomWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CustomWidget, "sf-custom", never, {}, {}, never, never, false, never>;
 }
 
 declare class SFTemplateDirective implements OnInit {
     private readonly table;
     private readonly templateRef;
-    readonly path: _angular_core.InputSignal<string>;
+    path: string;
     ngOnInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SFTemplateDirective, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<SFTemplateDirective, "[sf-template]", never, { "path": { "alias": "sf-template"; "required": true; "isSignal": true; }; }, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SFTemplateDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SFTemplateDirective, "[sf-template]", never, { "path": { "alias": "sf-template"; "required": false; }; }, {}, never, never, false, never>;
 }
 
 declare class WidgetRegistry {
@@ -1108,8 +1105,8 @@ declare class WidgetRegistry {
 declare class WidgetFactory {
     private readonly registry;
     createWidget(container: ViewContainerRef, type: string): ComponentRef<Widget<FormProperty, SFUISchemaItem>>;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<WidgetFactory, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<WidgetFactory, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 declare class NzWidgetRegistry extends WidgetRegistry {
@@ -1117,115 +1114,86 @@ declare class NzWidgetRegistry extends WidgetRegistry {
 }
 
 declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
-    /**
-     * 仅内部使用：在 `ngAfterViewInit` 的错误推送里强制刷新一次 widget 视图，
-     * 使 `[ngModel]` 的 model→view 写入（`writeValue`）落在同一个 tick 内。
-     *
-     * widget 的状态本身都会自行标脏——`ui`/`schema` 是响应式代理，局部字段与
-     * `showError`/`error` 是 signal——所以这是唯一需要手动刷新的一处。
-     */
-    private readonly cdr;
-    /** 错误订阅随 widget 自身销毁而结束：`ui.widget` 变化会让 `sf-item` 重建 widget */
-    private readonly destroyRef;
+    readonly cd: ChangeDetectorRef;
     readonly injector: Injector;
     readonly sfItemComp: SFItemComponent;
     readonly sfComp: SFComponent;
-    private readonly _formProperty$;
-    private readonly _schema$;
-    private readonly _ui$;
-    private readonly _id$;
-    private readonly _error$;
-    private readonly _showError$;
-    get formProperty(): T;
-    set formProperty(value: T);
-    get schema(): SFSchema;
-    set schema(value: SFSchema);
-    get ui(): UIT;
-    set ui(value: UIT);
-    get id(): string;
-    set id(value: string);
-    get error(): string | undefined;
-    set error(value: string | undefined);
-    get showError(): boolean;
-    set showError(value: boolean);
+    formProperty: T;
+    error?: string;
+    showError: boolean;
+    id: string;
+    schema: SFSchema;
+    ui: UIT;
     get cls(): NgClassType;
     get disabled(): boolean;
     get l(): LocaleData;
     get oh(): SFOptionalHelp;
     get dom(): DomSanitizer;
     get cleanValue(): boolean;
-    /**
-     * 是否显示错误：数组/对象这类布局 widget 为 `false`
-     *
-     * 它们的 `errorsChanges` 携带的是**子节点的聚合错误**，显示出来会和子字段行内的报错重复；
-     * 子节点的错误由它们各自的 widget 显示。
-     */
-    protected readonly displayError: boolean;
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
     get value(): NzSafeAny;
+    detectChanges(onlySelf?: boolean): void;
     abstract reset(value: SFValue): void;
     abstract afterViewInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<Widget<any, any>, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<Widget<any, any>, never, never, {}, {}, never, never, true, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<Widget<any, any>, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<Widget<any, any>, never, never, {}, {}, never, never, true, never>;
 }
 declare class ControlWidget extends Widget<FormProperty, SFUISchemaItem> {
     reset(_value: SFValue): void;
     afterViewInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ControlWidget, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<ControlWidget, never, never, {}, {}, never, never, true, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ControlWidget, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ControlWidget, never, never, {}, {}, never, never, true, never>;
 }
 declare class ControlUIWidget<UIT extends SFUISchemaItem> extends Widget<FormProperty, UIT> {
     reset(_value: SFValue): void;
     afterViewInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ControlUIWidget<any>, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<ControlUIWidget<any>, never, never, {}, {}, never, never, true, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ControlUIWidget<any>, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ControlUIWidget<any>, never, never, {}, {}, never, never, true, never>;
 }
-declare class ArrayLayoutWidget extends Widget<ArrayProperty, SFArrayWidgetSchema> {
-    protected readonly displayError = false;
+declare class ArrayLayoutWidget extends Widget<ArrayProperty, SFArrayWidgetSchema> implements AfterViewInit {
     reset(_value: SFValue): void;
     afterViewInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ArrayLayoutWidget, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<ArrayLayoutWidget, never, never, {}, {}, never, never, true, never>;
+    ngAfterViewInit(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ArrayLayoutWidget, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ArrayLayoutWidget, never, never, {}, {}, never, never, true, never>;
 }
-declare class ObjectLayoutWidget extends Widget<ObjectProperty, SFObjectWidgetSchema> {
-    protected readonly displayError = false;
+declare class ObjectLayoutWidget extends Widget<ObjectProperty, SFObjectWidgetSchema> implements AfterViewInit {
     reset(_value: SFValue): void;
     afterViewInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ObjectLayoutWidget, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<ObjectLayoutWidget, never, never, {}, {}, never, never, true, never>;
+    ngAfterViewInit(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ObjectLayoutWidget, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ObjectLayoutWidget, never, never, {}, {}, never, never, true, never>;
 }
 
 declare abstract class FormProperty {
     private injector;
     private _options;
-    private readonly _valueChanges;
-    private readonly _errorsChanges;
-    private readonly _visibilityChanges;
+    private _errors;
+    private _valueChanges;
+    private _errorsChanges;
+    private _visible;
+    private _visibilityChanges;
     private _root;
     private _parent;
+    _objErrors: Record<string, ErrorData[]>;
     schemaValidator: (value: SFValue) => ErrorData[];
     schema: SFSchema;
     ui: SFUISchema | SFUISchemaItemRun;
     formData: Record<string, unknown>;
+    _value: SFValue;
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
     propertyId?: string;
-    private readonly _valid$;
-    set _value(value: SFValue);
     constructor(injector: Injector, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: Record<string, unknown>, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
     get valueChanges(): BehaviorSubject<SFFormValueChange>;
     get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
     get type(): SFSchemaType;
     get parent(): PropertyGroup | null;
     get root(): PropertyGroup;
-    /** 表单值（读取时若处于响应式上下文则建立依赖） */
     get value(): SFValue;
-    /** 当前错误列表 */
     get errors(): ErrorData[] | null;
-    /** 是否可见 */
     get visible(): boolean;
-    /** 是否有效 */
     get valid(): boolean;
     get options(): AlainSFConfig;
     /**
@@ -1240,6 +1208,7 @@ declare abstract class FormProperty {
      * @param onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
      */
     abstract resetValue(value: SFValue, onlySelf: boolean): void;
+    cd(onlySelf?: boolean): void;
     /**
      * 更新值且校验数据
      */
@@ -1264,27 +1233,17 @@ declare abstract class FormProperty {
      * this.sf.getProperty('/name')?.setErrors(); // Clean error
      */
     setErrors(errors?: ErrorData | ErrorData[], emitFormat?: boolean): void;
-    /**
-     * 错误文案的本地化映射
-     *
-     * widget 已实例化时取它的 `l`；**widget 尚未实例化时回落到 `DelonLocaleService`**，
-     * 因此 `setErrors()` 不依赖 widget 是否已存在。
-     */
-    private _localeError;
-    private _collectChildErrors;
+    setParentAndPlatErrors(errors: ErrorData[], path: string): void;
     /**
      * Set the hide or display of widget
      * 设置小部件的隐藏或显示
      */
     setVisible(visible: boolean): this;
     _bindVisibility(): void;
-    /** 更新 widget 反馈状态：写 `ui.feedback`（模板类名），并推给 `NzFormStatusService`（与 `sf-item-wrap` 的 `effect` 同一通道） */
     updateFeedback(status?: NzFormControlStatusType): void;
 }
 declare abstract class PropertyGroup extends FormProperty {
-    private readonly _properties$;
-    get properties(): Record<string, FormProperty> | FormProperty[] | null;
-    set properties(value: Record<string, FormProperty> | FormProperty[] | null);
+    properties: Record<string, FormProperty> | FormProperty[] | null;
     getProperty(path: string): FormProperty | undefined;
     forEachChild(fn: (formProperty: FormProperty, str: string) => void): void;
     forEachChildRecursive(fn: (formProperty: FormProperty) => void): void;
@@ -1664,118 +1623,94 @@ interface ErrorSchema {
 }
 
 declare function useFactory(injector: Injector, schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
-declare class SFComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
+declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private readonly formPropertyFactory;
     private readonly terminator;
     private readonly dom;
+    private readonly cdr;
     private readonly localeSrv;
     private readonly aclSrv;
     private readonly i18nSrv;
     private readonly platform;
     private readonly cogSrv;
-    readonly options: AlainSFConfig;
     private _renders;
     private _item;
+    private _valid;
     private _defUi;
+    readonly options: AlainSFConfig;
     _inited: boolean;
+    locale: LocaleData;
+    rootProperty: FormProperty | null;
     _formData: Record<string, unknown>;
+    _btn: SFButton;
     _schema: SFSchema;
     _ui: SFUISchema;
-    readonly expandable: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly expanded: _angular_core.ModelSignal<boolean>;
-    private readonly _valid$;
-    set _valid(value: boolean);
-    /**
-     * Whether the form is valid
-     *
-     * 表单是否有效
-     */
-    get valid(): boolean;
-    private readonly _locale$;
-    get locale(): LocaleData;
-    set locale(value: LocaleData);
-    private readonly _rootProperty$;
-    get rootProperty(): FormProperty | null;
-    set rootProperty(value: FormProperty | null);
-    private readonly _btn$;
-    set _btn(value: SFButton);
+    readonly expandable: i0.InputSignalWithTransform<boolean, unknown>;
+    readonly expanded: i0.ModelSignal<boolean>;
     get btnGrid(): NzSafeAny;
     /** 表单布局，等同 `nzLayout`，默认：horizontal */
-    readonly layoutInput: _angular_core.InputSignal<SFLayout | undefined>;
-    readonly layout: _angular_core.WritableSignal<SFLayout>;
+    layout: SFLayout;
     /** JSON Schema */
-    readonly schemaInput: _angular_core.InputSignal<SFSchema | undefined>;
-    /**
-     * 输入侧的有效 schema：`refreshSchema(newSchema)` 可在内部替换它；
-     * 渲染用的仍是 `coverProperty()` 产出的 `_schema`
-     */
-    private readonly _schemaValue$;
+    schema: SFSchema;
     /** UI Schema */
-    readonly uiInput: _angular_core.InputSignal<SFUISchema | undefined>;
-    /**
-     * 输入侧的有效 ui：`refreshSchema(_, newUI)` 可在内部替换它；
-     * 渲染用的仍是 `coverProperty()` 产出的 `_ui`
-     */
-    private readonly _uiValue$;
+    ui: SFUISchema;
     /** 表单默认值 */
-    readonly formData: _angular_core.InputSignal<Record<string, any> | undefined>;
+    formData?: Record<string, NzSafeAny>;
     /**
      * 按钮
      * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器
      * - 值为 `none` 表示手动添加按钮，且不保留容器
      * - 使用 `spanLabelFixed` 固定标签宽度时，若无 `render.class` 则默认为居中状态
      */
-    readonly button: _angular_core.InputSignal<SFButton | "none" | null | undefined>;
+    button?: SFButton | 'none' | null;
     /**
      * 是否实时校验，默认：`true`
      * - `true` 每一次都校验
      * - `false` 提交时校验
      */
-    readonly liveValidateInput: _angular_core.InputSignal<unknown>;
-    readonly liveValidate: _angular_core.WritableSignal<boolean>;
-    /**
-     * 指定表单 `autocomplete` 值
-     *
-     * 未绑定时回落到全局配置 `options.autocomplete`
-     */
-    readonly autocompleteInput: _angular_core.InputSignal<"on" | "off" | undefined>;
-    readonly autocomplete: _angular_core.Signal<"on" | "off">;
+    liveValidate: boolean;
+    /** 指定表单 `autocomplete` 值 */
+    autocomplete: 'on' | 'off';
     /**
      * Whether to display error visuals immediately
      *
      * 是否立即显示错误视觉
      */
-    readonly firstVisualInput: _angular_core.InputSignal<unknown>;
-    readonly firstVisual: _angular_core.WritableSignal<boolean>;
+    firstVisual: boolean;
     /**
      * Whether to only display error visuals but not error text
      *
      * 是否只展示错误视觉不显示错误文本
      */
-    readonly onlyVisual: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly compact: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    onlyVisual: boolean;
+    compact: boolean;
     /**
      * Form default mode, will force override `layout`, `firstVisual`, `liveValidate` parameters
      *
      * 表单预设模式，会强制覆盖 `layout`，`firstVisual`，`liveValidate` 参数
      */
-    readonly mode: _angular_core.InputSignal<SFMode | undefined>;
-    /** 预设模式的级联：输入变化时（`ngOnChanges`）与按钮重建后（`coverButtonProperty`）都要应用 */
-    private _applyMode;
+    set mode(value: SFMode);
+    get mode(): SFMode;
+    private _mode;
     /**
      * Whether to load status，when `true` reset button is disabled status, submit button is loading status
      */
-    readonly loading: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly disabled: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly noColon: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly cleanValue: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly delayInput: _angular_core.InputSignal<unknown>;
-    readonly delay: _angular_core.WritableSignal<boolean>;
-    readonly formValueChange: _angular_core.OutputEmitterRef<SFValueChange>;
-    readonly formChange: _angular_core.OutputEmitterRef<Record<string, unknown>>;
-    readonly formSubmit: _angular_core.OutputEmitterRef<Record<string, unknown>>;
-    readonly formReset: _angular_core.OutputEmitterRef<Record<string, unknown>>;
-    readonly formError: _angular_core.OutputEmitterRef<ErrorData[]>;
+    loading: boolean;
+    disabled: boolean;
+    noColon: boolean;
+    cleanValue: boolean;
+    delay: boolean;
+    readonly formValueChange: EventEmitter<SFValueChange>;
+    readonly formChange: EventEmitter<Record<string, unknown>>;
+    readonly formSubmit: EventEmitter<Record<string, unknown>>;
+    readonly formReset: EventEmitter<Record<string, unknown>>;
+    readonly formError: EventEmitter<ErrorData[]>;
+    /**
+     * Whether the form is valid
+     *
+     * 表单是否有效
+     */
+    get valid(): boolean;
     /**
      * The value of the form
      *
@@ -1832,7 +1767,6 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit
     private coverProperty;
     private coverButtonProperty;
     ngOnInit(): void;
-    ngAfterViewInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
@@ -1874,46 +1808,56 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit
     reset(emit?: boolean): this;
     private cleanRootSub;
     ngOnDestroy(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SFComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "expandable": { "alias": "expandable"; "required": false; "isSignal": true; }; "expanded": { "alias": "expanded"; "required": false; "isSignal": true; }; "layoutInput": { "alias": "layout"; "required": false; "isSignal": true; }; "schemaInput": { "alias": "schema"; "required": false; "isSignal": true; }; "uiInput": { "alias": "ui"; "required": false; "isSignal": true; }; "formData": { "alias": "formData"; "required": false; "isSignal": true; }; "button": { "alias": "button"; "required": false; "isSignal": true; }; "liveValidateInput": { "alias": "liveValidate"; "required": false; "isSignal": true; }; "autocompleteInput": { "alias": "autocomplete"; "required": false; "isSignal": true; }; "firstVisualInput": { "alias": "firstVisual"; "required": false; "isSignal": true; }; "onlyVisual": { "alias": "onlyVisual"; "required": false; "isSignal": true; }; "compact": { "alias": "compact"; "required": false; "isSignal": true; }; "mode": { "alias": "mode"; "required": false; "isSignal": true; }; "loading": { "alias": "loading"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "noColon": { "alias": "noColon"; "required": false; "isSignal": true; }; "cleanValue": { "alias": "cleanValue"; "required": false; "isSignal": true; }; "delayInput": { "alias": "delay"; "required": false; "isSignal": true; }; }, { "expanded": "expandedChange"; "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"], false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "expandable": { "alias": "expandable"; "required": false; "isSignal": true; }; "expanded": { "alias": "expanded"; "required": false; "isSignal": true; }; "layout": { "alias": "layout"; "required": false; }; "schema": { "alias": "schema"; "required": false; }; "ui": { "alias": "ui"; "required": false; }; "formData": { "alias": "formData"; "required": false; }; "button": { "alias": "button"; "required": false; }; "liveValidate": { "alias": "liveValidate"; "required": false; }; "autocomplete": { "alias": "autocomplete"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "onlyVisual": { "alias": "onlyVisual"; "required": false; }; "compact": { "alias": "compact"; "required": false; }; "mode": { "alias": "mode"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "cleanValue": { "alias": "cleanValue"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "expanded": "expandedChange"; "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"], false, never>;
+    static ngAcceptInputType_liveValidate: unknown;
+    static ngAcceptInputType_firstVisual: unknown;
+    static ngAcceptInputType_onlyVisual: unknown;
+    static ngAcceptInputType_compact: unknown;
+    static ngAcceptInputType_loading: unknown;
+    static ngAcceptInputType_disabled: unknown;
+    static ngAcceptInputType_noColon: unknown;
+    static ngAcceptInputType_cleanValue: unknown;
+    static ngAcceptInputType_delay: unknown;
 }
 
 declare class SFFixedDirective implements AfterViewInit, OnChanges {
     private readonly el;
     private readonly render;
     private _inited;
-    /** 固定标签宽度（px），`0` 表示不固定；非法值按 `0` 处理 */
-    readonly num: _angular_core.InputSignalWithTransform<number, unknown>;
+    num?: number | null;
     private init;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SFFixedDirective, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<SFFixedDirective, "[fixed-label]", never, { "num": { "alias": "fixed-label"; "required": false; "isSignal": true; }; }, {}, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SFFixedDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SFFixedDirective, "[fixed-label]", never, { "num": { "alias": "fixed-label"; "required": false; }; }, {}, never, never, false, never>;
+    static ngAcceptInputType_num: unknown;
 }
 
-declare class SFItemWrapComponent {
+declare class SFItemWrapComponent implements OnChanges {
     private readonly statusSrv;
-    readonly id: _angular_core.InputSignal<string | undefined>;
-    readonly schema: _angular_core.InputSignal<SFSchema>;
-    readonly ui: _angular_core.InputSignal<SFUISchemaItem>;
-    readonly showError: _angular_core.InputSignal<boolean | undefined>;
-    readonly error: _angular_core.InputSignal<string | undefined>;
-    readonly showTitle: _angular_core.InputSignal<string | boolean | null | undefined>;
-    readonly title: _angular_core.InputSignal<string | null>;
-    protected readonly t: _angular_core.Signal<string>;
-    protected readonly oh: _angular_core.Signal<SFOptionalHelp>;
-    protected readonly nzValidateAnimationEnter: _angular_core.Signal<string>;
-    protected readonly nzValidateAnimationLeave: _angular_core.Signal<string>;
-    constructor();
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SFItemWrapComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SFItemWrapComponent, "sf-item-wrap", never, { "id": { "alias": "id"; "required": false; "isSignal": true; }; "schema": { "alias": "schema"; "required": true; "isSignal": true; }; "ui": { "alias": "ui"; "required": true; "isSignal": true; }; "showError": { "alias": "showError"; "required": false; "isSignal": true; }; "error": { "alias": "error"; "required": false; "isSignal": true; }; "showTitle": { "alias": "showTitle"; "required": false; "isSignal": true; }; "title": { "alias": "title"; "required": false; "isSignal": true; }; }, {}, never, ["*"], false, never>;
+    _showTitle: boolean;
+    id?: string;
+    schema: SFSchema;
+    ui: SFUISchemaItem;
+    showError?: boolean;
+    error?: string;
+    set showTitle(val: boolean | string | null | undefined);
+    title: string | null;
+    get t(): string;
+    get oh(): SFOptionalHelp;
+    protected readonly nzValidateAnimationEnter: i0.Signal<string>;
+    protected readonly nzValidateAnimationLeave: i0.Signal<string>;
+    ngOnChanges(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SFItemWrapComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFItemWrapComponent, "sf-item-wrap", never, { "id": { "alias": "id"; "required": false; }; "schema": { "alias": "schema"; "required": false; }; "ui": { "alias": "ui"; "required": false; }; "showError": { "alias": "showError"; "required": false; }; "error": { "alias": "error"; "required": false; }; "showTitle": { "alias": "showTitle"; "required": false; }; "title": { "alias": "title"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 
 declare class DelonFormModule {
     static forRoot(): ModuleWithProviders<DelonFormModule>;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<DelonFormModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof i20.DelonLocaleModule, typeof i21.CdkTextareaAutosize, typeof i22.NzButtonModule, typeof i23.NzCardModule, typeof i24.NzCheckboxModule, typeof i25.NzDatePickerModule, typeof i26.NzFormModule, typeof i27.NzGridModule, typeof i28.NzIconModule, typeof i29.NzInputModule, typeof i30.NzInputNumberModule, typeof i31.NzModalModule, typeof i32.NzRadioModule, typeof i33.NzSelectModule, typeof i34.NzSwitchModule, typeof i35.NzTooltipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
-    static ɵinj: _angular_core.ɵɵInjectorDeclaration<DelonFormModule>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DelonFormModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof i20.DelonLocaleModule, typeof i21.CdkTextareaAutosize, typeof i22.NzButtonModule, typeof i23.NzCardModule, typeof i24.NzCheckboxModule, typeof i25.NzDatePickerModule, typeof i26.NzFormModule, typeof i27.NzGridModule, typeof i28.NzIconModule, typeof i29.NzInputModule, typeof i30.NzInputNumberModule, typeof i31.NzModalModule, typeof i32.NzRadioModule, typeof i33.NzSelectModule, typeof i34.NzSwitchModule, typeof i35.NzTooltipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<DelonFormModule>;
 }
 
 declare abstract class AtomicProperty extends FormProperty {

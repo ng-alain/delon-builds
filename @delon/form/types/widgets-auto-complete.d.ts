@@ -1,10 +1,10 @@
 import * as i2 from '@delon/form';
 import { SFUISchemaItem, SFSchemaEnumType, SFSchemaEnum, ControlUIWidget, SFValue, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
-import * as i0 from '@angular/core';
 import { Observable } from 'rxjs';
 import * as i5 from 'ng-zorro-antd/auto-complete';
 import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
-import { CompareWith } from 'ng-zorro-antd/core/types';
+import { CompareWith, NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from '@angular/core';
 import * as i1 from '@angular/forms';
 import * as i3 from '@angular/common';
 import * as i4 from 'ng-zorro-antd/input';
@@ -63,13 +63,13 @@ interface SFAutoCompleteWidgetSchema extends SFUISchemaItem {
 
 declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWidgetSchema> {
     static readonly KEY = "autocomplete";
-    protected readonly i: i0.WritableSignal<any>;
-    protected readonly list: i0.WritableSignal<Observable<SFSchemaEnum[]> | null>;
-    protected readonly typing: i0.WritableSignal<string>;
-    private readonly ngModel;
-    private readonly filterOption;
-    private readonly isAsync;
-    private readonly fixData;
+    i: NzSafeAny;
+    list: Observable<SFSchemaEnum[]>;
+    typing: string;
+    private ngModel;
+    private filterOption;
+    private isAsync;
+    private fixData;
     updateValue(item: NzAutocompleteOptionComponent): void;
     _setValue(item: SFSchemaEnum): void;
     afterViewInit(): void;

@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { signal, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ViewEncapsulation, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i1$1 from '@delon/form';
@@ -13,8 +13,7 @@ class CascaderWidget extends ControlUIWidget {
     showArrow;
     showInput;
     triggerAction = ['click'];
-    data = signal([], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    data = [];
     loadData;
     ngOnInit() {
         const { clearText, showArrow, showInput, triggerAction, asyncData } = this.ui;
@@ -23,33 +22,33 @@ class CascaderWidget extends ControlUIWidget {
         this.showInput = toBool(showInput, true);
         this.triggerAction = triggerAction ?? ['click'];
         if (asyncData) {
-            // 不需要任何后处理：ng-zorro 的 cascader 在 `loadChildren()` 里已经做了全部工作：
-            //   const option = node?.origin || {}      // 传给回调的就是原始选项对象
-            //   wrapIntoObservable(loadFn(option, i))  // 用户写 option.children
-            //     .subscribe({ next: () => { ...; this.setColumnData(nodes, i + 1) } })
-            //     .pipe(finalize(() => { ...; this.$redraw.next(); }))
-            // 即「读用户写的 children → 自己建下一列 → 自己触发重绘」。
-            // 数据层与视图都由 ng-zorro 处理，因此不需要替换 `data`，也不需要补一次刷新。
-            this.loadData = (node, index) => asyncData(node, index, this);
+            this.loadData = (node, index) => asyncData(node, index, this).then(() => this.detectChanges(true));
         }
     }
     reset(value) {
         getData(this.schema, {}, value).subscribe(list => {
-            this.data.set(list);
+            this.data = list;
+            this.detectChanges(true);
         });
     }
     _openChange(status) {
-        this.ui.openChange?.(status);
+        if (this.ui.openChange)
+            this.ui.openChange(status);
     }
     _change(value) {
         this.setValue(value == null ? this.ui.clearValue : value);
-        this.ui.change?.(value);
+        if (this.ui.change) {
+            this.ui.change(value);
+        }
     }
     _selectionChange(options) {
-        this.ui.selectionChange?.(options);
+        if (this.ui.selectionChange) {
+            this.ui.selectionChange(options);
+        }
     }
     _clear() {
-        this.ui.clear?.();
+        if (this.ui.clear)
+            this.ui.clear();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: CascaderWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: CascaderWidget, isStandalone: true, selector: "sf-cascader", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
@@ -66,7 +65,7 @@ class CascaderWidget extends ControlUIWidget {
       [ngModel]="value"
       [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="_change($event)"
-      [nzOptions]="data()"
+      [nzOptions]="data"
       [nzAllowClear]="ui.allowClear"
       [nzAutoFocus]="ui.autoFocus"
       [nzChangeOn]="ui.changeOn"
@@ -92,7 +91,7 @@ class CascaderWidget extends ControlUIWidget {
       (nzOpenChange)="_openChange($event)"
       (nzSelectionChange)="_selectionChange($event)"
     />
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzCascaderModule }, { kind: "component", type: i3.NzCascaderComponent, selector: "nz-cascader, [nz-cascader]", inputs: ["nzOpen", "nzOptions", "nzOptionRender", "nzShowInput", "nzShowArrow", "nzAllowClear", "nzAutoFocus", "nzChangeOnSelect", "nzDisabled", "nzColumnClassName", "nzExpandTrigger", "nzValueProperty", "nzLabelProperty", "nzLabelRender", "nzVariant", "nzNotFoundContent", "nzSize", "nzBackdrop", "nzShowSearch", "nzPlaceHolder", "nzMenuClassName", "nzMenuStyle", "nzMouseLeaveDelay", "nzMouseEnterDelay", "nzStatus", "nzMultiple", "nzMaxTagCount", "nzPlacement", "nzTriggerAction", "nzChangeOn", "nzLoadData", "nzPrefix", "nzSuffixIcon", "nzExpandIcon", "nzPopupRender"], outputs: ["nzVisibleChange", "nzOpenChange", "nzSelectionChange", "nzRemoved", "nzClear"], exportAs: ["nzCascader"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzCascaderModule }, { kind: "component", type: i3.NzCascaderComponent, selector: "nz-cascader, [nz-cascader]", inputs: ["nzOpen", "nzOptions", "nzOptionRender", "nzShowInput", "nzShowArrow", "nzAllowClear", "nzAutoFocus", "nzChangeOnSelect", "nzDisabled", "nzColumnClassName", "nzExpandTrigger", "nzValueProperty", "nzLabelProperty", "nzLabelRender", "nzVariant", "nzNotFoundContent", "nzSize", "nzBackdrop", "nzShowSearch", "nzPlaceHolder", "nzMenuClassName", "nzMenuStyle", "nzMouseLeaveDelay", "nzMouseEnterDelay", "nzStatus", "nzMultiple", "nzMaxTagCount", "nzPlacement", "nzTriggerAction", "nzChangeOn", "nzLoadData", "nzPrefix", "nzSuffixIcon", "nzExpandIcon", "nzPopupRender"], outputs: ["nzVisibleChange", "nzOpenChange", "nzSelectionChange", "nzRemoved", "nzClear"], exportAs: ["nzCascader"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: CascaderWidget, decorators: [{
             type: Component,
@@ -112,7 +111,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       [ngModel]="value"
       [ngModelOptions]="{ standalone: true }"
       (ngModelChange)="_change($event)"
-      [nzOptions]="data()"
+      [nzOptions]="data"
       [nzAllowClear]="ui.allowClear"
       [nzAutoFocus]="ui.autoFocus"
       [nzChangeOn]="ui.changeOn"
@@ -139,7 +138,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       (nzSelectionChange)="_selectionChange($event)"
     />
   </sf-item-wrap>`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzCascaderModule]
                 }]

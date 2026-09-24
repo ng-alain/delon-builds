@@ -125,7 +125,7 @@ declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSchema> imp
     showArrow: boolean;
     showInput: boolean;
     triggerAction: NzCascaderTriggerType[];
-    protected readonly data: i0.WritableSignal<SFSchemaEnum[]>;
+    data: SFSchemaEnum[];
     loadData?: (node: NzCascaderOption, index: number) => PromiseLike<NzSafeAny>;
     ngOnInit(): void;
     reset(value: SFValue): void;
