@@ -1,20 +1,21 @@
 import * as i0 from '@angular/core';
-import { booleanAttribute, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { input, booleanAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { CommonModule } from '@angular/common';
 
 class TrendComponent {
     /** 上升下降标识 */
-    flag;
+    flag = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "flag" }] : /* istanbul ignore next */ []));
     /** 是否彩色标记 */
-    colorful = true;
+    colorful = input(true, { ...(ngDevMode ? { debugName: "colorful" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     /** 颜色反转 */
-    reverseColor = false;
+    reverseColor = input(false, { ...(ngDevMode ? { debugName: "reverseColor" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TrendComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TrendComponent, isStandalone: true, selector: "trend", inputs: { flag: "flag", colorful: ["colorful", "colorful", booleanAttribute], reverseColor: ["reverseColor", "reverseColor", booleanAttribute] }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor", "attr.data-flag": "flag" } }, exportAs: ["trend"], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TrendComponent, isStandalone: true, selector: "trend", inputs: { flag: { classPropertyName: "flag", publicName: "flag", isSignal: true, isRequired: false, transformFunction: null }, colorful: { classPropertyName: "colorful", publicName: "colorful", isSignal: true, isRequired: false, transformFunction: null }, reverseColor: { classPropertyName: "reverseColor", publicName: "reverseColor", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful()", "class.trend__reverse": "colorful() && reverseColor()", "attr.data-flag": "flag()" } }, exportAs: ["trend"], ngImport: i0, template: `
     <ng-content />
-    @if (flag) {
-      <span class="trend__{{ flag }}"><nz-icon nzType="caret-{{ flag }}" /></span>
+    @if (flag()) {
+      <span class="trend__{{ flag() }}"><nz-icon nzType="caret-{{ flag() }}" /></span>
     }
   `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
@@ -25,29 +26,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     exportAs: 'trend',
                     template: `
     <ng-content />
-    @if (flag) {
-      <span class="trend__{{ flag }}"><nz-icon nzType="caret-{{ flag }}" /></span>
+    @if (flag()) {
+      <span class="trend__{{ flag() }}"><nz-icon nzType="caret-{{ flag() }}" /></span>
     }
   `,
                     host: {
                         '[class.trend]': 'true',
-                        '[class.trend__grey]': '!colorful',
-                        '[class.trend__reverse]': 'colorful && reverseColor',
-                        '[attr.data-flag]': `flag`
+                        '[class.trend__grey]': '!colorful()',
+                        '[class.trend__reverse]': 'colorful() && reverseColor()',
+                        '[attr.data-flag]': `flag()`
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzIconDirective]
                 }]
-        }], propDecorators: { flag: [{
-                type: Input
-            }], colorful: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], reverseColor: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }] } });
+        }], propDecorators: { flag: [{ type: i0.Input, args: [{ isSignal: true, alias: "flag", required: false }] }], colorful: [{ type: i0.Input, args: [{ isSignal: true, alias: "colorful", required: false }] }], reverseColor: [{ type: i0.Input, args: [{ isSignal: true, alias: "reverseColor", required: false }] }] } });
 
 const COMPONENTS = [TrendComponent];
 class TrendModule {

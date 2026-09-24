@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, booleanAttribute, numberAttribute, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { input, numberAttribute, booleanAttribute, output, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { format } from 'date-fns';
 import { G2BaseComponent } from '@delon/chart/core';
 import { toDate } from '@delon/util/date-time';
@@ -9,49 +9,63 @@ import { CommonModule } from '@angular/common';
 
 class G2TimelineComponent extends G2BaseComponent {
     // #region fields
-    title;
-    maxAxis = 2;
-    data = [];
-    titleMap;
-    colorMap = { y1: '#5B8FF9', y2: '#5AD8A6', y3: '#5D7092', y4: '#F6BD16', y5: '#E86452' };
-    mask = 'HH:mm';
-    maskSlider = 'HH:mm';
-    position = 'top';
-    height = 450;
-    padding = [40, 8, 64, 40];
-    borderWidth = 2;
-    slider = true;
-    clickItem = new EventEmitter();
+    title = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
+    maxAxis = input(2, { ...(ngDevMode ? { debugName: "maxAxis" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    data = input([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    titleMap = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "titleMap" }] : /* istanbul ignore next */ []));
+    colorMap = input({
+        y1: '#5B8FF9',
+        y2: '#5AD8A6',
+        y3: '#5D7092',
+        y4: '#F6BD16',
+        y5: '#E86452'
+    }, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "colorMap" }] : /* istanbul ignore next */ []));
+    mask = input('HH:mm', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "mask" }] : /* istanbul ignore next */ []));
+    maskSlider = input('HH:mm', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "maskSlider" }] : /* istanbul ignore next */ []));
+    position = input('top', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "position" }] : /* istanbul ignore next */ []));
+    height = input(450, { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    padding = input([40, 8, 64, 40], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "padding" }] : /* istanbul ignore next */ []));
+    borderWidth = input(2, { ...(ngDevMode ? { debugName: "borderWidth" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    slider = input(true, { ...(ngDevMode ? { debugName: "slider" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    clickItem = output();
     // #endregion
-    onlyChangeData = (changes) => {
-        const tm = changes.titleMap;
-        return !(tm && !tm.firstChange && tm.currentValue !== tm.previousValue);
-    };
+    /** 等价旧 onlyChangeData：除 titleMap 外，其余输入变更都只需更新数据 */
+    isDataOnly(changed) {
+        return !changed.includes(this.titleMap);
+    }
     install() {
         const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
         const chart = (this._chart = new this.winG2.Chart({
-            container: node.nativeElement,
+            container: node().nativeElement,
             autoFit: true,
-            height,
-            padding,
-            theme
+            height: height(),
+            padding: padding(),
+            theme: theme()
         }));
         chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
-        for (let i = 2; i <= maxAxis; i++) {
+        for (let i = 2; i <= maxAxis(); i++) {
             chart.axis(`y${i}`, false);
         }
         chart.line().position('time*y1');
-        for (let i = 2; i <= maxAxis; i++) {
+        for (let i = 2; i <= maxAxis(); i++) {
             chart.line().position(`time*y${i}`);
         }
         chart.tooltip({
             showCrosshairs: true,
             shared: true
         });
-        const sliderPadding = { ...[], ...padding };
+        const sliderPadding = { ...[], ...padding() };
         sliderPadding[0] = 0;
-        if (slider) {
+        if (slider()) {
             chart.option('slider', {
                 height: 26,
                 start: 0,
@@ -60,12 +74,12 @@ class G2TimelineComponent extends G2BaseComponent {
                     isArea: false
                 },
                 minLimit: 2,
-                formatter: (val) => format(val, maskSlider)
+                formatter: (val) => format(val, maskSlider())
             });
         }
         chart.on(`plot:click`, (ev) => {
             const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
-            this.ngZone.run(() => this.clickItem.emit({ item: records[0]._origin, ev }));
+            this.clickItem.emit({ item: records[0]._origin, ev });
         });
         chart.on(`legend-item:click`, (ev) => {
             const item = ev?.target?.get('delegateObject').item;
@@ -75,35 +89,35 @@ class G2TimelineComponent extends G2BaseComponent {
                 line.changeVisible(!item.unchecked);
             }
         });
-        this.ready.next(chart);
+        this.ready.emit(chart);
         this.changeData();
         chart.render();
     }
     changeData() {
         const { _chart, height, padding, mask, titleMap, position, colorMap, borderWidth, maxAxis } = this;
-        let data = [...this.data];
+        let data = [...this.data()];
         if (!_chart || data.length <= 0)
             return;
-        const arrAxis = [...Array(maxAxis)].map((_, index) => index + 1);
+        const arrAxis = [...Array(maxAxis())].map((_, index) => index + 1);
         _chart.legend({
-            position,
+            position: position(),
             custom: true,
             items: arrAxis.map(id => {
                 const key = `y${id}`;
                 return {
                     id: key,
-                    name: titleMap[key],
+                    name: titleMap()[key],
                     value: key,
-                    marker: { style: { fill: colorMap[key] } }
+                    marker: { style: { fill: colorMap()[key] } }
                 };
             })
         });
         // border
         _chart.geometries.forEach((v, idx) => {
-            v.color(colorMap[`y${idx + 1}`]).size(borderWidth);
+            v.color(colorMap()[`y${idx + 1}`]).size(borderWidth());
         });
-        _chart.height = height;
-        _chart.padding = padding;
+        _chart.height = height();
+        _chart.padding = padding();
         // 转换成日期类型
         data = data
             .map(item => {
@@ -117,7 +131,7 @@ class G2TimelineComponent extends G2BaseComponent {
         arrAxis.forEach(id => {
             const key = `y${id}`;
             scaleOptions[key] = {
-                alias: titleMap[key],
+                alias: titleMap()[key],
                 max,
                 min: 0
             };
@@ -125,7 +139,7 @@ class G2TimelineComponent extends G2BaseComponent {
         _chart.scale({
             time: {
                 type: 'time',
-                mask,
+                mask: mask(),
                 range: [0, 1]
             },
             ...scaleOptions
@@ -138,11 +152,11 @@ class G2TimelineComponent extends G2BaseComponent {
         _chart.changeData(filterData);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2TimelineComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2TimelineComponent, isStandalone: true, selector: "g2-timeline", inputs: { title: "title", maxAxis: ["maxAxis", "maxAxis", numberAttribute], data: "data", titleMap: "titleMap", colorMap: "colorMap", mask: "mask", maskSlider: "maskSlider", position: "position", height: ["height", "height", numberAttribute], padding: "padding", borderWidth: ["borderWidth", "borderWidth", numberAttribute], slider: ["slider", "slider", booleanAttribute] }, outputs: { clickItem: "clickItem" }, exportAs: ["g2Timeline"], usesInheritance: true, ngImport: i0, template: `
-    <ng-container *nzStringTemplateOutlet="title">
-      <h4>{{ title }}</h4>
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2TimelineComponent, isStandalone: true, selector: "g2-timeline", inputs: { title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, maxAxis: { classPropertyName: "maxAxis", publicName: "maxAxis", isSignal: true, isRequired: false, transformFunction: null }, data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, titleMap: { classPropertyName: "titleMap", publicName: "titleMap", isSignal: true, isRequired: false, transformFunction: null }, colorMap: { classPropertyName: "colorMap", publicName: "colorMap", isSignal: true, isRequired: false, transformFunction: null }, mask: { classPropertyName: "mask", publicName: "mask", isSignal: true, isRequired: false, transformFunction: null }, maskSlider: { classPropertyName: "maskSlider", publicName: "maskSlider", isSignal: true, isRequired: false, transformFunction: null }, position: { classPropertyName: "position", publicName: "position", isSignal: true, isRequired: false, transformFunction: null }, height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, padding: { classPropertyName: "padding", publicName: "padding", isSignal: true, isRequired: false, transformFunction: null }, borderWidth: { classPropertyName: "borderWidth", publicName: "borderWidth", isSignal: true, isRequired: false, transformFunction: null }, slider: { classPropertyName: "slider", publicName: "slider", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { clickItem: "clickItem" }, exportAs: ["g2Timeline"], usesInheritance: true, ngImport: i0, template: `
+    <ng-container *nzStringTemplateOutlet="title()">
+      <h4>{{ title() }}</h4>
     </ng-container>
-    @if (!loaded) {
+    @if (!loaded()) {
       <nz-skeleton />
     }
     <div #container></div>
@@ -154,10 +168,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     selector: 'g2-timeline',
                     exportAs: 'g2Timeline',
                     template: `
-    <ng-container *nzStringTemplateOutlet="title">
-      <h4>{{ title }}</h4>
+    <ng-container *nzStringTemplateOutlet="title()">
+      <h4>{{ title() }}</h4>
     </ng-container>
-    @if (!loaded) {
+    @if (!loaded()) {
       <nz-skeleton />
     }
     <div #container></div>
@@ -166,37 +180,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzStringTemplateOutletDirective, NzSkeletonComponent]
                 }]
-        }], propDecorators: { title: [{
-                type: Input
-            }], maxAxis: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], data: [{
-                type: Input
-            }], titleMap: [{
-                type: Input
-            }], colorMap: [{
-                type: Input
-            }], mask: [{
-                type: Input
-            }], maskSlider: [{
-                type: Input
-            }], position: [{
-                type: Input
-            }], height: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], padding: [{
-                type: Input
-            }], borderWidth: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], slider: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], clickItem: [{
-                type: Output
-            }] } });
+        }], propDecorators: { title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], maxAxis: [{ type: i0.Input, args: [{ isSignal: true, alias: "maxAxis", required: false }] }], data: [{ type: i0.Input, args: [{ isSignal: true, alias: "data", required: false }] }], titleMap: [{ type: i0.Input, args: [{ isSignal: true, alias: "titleMap", required: false }] }], colorMap: [{ type: i0.Input, args: [{ isSignal: true, alias: "colorMap", required: false }] }], mask: [{ type: i0.Input, args: [{ isSignal: true, alias: "mask", required: false }] }], maskSlider: [{ type: i0.Input, args: [{ isSignal: true, alias: "maskSlider", required: false }] }], position: [{ type: i0.Input, args: [{ isSignal: true, alias: "position", required: false }] }], height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], padding: [{ type: i0.Input, args: [{ isSignal: true, alias: "padding", required: false }] }], borderWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "borderWidth", required: false }] }], slider: [{ type: i0.Input, args: [{ isSignal: true, alias: "slider", required: false }] }], clickItem: [{ type: i0.Output, args: ["clickItem"] }] } });
 
 const COMPONENTS = [G2TimelineComponent];
 class G2TimelineModule {

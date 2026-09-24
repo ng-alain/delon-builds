@@ -1,37 +1,60 @@
-import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
-import { inject, ElementRef, Renderer2, NgZone, ChangeDetectorRef, numberAttribute, booleanAttribute, Input, ViewChild, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { inject, ElementRef, Renderer2, DestroyRef, viewChild, input, booleanAttribute, numberAttribute, afterNextRender, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent, debounceTime } from 'rxjs';
+import { watchInputs } from '@delon/chart/core';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { CommonModule } from '@angular/common';
 
 class G2WaterWaveComponent {
     el = inject(ElementRef).nativeElement;
     renderer = inject(Renderer2);
-    ngZone = inject(NgZone);
-    cdr = inject(ChangeDetectorRef);
-    platform = inject(Platform);
-    resize$ = null;
-    node;
-    timer;
-    // #region fields
-    animate = true;
-    delay = 0;
-    title;
-    color = '#1890FF';
-    height = 160;
-    percent;
-    // #endregion
+    destroyRef = inject(DestroyRef);
+    node = viewChild.required('container', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "node" }] : /* istanbul ignore next */ []));
+    timer = 0;
+    started = false;
+    destroyed = false;
+    animate = input(true, { ...(ngDevMode ? { debugName: "animate" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    delay = input(0, { ...(ngDevMode ? { debugName: "delay" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    title = input(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "title" }] : /* istanbul ignore next */ []));
+    color = input('#1890FF', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []));
+    height = input(160, { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: numberAttribute });
+    percent = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "percent" }] : /* istanbul ignore next */ []));
+    constructor() {
+        // 输入变更 → 重绘（isUpdate = true）
+        watchInputs(this, () => {
+            if (this.started) {
+                this.renderChart(true);
+            }
+        });
+        afterNextRender(() => {
+            fromEvent(window, 'resize')
+                .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(200))
+                .subscribe(() => this.updateRadio());
+            // 同基类 `load()`：这里必须用 setTimeout，不能用 rxjs 一次性 `timer()`
+            // （后者底层是 setInterval，`flush()` 不驱动它）。
+            setTimeout(() => {
+                if (!this.destroyed) {
+                    this.started = true;
+                    this.render();
+                }
+            }, this.delay());
+        });
+    }
     renderChart(isUpdate) {
-        if (!this.resize$)
-            return;
         this.updateRadio();
-        const { percent, color, node, animate } = this;
+        const percent = this.percent();
+        const color = this.color();
+        const animate = this.animate();
         const data = Math.min(Math.max(percent / 100, 0), 100);
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         cancelAnimationFrame(this.timer);
-        const canvas = node.nativeElement;
+        const canvas = this.node().nativeElement;
         const ctx = canvas.getContext('2d');
         const canvasWidth = canvas.width;
         const canvasHeight = canvas.height;
@@ -154,62 +177,25 @@ class G2WaterWaveComponent {
     }
     updateRadio() {
         const { offsetWidth } = this.el.parentNode;
-        const radio = offsetWidth < this.height ? offsetWidth / this.height : 1;
+        const radio = offsetWidth < this.height() ? offsetWidth / this.height() : 1;
         this.renderer.setStyle(this.el, 'transform', `scale(${radio})`);
     }
     render() {
         this.renderChart(false);
     }
-    installResizeEvent() {
-        this.resize$ = fromEvent(window, 'resize')
-            .pipe(debounceTime(200))
-            .subscribe(() => this.updateRadio());
-    }
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        this.installResizeEvent();
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.render(), this.delay));
-    }
-    ngOnChanges() {
-        this.ngZone.runOutsideAngular(() => this.renderChart(true));
-        this.cdr.detectChanges();
-    }
     ngOnDestroy() {
+        this.destroyed = true;
         if (this.timer) {
             cancelAnimationFrame(this.timer);
         }
-        if (this.resize$) {
-            this.resize$.unsubscribe();
-        }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2WaterWaveComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2WaterWaveComponent, isStandalone: true, selector: "g2-water-wave", inputs: { animate: ["animate", "animate", booleanAttribute], delay: ["delay", "delay", numberAttribute], title: "title", color: "color", height: ["height", "height", numberAttribute], percent: ["percent", "percent", numberAttribute] }, host: { properties: { "class.g2-water-wave": "true" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["g2WaterWave"], usesOnChanges: true, ngImport: i0, template: "<div [style]=\"{ height: height + 'px', width: height + 'px', overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" [attr.width]=\"height * 2\" [attr.height]=\"height * 2\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [style]=\"{ width: height + 'px' }\">\n  @if (title) {\n    <span class=\"g2-water-wave__desc-title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </span>\n  }\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent }}%</h4>\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2WaterWaveComponent, isStandalone: true, selector: "g2-water-wave", inputs: { animate: { classPropertyName: "animate", publicName: "animate", isSignal: true, isRequired: false, transformFunction: null }, delay: { classPropertyName: "delay", publicName: "delay", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: false, transformFunction: null }, height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, percent: { classPropertyName: "percent", publicName: "percent", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.g2-water-wave": "true" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, isSignal: true }], exportAs: ["g2WaterWave"], ngImport: i0, template: "<div [style]=\"{ height: height() + 'px', width: height() + 'px', overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" [attr.width]=\"height() * 2\" [attr.height]=\"height() * 2\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [style]=\"{ width: height() + 'px' }\">\n  @if (title()) {\n    <span class=\"g2-water-wave__desc-title\">\n      <ng-container *nzStringTemplateOutlet=\"title()\">{{ title() }}</ng-container>\n    </span>\n  }\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent() }}%</h4>\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2WaterWaveComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'g2-water-wave', exportAs: 'g2WaterWave', host: { '[class.g2-water-wave]': 'true' }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzStringTemplateOutletDirective], template: "<div [style]=\"{ height: height + 'px', width: height + 'px', overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" [attr.width]=\"height * 2\" [attr.height]=\"height * 2\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [style]=\"{ width: height + 'px' }\">\n  @if (title) {\n    <span class=\"g2-water-wave__desc-title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </span>\n  }\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent }}%</h4>\n</div>\n" }]
-        }], propDecorators: { node: [{
-                type: ViewChild,
-                args: ['container', { static: true }]
-            }], animate: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], delay: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], title: [{
-                type: Input
-            }], color: [{
-                type: Input
-            }], height: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], percent: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }] } });
+            args: [{ selector: 'g2-water-wave', exportAs: 'g2WaterWave', host: { '[class.g2-water-wave]': 'true' }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzStringTemplateOutletDirective], template: "<div [style]=\"{ height: height() + 'px', width: height() + 'px', overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" [attr.width]=\"height() * 2\" [attr.height]=\"height() * 2\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [style]=\"{ width: height() + 'px' }\">\n  @if (title()) {\n    <span class=\"g2-water-wave__desc-title\">\n      <ng-container *nzStringTemplateOutlet=\"title()\">{{ title() }}</ng-container>\n    </span>\n  }\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent() }}%</h4>\n</div>\n" }]
+        }], ctorParameters: () => [], propDecorators: { node: [{ type: i0.ViewChild, args: ['container', { isSignal: true }] }], animate: [{ type: i0.Input, args: [{ isSignal: true, alias: "animate", required: false }] }], delay: [{ type: i0.Input, args: [{ isSignal: true, alias: "delay", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], color: [{ type: i0.Input, args: [{ isSignal: true, alias: "color", required: false }] }], height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], percent: [{ type: i0.Input, args: [{ isSignal: true, alias: "percent", required: false }] }] } });
 
 const COMPONENTS = [G2WaterWaveComponent];
 class G2WaterWaveModule {
