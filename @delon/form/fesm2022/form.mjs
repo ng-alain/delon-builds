@@ -1,9 +1,9 @@
 import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
-import { NgZone, ɵNoopNgZone as _NoopNgZone, afterNextRender, Injectable, inject, ViewContainerRef, ViewChild, Input, ViewEncapsulation, Component, ElementRef, Renderer2, numberAttribute, Directive, ChangeDetectorRef, input, booleanAttribute, model, signal, EventEmitter, Injector, Output, ChangeDetectionStrategy, TemplateRef, HostBinding, NgModule, provideEnvironmentInitializer, makeEnvironmentProviders } from '@angular/core';
+import { signal, computed, afterNextRender, Injectable, inject, NgZone, input, viewChild, ViewContainerRef, effect, ViewEncapsulation, ChangeDetectionStrategy, Component, ElementRef, Renderer2, numberAttribute, Directive, booleanAttribute, model, linkedSignal, output, Injector, TemplateRef, ChangeDetectorRef, DestroyRef, NgModule, provideEnvironmentInitializer, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
-import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, merge, filter, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
+import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, merge, filter, skip, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
@@ -91,6 +91,110 @@ function mergeConfig(srv) {
 }
 
 const SF_SEQ = '/';
+
+/** 原始对象 → 代理，保证 `reactive()` 幂等（同键存活期间代理才存活，见 `reactive()` 的注释） */
+const CACHE = new WeakMap();
+/** 代理对象集合，避免代理套代理叠出两套 signal */
+const PROXIES = new WeakSet();
+/**
+ * 浅响应式对象
+ *
+ * 让「就地赋值」也能被 signal 跟踪：
+ *
+ * ```ts
+ * const ui = reactive({ spanLabel: 5 });
+ * const view = computed(() => ui.spanLabel);
+ * ui.spanLabel = 8;   // view 会被标记为脏
+ * ```
+ *
+ * ## 规则
+ * - **只跟踪顶层 key**。嵌套结构（数组 `push`/`splice`、对象子属性）不会被跟踪，
+ *   必须整值替换：`ui.optionalHelp = { ...ui.optionalHelp, text }`。
+ * - **字符串 key**：读取时若值不是函数，则建立（惰性的）signal 并纳入依赖图；
+ *   函数成员（含原型链上的方法）原样透传、不跟踪。`symbol` key 一律透传。
+ * - **写入**：通过代理写入会同步更新 signal 并通知；直接改写原始对象（绕过代理）
+ *   不会通知，并会让 signal 变陈旧。
+ * - **幂等**：对同一原始对象重复调用返回同一个代理，不会产生两套 signal。
+ *
+ * ## 生命周期与回收
+ * `CACHE` / `PROXIES` 是模块级 `WeakMap` / `WeakSet`：key（原始对象）与代理同时不可达时
+ * 条目自动回收，value 反向引用 key 也不影响回收（ephemeron 语义），因此不需要显式清理。
+ * 反过来，只要原始对象被外部长期持有，它的代理与已建立的 signal 也会一起常驻 ——
+ * 保留量与「谁持有原始对象」绑定，而不是与 `reactive()` 的调用次数绑定。
+ * `SFComponent` 每次初始化都传入全新拷贝（`deepCopy(this.schema)`、`ui` 字面量），
+ * 因此不会出现长期持有。
+ *
+ * @internal
+ */
+function reactive(target) {
+    if (target === null || typeof target !== 'object') {
+        return target;
+    }
+    // 已是代理 → 原样返回（避免代理套代理产生两套 signal）
+    if (PROXIES.has(target)) {
+        return target;
+    }
+    const cached = CACHE.get(target);
+    if (cached) {
+        return cached;
+    }
+    const deps = new Map();
+    const sig = (key, current) => {
+        let s = deps.get(key);
+        if (!s) {
+            s = signal(current);
+            deps.set(key, s);
+        }
+        return s;
+    };
+    const raw = target;
+    const proxy = new Proxy(target, {
+        get(t, key, receiver) {
+            if (typeof key !== 'string') {
+                return Reflect.get(t, key, receiver);
+            }
+            const existing = deps.get(key);
+            if (existing) {
+                return existing();
+            }
+            const value = Reflect.get(t, key, receiver);
+            // 函数成员（方法/原型链）不纳入依赖图，否则会破坏调用
+            if (typeof value === 'function') {
+                return value;
+            }
+            return sig(key, value)();
+        },
+        set(t, key, value, receiver) {
+            if (typeof key !== 'string') {
+                return Reflect.set(t, key, value, receiver);
+            }
+            // 顺序很重要：**先写目标、成功后再通知**
+            // 若反过来（先 set signal），遇到 frozen / 不可写 / 不可扩展的目标时会出现
+            // 「signal 已变、目标没变」的分叉；对「不可配置且不可写」的属性，
+            // 此后每次 `get` 都会因违反 Proxy 不变量而抛 TypeError。
+            const previous = raw[key];
+            const ok = Reflect.set(t, key, value, receiver);
+            if (ok) {
+                sig(key, previous).set(value);
+            }
+            return ok;
+        },
+        deleteProperty(t, key) {
+            if (typeof key !== 'string') {
+                return Reflect.deleteProperty(t, key);
+            }
+            const ok = Reflect.deleteProperty(t, key);
+            if (ok) {
+                // 通知依赖方「值没了」，而不是悄悄从依赖图里移除
+                deps.get(key)?.set(undefined);
+            }
+            return ok;
+        }
+    });
+    CACHE.set(target, proxy);
+    PROXIES.add(proxy);
+    return proxy;
+}
 
 function isBlank(o) {
     return o == null;
@@ -264,27 +368,74 @@ function isDateFns(srv) {
 class FormProperty {
     injector;
     _options;
-    _errors = null;
     _valueChanges = new BehaviorSubject({ path: null, pathValue: null, value: null });
     _errorsChanges = new BehaviorSubject(null);
-    _visible = true;
     _visibilityChanges = new BehaviorSubject(true);
     _root;
     _parent;
-    _objErrors = {};
+    /**
+     * @internal 直接子节点上报的错误（key 是子属性**实例**）
+     *
+     * 子节点的 `path` 会随数组增删被重编号，重编号后就无法再指回原来的节点，
+     * 因此这里用实例当 key。
+     */
+    _objErrors = new Map();
+    /**
+     * @internal `SFComponent.cleanValue` 在属性树上的镜像
+     *
+     * 供模型层读取（如 `ArrayProperty._updateValue` 合并 `formData` 时）。
+     * **不要经由 `widget` 读取**——`reset()` 发生在 widget 创建之前，
+     * 那时 `this.widget` 还是 undefined。
+     */
+    _cleanValue = false;
     schemaValidator;
     schema;
     ui;
     formData;
-    _value = null;
     widget;
     path;
     propertyId;
+    // #region 响应式状态
+    //
+    // `_value` / `_errors` / `_visible` 的唯一存储是 signal。对外暴露同名的
+    // getter（`value` / `errors` / `visible` / `valid`），因此在模板或 `computed` 中
+    // 读取时会**自动建立依赖**，而读法本身与普通字段无异。
+    // 写入一律保持同步（不引入 effect），以免改变事件时序。
+    /** @internal 值的唯一存储 */
+    _value$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_value$" }] : /* istanbul ignore next */ []));
+    /** @internal 错误的唯一存储 */
+    _errors$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_errors$" }] : /* istanbul ignore next */ []));
+    /** @internal 可见性的唯一存储 */
+    _visible$ = signal(true, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_visible$" }] : /* istanbul ignore next */ []));
+    _valid$ = computed(() => {
+        const errors = this._errors$();
+        return errors === null || errors.length === 0;
+    }, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_valid$" }] : /* istanbul ignore next */ []));
+    /**
+     * @internal 值的兼容读写通道
+     *
+     * 子类会直接写 `this._value = x`，`widgets/upload` 这类 widget 也会写
+     * `formProperty._value`，因此保留它并与 `_value$` 读写同一份存储。
+     * 内部新代码请优先使用 `_value$`。
+     */
+    get _value() {
+        return this._value$();
+    }
+    set _value(value) {
+        this._value$.set(value);
+    }
+    // #endregion
     constructor(injector, schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
         this.injector = injector;
         this._options = _options;
-        this.schema = schema;
-        this.ui = ui;
+        // 浅响应式包装：让 `property.ui.xxx = yyy` / `property.schema.enum = [...]` 之类的
+        // 就地赋值也能进入 signal 依赖图。`schemaValidator` 用原始 `schema`，避免把代理交给 ajv。
+        this.schema = reactive(schema);
+        this.ui = reactive(ui);
         this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
             ingoreKeywords: this.ui.ingoreKeywords,
             debug: ui.debug
@@ -314,23 +465,24 @@ class FormProperty {
     get root() {
         return this._root;
     }
+    /** 表单值（读取时若处于响应式上下文则建立依赖） */
     get value() {
-        return this._value;
+        return this._value$();
     }
+    /** 当前错误列表 */
     get errors() {
-        return this._errors;
+        return this._errors$();
     }
+    /** 是否可见 */
     get visible() {
-        return this._visible;
+        return this._visible$();
     }
+    /** 是否有效 */
     get valid() {
-        return this._errors === null || this._errors.length === 0;
+        return this._valid$();
     }
     get options() {
         return this._options;
-    }
-    cd(onlySelf = false) {
-        this.widget?.detectChanges(onlySelf);
     }
     /**
      * 更新值且校验数据
@@ -402,7 +554,7 @@ class FormProperty {
         // The definition of some rules:
         // 1. Should not ajv validator when is empty data and required fields
         // 2. Should not ajv validator when is empty data
-        const isEmpty = this.isEmptyData(this._value);
+        const isEmpty = this.isEmptyData(this._value$());
         if (isEmpty && this.ui._required) {
             errors = [{ keyword: 'required' }];
         }
@@ -410,7 +562,7 @@ class FormProperty {
             errors = [];
         }
         else {
-            errors = this.schemaValidator(this._value) ?? [];
+            errors = this.schemaValidator(this._value$()) ?? [];
         }
         const customValidator = this.ui.validator;
         if (typeof customValidator === 'function') {
@@ -418,15 +570,14 @@ class FormProperty {
             if (customErrors instanceof Observable) {
                 customErrors.subscribe(res => {
                     this.setCustomErrors(errors, res);
-                    this.cd(false);
                 });
                 return;
             }
             this.setCustomErrors(errors, customErrors);
             return;
         }
-        this._errors = errors;
-        this.setErrors(this._errors);
+        this._errors$.set(errors);
+        this.setErrors(errors);
     }
     setCustomErrors(errors, list) {
         const hasCustomError = Array.isArray(list) && list.length > 0;
@@ -438,8 +589,9 @@ class FormProperty {
                 err.keyword = null;
             });
         }
-        this._errors = hasCustomError ? errors.concat(...list) : errors;
-        this.setErrors(this._errors);
+        const nextErrors = hasCustomError ? errors.concat(...list) : errors;
+        this._errors$.set(nextErrors);
+        this.setErrors(nextErrors);
     }
     /**
      * Set the current error message
@@ -457,7 +609,7 @@ class FormProperty {
     setErrors(errors = [], emitFormat = true) {
         let arrErrs = Array.isArray(errors) ? errors : [errors];
         if (emitFormat && arrErrs && !this.ui.onlyVisual) {
-            const l = (this.widget && this.widget.l.error) ?? {};
+            const l = this._localeError();
             arrErrs = arrErrs.map((err) => {
                 let message = err.keyword == null && err.message
                     ? err.message
@@ -474,23 +626,50 @@ class FormProperty {
                 return err;
             });
         }
-        this._errors = arrErrs;
+        this._errors$.set(arrErrs);
         this._errorsChanges.next(arrErrs);
         // Should send errors to parent field
-        if (this._parent) {
-            this._parent.setParentAndPlatErrors(arrErrs, this.path);
-        }
+        // 自身错误为空时改为上报子树：手写 `setErrors`、必填空串、自定义校验器这类错误
+        // 本节点自己校验不出来，不能因为自身为空就把子树的上报一起清掉
+        this._parent?.setParentAndPlatErrors(arrErrs.length ? arrErrs : this._collectChildErrors(), this);
     }
-    setParentAndPlatErrors(errors, path) {
-        this._objErrors[path] = errors;
-        const platErrors = [];
-        Object.keys(this._objErrors).forEach(p => {
-            const property = this.searchProperty(p);
-            if (property && !property.visible)
+    /**
+     * 错误文案的本地化映射
+     *
+     * widget 已实例化时取它的 `l`；**widget 尚未实例化时回落到 `DelonLocaleService`**，
+     * 因此 `setErrors()` 不依赖 widget 是否已存在。
+     */
+    _localeError() {
+        if (this.widget) {
+            return (this.widget.l.error ?? {});
+        }
+        const srv = this.injector.get(DelonLocaleService, null);
+        return (srv?.getData('sf')?.error ?? {});
+    }
+    /**
+     * @internal 记录某个子节点上报的错误，并据此重新聚合本节点的错误
+     */
+    setParentAndPlatErrors(errors, property) {
+        this._objErrors.set(property, errors);
+        this._refreshObjErrors();
+    }
+    /**
+     * @internal 用可见子节点上报的错误重新聚合本节点，通知订阅者并向上传递
+     */
+    _refreshObjErrors() {
+        const errors = this._collectChildErrors();
+        this._errors$.set(errors);
+        this._errorsChanges.next(errors);
+        this._parent?.setParentAndPlatErrors(errors, this);
+    }
+    _collectChildErrors() {
+        const errors = [];
+        this._objErrors.forEach((childErrors, property) => {
+            if (!property.visible)
                 return;
-            platErrors.push(...this._objErrors[p]);
+            errors.push(...childErrors);
         });
-        this.setErrors(platErrors, false);
+        return errors;
     }
     // #endregion
     // #region condition
@@ -499,21 +678,16 @@ class FormProperty {
      * 设置小部件的隐藏或显示
      */
     setVisible(visible) {
-        this._visible = visible;
+        this._visible$.set(visible);
         this._visibilityChanges.next(visible);
         // 渲染时需要重新触发 reset
+        //
+        // `afterNextRender` 在 zone 与 zoneless 两种模式下都表示「下一次渲染之后」，
+        // 不需要探测 `ɵNoopNgZone` 这类私有 API。
         if (visible) {
-            const ngZone = this.injector.get(NgZone, null);
-            if (ngZone instanceof _NoopNgZone) {
-                afterNextRender(() => {
-                    this.resetValue(this.value, true);
-                }, { injector: this.injector });
-            }
-            else {
-                ngZone?.onStable.pipe(take(1)).subscribe(() => {
-                    this.resetValue(this.value, true);
-                });
-            }
+            afterNextRender(() => {
+                this.resetValue(this.value, true);
+            }, { injector: this.injector });
         }
         return this;
     }
@@ -546,6 +720,8 @@ class FormProperty {
                                             if (idx !== -1)
                                                 parentRequired.splice(idx, 1);
                                         }
+                                        // 与 `SFComponent.setRequired()` 同理：必须写入新数组，代理才会通知读取方
+                                        this.parent.schema.required = [...parentRequired];
                                         this.ui._required = fixViFnRes.required;
                                     }
                                     return fixViFnRes.show;
@@ -579,11 +755,20 @@ class FormProperty {
     updateFeedback(status = '') {
         this.ui.feedback = status;
         this.widget?.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
-        this.cd(true);
     }
 }
 class PropertyGroup extends FormProperty {
-    properties = null;
+    // `properties` 被 `array.widget.ts` 的模板直接读取（`@for (... of formProperty.properties)`），
+    // 用 signal 支撑 + 同名 getter/setter，数组增删后视图自动刷新。
+    // 写入**只能整值替换**：就地 push/splice 不会触发通知。
+    _properties$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_properties$" }] : /* istanbul ignore next */ []));
+    get properties() {
+        return this._properties$();
+    }
+    set properties(value) {
+        this._properties$.set(value);
+    }
     getProperty(path) {
         const subPathIdx = path.indexOf(SF_SEQ);
         const propertyId = subPathIdx !== -1 ? path.substring(0, subPathIdx) : path;
@@ -625,6 +810,131 @@ class PropertyGroup extends FormProperty {
     }
 }
 
+class ArrayProperty extends PropertyGroup {
+    formPropertyFactory;
+    constructor(injector, formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
+        super(injector, schemaValidatorFactory, schema, ui, formData, parent, path, options);
+        this.formPropertyFactory = formPropertyFactory;
+        this.properties = [];
+    }
+    getProperty(path) {
+        const subPathIdx = path.indexOf(SF_SEQ);
+        const pos = +(subPathIdx !== -1 ? path.substring(0, subPathIdx) : path);
+        const list = this.properties;
+        if (isNaN(pos) || pos >= list.length) {
+            return undefined;
+        }
+        const subPath = path.substring(subPathIdx + 1);
+        return list[pos].getProperty(subPath);
+    }
+    setValue(value, onlySelf) {
+        this.properties = [];
+        this._objErrors.clear();
+        this.resetProperties(value);
+        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+    }
+    resetValue(value, onlySelf) {
+        this._value = value ?? this.schema.default ?? [];
+        this.setValue(this._value, onlySelf);
+    }
+    _hasValue() {
+        return true;
+    }
+    _updateValue() {
+        const value = [];
+        this.forEachChild((property) => {
+            if (property.visible) {
+                // 从根节点读 `_cleanValue`：`reset()` 早于 widget 创建，此时经 widget 读不到
+                value.push({ ...(this.root._cleanValue ? null : property.formData), ...property.value });
+            }
+        });
+        this._value = value;
+    }
+    addProperty(formData) {
+        const newProperty = this.formPropertyFactory.createProperty(deepCopy(this.schema.items), deepCopy(this.ui.$items), formData, this);
+        // 整值替换（不能就地 push），这样 `properties` 的 signal 才会通知 array 模板
+        this.properties = [...this.properties, newProperty];
+        return newProperty;
+    }
+    resetProperties(formDatas) {
+        for (const item of formDatas) {
+            const property = this.addProperty(item);
+            property.resetValue(item, true);
+        }
+    }
+    // #region actions
+    add(formData) {
+        const newProperty = this.addProperty(formData);
+        newProperty.resetValue(formData, false);
+        return newProperty;
+    }
+    remove(index) {
+        const list = [...this.properties];
+        const [removed] = list.splice(index, 1);
+        list.forEach((property, idx) => {
+            property.path = [property.parent.path, idx].join(SF_SEQ);
+        });
+        // 被删项自己的错误要一起丢掉；其余子项的错误按实例保留，不受 `path` 重编号影响
+        this._objErrors.delete(removed);
+        // 整值替换，理由同 `addProperty`
+        this.properties = list;
+        if (list.length === 0) {
+            // 空数组要校验自身：`minItems` 这类规则只有它自己能报
+            this.updateValueAndValidity();
+        }
+        else {
+            // 下标变了要重算值（不需要校验），随后按剩下的子项重算聚合
+            this.updateValueAndValidity({ emitValidator: false, emitValueEvent: false });
+            this._refreshObjErrors();
+        }
+    }
+}
+
+class AtomicProperty extends FormProperty {
+    setValue(value, onlySelf) {
+        this._value = value;
+        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+    }
+    resetValue(value, onlySelf) {
+        if (value == null) {
+            value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
+        }
+        this._value = value;
+        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+        if (this.widget) {
+            this.widget.reset(value);
+        }
+    }
+    _hasValue() {
+        return this.fallbackValue() !== this.value;
+    }
+    _updateValue() { }
+}
+
+class BooleanProperty extends AtomicProperty {
+    fallbackValue() {
+        return null;
+    }
+}
+
+class NumberProperty extends AtomicProperty {
+    fallbackValue() {
+        return null;
+    }
+    setValue(value, onlySelf) {
+        if (typeof value === 'string') {
+            if (value.length) {
+                value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
+            }
+            else {
+                value = undefined;
+            }
+        }
+        this._value = value;
+        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
+    }
+}
+
 class ObjectProperty extends PropertyGroup {
     formPropertyFactory;
     _propertiesId = [];
@@ -658,7 +968,6 @@ class ObjectProperty extends PropertyGroup {
                 properties[propertyId].setValue(value[propertyId], true);
             }
         }
-        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -669,7 +978,6 @@ class ObjectProperty extends PropertyGroup {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
         }
-        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     _hasValue() {
@@ -686,141 +994,12 @@ class ObjectProperty extends PropertyGroup {
     }
 }
 
-class ArrayProperty extends PropertyGroup {
-    formPropertyFactory;
-    constructor(injector, formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
-        super(injector, schemaValidatorFactory, schema, ui, formData, parent, path, options);
-        this.formPropertyFactory = formPropertyFactory;
-        this.properties = [];
-    }
-    getProperty(path) {
-        const subPathIdx = path.indexOf(SF_SEQ);
-        const pos = +(subPathIdx !== -1 ? path.substring(0, subPathIdx) : path);
-        const list = this.properties;
-        if (isNaN(pos) || pos >= list.length) {
-            return undefined;
-        }
-        const subPath = path.substring(subPathIdx + 1);
-        return list[pos].getProperty(subPath);
-    }
-    setValue(value, onlySelf) {
-        this.properties = [];
-        this.clearErrors();
-        this.resetProperties(value);
-        this.cd(onlySelf);
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
-    }
-    resetValue(value, onlySelf) {
-        this._value = value ?? this.schema.default ?? [];
-        this.setValue(this._value, onlySelf);
-    }
-    _hasValue() {
-        return true;
-    }
-    _updateValue() {
-        const value = [];
-        this.forEachChild((property) => {
-            if (property.visible) {
-                value.push({ ...(this.widget?.cleanValue ? null : property.formData), ...property.value });
-            }
-        });
-        this._value = value;
-    }
-    addProperty(formData) {
-        const newProperty = this.formPropertyFactory.createProperty(deepCopy(this.schema.items), deepCopy(this.ui.$items), formData, this);
-        this.properties.push(newProperty);
-        return newProperty;
-    }
-    resetProperties(formDatas) {
-        for (const item of formDatas) {
-            const property = this.addProperty(item);
-            property.resetValue(item, true);
-        }
-    }
-    clearErrors(property) {
-        (property ?? this)._objErrors = {};
-    }
-    // #region actions
-    add(formData) {
-        const newProperty = this.addProperty(formData);
-        newProperty.resetValue(formData, false);
-        return newProperty;
-    }
-    remove(index) {
-        const list = this.properties;
-        this.clearErrors();
-        list.splice(index, 1);
-        list.forEach((property, idx) => {
-            property.path = [property.parent.path, idx].join(SF_SEQ);
-            this.clearErrors(property);
-            // TODO: 受限于 sf 的设计思路，对于移除数组项需要重新对每个子项进行校验，防止错误被父级合并后引起始终是错误的现象
-            if (property instanceof ObjectProperty) {
-                property.forEachChild(p => {
-                    p.updateValueAndValidity({ emitValueEvent: false });
-                });
-            }
-        });
-        if (list.length === 0) {
-            this.updateValueAndValidity();
-        }
-    }
-}
-
-class AtomicProperty extends FormProperty {
-    setValue(value, onlySelf) {
-        this._value = value;
-        this.cd(onlySelf);
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
-    }
-    resetValue(value, onlySelf) {
-        if (value == null) {
-            value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
-        }
-        this._value = value;
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
-        if (this.widget) {
-            this.widget.reset(value);
-            this.cd(onlySelf);
-        }
-    }
-    _hasValue() {
-        return this.fallbackValue() !== this.value;
-    }
-    _updateValue() { }
-}
-
-class BooleanProperty extends AtomicProperty {
-    fallbackValue() {
-        return null;
-    }
-}
-
-class NumberProperty extends AtomicProperty {
-    fallbackValue() {
-        return null;
-    }
-    setValue(value, onlySelf) {
-        if (typeof value === 'string') {
-            if (value.length) {
-                value = value.indexOf('.') > -1 ? parseFloat(value) : parseInt(value, 10);
-            }
-            else {
-                value = undefined;
-            }
-        }
-        this._value = value;
-        this.cd(onlySelf);
-        this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
-    }
-}
-
 class StringProperty extends AtomicProperty {
     fallbackValue() {
         return null;
     }
     setValue(value, onlySelf) {
         this._value = value;
-        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
 }
@@ -1034,41 +1213,52 @@ let nextUniqueId = 0;
 class SFItemComponent {
     widgetFactory = inject(WidgetFactory);
     terminator = inject(TerminatorService);
-    ref;
     destroy$ = new Subject();
     widget = null;
-    formProperty;
-    footer = null;
-    container;
+    formProperty = input.required(/* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "formProperty" }] : /* istanbul ignore next */ []));
+    footer = input(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "footer" }] : /* istanbul ignore next */ []));
+    container = viewChild('target', { ...(ngDevMode ? { debugName: "container" } : /* istanbul ignore next */ {}), read: ViewContainerRef });
+    constructor() {
+        // 创建 widget 是一段命令式的动态组件编排，用 effect 表达「formProperty 与容器就绪时创建」。
+        // `container` 是 signal 查询：视图尚未创建时返回 undefined，就绪后本 effect 会自动重跑。
+        effect(onCleanup => {
+            const container = this.container();
+            const p = this.formProperty();
+            if (!container || !p) {
+                return;
+            }
+            const ref = this.widgetFactory.createWidget(container, (p.ui.widget ?? p.schema.type));
+            this.onWidgetInstanciated(ref.instance);
+            // `p.ui.widget` / `p.schema.type` 也在本 effect 的依赖里：它们变了 effect 会重跑，
+            // 那时必须先销毁上一个 widget，否则容器里会同时留下两个控件
+            onCleanup(() => ref.destroy());
+        });
+    }
     onWidgetInstanciated(widget) {
         this.widget = widget;
         const id = `_sf-${nextUniqueId++}`;
-        const ui = this.formProperty.ui;
-        this.widget.formProperty = this.formProperty;
-        this.widget.schema = this.formProperty.schema;
+        const ui = this.formProperty().ui;
+        this.widget.formProperty = this.formProperty();
+        this.widget.schema = this.formProperty().schema;
         this.widget.ui = ui;
         this.widget.id = id;
-        this.formProperty.widget = widget;
+        this.formProperty().widget = widget;
     }
     ngOnInit() {
         this.terminator.onDestroy.subscribe(() => this.ngOnDestroy());
-    }
-    ngOnChanges() {
-        const p = this.formProperty;
-        this.ref = this.widgetFactory.createWidget(this.container, (p.ui.widget ?? p.schema.type));
-        this.onWidgetInstanciated(this.ref.instance);
     }
     ngOnDestroy() {
         const { destroy$ } = this;
         destroy$.next();
         destroy$.complete();
-        this.ref.destroy();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: SFItemComponent, isStandalone: false, selector: "sf-item", inputs: { formProperty: "formProperty", footer: "footer" }, host: { properties: { "class.sf__item": "true", "class.sf__collapse-item": "formProperty?.ui?.collapse" } }, providers: [NzFormStatusService], viewQueries: [{ propertyName: "container", first: true, predicate: ["target"], descendants: true, read: ViewContainerRef, static: true }], exportAs: ["sfItem"], usesOnChanges: true, ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "22.1.7", type: SFItemComponent, isStandalone: false, selector: "sf-item", inputs: { formProperty: { classPropertyName: "formProperty", publicName: "formProperty", isSignal: true, isRequired: true, transformFunction: null }, footer: { classPropertyName: "footer", publicName: "footer", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.sf__collapse-item": "formProperty().ui?.collapse" }, classAttribute: "sf__item" }, providers: [NzFormStatusService], viewQueries: [{ propertyName: "container", first: true, predicate: ["target"], descendants: true, read: ViewContainerRef, isSignal: true }], exportAs: ["sfItem"], ngImport: i0, template: `
     <ng-template #target />
-    <ng-container *ngTemplateOutlet="footer" />
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], encapsulation: i0.ViewEncapsulation.None });
+    <ng-container *ngTemplateOutlet="footer()" />
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFItemComponent, decorators: [{
             type: Component,
@@ -1076,41 +1266,37 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     selector: 'sf-item',
                     exportAs: 'sfItem',
                     host: {
-                        '[class.sf__item]': 'true',
-                        '[class.sf__collapse-item]': 'formProperty?.ui?.collapse'
+                        class: 'sf__item',
+                        '[class.sf__collapse-item]': 'formProperty().ui?.collapse'
                     },
                     template: `
     <ng-template #target />
-    <ng-container *ngTemplateOutlet="footer" />
+    <ng-container *ngTemplateOutlet="footer()" />
   `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     providers: [NzFormStatusService],
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
-        }], propDecorators: { formProperty: [{
-                type: Input
-            }], footer: [{
-                type: Input
-            }], container: [{
-                type: ViewChild,
-                args: ['target', { read: ViewContainerRef, static: true }]
-            }] } });
+        }], ctorParameters: () => [], propDecorators: { formProperty: [{ type: i0.Input, args: [{ isSignal: true, alias: "formProperty", required: true }] }], footer: [{ type: i0.Input, args: [{ isSignal: true, alias: "footer", required: false }] }], container: [{ type: i0.ViewChild, args: ['target', { ...{ read: ViewContainerRef }, isSignal: true }] }] } });
 
 class SFFixedDirective {
     el = inject(ElementRef).nativeElement;
     render = inject(Renderer2);
     _inited = false;
-    num;
+    /** 固定标签宽度（px），`0` 表示不固定；非法值按 `0` 处理 */
+    num = input(0, { ...(ngDevMode ? { debugName: "num" } : /* istanbul ignore next */ {}), alias: 'fixed-label', transform: (v) => numberAttribute(v, 0) });
     init() {
-        if (!this._inited || this.num == null || this.num <= 0)
+        const num = this.num();
+        if (!this._inited || num <= 0)
             return;
         const el = this.el;
         const widgetEl = el.querySelector('.ant-row') ?? el;
         this.render.addClass(widgetEl, 'sf__fixed');
         const labelEl = widgetEl.querySelector('.ant-form-item-label');
         const controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper,.ant-form-item-control');
-        const unit = `${this.num}px`;
+        const unit = `${num}px`;
         if (labelEl) {
             this.render.setStyle(labelEl, 'flex', `0 0 ${unit}`);
             this.render.setStyle(controlEl, 'max-width', `calc(100% - ${unit})`);
@@ -1128,7 +1314,7 @@ class SFFixedDirective {
             this.init();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFFixedDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "22.1.7", type: SFFixedDirective, isStandalone: false, selector: "[fixed-label]", inputs: { num: ["fixed-label", "num", (v) => numberAttribute(v, 0)] }, usesOnChanges: true, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "22.1.7", type: SFFixedDirective, isStandalone: false, selector: "[fixed-label]", inputs: { num: { classPropertyName: "num", publicName: "fixed-label", isSignal: true, isRequired: false, transformFunction: null } }, usesOnChanges: true, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFFixedDirective, decorators: [{
             type: Directive,
@@ -1137,10 +1323,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
-        }], propDecorators: { num: [{
-                type: Input,
-                args: [{ alias: 'fixed-label', transform: (v) => numberAttribute(v, 0) }]
-            }] } });
+        }], propDecorators: { num: [{ type: i0.Input, args: [{ isSignal: true, alias: "fixed-label", required: false }] }] } });
 
 function useFactory(injector, schemaValidatorFactory, cogSrv) {
     return new FormPropertyFactory(injector, schemaValidatorFactory, cogSrv);
@@ -1149,122 +1332,210 @@ class SFComponent {
     formPropertyFactory = inject(FormPropertyFactory);
     terminator = inject(TerminatorService);
     dom = inject(DomSanitizer);
-    cdr = inject(ChangeDetectorRef);
     localeSrv = inject(DelonLocaleService);
     aclSrv = inject(ACLService);
     i18nSrv = inject(ALAIN_I18N_TOKEN);
     platform = inject(Platform);
     cogSrv = inject(AlainConfigService);
+    options = mergeConfig(this.cogSrv);
     _renders = new Map();
     _item;
-    _valid = true;
     _defUi;
-    options;
     _inited = false;
-    locale = {};
-    rootProperty = null;
+    /**
+     * @internal 首次渲染是否已完成
+     *
+     * 用于 `Widget.ngAfterViewInit` 里「不显示首次校验视觉」的门控。
+     * 不能用 `_inited`：它在 `ngOnInit` 里就置真，而 widget 的 `errorsChanges` 订阅
+     * 是在 `BehaviorSubject` 上**订阅即回放**的——若那时 `_inited` 已为真，抑制就失效。
+     * `ngAfterViewInit` 晚于子 widget 的订阅建立，才是正确时机。
+     */
+    _rendered = false;
+    /** @internal 静默窗口标记，见 `_runSilently()` */
+    _silent = false;
+    /**
+     * @internal 在静默窗口内执行 `fn`：期间的值变更不触发 `formChange` / `formValueChange`
+     *
+     * widget 在自身 `ngAfterViewInit` 里推入初值时用它——那是初值同步（含格式化 `schema.default`），
+     * 不是用户变更，否则页面加载就会被当成一次改动。
+     */
+    _runSilently(fn) {
+        const prev = this._silent;
+        this._silent = true;
+        try {
+            fn();
+        }
+        finally {
+            this._silent = prev;
+        }
+    }
     _formData;
-    _btn;
     _schema;
     _ui;
     expandable = input(false, { ...(ngDevMode ? { debugName: "expandable" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     expanded = model(false, /* @ts-ignore */
     ...(ngDevMode ? [{ debugName: "expanded" }] : /* istanbul ignore next */ []));
+    // #region 响应式状态
+    //
+    // 以下状态被 `<sf>` 模板直接读取。采用 signal 内核 + 同名 getter/setter，
+    // 使外部写法（`sf.locale` / `sf.rootProperty` / `sf.valid` / `sf._btn`）保持有效，
+    // 同时在模板中读取时自动建立依赖。
+    _valid$ = signal(true, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_valid$" }] : /* istanbul ignore next */ []));
+    /** @internal 内部可写 */
+    get _valid() {
+        return this._valid$();
+    }
+    set _valid(value) {
+        this._valid$.set(value);
+    }
+    get valid() {
+        return this._valid$();
+    }
+    _locale$ = signal({}, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_locale$" }] : /* istanbul ignore next */ []));
+    get locale() {
+        return this._locale$();
+    }
+    set locale(value) {
+        this._locale$.set(value);
+    }
+    _rootProperty$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_rootProperty$" }] : /* istanbul ignore next */ []));
+    get rootProperty() {
+        return this._rootProperty$();
+    }
+    set rootProperty(value) {
+        this._rootProperty$.set(value);
+    }
+    _btn$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_btn$" }] : /* istanbul ignore next */ []));
+    /** @internal */
+    get _btn() {
+        return this._btn$();
+    }
+    set _btn(value) {
+        this._btn$.set(value);
+    }
     /** @internal 是否存在 collapse: true 的字段 */
     _hasCollapse = signal(false, /* @ts-ignore */
     ...(ngDevMode ? [{ debugName: "_hasCollapse" }] : /* istanbul ignore next */ []));
     get btnGrid() {
         return this._btn.render.grid;
     }
+    // #endregion
     // #region fields
     /** 表单布局，等同 `nzLayout`，默认：horizontal */
-    layout = 'horizontal';
+    layoutInput = input(undefined, { ...(ngDevMode ? { debugName: "layoutInput" } : /* istanbul ignore next */ {}), alias: 'layout' });
+    layout = linkedSignal({ ...(ngDevMode ? { debugName: "layout" } : /* istanbul ignore next */ {}), source: () => this.layoutInput(),
+        computation: (next, prev) => next ?? prev?.value ?? 'horizontal' });
     /** JSON Schema */
-    schema;
+    schemaInput = input(undefined, { ...(ngDevMode ? { debugName: "schemaInput" } : /* istanbul ignore next */ {}), alias: 'schema' });
+    /**
+     * 输入侧的有效 schema：`refreshSchema(newSchema)` 可在内部替换它；
+     * 渲染用的仍是 `coverProperty()` 产出的 `_schema`
+     */
+    _schemaValue$ = linkedSignal({ ...(ngDevMode ? { debugName: "_schemaValue$" } : /* istanbul ignore next */ {}), source: () => this.schemaInput(),
+        computation: next => next });
     /** UI Schema */
-    ui;
+    uiInput = input(undefined, { ...(ngDevMode ? { debugName: "uiInput" } : /* istanbul ignore next */ {}), alias: 'ui' });
+    /**
+     * 输入侧的有效 ui：`refreshSchema(_, newUI)` 可在内部替换它；
+     * 渲染用的仍是 `coverProperty()` 产出的 `_ui`
+     */
+    _uiValue$ = linkedSignal({ ...(ngDevMode ? { debugName: "_uiValue$" } : /* istanbul ignore next */ {}), source: () => this.uiInput(),
+        computation: next => next });
     /** 表单默认值 */
-    formData;
+    formData = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "formData" }] : /* istanbul ignore next */ []));
     /**
      * 按钮
      * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器
      * - 值为 `none` 表示手动添加按钮，且不保留容器
      * - 使用 `spanLabelFixed` 固定标签宽度时，若无 `render.class` 则默认为居中状态
      */
-    button = {};
+    button = input({}, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "button" }] : /* istanbul ignore next */ []));
     /**
      * 是否实时校验，默认：`true`
      * - `true` 每一次都校验
      * - `false` 提交时校验
      */
-    liveValidate = true;
-    /** 指定表单 `autocomplete` 值 */
-    autocomplete;
+    liveValidateInput = input(undefined, { ...(ngDevMode ? { debugName: "liveValidateInput" } : /* istanbul ignore next */ {}), alias: 'liveValidate' });
+    liveValidate = linkedSignal({ ...(ngDevMode ? { debugName: "liveValidate" } : /* istanbul ignore next */ {}), source: () => this.liveValidateInput(),
+        computation: (next, prev) => next === undefined ? (prev?.value ?? Boolean(this.options.liveValidate)) : booleanAttribute(next) });
+    /**
+     * 指定表单 `autocomplete` 值
+     *
+     * 未绑定时回落到全局配置 `options.autocomplete`
+     */
+    autocompleteInput = input(undefined, { ...(ngDevMode ? { debugName: "autocompleteInput" } : /* istanbul ignore next */ {}), alias: 'autocomplete' });
+    autocomplete = computed(() => this.autocompleteInput() ?? this.options.autocomplete, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "autocomplete" }] : /* istanbul ignore next */ []));
     /**
      * Whether to display error visuals immediately
      *
      * 是否立即显示错误视觉
      */
-    firstVisual = true;
+    firstVisualInput = input(undefined, { ...(ngDevMode ? { debugName: "firstVisualInput" } : /* istanbul ignore next */ {}), alias: 'firstVisual' });
+    firstVisual = linkedSignal({ ...(ngDevMode ? { debugName: "firstVisual" } : /* istanbul ignore next */ {}), source: () => this.firstVisualInput(),
+        computation: (next, prev) => next === undefined ? (prev?.value ?? Boolean(this.options.firstVisual)) : booleanAttribute(next) });
     /**
      * Whether to only display error visuals but not error text
      *
      * 是否只展示错误视觉不显示错误文本
      */
-    onlyVisual = false;
-    compact = false;
+    onlyVisual = input(false, { ...(ngDevMode ? { debugName: "onlyVisual" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    compact = input(false, { ...(ngDevMode ? { debugName: "compact" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
     /**
      * Form default mode, will force override `layout`, `firstVisual`, `liveValidate` parameters
      *
      * 表单预设模式，会强制覆盖 `layout`，`firstVisual`，`liveValidate` 参数
      */
-    set mode(value) {
-        switch (value) {
+    mode = input(undefined, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "mode" }] : /* istanbul ignore next */ []));
+    /** 预设模式的级联：输入变化时（`ngOnChanges`）与按钮重建后（`coverButtonProperty`）都要应用 */
+    _applyMode(mode) {
+        switch (mode) {
             case 'search':
-                this.layout = 'inline';
-                this.firstVisual = false;
-                this.liveValidate = false;
+                this.layout.set('inline');
+                this.firstVisual.set(false);
+                this.liveValidate.set(false);
                 if (this._btn) {
                     this._btn.submit = this._btn.search;
                 }
                 break;
             case 'edit':
-                this.layout = 'horizontal';
-                this.firstVisual = false;
-                this.liveValidate = true;
+                this.layout.set('horizontal');
+                this.firstVisual.set(false);
+                this.liveValidate.set(true);
                 if (this._btn) {
                     this._btn.submit = this._btn.edit;
                 }
                 break;
         }
-        this._mode = value;
     }
-    get mode() {
-        return this._mode;
-    }
-    _mode;
     /**
      * Whether to load status，when `true` reset button is disabled status, submit button is loading status
      */
-    loading = false;
-    disabled = false;
-    noColon = false;
-    cleanValue = false;
-    delay = false;
-    formValueChange = new EventEmitter();
-    formChange = new EventEmitter();
-    formSubmit = new EventEmitter();
-    formReset = new EventEmitter();
-    formError = new EventEmitter();
+    loading = input(false, { ...(ngDevMode ? { debugName: "loading" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    disabled = input(false, { ...(ngDevMode ? { debugName: "disabled" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    noColon = input(false, { ...(ngDevMode ? { debugName: "noColon" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    cleanValue = input(false, { ...(ngDevMode ? { debugName: "cleanValue" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    delayInput = input(undefined, { ...(ngDevMode ? { debugName: "delayInput" } : /* istanbul ignore next */ {}), alias: 'delay' });
+    delay = linkedSignal({ ...(ngDevMode ? { debugName: "delay" } : /* istanbul ignore next */ {}), source: () => this.delayInput(),
+        computation: (next, prev) => next === undefined ? (prev?.value ?? Boolean(this.options.delay)) : booleanAttribute(next) });
+    formValueChange = output();
+    formChange = output();
+    formSubmit = output();
+    formReset = output();
+    formError = output();
     // #endregion
     /**
      * Whether the form is valid
      *
      * 表单是否有效
      */
-    get valid() {
-        return this._valid;
-    }
     /**
      * The value of the form
      *
@@ -1313,7 +1584,6 @@ class SFComponent {
             throw new Error(`Invalid path: ${path}`);
         }
         property.schema.readOnly = status;
-        property.widget.cd.markForCheck();
         return this;
     }
     /**
@@ -1337,9 +1607,9 @@ class SFComponent {
             if (idx !== -1)
                 parentRequired.splice(idx, 1);
         }
-        property.parent.schema.required = parentRequired;
+        // 就地 push/splice 后写回同一个引用时，代理按 `Object.is` 判定相等、不会通知，因此写入新数组
+        property.parent.schema.required = [...parentRequired];
         property.ui._required = status;
-        property.widget.detectChanges();
         this.validator({ onlyRoot: false });
         return this;
     }
@@ -1362,24 +1632,18 @@ class SFComponent {
     onSubmit(e) {
         e.preventDefault();
         e.stopPropagation();
-        if (!this.liveValidate)
+        if (!this.liveValidate())
             this.validator();
         if (!this.valid)
             return;
         this.formSubmit.emit(this.value);
     }
     constructor() {
-        this.options = mergeConfig(this.cogSrv);
-        this.liveValidate = this.options.liveValidate;
-        this.firstVisual = this.options.firstVisual;
-        this.autocomplete = this.options.autocomplete;
-        this.delay = this.options.delay;
         this.localeSrv.change.pipe(takeUntilDestroyed()).subscribe(() => {
             this.locale = this.localeSrv.getData('sf');
             if (this._inited) {
                 this.validator({ emitError: false, onlyRoot: false });
                 this.coverButtonProperty();
-                this.cdr.markForCheck();
             }
         });
         merge(this.aclSrv.change, this.i18nSrv.change)
@@ -1393,8 +1657,8 @@ class SFComponent {
         ['optionalHelp'].filter(key => !!this._defUi[key]).forEach(key => (ui[key] = { ...this._defUi[key], ...ui[key] }));
     }
     coverProperty() {
-        const isHorizontal = this.layout === 'horizontal';
-        const _schema = deepCopy(this.schema);
+        const isHorizontal = this.layout() === 'horizontal';
+        const _schema = deepCopy(this._schemaValue$());
         const { definitions } = _schema;
         // 重置折叠检测状态
         this._hasCollapse.set(false);
@@ -1451,11 +1715,11 @@ class SFComponent {
                     ui.offsetControl = null;
                 }
                 // 内联强制清理 `grid` 参数
-                if (this.layout === 'inline') {
+                if (this.layout() === 'inline') {
                     delete ui.grid;
                 }
                 // 非水平布局强制清理 `spanLabelFixed` 值
-                if (this.layout !== 'horizontal') {
+                if (this.layout() !== 'horizontal') {
                     ui.spanLabelFixed = null;
                 }
                 // 当指定标签为固定宽度时无须指定 `spanLabel`，`spanControl`
@@ -1536,26 +1800,26 @@ class SFComponent {
                 }
             });
         };
-        if (this.ui == null)
-            this.ui = {};
+        if (this._uiValue$() == null)
+            this._uiValue$.set({});
         this._defUi = {
             onlyVisual: this.options.onlyVisual,
             size: this.options.size,
-            liveValidate: this.liveValidate,
+            liveValidate: this.liveValidate(),
             ...this.options.ui,
             ..._schema.ui,
-            ...this.ui['*']
+            ...this._uiValue$()['*']
         };
-        if (this.onlyVisual === true) {
+        if (this.onlyVisual() === true) {
             this._defUi.onlyVisual = true;
         }
         // 内联强制清理 `grid` 参数
-        if (this.layout === 'inline') {
+        if (this.layout() === 'inline') {
             delete this._defUi.grid;
         }
         // root
         this._ui = { ...this._defUi };
-        inFn(_schema, _schema, this.ui, this.ui, this._ui);
+        inFn(_schema, _schema, this._uiValue$(), this._uiValue$(), this._ui);
         // cond
         resolveIfSchema(_schema, this._ui);
         this._schema = _schema;
@@ -1567,11 +1831,11 @@ class SFComponent {
             render: { size: 'default' },
             ...this.locale,
             ...this.options.button,
-            ...this.button
+            ...this.button()
         };
         const firstKey = Object.keys(this._ui).find(w => w.startsWith('$'));
         const btnRender = this._btn.render;
-        if (this.layout === 'horizontal') {
+        if (this.layout() === 'horizontal') {
             const btnUi = firstKey ? this._ui[firstKey] : this._defUi;
             if (!btnRender.grid) {
                 btnRender.grid = {
@@ -1591,8 +1855,8 @@ class SFComponent {
         else {
             btnRender.grid = {};
         }
-        if (this._mode) {
-            this.mode = this._mode;
+        if (this.mode()) {
+            this._applyMode(this.mode());
         }
         di(this._ui, 'button property', this._btn);
     }
@@ -1603,16 +1867,23 @@ class SFComponent {
         this.validator();
         this._inited = true;
     }
+    ngAfterViewInit() {
+        this._rendered = true;
+    }
     ngOnChanges(changes) {
         if (!this.platform.isBrowser) {
             return;
         }
+        // 级联与原先 setter 的时机一致（都早于模板检查）
+        if (changes['mode']) {
+            this._applyMode(this.mode());
+        }
+        // `disabled` / `loading` 只驱动各自的 signal 与模板，不需要重建 schema
         const ingoreRender = ['disabled', 'loading'];
         if (Object.keys(changes).every(key => ingoreRender.includes(key))) {
-            this.cdr.detectChanges();
             return;
         }
-        if (!this.delay) {
+        if (!this.delay()) {
             this.refreshSchema();
         }
     }
@@ -1637,7 +1908,6 @@ class SFComponent {
                 return;
             }
             property.ui._render = tpl;
-            property.widget?.cd.markForCheck();
         });
     }
     /**
@@ -1672,7 +1942,6 @@ class SFComponent {
         this._valid = !(errors && errors.length);
         if (options.emitError && !this._valid)
             this.formError.emit(errors);
-        this.cdr.detectChanges();
         return this._valid;
     }
     /**
@@ -1695,38 +1964,49 @@ class SFComponent {
             return this;
         }
         if (newSchema)
-            this.schema = newSchema;
+            this._schemaValue$.set(newSchema);
         if (newUI)
-            this.ui = newUI;
-        if (!this.schema || typeof this.schema.properties === 'undefined')
+            this._uiValue$.set(newUI);
+        const schema = this._schemaValue$();
+        if (!schema || typeof schema.properties === 'undefined')
             throw new Error(`Invalid Schema`);
-        if (this.schema.ui && typeof this.schema.ui === 'string')
+        if (schema.ui && typeof schema.ui === 'string')
             throw new Error(`Don't support string with root ui property`);
-        this.schema.type = 'object';
-        this._formData = { ...this.formData };
+        schema.type = 'object';
+        this._formData = { ...this.formData() };
         if (this._inited)
             this.terminator.destroy();
         this.cleanRootSub();
         this.coverProperty();
         this.coverButtonProperty();
-        this.rootProperty = this.formPropertyFactory.createProperty(this._schema, this._ui, this.formData);
+        this.rootProperty = this.formPropertyFactory.createProperty(this._schema, this._ui, this.formData());
+        // 把 `cleanValue` 镜像到属性树：`reset()` 早于 widget 创建，模型层不能经 widget 读取它
+        this.rootProperty._cleanValue = this.cleanValue();
         this.attachCustomRender();
-        this.cdr.detectChanges();
+        // 此处不需要额外的结构 CD，`reset()` 直接作用于属性树：
+        //  ① `setErrors()` 的文案在 widget 缺失时回落到 `DelonLocaleService`；
+        //  ② widget 在自身 `ngAfterViewInit` 里推入初值，那时 `ngOnInit` 已跑完；
+        //  ③ 首次校验视觉由 `_rendered` 门控，不依赖 widget 的创建时机。
         this.reset();
-        let isFirst = true;
-        this.rootProperty.valueChanges.subscribe(res => {
-            this._item = { ...(this.cleanValue ? null : this.formData), ...res.value };
-            if (isFirst) {
-                isFirst = false;
+        // `valueChanges` 是 `BehaviorSubject`，订阅时会回放当前值：先用它初始化 `_item`，
+        // 再用 `skip(1)` 把这条回放排除掉——回放是初值，不是变更
+        const rootProperty = this.rootProperty;
+        const toItem = (value) => ({
+            ...(this.cleanValue() ? null : this.formData()),
+            ...value
+        });
+        this._item = toItem(rootProperty.value);
+        rootProperty.valueChanges.pipe(skip(1)).subscribe(res => {
+            this._item = toItem(res.value);
+            // 初值同步也是值变更，但它不是用户改的，见 `_runSilently()`
+            if (this._silent)
                 return;
-            }
             this.formChange.emit(this._item);
             this.formValueChange.emit({ value: this._item, path: res.path, pathValue: res.pathValue });
         });
         this.rootProperty.errorsChanges.subscribe(errors => {
             this._valid = !(errors && errors.length);
             this.formError.emit(errors);
-            this.cdr.detectChanges();
         });
         return this;
     }
@@ -1741,8 +2021,7 @@ class SFComponent {
         if (this.rootProperty == null || !this.platform.isBrowser) {
             return this;
         }
-        this.rootProperty.resetValue(this.formData, false);
-        Promise.resolve().then(() => this.cdr.detectChanges());
+        this.rootProperty.resetValue(this.formData(), false);
         if (emit) {
             this.formReset.emit(this.value);
         }
@@ -1759,7 +2038,7 @@ class SFComponent {
         this.terminator.destroy();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: SFComponent, isStandalone: false, selector: "sf, [sf]", inputs: { expandable: { classPropertyName: "expandable", publicName: "expandable", isSignal: true, isRequired: false, transformFunction: null }, expanded: { classPropertyName: "expanded", publicName: "expanded", isSignal: true, isRequired: false, transformFunction: null }, layout: { classPropertyName: "layout", publicName: "layout", isSignal: false, isRequired: false, transformFunction: null }, schema: { classPropertyName: "schema", publicName: "schema", isSignal: false, isRequired: false, transformFunction: null }, ui: { classPropertyName: "ui", publicName: "ui", isSignal: false, isRequired: false, transformFunction: null }, formData: { classPropertyName: "formData", publicName: "formData", isSignal: false, isRequired: false, transformFunction: null }, button: { classPropertyName: "button", publicName: "button", isSignal: false, isRequired: false, transformFunction: null }, liveValidate: { classPropertyName: "liveValidate", publicName: "liveValidate", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, autocomplete: { classPropertyName: "autocomplete", publicName: "autocomplete", isSignal: false, isRequired: false, transformFunction: null }, firstVisual: { classPropertyName: "firstVisual", publicName: "firstVisual", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, onlyVisual: { classPropertyName: "onlyVisual", publicName: "onlyVisual", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, compact: { classPropertyName: "compact", publicName: "compact", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, mode: { classPropertyName: "mode", publicName: "mode", isSignal: false, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, noColon: { classPropertyName: "noColon", publicName: "noColon", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, cleanValue: { classPropertyName: "cleanValue", publicName: "cleanValue", isSignal: false, isRequired: false, transformFunction: booleanAttribute }, delay: { classPropertyName: "delay", publicName: "delay", isSignal: false, isRequired: false, transformFunction: booleanAttribute } }, outputs: { expanded: "expandedChange", formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact", "class.sf__collapse": "expandable() && !expanded()" } }, providers: [
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: SFComponent, isStandalone: false, selector: "sf, [sf]", inputs: { expandable: { classPropertyName: "expandable", publicName: "expandable", isSignal: true, isRequired: false, transformFunction: null }, expanded: { classPropertyName: "expanded", publicName: "expanded", isSignal: true, isRequired: false, transformFunction: null }, layoutInput: { classPropertyName: "layoutInput", publicName: "layout", isSignal: true, isRequired: false, transformFunction: null }, schemaInput: { classPropertyName: "schemaInput", publicName: "schema", isSignal: true, isRequired: false, transformFunction: null }, uiInput: { classPropertyName: "uiInput", publicName: "ui", isSignal: true, isRequired: false, transformFunction: null }, formData: { classPropertyName: "formData", publicName: "formData", isSignal: true, isRequired: false, transformFunction: null }, button: { classPropertyName: "button", publicName: "button", isSignal: true, isRequired: false, transformFunction: null }, liveValidateInput: { classPropertyName: "liveValidateInput", publicName: "liveValidate", isSignal: true, isRequired: false, transformFunction: null }, autocompleteInput: { classPropertyName: "autocompleteInput", publicName: "autocomplete", isSignal: true, isRequired: false, transformFunction: null }, firstVisualInput: { classPropertyName: "firstVisualInput", publicName: "firstVisual", isSignal: true, isRequired: false, transformFunction: null }, onlyVisual: { classPropertyName: "onlyVisual", publicName: "onlyVisual", isSignal: true, isRequired: false, transformFunction: null }, compact: { classPropertyName: "compact", publicName: "compact", isSignal: true, isRequired: false, transformFunction: null }, mode: { classPropertyName: "mode", publicName: "mode", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null }, noColon: { classPropertyName: "noColon", publicName: "noColon", isSignal: true, isRequired: false, transformFunction: null }, cleanValue: { classPropertyName: "cleanValue", publicName: "cleanValue", isSignal: true, isRequired: false, transformFunction: null }, delayInput: { classPropertyName: "delayInput", publicName: "delay", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { expanded: "expandedChange", formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf__inline": "layout() === 'inline'", "class.sf__horizontal": "layout() === 'horizontal'", "class.sf__search": "mode() === 'search'", "class.sf__edit": "mode() === 'edit'", "class.sf__no-error": "onlyVisual()", "class.sf__no-colon": "noColon()", "class.sf__compact": "compact()", "class.sf__collapse": "expandable() && !expanded()" }, classAttribute: "sf" }, providers: [
             WidgetFactory,
             {
                 provide: FormPropertyFactory,
@@ -1767,7 +2046,7 @@ class SFComponent {
                 deps: [Injector, SchemaValidatorFactory, AlainConfigService]
             },
             TerminatorService
-        ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n                @if (expandable() && _hasCollapse()) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    nzType=\"text\"\n                    data-type=\"expand\"\n                    [attr.aria-expanded]=\"expanded()\"\n                    (click)=\"expanded.update(v => !v)\"\n                  >\n                    {{ expanded() ? locale.collapse : locale.expand }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form ngNoForm novalidate [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n", dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: i2.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i4.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "directive", type: i6.NzFormDirective, selector: "[nz-form]", inputs: ["nzLayout", "nzNoColon", "nzAutoTips", "nzDisableAutoTips", "nzTooltipIcon", "nzLabelAlign", "nzLabelWrap", "nzSize", "nzVariant", "nzRequiredMark"], exportAs: ["nzForm"] }, { kind: "component", type: i6.NzFormItemComponent, selector: "nz-form-item", inputs: ["nzLayout"], exportAs: ["nzFormItem"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button() !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button()) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading()\"\n                  [disabled]=\"liveValidate() && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading()\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n                @if (expandable() && _hasCollapse()) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    nzType=\"text\"\n                    data-type=\"expand\"\n                    [attr.aria-expanded]=\"expanded()\"\n                    (click)=\"expanded.update(v => !v)\"\n                  >\n                    {{ expanded() ? locale.collapse : locale.expand }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form\n  nz-form\n  ngNoForm\n  novalidate\n  [nzLayout]=\"layout()\"\n  (submit)=\"onSubmit($event)\"\n  [attr.autocomplete]=\"autocomplete()\"\n>\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n", dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: i2.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i4.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "directive", type: i6.NzFormDirective, selector: "[nz-form]", inputs: ["nzLayout", "nzNoColon", "nzAutoTips", "nzDisableAutoTips", "nzTooltipIcon", "nzLabelAlign", "nzLabelWrap", "nzSize", "nzVariant", "nzRequiredMark"], exportAs: ["nzForm"] }, { kind: "component", type: i6.NzFormItemComponent, selector: "nz-form-item", inputs: ["nzLayout"], exportAs: ["nzFormItem"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFComponent, decorators: [{
             type: Component,
@@ -1780,124 +2059,84 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                         },
                         TerminatorService
                     ], host: {
-                        '[class.sf]': 'true',
-                        '[class.sf__inline]': `layout === 'inline'`,
-                        '[class.sf__horizontal]': `layout === 'horizontal'`,
-                        '[class.sf__search]': `mode === 'search'`,
-                        '[class.sf__edit]': `mode === 'edit'`,
-                        '[class.sf__no-error]': `onlyVisual`,
-                        '[class.sf__no-colon]': `noColon`,
-                        '[class.sf__compact]': `compact`,
+                        class: 'sf',
+                        '[class.sf__inline]': `layout() === 'inline'`,
+                        '[class.sf__horizontal]': `layout() === 'horizontal'`,
+                        '[class.sf__search]': `mode() === 'search'`,
+                        '[class.sf__edit]': `mode() === 'edit'`,
+                        '[class.sf__no-error]': `onlyVisual()`,
+                        '[class.sf__no-colon]': `noColon()`,
+                        '[class.sf__compact]': `compact()`,
                         '[class.sf__collapse]': `expandable() && !expanded()`
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: false, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n                @if (expandable() && _hasCollapse()) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    nzType=\"text\"\n                    data-type=\"expand\"\n                    [attr.aria-expanded]=\"expanded()\"\n                    (click)=\"expanded.update(v => !v)\"\n                  >\n                    {{ expanded() ? locale.collapse : locale.expand }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form ngNoForm novalidate [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n" }]
-        }], ctorParameters: () => [], propDecorators: { expandable: [{ type: i0.Input, args: [{ isSignal: true, alias: "expandable", required: false }] }], expanded: [{ type: i0.Input, args: [{ isSignal: true, alias: "expanded", required: false }] }, { type: i0.Output, args: ["expandedChange"] }], layout: [{
-                type: Input
-            }], schema: [{
-                type: Input
-            }], ui: [{
-                type: Input
-            }], formData: [{
-                type: Input
-            }], button: [{
-                type: Input
-            }], liveValidate: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], autocomplete: [{
-                type: Input
-            }], firstVisual: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], onlyVisual: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], compact: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], mode: [{
-                type: Input
-            }], loading: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], disabled: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], noColon: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], cleanValue: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], delay: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], formValueChange: [{
-                type: Output
-            }], formChange: [{
-                type: Output
-            }], formSubmit: [{
-                type: Output
-            }], formReset: [{
-                type: Output
-            }], formError: [{
-                type: Output
-            }] } });
+                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: false, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button() !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button()) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading()\"\n                  [disabled]=\"liveValidate() && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading()\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n                @if (expandable() && _hasCollapse()) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    nzType=\"text\"\n                    data-type=\"expand\"\n                    [attr.aria-expanded]=\"expanded()\"\n                    (click)=\"expanded.update(v => !v)\"\n                  >\n                    {{ expanded() ? locale.collapse : locale.expand }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form\n  nz-form\n  ngNoForm\n  novalidate\n  [nzLayout]=\"layout()\"\n  (submit)=\"onSubmit($event)\"\n  [attr.autocomplete]=\"autocomplete()\"\n>\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n" }]
+        }], ctorParameters: () => [], propDecorators: { expandable: [{ type: i0.Input, args: [{ isSignal: true, alias: "expandable", required: false }] }], expanded: [{ type: i0.Input, args: [{ isSignal: true, alias: "expanded", required: false }] }, { type: i0.Output, args: ["expandedChange"] }], layoutInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "layout", required: false }] }], schemaInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "schema", required: false }] }], uiInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "ui", required: false }] }], formData: [{ type: i0.Input, args: [{ isSignal: true, alias: "formData", required: false }] }], button: [{ type: i0.Input, args: [{ isSignal: true, alias: "button", required: false }] }], liveValidateInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "liveValidate", required: false }] }], autocompleteInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "autocomplete", required: false }] }], firstVisualInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "firstVisual", required: false }] }], onlyVisual: [{ type: i0.Input, args: [{ isSignal: true, alias: "onlyVisual", required: false }] }], compact: [{ type: i0.Input, args: [{ isSignal: true, alias: "compact", required: false }] }], mode: [{ type: i0.Input, args: [{ isSignal: true, alias: "mode", required: false }] }], loading: [{ type: i0.Input, args: [{ isSignal: true, alias: "loading", required: false }] }], disabled: [{ type: i0.Input, args: [{ isSignal: true, alias: "disabled", required: false }] }], noColon: [{ type: i0.Input, args: [{ isSignal: true, alias: "noColon", required: false }] }], cleanValue: [{ type: i0.Input, args: [{ isSignal: true, alias: "cleanValue", required: false }] }], delayInput: [{ type: i0.Input, args: [{ isSignal: true, alias: "delay", required: false }] }], formValueChange: [{ type: i0.Output, args: ["formValueChange"] }], formChange: [{ type: i0.Output, args: ["formChange"] }], formSubmit: [{ type: i0.Output, args: ["formSubmit"] }], formReset: [{ type: i0.Output, args: ["formReset"] }], formError: [{ type: i0.Output, args: ["formError"] }] } });
 
 class SFItemWrapComponent {
     statusSrv = inject(NzFormStatusService);
-    _showTitle = false;
-    id;
-    schema;
-    ui;
-    showError;
-    error;
-    set showTitle(val) {
-        this._showTitle = !!val;
-    }
-    title = null;
-    get t() {
-        return this.title === null ? this.schema.title : this.title;
-    }
-    get oh() {
-        return this.ui.optionalHelp;
-    }
+    // signal 输入；父模板（含第三方自定义 widget）用 `[schema]="schema"` 这样的写法即可绑定
+    id = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "id" }] : /* istanbul ignore next */ []));
+    schema = input.required(/* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "schema" }] : /* istanbul ignore next */ []));
+    ui = input.required(/* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "ui" }] : /* istanbul ignore next */ []));
+    showError = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "showError" }] : /* istanbul ignore next */ []));
+    error = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "error" }] : /* istanbul ignore next */ []));
+    showTitle = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "showTitle" }] : /* istanbul ignore next */ []));
+    title = input(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "title" }] : /* istanbul ignore next */ []));
+    /** @internal 模板用 */
+    _showTitle = computed(() => !!this.showTitle(), /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_showTitle" }] : /* istanbul ignore next */ []));
+    t = computed(() => {
+        const title = this.title();
+        return title === null ? this.schema().title : title;
+    }, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "t" }] : /* istanbul ignore next */ []));
+    oh = computed(() => this.ui().optionalHelp, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "oh" }] : /* istanbul ignore next */ []));
     nzValidateAnimationEnter = withAnimationCheck(() => 'ant-form-validate_animation-enter');
     nzValidateAnimationLeave = withAnimationCheck(() => 'ant-form-validate_animation-leave');
-    ngOnChanges() {
-        const hasError = !!this.error;
-        this.statusSrv.formStatusChanges.next({ status: hasError ? 'error' : '', hasFeedback: !!this.ui.feedback });
+    constructor() {
+        // 「错误状态 → 通知 NzFormStatusService」的响应式副作用。
+        //
+        // effect 每次 CD 都会重跑，因此这里必须是幂等推导，并且要与另一处写入源
+        // `FormProperty.updateFeedback()`（推 `{status: feedback, hasFeedback: !!feedback}`）
+        // 的语义一致，否则会把它的状态覆盖掉。
+        //
+        // 推导规则（对两个来源等价）：
+        // - `ui.feedback` 有值 → 以它为准，hasFeedback = true
+        // - 否则回落到校验错误 → status = 'error'，hasFeedback 仍取决于 feedback
+        effect(() => {
+            const feedback = (this.ui().feedback ?? '');
+            const hasError = !!this.error();
+            this.statusSrv.formStatusChanges.next({
+                status: feedback || (hasError ? 'error' : ''),
+                hasFeedback: !!feedback
+            });
+        });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFItemWrapComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: SFItemWrapComponent, isStandalone: false, selector: "sf-item-wrap", inputs: { id: "id", schema: "schema", ui: "ui", showError: "showError", error: "error", showTitle: "showTitle", title: "title" }, usesOnChanges: true, ngImport: i0, template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t) {\n        <label [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError) {\n      <div\n        [animate.enter]=\"nzValidateAnimationEnter()\"\n        [animate.leave]=\"nzValidateAnimationLeave()\"\n        class=\"ant-form-item-explain ant-form-item-explain-connected\"\n      >\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error }}\n        </div>\n      </div>\n    }\n    @if (schema.description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n", dependencies: [{ kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "component", type: i6.NzFormItemComponent, selector: "nz-form-item", inputs: ["nzLayout"], exportAs: ["nzFormItem"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: SFItemWrapComponent, isStandalone: false, selector: "sf-item-wrap", inputs: { id: { classPropertyName: "id", publicName: "id", isSignal: true, isRequired: false, transformFunction: null }, schema: { classPropertyName: "schema", publicName: "schema", isSignal: true, isRequired: true, transformFunction: null }, ui: { classPropertyName: "ui", publicName: "ui", isSignal: true, isRequired: true, transformFunction: null }, showError: { classPropertyName: "showError", publicName: "showError", isSignal: true, isRequired: false, transformFunction: null }, error: { classPropertyName: "error", publicName: "error", isSignal: true, isRequired: false, transformFunction: null }, showTitle: { classPropertyName: "showTitle", publicName: "showTitle", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null } }, ngImport: i0, template: "@let ui = this.ui();\n@let oh = this.oh();\n<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError()\"\n  [class.ant-form-item-with-help]=\"showError()\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle()) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t()) {\n        <label [attr.for]=\"id()\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t() }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError()) {\n      <div\n        [animate.enter]=\"nzValidateAnimationEnter()\"\n        [animate.leave]=\"nzValidateAnimationLeave()\"\n        class=\"ant-form-item-explain ant-form-item-explain-connected\"\n      >\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error() }}\n        </div>\n      </div>\n    }\n    @if (schema().description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n", dependencies: [{ kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "component", type: i6.NzFormItemComponent, selector: "nz-form-item", inputs: ["nzLayout"], exportAs: ["nzFormItem"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFItemWrapComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'sf-item-wrap', encapsulation: ViewEncapsulation.None, standalone: false, template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t) {\n        <label [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError) {\n      <div\n        [animate.enter]=\"nzValidateAnimationEnter()\"\n        [animate.leave]=\"nzValidateAnimationLeave()\"\n        class=\"ant-form-item-explain ant-form-item-explain-connected\"\n      >\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error }}\n        </div>\n      </div>\n    }\n    @if (schema.description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n" }]
-        }], propDecorators: { id: [{
-                type: Input
-            }], schema: [{
-                type: Input
-            }], ui: [{
-                type: Input
-            }], showError: [{
-                type: Input
-            }], error: [{
-                type: Input
-            }], showTitle: [{
-                type: Input
-            }], title: [{
-                type: Input
-            }] } });
+            args: [{ selector: 'sf-item-wrap', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: false, template: "@let ui = this.ui();\n@let oh = this.oh();\n<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError()\"\n  [class.ant-form-item-with-help]=\"showError()\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle()) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t()) {\n        <label [attr.for]=\"id()\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t() }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError()) {\n      <div\n        [animate.enter]=\"nzValidateAnimationEnter()\"\n        [animate.leave]=\"nzValidateAnimationLeave()\"\n        class=\"ant-form-item-explain ant-form-item-explain-connected\"\n      >\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error() }}\n        </div>\n      </div>\n    }\n    @if (schema().description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n" }]
+        }], ctorParameters: () => [], propDecorators: { id: [{ type: i0.Input, args: [{ isSignal: true, alias: "id", required: false }] }], schema: [{ type: i0.Input, args: [{ isSignal: true, alias: "schema", required: true }] }], ui: [{ type: i0.Input, args: [{ isSignal: true, alias: "ui", required: true }] }], showError: [{ type: i0.Input, args: [{ isSignal: true, alias: "showError", required: false }] }], error: [{ type: i0.Input, args: [{ isSignal: true, alias: "error", required: false }] }], showTitle: [{ type: i0.Input, args: [{ isSignal: true, alias: "showTitle", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }] } });
 
 class SFTemplateDirective {
     table = inject(SFComponent);
     templateRef = inject(TemplateRef);
-    path;
+    path = input.required({ ...(ngDevMode ? { debugName: "path" } : /* istanbul ignore next */ {}), alias: 'sf-template' });
     ngOnInit() {
-        this.table._addTpl(this.path.startsWith(SF_SEQ) ? this.path : SF_SEQ + this.path, this.templateRef);
+        const path = this.path();
+        this.table._addTpl(path.startsWith(SF_SEQ) ? path : SF_SEQ + path, this.templateRef);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFTemplateDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "22.1.7", type: SFTemplateDirective, isStandalone: false, selector: "[sf-template]", inputs: { path: ["sf-template", "path"] }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "22.1.7", type: SFTemplateDirective, isStandalone: false, selector: "[sf-template]", inputs: { path: { classPropertyName: "path", publicName: "sf-template", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SFTemplateDirective, decorators: [{
             type: Directive,
@@ -1906,27 +2145,81 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
-        }], propDecorators: { path: [{
-                type: Input,
-                args: ['sf-template']
-            }] } });
+        }], propDecorators: { path: [{ type: i0.Input, args: [{ isSignal: true, alias: "sf-template", required: true }] }] } });
 
 class Widget {
-    cd = inject(ChangeDetectorRef);
+    /**
+     * 仅内部使用：在 `ngAfterViewInit` 的错误推送里强制刷新一次 widget 视图，
+     * 使 `[ngModel]` 的 model→view 写入（`writeValue`）落在同一个 tick 内。
+     *
+     * widget 的状态本身都会自行标脏——`ui`/`schema` 是响应式代理，局部字段与
+     * `showError`/`error` 是 signal——所以这是唯一需要手动刷新的一处。
+     */
+    cdr = inject(ChangeDetectorRef);
+    /** 错误订阅随 widget 自身销毁而结束：`ui.widget` 变化会让 `sf-item` 重建 widget */
+    destroyRef = inject(DestroyRef);
     injector = inject(Injector);
     sfItemComp = inject(SFItemComponent);
     sfComp = inject(SFComponent);
-    formProperty;
-    error;
-    showError = false;
-    id = '';
-    schema;
-    ui;
+    // #region 响应式状态
+    //
+    // 以下成员由 `SFItemComponent.onWidgetInstanciated` 赋值，并被 widget 模板直接读取。
+    // 采用「同名 getter/setter + signal 内核」，因此既有模板写法（如 `[showError]="showError"`）
+    // 仍然有效，同时在模板或 `computed` 中读取时会自动建立依赖。
+    _formProperty$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_formProperty$" }] : /* istanbul ignore next */ []));
+    _schema$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_schema$" }] : /* istanbul ignore next */ []));
+    _ui$ = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_ui$" }] : /* istanbul ignore next */ []));
+    _id$ = signal('', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_id$" }] : /* istanbul ignore next */ []));
+    _error$ = signal(undefined, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_error$" }] : /* istanbul ignore next */ []));
+    _showError$ = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_showError$" }] : /* istanbul ignore next */ []));
+    get formProperty() {
+        return this._formProperty$();
+    }
+    set formProperty(value) {
+        this._formProperty$.set(value);
+    }
+    get schema() {
+        return this._schema$();
+    }
+    set schema(value) {
+        this._schema$.set(value);
+    }
+    get ui() {
+        return this._ui$();
+    }
+    set ui(value) {
+        this._ui$.set(value);
+    }
+    get id() {
+        return this._id$();
+    }
+    set id(value) {
+        this._id$.set(value);
+    }
+    get error() {
+        return this._error$();
+    }
+    set error(value) {
+        this._error$.set(value);
+    }
+    get showError() {
+        return this._showError$();
+    }
+    set showError(value) {
+        this._showError$.set(value);
+    }
+    // #endregion
     get cls() {
         return this.ui.class ?? '';
     }
     get disabled() {
-        if (this.schema.readOnly === true || this.sfComp.disabled) {
+        if (this.schema.readOnly === true || this.sfComp.disabled()) {
             return true;
         }
         return false;
@@ -1941,24 +2234,48 @@ class Widget {
         return this.injector.get(DomSanitizer);
     }
     get cleanValue() {
-        return this.sfComp.cleanValue;
+        return this.sfComp.cleanValue();
     }
+    /**
+     * 是否显示错误：数组/对象这类布局 widget 为 `false`
+     *
+     * 它们的 `errorsChanges` 携带的是**子节点的聚合错误**，显示出来会和子字段行内的报错重复；
+     * 子节点的错误由它们各自的 widget 显示。
+     */
+    displayError = true;
     ngAfterViewInit() {
-        this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.destroy$))
-            .subscribe((errors) => {
-            if (errors == null)
-                return;
-            di(this.ui, 'errorsChanges', this.formProperty.path, errors);
-            // 不显示首次校验视觉
-            const firstVisual = this.sfComp?.firstVisual;
-            if (firstVisual || (!firstVisual && this.sfComp?._inited)) {
-                this.showError = errors.length > 0;
-                this.error = this.showError ? errors[0].message : '';
-                this.cd.detectChanges();
-            }
-        });
+        if (this.displayError) {
+            this.formProperty.errorsChanges
+                .pipe(takeUntilDestroyed(this.destroyRef))
+                .subscribe((errors) => {
+                if (errors == null)
+                    return;
+                di(this.ui, 'errorsChanges', this.formProperty.path, errors);
+                // 不显示首次校验视觉
+                const firstVisual = this.sfComp?.firstVisual();
+                // 门控用 `_rendered`（首次渲染完成），不能用 `_inited`：widget 对 `errorsChanges`
+                // 是「订阅即回放」，订阅时 `_inited` 已为真，抑制会失效
+                if (firstVisual || (!firstVisual && this.sfComp?._rendered)) {
+                    this.showError = errors.length > 0;
+                    this.error = this.showError ? errors[0].message : '';
+                    // 强制刷新 widget 自身视图：`[ngModel]` 的 model→view 写入（`writeValue`）
+                    // 必须在同一个 tick 内完成，否则输入框拿不到初值。
+                    // 与 `showError`/`error` 无关——它们由 signal 自行驱动。
+                    this.cdr.detectChanges();
+                }
+            });
+        }
         this.afterViewInit();
+        // 初始值推送：`refreshSchema()` 的 `reset()` 跑在首次 CD 之前，那时 widget 还没创建，
+        // `AtomicProperty.resetValue` 的 `if (this.widget)` 分支被跳过，所以这里补一次。
+        //
+        // 必须放在 `afterViewInit()` 之后：
+        //  - 更早（在 `sf-item` 创建组件处）会早于 widget 的 `ngOnInit`：`DateWidget` 依赖
+        //    `ngOnInit` 里解析的 format，会抛 `TypeError: value.map is not a function`；
+        //  - 早于 `afterViewInit()`：`AutoCompleteWidget` 的 `isAsync`/`list` 尚未就绪，
+        //    `reset()` 会走错分支（`typing` 拿到原值而不是 label）。
+        // 这一次推送的是初值，不算用户变更
+        this.sfComp._runSilently(() => this.reset(this.formProperty.value));
     }
     setValue(value) {
         this.formProperty.setValue(value, false);
@@ -1967,23 +2284,15 @@ class Widget {
     get value() {
         return this.formProperty.value;
     }
-    detectChanges(onlySelf = false) {
-        if (onlySelf) {
-            this.cd.markForCheck();
-        }
-        else {
-            this.formProperty.root.widget?.cd.markForCheck();
-        }
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: Widget, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "22.1.7", type: Widget, isStandalone: true, host: { properties: { "class": "this.cls" } }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "22.1.7", type: Widget, isStandalone: true, host: { properties: { "class": "cls" } }, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: Widget, decorators: [{
-            type: Directive
-        }], propDecorators: { cls: [{
-                type: HostBinding,
-                args: ['class']
-            }] } });
+            type: Directive,
+            args: [{
+                    host: { '[class]': 'cls' }
+                }]
+        }] });
 class ControlWidget extends Widget {
     reset(_value) { }
     afterViewInit() { }
@@ -2003,11 +2312,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             type: Directive
         }] });
 class ArrayLayoutWidget extends Widget {
+    displayError = false;
     reset(_value) { }
     afterViewInit() { }
-    ngAfterViewInit() {
-        this.formProperty.errorsChanges.pipe(takeUntil(this.sfItemComp.destroy$)).subscribe(() => this.cd.detectChanges());
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ArrayLayoutWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
     static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "22.1.7", type: ArrayLayoutWidget, isStandalone: true, usesInheritance: true, ngImport: i0 });
 }
@@ -2015,11 +2322,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             type: Directive
         }] });
 class ObjectLayoutWidget extends Widget {
+    displayError = false;
     reset(_value) { }
     afterViewInit() { }
-    ngAfterViewInit() {
-        this.formProperty.errorsChanges.pipe(takeUntil(this.sfItemComp.destroy$)).subscribe(() => this.cd.detectChanges());
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ObjectLayoutWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
     static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "22.1.7", type: ObjectLayoutWidget, isStandalone: true, usesInheritance: true, ngImport: i0 });
 }
@@ -2133,7 +2438,7 @@ class ArrayWidget extends ArrayLayoutWidget {
         }
       </div>
     </div>
-  </nz-form-item>`, isInline: true, dependencies: [{ kind: "component", type: i2.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i4.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "component", type: i4$1.NzCardComponent, selector: "nz-card", inputs: ["nzBordered", "nzLoading", "nzHoverable", "nzBodyStyle", "nzCover", "nzActions", "nzType", "nzSize", "nzTitle", "nzExtra"], exportAs: ["nzCard"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "component", type: i6.NzFormItemComponent, selector: "nz-form-item", inputs: ["nzLayout"], exportAs: ["nzFormItem"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }], encapsulation: i0.ViewEncapsulation.None });
+  </nz-form-item>`, isInline: true, dependencies: [{ kind: "component", type: i2.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i4.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "component", type: i4$1.NzCardComponent, selector: "nz-card", inputs: ["nzBordered", "nzLoading", "nzHoverable", "nzBodyStyle", "nzCover", "nzActions", "nzType", "nzSize", "nzTitle", "nzExtra"], exportAs: ["nzCard"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "component", type: i6.NzFormItemComponent, selector: "nz-form-item", inputs: ["nzLayout"], exportAs: ["nzFormItem"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ArrayWidget, decorators: [{
             type: Component,
@@ -2202,6 +2507,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
   </nz-form-item>`,
                     host: { '[class.sf__array]': 'true' },
                     encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
@@ -2228,7 +2534,7 @@ class BooleanWidget extends ControlUIWidget {
       [nzUnCheckedChildren]="ui.unCheckedChildren!"
       [nzLoading]="ui.loading"
     />
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$2.NzSwitchComponent, selector: "nz-switch", inputs: ["nzLoading", "nzDisabled", "nzControl", "nzCheckedChildren", "nzUnCheckedChildren", "nzSize", "nzId"], exportAs: ["nzSwitch"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$2.NzSwitchComponent, selector: "nz-switch", inputs: ["nzLoading", "nzDisabled", "nzControl", "nzCheckedChildren", "nzUnCheckedChildren", "nzSize", "nzId"], exportAs: ["nzSwitch"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: BooleanWidget, decorators: [{
             type: Component,
@@ -2255,71 +2561,82 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
     />
   </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
         }] });
 
 class CheckboxWidget extends ControlUIWidget {
-    data = [];
-    allChecked = false;
-    indeterminate = false;
-    grid_span;
-    labelTitle = ``;
-    inited = false;
+    data = signal([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    allChecked = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "allChecked" }] : /* istanbul ignore next */ []));
+    indeterminate = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "indeterminate" }] : /* istanbul ignore next */ []));
+    grid_span = signal(0, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "grid_span" }] : /* istanbul ignore next */ []));
+    labelTitle = signal('', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "labelTitle" }] : /* istanbul ignore next */ []));
+    inited = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "inited" }] : /* istanbul ignore next */ []));
     reset(value) {
-        this.inited = false;
+        this.inited.set(false);
         getData(this.schema, this.ui, value).subscribe(list => {
-            this.data = list;
-            this.allChecked = false;
-            this.indeterminate = false;
-            this.labelTitle = list.length === 0 ? '' : this.schema.title;
+            this.data.set(list);
+            this.allChecked.set(false);
+            this.indeterminate.set(false);
+            this.labelTitle.set(list.length === 0 ? '' : this.schema.title);
             const { span } = this.ui;
-            this.grid_span = span && span > 0 ? span : 0;
+            this.grid_span.set(span && span > 0 ? span : 0);
             this.updateAllChecked();
-            this.inited = true;
-            this.cd.markForCheck();
+            this.inited.set(true);
         });
     }
     _setValue(value) {
         this.setValue(value);
-        this.detectChanges(true);
         this.notifyChange(value);
     }
     notifySet() {
-        const checkList = this.data.filter(w => w.checked);
+        const checkList = this.data().filter(w => w.checked);
         this.updateAllChecked().setValue(checkList.map(item => item.value));
         this.notifyChange(checkList);
     }
     groupInGridChange(values) {
-        this.data.forEach(item => (item.checked = values.indexOf(item.value) !== -1));
+        this.data().forEach(item => (item.checked = values.indexOf(item.value) !== -1));
+        this.bumpData();
         this.notifySet();
     }
     onAllChecked() {
-        this.data.forEach(item => (item.checked = this.allChecked));
+        this.data().forEach(item => (item.checked = this.allChecked()));
+        this.bumpData();
         this.notifySet();
     }
     updateAllChecked() {
-        if (this.data.every(item => item.checked !== true)) {
-            this.allChecked = false;
-            this.indeterminate = false;
+        if (this.data().every(item => item.checked !== true)) {
+            this.allChecked.set(false);
+            this.indeterminate.set(false);
         }
-        else if (this.data.every(item => item.checked === true)) {
-            this.allChecked = true;
-            this.indeterminate = false;
+        else if (this.data().every(item => item.checked === true)) {
+            this.allChecked.set(true);
+            this.indeterminate.set(false);
         }
         else {
-            this.indeterminate = true;
+            this.indeterminate.set(true);
         }
-        this.detectChanges(true);
         return this;
     }
+    /** 元素级 `item.checked` 是就地修改的，用数组身份替换让 OnPush 视图刷新 */
+    bumpData() {
+        this.data.set([...this.data()]);
+    }
     notifyChange(res) {
-        if (this.ui.change)
-            this.ui.change(res);
+        this.ui.change?.(res);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: CheckboxWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: CheckboxWidget, isStandalone: false, selector: "sf-checkbox", usesInheritance: true, ngImport: i0, template: `
+    @let list = data();
+    @let span = grid_span();
     <ng-template #all>
       @if (ui.checkAll) {
         <label
@@ -2328,7 +2645,7 @@ class CheckboxWidget extends ControlUIWidget {
           [(ngModel)]="allChecked"
           [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="onAllChecked()"
-          [nzIndeterminate]="indeterminate"
+          [nzIndeterminate]="indeterminate()"
         >
           {{ ui.checkAllText ?? l.checkAllText }}
         </label>
@@ -2341,10 +2658,10 @@ class CheckboxWidget extends ControlUIWidget {
       [showError]="showError"
       [error]="error"
       [showTitle]="true"
-      [title]="labelTitle"
+      [title]="labelTitle()"
     >
-      @if (inited) {
-        @if (data.length === 0) {
+      @if (inited()) {
+        @if (list.length === 0) {
           <label
             nz-checkbox
             [nzDisabled]="disabled"
@@ -2371,13 +2688,13 @@ class CheckboxWidget extends ControlUIWidget {
             </span>
           </label>
         } @else {
-          @if (grid_span === 0) {
+          @if (span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
             <nz-checkbox-group
               [nzDisabled]="disabled"
               [ngModel]="value"
               [ngModelOptions]="{ standalone: true }"
-              [nzOptions]="$any(data)"
+              [nzOptions]="$any(list)"
               (ngModelChange)="groupInGridChange($event)"
             />
           } @else {
@@ -2389,12 +2706,12 @@ class CheckboxWidget extends ControlUIWidget {
             >
               <div nz-row>
                 @if (ui.checkAll) {
-                  <div nz-col [nzSpan]="grid_span">
+                  <div nz-col [nzSpan]="span">
                     <ng-template [ngTemplateOutlet]="all" />
                   </div>
                 }
-                @for (i of data; track $index) {
-                  <div nz-col [nzSpan]="grid_span">
+                @for (i of list; track $index) {
+                  <div nz-col [nzSpan]="span">
                     <label
                       nz-checkbox
                       [nzValue]="i.value"
@@ -2412,13 +2729,15 @@ class CheckboxWidget extends ControlUIWidget {
         }
       }
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "component", type: i4$2.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId", "nzName"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: i4$2.NzCheckboxGroupComponent, selector: "nz-checkbox-group", inputs: ["nzName", "nzDisabled", "nzOptions"], exportAs: ["nzCheckboxGroup"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "component", type: i4$2.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId", "nzName"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: i4$2.NzCheckboxGroupComponent, selector: "nz-checkbox-group", inputs: ["nzName", "nzDisabled", "nzOptions"], exportAs: ["nzCheckboxGroup"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: CheckboxWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-checkbox',
                     template: `
+    @let list = data();
+    @let span = grid_span();
     <ng-template #all>
       @if (ui.checkAll) {
         <label
@@ -2427,7 +2746,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
           [(ngModel)]="allChecked"
           [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="onAllChecked()"
-          [nzIndeterminate]="indeterminate"
+          [nzIndeterminate]="indeterminate()"
         >
           {{ ui.checkAllText ?? l.checkAllText }}
         </label>
@@ -2440,10 +2759,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       [showError]="showError"
       [error]="error"
       [showTitle]="true"
-      [title]="labelTitle"
+      [title]="labelTitle()"
     >
-      @if (inited) {
-        @if (data.length === 0) {
+      @if (inited()) {
+        @if (list.length === 0) {
           <label
             nz-checkbox
             [nzDisabled]="disabled"
@@ -2470,13 +2789,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             </span>
           </label>
         } @else {
-          @if (grid_span === 0) {
+          @if (span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
             <nz-checkbox-group
               [nzDisabled]="disabled"
               [ngModel]="value"
               [ngModelOptions]="{ standalone: true }"
-              [nzOptions]="$any(data)"
+              [nzOptions]="$any(list)"
               (ngModelChange)="groupInGridChange($event)"
             />
           } @else {
@@ -2488,12 +2807,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             >
               <div nz-row>
                 @if (ui.checkAll) {
-                  <div nz-col [nzSpan]="grid_span">
+                  <div nz-col [nzSpan]="span">
                     <ng-template [ngTemplateOutlet]="all" />
                   </div>
                 }
-                @for (i of data; track $index) {
-                  <div nz-col [nzSpan]="grid_span">
+                @for (i of list; track $index) {
+                  <div nz-col [nzSpan]="span">
                     <label
                       nz-checkbox
                       [nzValue]="i.value"
@@ -2512,6 +2831,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       }
     </sf-item-wrap>
   `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
@@ -2534,7 +2854,7 @@ class CustomWidget extends ControlUIWidget {
         [ngTemplateOutletContext]="{ $implicit: this, schema: schema, ui: ui }"
       />
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: CustomWidget, decorators: [{
             type: Component,
@@ -2556,6 +2876,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
     </sf-item-wrap>
   `,
                     encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
@@ -2566,7 +2887,8 @@ class DateWidget extends ControlUIWidget {
     endFormat;
     flatRange = false;
     mode;
-    displayValue = null;
+    displayValue = signal(null, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "displayValue" }] : /* istanbul ignore next */ []));
     displayFormat;
     i;
     ngOnInit() {
@@ -2615,15 +2937,23 @@ class DateWidget extends ControlUIWidget {
                 formatString: this.endFormat ?? this.startFormat,
                 defaultValue: null
             });
-            this.displayValue = value == null || endValue == null ? [] : [value, endValue];
+            this.displayValue.set(value == null || endValue == null ? [] : [value, endValue]);
         }
         else {
-            this.displayValue = value;
+            this.displayValue.set(value);
         }
-        this.detectChanges(true);
-        // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
-        if (this.displayValue) {
-            setTimeout(() => this._change(this.displayValue, false));
+        // `flatRange` 缺一端时 `displayValue` 是 `[]`、单值模式是 `Date`，
+        // 只有拿到完整值才回写：`_change()` 会把不完整的值当成空值，把仅剩的一端清掉
+        const displayValue = this.displayValue();
+        if (displayValue != null && (!Array.isArray(displayValue) || displayValue.length >= 2)) {
+            // `ui.end` 指向的属性会被 `coverProperty` 置为 `hidden`，
+            // 因此它**没有 widget**：整轮 reset 走到它时，`AtomicProperty.resetValue` 会把
+            // `schema.default` 原样写回 `_value`，没有 widget 会再去格式化它。
+            // → 同步回写一定会被这一步覆盖，必须等**整轮 reset 走完**。
+            // 用微任务而不是渲染回调：整轮 reset 期间随时可能被别处的强制 CD 冲出来，
+            // 那时 reset 还没走完，回写又会被覆盖。
+            // 这次也是在补初值，不算用户变更。
+            queueMicrotask(() => this.sfComp._runSilently(() => this._change(this.displayValue(), false)));
         }
     }
     _change(value, emitModelChange = true) {
@@ -2647,12 +2977,10 @@ class DateWidget extends ControlUIWidget {
         }
     }
     _openChange(status) {
-        if (this.ui.onOpenChange)
-            this.ui.onOpenChange(status);
+        this.ui.onOpenChange?.(status);
     }
     _ok(value) {
-        if (this.ui.onOk)
-            this.ui.onOk(value);
+        this.ui.onOk?.(value);
     }
     get endProperty() {
         return this.formProperty.parent.properties[this.ui.end];
@@ -2664,285 +2992,292 @@ class DateWidget extends ControlUIWidget {
         this.endProperty.updateValueAndValidity();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: DateWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: DateWidget, isStandalone: false, selector: "sf-date", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    @switch (mode) {
-      @case ('year') {
-        <nz-year-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-        />
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: DateWidget, isStandalone: false, selector: "sf-date", usesInheritance: true, ngImport: i0, template: `
+    @let showWeekNumber = ui.showWeekNumber ?? false;
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
+      @switch (mode) {
+        @case ('year') {
+          <nz-year-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+          />
+        }
+        @case ('month') {
+          <nz-month-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+          />
+        }
+        @case ('week') {
+          <nz-week-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+            (nzOnOpenChange)="_openChange($event)"
+          />
+        }
+        @case ('range') {
+          <nz-range-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzDisabledTime]="ui.disabledTime"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzRanges]="ui.ranges"
+            [nzShowTime]="ui.showTime"
+            [nzSeparator]="ui.separator"
+            [nzShowWeekNumber]="showWeekNumber"
+            [nzMode]="$any(ui.rangeMode)"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+            (nzOnOk)="_ok($event)"
+          />
+        }
+        @default {
+          <nz-date-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzDisabledTime]="ui.disabledTime"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzShowTime]="ui.showTime"
+            [nzShowToday]="i.showToday"
+            [nzShowWeekNumber]="showWeekNumber"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+            (nzOnOk)="_ok($event)"
+          />
+        }
       }
-      @case ('month') {
-        <nz-month-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-        />
-      }
-      @case ('week') {
-        <nz-week-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-          (nzOnOpenChange)="_openChange($event)"
-        />
-      }
-      @case ('range') {
-        <nz-range-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzDisabledTime]="ui.disabledTime"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzRanges]="ui.ranges"
-          [nzShowTime]="ui.showTime"
-          [nzSeparator]="ui.separator"
-          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
-          [nzMode]="$any(ui.rangeMode)"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-          (nzOnOk)="_ok($event)"
-        />
-      }
-      @default {
-        <nz-date-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzDisabledTime]="ui.disabledTime"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzShowTime]="ui.showTime"
-          [nzShowToday]="i.showToday"
-          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-          (nzOnOk)="_ok($event)"
-        />
-      }
-    }
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$3.NzDatePickerComponent, selector: "nz-date-picker,nz-week-picker,nz-month-picker,nz-quarter-picker,nz-year-picker,nz-range-picker", inputs: ["nzInline", "nzAllowClear", "nzAutoFocus", "nzDisabled", "nzInputReadOnly", "nzOpen", "nzDisabledDate", "nzLocale", "nzPlaceHolder", "nzPopupStyle", "nzDropdownClassName", "nzSize", "nzStatus", "nzFormat", "nzVariant", "nzDateRender", "nzDisabledTime", "nzRenderExtraFooter", "nzShowToday", "nzMode", "nzShowNow", "nzRanges", "nzDefaultPickerValue", "nzSeparator", "nzSuffixIcon", "nzBackdrop", "nzId", "nzPlacement", "nzShowWeekNumber", "nzShowTime"], outputs: ["nzOnPanelChange", "nzOnCalendarChange", "nzOnOk", "nzOnOpenChange"], exportAs: ["nzDatePicker"] }, { kind: "directive", type: i2$3.NzRangePickerComponent, selector: "nz-range-picker", exportAs: ["nzRangePicker"] }, { kind: "directive", type: i2$3.NzMonthPickerComponent, selector: "nz-month-picker", exportAs: ["nzMonthPicker"] }, { kind: "directive", type: i2$3.NzYearPickerComponent, selector: "nz-year-picker", exportAs: ["nzYearPicker"] }, { kind: "directive", type: i2$3.NzWeekPickerComponent, selector: "nz-week-picker", exportAs: ["nzWeekPicker"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$3.NzDatePickerComponent, selector: "nz-date-picker,nz-week-picker,nz-month-picker,nz-quarter-picker,nz-year-picker,nz-range-picker", inputs: ["nzInline", "nzAllowClear", "nzAutoFocus", "nzDisabled", "nzInputReadOnly", "nzOpen", "nzDisabledDate", "nzLocale", "nzPlaceHolder", "nzPopupStyle", "nzDropdownClassName", "nzSize", "nzStatus", "nzFormat", "nzVariant", "nzDateRender", "nzDisabledTime", "nzRenderExtraFooter", "nzShowToday", "nzMode", "nzShowNow", "nzRanges", "nzDefaultPickerValue", "nzSeparator", "nzSuffixIcon", "nzBackdrop", "nzId", "nzPlacement", "nzShowWeekNumber", "nzShowTime"], outputs: ["nzOnPanelChange", "nzOnCalendarChange", "nzOnOk", "nzOnOpenChange"], exportAs: ["nzDatePicker"] }, { kind: "directive", type: i2$3.NzRangePickerComponent, selector: "nz-range-picker", exportAs: ["nzRangePicker"] }, { kind: "directive", type: i2$3.NzMonthPickerComponent, selector: "nz-month-picker", exportAs: ["nzMonthPicker"] }, { kind: "directive", type: i2$3.NzYearPickerComponent, selector: "nz-year-picker", exportAs: ["nzYearPicker"] }, { kind: "directive", type: i2$3.NzWeekPickerComponent, selector: "nz-week-picker", exportAs: ["nzWeekPicker"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: DateWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-date',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    @switch (mode) {
-      @case ('year') {
-        <nz-year-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-        />
+                    template: `
+    @let showWeekNumber = ui.showWeekNumber ?? false;
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
+      @switch (mode) {
+        @case ('year') {
+          <nz-year-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+          />
+        }
+        @case ('month') {
+          <nz-month-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+          />
+        }
+        @case ('week') {
+          <nz-week-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+            (nzOnOpenChange)="_openChange($event)"
+          />
+        }
+        @case ('range') {
+          <nz-range-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzDisabledTime]="ui.disabledTime"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzRanges]="ui.ranges"
+            [nzShowTime]="ui.showTime"
+            [nzSeparator]="ui.separator"
+            [nzShowWeekNumber]="showWeekNumber"
+            [nzMode]="$any(ui.rangeMode)"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+            (nzOnOk)="_ok($event)"
+          />
+        }
+        @default {
+          <nz-date-picker
+            [nzId]="id"
+            [nzDisabled]="disabled"
+            [nzSize]="ui.size!"
+            [nzAutoFocus]="ui.autoFocus"
+            [nzFormat]="displayFormat"
+            [(ngModel)]="displayValue"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="_change($event)"
+            [nzAllowClear]="i.allowClear"
+            [class]="ui.className!"
+            [nzDisabledDate]="ui.disabledDate"
+            [nzLocale]="ui.locale!"
+            [nzPlaceHolder]="ui.placeholder!"
+            [nzPopupStyle]="ui.popupStyle!"
+            [nzDropdownClassName]="ui.dropdownClassName"
+            (nzOnOpenChange)="_openChange($event)"
+            [nzDisabledTime]="ui.disabledTime"
+            [nzRenderExtraFooter]="ui.renderExtraFooter"
+            [nzShowTime]="ui.showTime"
+            [nzShowToday]="i.showToday"
+            [nzShowWeekNumber]="showWeekNumber"
+            [nzInputReadOnly]="ui.inputReadOnly"
+            [nzInline]="ui.inline!"
+            (nzOnOk)="_ok($event)"
+          />
+        }
       }
-      @case ('month') {
-        <nz-month-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-        />
-      }
-      @case ('week') {
-        <nz-week-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-          (nzOnOpenChange)="_openChange($event)"
-        />
-      }
-      @case ('range') {
-        <nz-range-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzDisabledTime]="ui.disabledTime"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzRanges]="ui.ranges"
-          [nzShowTime]="ui.showTime"
-          [nzSeparator]="ui.separator"
-          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
-          [nzMode]="$any(ui.rangeMode)"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-          (nzOnOk)="_ok($event)"
-        />
-      }
-      @default {
-        <nz-date-picker
-          [nzId]="id"
-          [nzDisabled]="disabled"
-          [nzSize]="ui.size!"
-          [nzAutoFocus]="ui.autoFocus"
-          [nzFormat]="displayFormat"
-          [(ngModel)]="displayValue"
-          [ngModelOptions]="{ standalone: true }"
-          (ngModelChange)="_change($event)"
-          [nzAllowClear]="i.allowClear"
-          [class]="ui.className!"
-          [nzDisabledDate]="ui.disabledDate"
-          [nzLocale]="ui.locale!"
-          [nzPlaceHolder]="ui.placeholder!"
-          [nzPopupStyle]="ui.popupStyle!"
-          [nzDropdownClassName]="ui.dropdownClassName"
-          (nzOnOpenChange)="_openChange($event)"
-          [nzDisabledTime]="ui.disabledTime"
-          [nzRenderExtraFooter]="ui.renderExtraFooter"
-          [nzShowTime]="ui.showTime"
-          [nzShowToday]="i.showToday"
-          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
-          [nzInputReadOnly]="ui.inputReadOnly"
-          [nzInline]="ui.inline!"
-          (nzOnOk)="_ok($event)"
-        />
-      }
-    }
-  </sf-item-wrap>`,
+    </sf-item-wrap>
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
@@ -3028,7 +3363,7 @@ class NumberWidget extends ControlUIWidget {
       [style.width]="width"
       [class.ant-input-number__hide-step]="ui.hideStep"
     />
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$4.NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzId", "nzSize", "nzPlaceHolder", "nzStatus", "nzVariant", "nzStep", "nzMin", "nzMax", "nzPrecision", "nzParser", "nzFormatter", "nzDisabled", "nzReadOnly", "nzAutoFocus", "nzKeyboard", "nzControls", "nzChangeOnWheel", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter"], outputs: ["nzBlur", "nzFocus", "nzOnStep"], exportAs: ["nzInputNumber"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$4.NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzId", "nzSize", "nzPlaceHolder", "nzStatus", "nzVariant", "nzStep", "nzMin", "nzMax", "nzPrecision", "nzParser", "nzFormatter", "nzDisabled", "nzReadOnly", "nzAutoFocus", "nzKeyboard", "nzControls", "nzChangeOnWheel", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter"], outputs: ["nzBlur", "nzFocus", "nzOnStep"], exportAs: ["nzInputNumber"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: NumberWidget, decorators: [{
             type: Component,
@@ -3068,6 +3403,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
     />
   </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
@@ -3079,12 +3415,13 @@ class ObjectWidget extends ObjectLayoutWidget {
     list = [];
     title;
     showExpand = true;
-    expand = true;
+    expand = signal(true, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "expand" }] : /* istanbul ignore next */ []));
     ngOnInit() {
         const { formProperty, ui } = this;
         const { grid, showTitle, type } = ui;
         this.showExpand = toBool(ui.showExpand, true);
-        this.expand = toBool(ui.expand, true);
+        this.expand.set(toBool(ui.expand, true));
         this.type = type ?? 'default';
         if (this.type === 'card' ||
             (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
@@ -3108,11 +3445,11 @@ class ObjectWidget extends ObjectLayoutWidget {
         if (!this.showExpand) {
             return;
         }
-        this.expand = !this.expand;
-        this.detectChanges(true);
+        this.expand.set(!this.expand());
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ObjectWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: ObjectWidget, isStandalone: false, selector: "sf-object", usesInheritance: true, ngImport: i0, template: `<ng-template #default let-noTitle>
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: ObjectWidget, isStandalone: false, selector: "sf-object", usesInheritance: true, ngImport: i0, template: `@let isExpand = expand();
+    <ng-template #default let-noTitle>
       @if (!noTitle && title) {
         <div class="sf__title">{{ title }}</div>
       }
@@ -3153,12 +3490,12 @@ class ObjectWidget extends ObjectLayoutWidget {
         [nzBodyStyle]="ui.cardBodyStyle!"
         [nzBordered]="ui.cardBordered ?? true"
         class="sf__object-card"
-        [class.sf__object-card-fold]="!expand"
+        [class.sf__object-card-fold]="!isExpand"
       >
         <ng-template #cardTitleTpl>
           <div [class.point]="showExpand" (click)="changeExpand()">
             @if (showExpand) {
-              <nz-icon [nzType]="expand ? 'down' : 'up'" class="mr-xs text-xs" />
+              <nz-icon [nzType]="isExpand ? 'down' : 'up'" class="mr-xs text-xs" />
             }
             {{ title }}
             @if (ui.optional || oh) {
@@ -3186,13 +3523,14 @@ class ObjectWidget extends ObjectLayoutWidget {
       </nz-card>
     } @else {
       <ng-template [ngTemplateOutlet]="default" />
-    }`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "component", type: i4$1.NzCardComponent, selector: "nz-card", inputs: ["nzBordered", "nzLoading", "nzHoverable", "nzBodyStyle", "nzCover", "nzActions", "nzType", "nzSize", "nzTitle", "nzExtra"], exportAs: ["nzCard"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], encapsulation: i0.ViewEncapsulation.None });
+    }`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "component", type: i4$1.NzCardComponent, selector: "nz-card", inputs: ["nzBordered", "nzLoading", "nzHoverable", "nzBodyStyle", "nzCover", "nzActions", "nzType", "nzSize", "nzTitle", "nzExtra"], exportAs: ["nzCard"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl", "nzXXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter", "nzWrap"], exportAs: ["nzRow"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ObjectWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-object',
-                    template: `<ng-template #default let-noTitle>
+                    template: `@let isExpand = expand();
+    <ng-template #default let-noTitle>
       @if (!noTitle && title) {
         <div class="sf__title">{{ title }}</div>
       }
@@ -3233,12 +3571,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
         [nzBodyStyle]="ui.cardBodyStyle!"
         [nzBordered]="ui.cardBordered ?? true"
         class="sf__object-card"
-        [class.sf__object-card-fold]="!expand"
+        [class.sf__object-card-fold]="!isExpand"
       >
         <ng-template #cardTitleTpl>
           <div [class.point]="showExpand" (click)="changeExpand()">
             @if (showExpand) {
-              <nz-icon [nzType]="expand ? 'down' : 'up'" class="mr-xs text-xs" />
+              <nz-icon [nzType]="isExpand ? 'down' : 'up'" class="mr-xs text-xs" />
             }
             {{ title }}
             @if (ui.optional || oh) {
@@ -3267,6 +3605,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
     } @else {
       <ng-template [ngTemplateOutlet]="default" />
     }`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
@@ -3274,88 +3613,95 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
         }] });
 
 class RadioWidget extends ControlUIWidget {
-    data = [];
-    styleType;
+    data = signal([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    styleType = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "styleType" }] : /* istanbul ignore next */ []));
     reset(value) {
-        this.styleType = (this.ui.styleType ?? 'default') === 'default';
+        this.styleType.set((this.ui.styleType ?? 'default') === 'default');
         getData(this.schema, this.ui, value).subscribe(list => {
-            this.data = list;
-            this.cd.markForCheck();
+            this.data.set(list);
         });
     }
     _setValue(value) {
         this.setValue(value);
-        if (this.ui.change)
-            this.ui.change(value);
+        this.ui.change?.(value);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: RadioWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: RadioWidget, isStandalone: false, selector: "sf-radio", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <nz-radio-group
-      [nzSize]="ui.size!"
-      [nzName]="id"
-      [ngModel]="value"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="_setValue($event)"
-      [nzButtonStyle]="ui.buttonStyle ?? 'outline'"
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: RadioWidget, isStandalone: false, selector: "sf-radio", usesInheritance: true, ngImport: i0, template: `
+    @let list = data();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @if (styleType) {
-        @for (option of data; track $index) {
-          <label nz-radio [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
-            <span [innerHTML]="option.label"></span>
-          </label>
+      <nz-radio-group
+        [nzSize]="ui.size!"
+        [nzName]="id"
+        [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="_setValue($event)"
+        [nzButtonStyle]="ui.buttonStyle ?? 'outline'"
+      >
+        @if (styleType()) {
+          @for (option of list; track $index) {
+            <label nz-radio [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
+              <span [innerHTML]="option.label"></span>
+            </label>
+          }
+        } @else {
+          @for (option of list; track $index) {
+            <label nz-radio-button [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
+              <span [innerHTML]="option.label"></span>
+            </label>
+          }
         }
-      } @else {
-        @for (option of data; track $index) {
-          <label nz-radio-button [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
-            <span [innerHTML]="option.label"></span>
-          </label>
-        }
-      }
-    </nz-radio-group>
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$5.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus", "nz-radio-button"], exportAs: ["nzRadio"] }, { kind: "component", type: i2$5.NzRadioGroupComponent, selector: "nz-radio-group", inputs: ["nzDisabled", "nzButtonStyle", "nzSize", "nzName"], exportAs: ["nzRadioGroup"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+      </nz-radio-group>
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i2$5.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus", "nz-radio-button"], exportAs: ["nzRadio"] }, { kind: "component", type: i2$5.NzRadioGroupComponent, selector: "nz-radio-group", inputs: ["nzDisabled", "nzButtonStyle", "nzSize", "nzName"], exportAs: ["nzRadioGroup"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: RadioWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-radio',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <nz-radio-group
-      [nzSize]="ui.size!"
-      [nzName]="id"
-      [ngModel]="value"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="_setValue($event)"
-      [nzButtonStyle]="ui.buttonStyle ?? 'outline'"
+                    template: `
+    @let list = data();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @if (styleType) {
-        @for (option of data; track $index) {
-          <label nz-radio [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
-            <span [innerHTML]="option.label"></span>
-          </label>
+      <nz-radio-group
+        [nzSize]="ui.size!"
+        [nzName]="id"
+        [ngModel]="value"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="_setValue($event)"
+        [nzButtonStyle]="ui.buttonStyle ?? 'outline'"
+      >
+        @if (styleType()) {
+          @for (option of list; track $index) {
+            <label nz-radio [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
+              <span [innerHTML]="option.label"></span>
+            </label>
+          }
+        } @else {
+          @for (option of list; track $index) {
+            <label nz-radio-button [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
+              <span [innerHTML]="option.label"></span>
+            </label>
+          }
         }
-      } @else {
-        @for (option of data; track $index) {
-          <label nz-radio-button [nzValue]="option.value" [nzDisabled]="disabled || option.disabled">
-            <span [innerHTML]="option.label"></span>
-          </label>
-        }
-      }
-    </nz-radio-group>
-  </sf-item-wrap>`,
+      </nz-radio-group>
+    </sf-item-wrap>
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
@@ -3365,12 +3711,17 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
 class SelectWidget extends ControlUIWidget {
     search$ = new Subject();
     i;
-    data = [];
-    _value;
-    hasGroup = false;
-    loading = false;
+    data = signal([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    _value = signal(undefined, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_value" }] : /* istanbul ignore next */ []));
+    loading = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "loading" }] : /* istanbul ignore next */ []));
+    /** 模板读取，且在异步 `checkGroup()` 中写入，必须是 signal 才能保证 OnPush 刷新 */
+    hasGroup = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "hasGroup" }] : /* istanbul ignore next */ []));
     checkGroup(list) {
-        this.hasGroup = (list ?? []).filter(w => w.group === true).length > 0;
+        this.hasGroup.set((list ?? []).filter(w => w.group === true).length > 0);
     }
     ngOnInit() {
         const { autoClearSearchValue, autoFocus, dropdownMatchSelectWidth, serverSearch, maxMultipleCount, mode, showSearch, tokenSeparators, maxTagCount, compareWith, optionHeightPx, optionOverflowSize, showArrow } = this.ui;
@@ -3394,194 +3745,195 @@ class SelectWidget extends ControlUIWidget {
             this.search$
                 .pipe(takeUntil(this.sfItemComp.destroy$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime ?? 300), switchMap(text => onSearch(text)), catchError(() => []))
                 .subscribe(list => {
-                this.data = list;
+                this.data.set(list);
                 this.checkGroup(list);
-                this.loading = false;
-                this.detectChanges(true);
+                this.loading.set(false);
             });
         }
     }
     reset(value) {
         const onSearch = this.ui.onSearch;
         getData(this.schema, this.ui, value).subscribe(list => {
-            this._value = value;
+            this._value.set(value);
             if (onSearch == null)
-                this.data = list;
+                this.data.set(list);
             this.checkGroup(list);
-            this.detectChanges(true);
         });
         if (value && onSearch != null)
             this.search$.next(value);
     }
     change(values) {
-        if (this.ui.change) {
-            this.ui.change(values, this.getOrgData(values));
-        }
+        this.ui.change?.(values, this.getOrgData(values));
         this.setValue(values == null ? this.ui.clearValue : values);
     }
     getOrgData(values) {
         const srv = this.injector.get(ArrayService);
         if (!Array.isArray(values)) {
-            return srv.findTree(this.data, (item) => item.value === values);
+            return srv.findTree(this.data(), (item) => item.value === values);
         }
-        return values.map(value => srv.findTree(this.data, (item) => item.value === value));
+        return values.map(value => srv.findTree(this.data(), (item) => item.value === value));
     }
     openChange(status) {
-        if (this.ui.openChange) {
-            this.ui.openChange(status);
-        }
+        this.ui.openChange?.(status);
     }
     scrollToBottom() {
-        if (this.ui.scrollToBottom) {
-            this.ui.scrollToBottom();
-        }
+        this.ui.scrollToBottom?.();
     }
     onSearch(value) {
         if (this.ui.onSearch) {
-            this.loading = true;
+            this.loading.set(true);
             this.search$.next(value);
         }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SelectWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: SelectWidget, isStandalone: false, selector: "sf-select", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <nz-select
-      [nzId]="id"
-      [nzDisabled]="disabled"
-      [(ngModel)]="_value"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="change($event)"
-      [nzSize]="ui.size!"
-      [nzPlaceHolder]="ui.placeholder!"
-      [nzNotFoundContent]="ui.notFoundContent"
-      [nzDropdownClassName]="ui.dropdownClassName!"
-      [nzAllowClear]="ui.allowClear"
-      [nzDropdownStyle]="ui.dropdownStyle!"
-      [nzCustomTemplate]="ui.customTemplate!"
-      [nzSuffixIcon]="ui.suffixIcon!"
-      [nzRemoveIcon]="ui.removeIcon!"
-      [nzClearIcon]="ui.clearIcon!"
-      [nzMenuItemSelectedIcon]="ui.menuItemSelectedIcon!"
-      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder!"
-      [nzDropdownRender]="ui.dropdownRender!"
-      [nzAutoClearSearchValue]="i.autoClearSearchValue"
-      [nzVariant]="ui.variant ?? 'outlined'"
-      [nzAutoFocus]="i.autoFocus"
-      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth!"
-      [nzServerSearch]="i.serverSearch"
-      [nzMaxMultipleCount]="i.maxMultipleCount!"
-      [nzMode]="i.mode!"
-      [nzShowSearch]="i.showSearch"
-      [nzShowArrow]="i.showArrow!"
-      [nzTokenSeparators]="i.tokenSeparators!"
-      [nzMaxTagCount]="i.maxTagCount!"
-      [compareWith]="i.compareWith!"
-      [nzOptionHeightPx]="i.optionHeightPx!"
-      [nzOptionOverflowSize]="i.optionOverflowSize!"
-      (nzOpenChange)="openChange($event)"
-      (nzOnSearch)="onSearch($event)"
-      (nzScrollToBottom)="scrollToBottom()"
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: SelectWidget, isStandalone: false, selector: "sf-select", usesInheritance: true, ngImport: i0, template: `
+    @let list = data();
+    @let isLoading = loading();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @if (!loading && !hasGroup) {
-        @for (o of data; track $index) {
-          <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzHide]="o.hide" [nzDisabled]="o.disabled" />
+      <nz-select
+        [nzId]="id"
+        [nzDisabled]="disabled"
+        [(ngModel)]="_value"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="change($event)"
+        [nzSize]="ui.size!"
+        [nzPlaceHolder]="ui.placeholder!"
+        [nzNotFoundContent]="ui.notFoundContent"
+        [nzDropdownClassName]="ui.dropdownClassName!"
+        [nzAllowClear]="ui.allowClear"
+        [nzDropdownStyle]="ui.dropdownStyle!"
+        [nzCustomTemplate]="ui.customTemplate!"
+        [nzSuffixIcon]="ui.suffixIcon!"
+        [nzRemoveIcon]="ui.removeIcon!"
+        [nzClearIcon]="ui.clearIcon!"
+        [nzMenuItemSelectedIcon]="ui.menuItemSelectedIcon!"
+        [nzMaxTagPlaceholder]="ui.maxTagPlaceholder!"
+        [nzDropdownRender]="ui.dropdownRender!"
+        [nzAutoClearSearchValue]="i.autoClearSearchValue"
+        [nzVariant]="ui.variant ?? 'outlined'"
+        [nzAutoFocus]="i.autoFocus"
+        [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth!"
+        [nzServerSearch]="i.serverSearch"
+        [nzMaxMultipleCount]="i.maxMultipleCount!"
+        [nzMode]="i.mode!"
+        [nzShowSearch]="i.showSearch"
+        [nzShowArrow]="i.showArrow!"
+        [nzTokenSeparators]="i.tokenSeparators!"
+        [nzMaxTagCount]="i.maxTagCount!"
+        [compareWith]="i.compareWith!"
+        [nzOptionHeightPx]="i.optionHeightPx!"
+        [nzOptionOverflowSize]="i.optionOverflowSize!"
+        (nzOpenChange)="openChange($event)"
+        (nzOnSearch)="onSearch($event)"
+        (nzScrollToBottom)="scrollToBottom()"
+      >
+        @if (!isLoading && !hasGroup()) {
+          @for (o of list; track $index) {
+            <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzHide]="o.hide" [nzDisabled]="o.disabled" />
+          }
         }
-      }
-      @if (!loading && hasGroup) {
-        @for (i of data; track $index) {
-          <nz-option-group [nzLabel]="i.label">
-            @for (o of i.children; track $index) {
-              <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzDisabled]="o.disabled" [nzHide]="o.hide" />
-            }
-          </nz-option-group>
+        @if (!isLoading && hasGroup()) {
+          @for (group of list; track $index) {
+            <nz-option-group [nzLabel]="group.label">
+              @for (o of group.children; track $index) {
+                <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzDisabled]="o.disabled" [nzHide]="o.hide" />
+              }
+            </nz-option-group>
+          }
         }
-      }
-      @if (loading) {
-        <nz-option nzDisabled nzCustomContent>
-          <nz-icon nzType="loading" />
-          {{ ui.searchLoadingText }}
-        </nz-option>
-      }
-    </nz-select>
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "component", type: i4$3.NzOptionComponent, selector: "nz-option", inputs: ["nzTitle", "nzLabel", "nzValue", "nzKey", "nzDisabled", "nzHide", "nzCustomContent"], exportAs: ["nzOption"] }, { kind: "component", type: i4$3.NzSelectComponent, selector: "nz-select", inputs: ["nzId", "nzSize", "nzStatus", "nzVariant", "nzOptionHeightPx", "nzOptionOverflowSize", "nzDropdownClassName", "nzDropdownMatchSelectWidth", "nzDropdownStyle", "nzNotFoundContent", "nzPlaceHolder", "nzPlacement", "nzMaxTagCount", "nzDropdownRender", "nzCustomTemplate", "nzPrefix", "nzSuffixIcon", "nzClearIcon", "nzRemoveIcon", "nzMenuItemSelectedIcon", "nzTokenSeparators", "nzMaxTagPlaceholder", "nzMaxMultipleCount", "nzMode", "nzFilterOption", "compareWith", "nzAllowClear", "nzShowSearch", "nzLoading", "nzAutoFocus", "nzAutoClearSearchValue", "nzServerSearch", "nzDisabled", "nzOpen", "nzSelectOnTab", "nzBackdrop", "nzOptions", "nzShowArrow"], outputs: ["nzOnSearch", "nzScrollToBottom", "nzOpenChange", "nzBlur", "nzFocus", "nzOnClear"], exportAs: ["nzSelect"] }, { kind: "component", type: i4$3.NzOptionGroupComponent, selector: "nz-option-group", inputs: ["nzLabel"], exportAs: ["nzOptionGroup"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+        @if (isLoading) {
+          <nz-option nzDisabled nzCustomContent>
+            <nz-icon nzType="loading" />
+            {{ ui.searchLoadingText }}
+          </nz-option>
+        }
+      </nz-select>
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i7.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "component", type: i4$3.NzOptionComponent, selector: "nz-option", inputs: ["nzTitle", "nzLabel", "nzValue", "nzKey", "nzDisabled", "nzHide", "nzCustomContent"], exportAs: ["nzOption"] }, { kind: "component", type: i4$3.NzSelectComponent, selector: "nz-select", inputs: ["nzId", "nzSize", "nzStatus", "nzVariant", "nzOptionHeightPx", "nzOptionOverflowSize", "nzDropdownClassName", "nzDropdownMatchSelectWidth", "nzDropdownStyle", "nzNotFoundContent", "nzPlaceHolder", "nzPlacement", "nzMaxTagCount", "nzDropdownRender", "nzCustomTemplate", "nzPrefix", "nzSuffixIcon", "nzClearIcon", "nzRemoveIcon", "nzMenuItemSelectedIcon", "nzTokenSeparators", "nzMaxTagPlaceholder", "nzMaxMultipleCount", "nzMode", "nzFilterOption", "compareWith", "nzAllowClear", "nzShowSearch", "nzLoading", "nzAutoFocus", "nzAutoClearSearchValue", "nzServerSearch", "nzDisabled", "nzOpen", "nzSelectOnTab", "nzBackdrop", "nzOptions", "nzShowArrow"], outputs: ["nzOnSearch", "nzScrollToBottom", "nzOpenChange", "nzBlur", "nzFocus", "nzOnClear"], exportAs: ["nzSelect"] }, { kind: "component", type: i4$3.NzOptionGroupComponent, selector: "nz-option-group", inputs: ["nzLabel"], exportAs: ["nzOptionGroup"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SelectWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-select',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <nz-select
-      [nzId]="id"
-      [nzDisabled]="disabled"
-      [(ngModel)]="_value"
-      [ngModelOptions]="{ standalone: true }"
-      (ngModelChange)="change($event)"
-      [nzSize]="ui.size!"
-      [nzPlaceHolder]="ui.placeholder!"
-      [nzNotFoundContent]="ui.notFoundContent"
-      [nzDropdownClassName]="ui.dropdownClassName!"
-      [nzAllowClear]="ui.allowClear"
-      [nzDropdownStyle]="ui.dropdownStyle!"
-      [nzCustomTemplate]="ui.customTemplate!"
-      [nzSuffixIcon]="ui.suffixIcon!"
-      [nzRemoveIcon]="ui.removeIcon!"
-      [nzClearIcon]="ui.clearIcon!"
-      [nzMenuItemSelectedIcon]="ui.menuItemSelectedIcon!"
-      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder!"
-      [nzDropdownRender]="ui.dropdownRender!"
-      [nzAutoClearSearchValue]="i.autoClearSearchValue"
-      [nzVariant]="ui.variant ?? 'outlined'"
-      [nzAutoFocus]="i.autoFocus"
-      [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth!"
-      [nzServerSearch]="i.serverSearch"
-      [nzMaxMultipleCount]="i.maxMultipleCount!"
-      [nzMode]="i.mode!"
-      [nzShowSearch]="i.showSearch"
-      [nzShowArrow]="i.showArrow!"
-      [nzTokenSeparators]="i.tokenSeparators!"
-      [nzMaxTagCount]="i.maxTagCount!"
-      [compareWith]="i.compareWith!"
-      [nzOptionHeightPx]="i.optionHeightPx!"
-      [nzOptionOverflowSize]="i.optionOverflowSize!"
-      (nzOpenChange)="openChange($event)"
-      (nzOnSearch)="onSearch($event)"
-      (nzScrollToBottom)="scrollToBottom()"
+                    template: `
+    @let list = data();
+    @let isLoading = loading();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @if (!loading && !hasGroup) {
-        @for (o of data; track $index) {
-          <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzHide]="o.hide" [nzDisabled]="o.disabled" />
+      <nz-select
+        [nzId]="id"
+        [nzDisabled]="disabled"
+        [(ngModel)]="_value"
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="change($event)"
+        [nzSize]="ui.size!"
+        [nzPlaceHolder]="ui.placeholder!"
+        [nzNotFoundContent]="ui.notFoundContent"
+        [nzDropdownClassName]="ui.dropdownClassName!"
+        [nzAllowClear]="ui.allowClear"
+        [nzDropdownStyle]="ui.dropdownStyle!"
+        [nzCustomTemplate]="ui.customTemplate!"
+        [nzSuffixIcon]="ui.suffixIcon!"
+        [nzRemoveIcon]="ui.removeIcon!"
+        [nzClearIcon]="ui.clearIcon!"
+        [nzMenuItemSelectedIcon]="ui.menuItemSelectedIcon!"
+        [nzMaxTagPlaceholder]="ui.maxTagPlaceholder!"
+        [nzDropdownRender]="ui.dropdownRender!"
+        [nzAutoClearSearchValue]="i.autoClearSearchValue"
+        [nzVariant]="ui.variant ?? 'outlined'"
+        [nzAutoFocus]="i.autoFocus"
+        [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth!"
+        [nzServerSearch]="i.serverSearch"
+        [nzMaxMultipleCount]="i.maxMultipleCount!"
+        [nzMode]="i.mode!"
+        [nzShowSearch]="i.showSearch"
+        [nzShowArrow]="i.showArrow!"
+        [nzTokenSeparators]="i.tokenSeparators!"
+        [nzMaxTagCount]="i.maxTagCount!"
+        [compareWith]="i.compareWith!"
+        [nzOptionHeightPx]="i.optionHeightPx!"
+        [nzOptionOverflowSize]="i.optionOverflowSize!"
+        (nzOpenChange)="openChange($event)"
+        (nzOnSearch)="onSearch($event)"
+        (nzScrollToBottom)="scrollToBottom()"
+      >
+        @if (!isLoading && !hasGroup()) {
+          @for (o of list; track $index) {
+            <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzHide]="o.hide" [nzDisabled]="o.disabled" />
+          }
         }
-      }
-      @if (!loading && hasGroup) {
-        @for (i of data; track $index) {
-          <nz-option-group [nzLabel]="i.label">
-            @for (o of i.children; track $index) {
-              <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzDisabled]="o.disabled" [nzHide]="o.hide" />
-            }
-          </nz-option-group>
+        @if (!isLoading && hasGroup()) {
+          @for (group of list; track $index) {
+            <nz-option-group [nzLabel]="group.label">
+              @for (o of group.children; track $index) {
+                <nz-option [nzLabel]="o.label" [nzValue]="o.value" [nzDisabled]="o.disabled" [nzHide]="o.hide" />
+              }
+            </nz-option-group>
+          }
         }
-      }
-      @if (loading) {
-        <nz-option nzDisabled nzCustomContent>
-          <nz-icon nzType="loading" />
-          {{ ui.searchLoadingText }}
-        </nz-option>
-      }
-    </nz-select>
-  </sf-item-wrap>`,
+        @if (isLoading) {
+          <nz-option nzDisabled nzCustomContent>
+            <nz-icon nzType="loading" />
+            {{ ui.searchLoadingText }}
+          </nz-option>
+        }
+      </nz-select>
+    </sf-item-wrap>
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
@@ -3630,23 +3982,21 @@ class StringWidget extends ControlUIWidget {
             this.change$.next(val);
             return;
         }
-        if (this.ui.change)
-            this.ui.change(val);
+        this.ui.change?.(val);
     }
     focus(e) {
-        if (this.ui.focus)
-            this.ui.focus(e);
+        this.ui.focus?.(e);
     }
     blur(e) {
-        if (this.ui.blur)
-            this.ui.blur(e);
+        this.ui.blur?.(e);
     }
     enter(e) {
-        if (this.ui.enter)
-            this.ui.enter(e);
+        this.ui.enter?.(e);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: StringWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: StringWidget, isStandalone: false, selector: "sf-string", usesInheritance: true, ngImport: i0, template: `
+    @let maxLength = schema.maxLength ?? null;
+    @let inputType = ui.type ?? 'text';
     <sf-item-wrap
       [id]="id"
       [schema]="schema"
@@ -3673,8 +4023,8 @@ class StringWidget extends ControlUIWidget {
             [ngModel]="value"
             [ngModelOptions]="{ standalone: true }"
             (ngModelChange)="change($event)"
-            [attr.maxLength]="schema.maxLength ?? null"
-            [attr.type]="ui.type ?? 'text'"
+            [attr.maxLength]="maxLength"
+            [attr.type]="inputType"
             [attr.placeholder]="ui.placeholder"
             [attr.autocomplete]="ui.autocomplete"
             [attr.autoFocus]="ui.autofocus"
@@ -3694,8 +4044,8 @@ class StringWidget extends ControlUIWidget {
           [ngModel]="value"
           [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="change($event)"
-          [attr.maxLength]="schema.maxLength ?? null"
-          [attr.type]="ui.type ?? 'text'"
+          [attr.maxLength]="maxLength"
+          [attr.type]="inputType"
           [attr.placeholder]="ui.placeholder"
           [attr.autocomplete]="ui.autocomplete"
           [attr.autoFocus]="ui.autofocus"
@@ -3705,13 +4055,15 @@ class StringWidget extends ControlUIWidget {
         />
       }
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i3.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i3.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: StringWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-string',
                     template: `
+    @let maxLength = schema.maxLength ?? null;
+    @let inputType = ui.type ?? 'text';
     <sf-item-wrap
       [id]="id"
       [schema]="schema"
@@ -3738,8 +4090,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             [ngModel]="value"
             [ngModelOptions]="{ standalone: true }"
             (ngModelChange)="change($event)"
-            [attr.maxLength]="schema.maxLength ?? null"
-            [attr.type]="ui.type ?? 'text'"
+            [attr.maxLength]="maxLength"
+            [attr.type]="inputType"
             [attr.placeholder]="ui.placeholder"
             [attr.autocomplete]="ui.autocomplete"
             [attr.autoFocus]="ui.autofocus"
@@ -3759,8 +4111,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
           [ngModel]="value"
           [ngModelOptions]="{ standalone: true }"
           (ngModelChange)="change($event)"
-          [attr.maxLength]="schema.maxLength ?? null"
-          [attr.type]="ui.type ?? 'text'"
+          [attr.maxLength]="maxLength"
+          [attr.type]="inputType"
           [attr.placeholder]="ui.placeholder"
           [attr.autocomplete]="ui.autocomplete"
           [attr.autoFocus]="ui.autofocus"
@@ -3771,6 +4123,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       }
     </sf-item-wrap>
   `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
@@ -3778,51 +4131,59 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
         }] });
 
 class TextWidget extends ControlUIWidget {
-    text = '';
+    text = signal('', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "text" }] : /* istanbul ignore next */ []));
     ngOnInit() {
         this.ui._required = false;
         this.ui.html = toBool(this.ui.html, true);
     }
     reset(value) {
-        this.text = value ?? this.ui.defaultText ?? '-';
+        this.text.set(value ?? this.ui.defaultText ?? '-');
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TextWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TextWidget, isStandalone: false, selector: "sf-text", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-    [class.sf__text-html]="ui.html"
-  >
-    @if (ui.html) {
-      <span [innerHTML]="text"></span>
-    } @else {
-      <span [innerText]="text"></span>
-    }
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TextWidget, isStandalone: false, selector: "sf-text", usesInheritance: true, ngImport: i0, template: `
+    @let content = text();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+      [class.sf__text-html]="ui.html"
+    >
+      @if (ui.html) {
+        <span [innerHTML]="content"></span>
+      } @else {
+        <span [innerText]="content"></span>
+      }
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TextWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-text',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-    [class.sf__text-html]="ui.html"
-  >
-    @if (ui.html) {
-      <span [innerHTML]="text"></span>
-    } @else {
-      <span [innerText]="text"></span>
-    }
-  </sf-item-wrap>`,
+                    template: `
+    @let content = text();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+      [class.sf__text-html]="ui.html"
+    >
+      @if (ui.html) {
+        <span [innerHTML]="content"></span>
+      } @else {
+        <span [innerText]="content"></span>
+      }
+    </sf-item-wrap>
+  `,
                     encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
@@ -3840,16 +4201,13 @@ class TextareaWidget extends ControlUIWidget {
     }
     change(val) {
         this.setValue(val);
-        if (this.ui.change)
-            this.ui.change(val);
+        this.ui.change?.(val);
     }
     focus(e) {
-        if (this.ui.focus)
-            this.ui.focus(e);
+        this.ui.focus?.(e);
     }
     blur(e) {
-        if (this.ui.blur)
-            this.ui.blur(e);
+        this.ui.blur?.(e);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TextareaWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TextareaWidget, isStandalone: false, selector: "sf-textarea", usesInheritance: true, ngImport: i0, template: `
@@ -3930,7 +4288,7 @@ class TextareaWidget extends ControlUIWidget {
         </textarea>
       }
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$6.CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }, { kind: "component", type: i3.NzTextareaCountComponent, selector: "nz-textarea-count", inputs: ["nzMaxCharacterCount", "nzComputeCharacterCount", "nzFormatter"] }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i3.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$6.CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }, { kind: "component", type: i3.NzTextareaCountComponent, selector: "nz-textarea-count", inputs: ["nzMaxCharacterCount", "nzComputeCharacterCount", "nzFormatter"] }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i3.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter", "nzShowCount", "nzCount"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TextareaWidget, decorators: [{
             type: Component,
@@ -4016,6 +4374,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
     </sf-item-wrap>
   `,
                     encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]
