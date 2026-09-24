@@ -143,7 +143,7 @@ interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
 declare class TreeSelectWidget extends ControlUIWidget<SFTreeSelectWidgetSchema> implements OnInit {
     static readonly KEY = "tree-select";
     i: SFTreeSelectWidgetSchema;
-    data: SFSchemaEnum[];
+    protected readonly data: i0.WritableSignal<SFSchemaEnum[]>;
     asyncData: boolean;
     ngOnInit(): void;
     reset(value: SFValue): void;

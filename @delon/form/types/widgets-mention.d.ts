@@ -71,10 +71,10 @@ interface SFMentionWidgetSchema extends SFUISchemaItem {
 
 declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema> implements OnInit {
     static readonly KEY = "mention";
-    private mentionChild;
-    data: SFSchemaEnum[];
+    private readonly mentionChild;
+    protected readonly data: i0.WritableSignal<SFSchemaEnum[]>;
     i: NzSafeAny;
-    loading: boolean;
+    protected readonly loading: i0.WritableSignal<boolean>;
     ngOnInit(): void;
     reset(): void;
     _select(options: NzSafeAny): void;

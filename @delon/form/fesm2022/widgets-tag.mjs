@@ -1,6 +1,6 @@
 import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { signal, ViewEncapsulation, Component, NgModule } from '@angular/core';
+import { signal, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import * as i1 from '@delon/form';
 import { ControlUIWidget, getData, DelonFormModule } from '@delon/form';
@@ -20,14 +20,13 @@ class TagWidget extends ControlUIWidget {
     }
     onChange(item) {
         item.checked = !item.checked;
+        // 元素级就地 mutate 无法被浅 signal 观测，用数组身份替换驱动刷新
+        this.data.set([...this.data()]);
         this.updateValue();
-        if (this.ui.checkedChange) {
-            this.ui.checkedChange(item.checked);
-        }
+        this.ui.checkedChange?.(item.checked);
     }
     _close(e) {
-        if (this.ui.onClose)
-            this.ui.onClose(e);
+        this.ui.onClose?.(e);
     }
     updateValue() {
         this.formProperty.setValue(this.data()
@@ -35,81 +34,86 @@ class TagWidget extends ControlUIWidget {
             .map(i => i.value), false);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TagWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TagWidget, isStandalone: true, selector: "sf-tag", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <ng-template #icon let-i>
-      <nz-icon
-        [nzType]="i.type"
-        [nzTheme]="i.theme"
-        [nzTwotoneColor]="i.twotoneColor"
-        [nzRotate]="i.rotate"
-        [nzIconfont]="i.iconfont"
-        [nzSpin]="i.spin"
-      />
-    </ng-template>
-    @for (i of data(); track $index) {
-      <nz-tag
-        [nzMode]="ui.mode ?? 'checkable'"
-        [nzChecked]="i.checked"
-        (nzOnClose)="_close($event)"
-        (nzCheckedChange)="onChange(i)"
-      >
-        @if (i.prefixIcon) {
-          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
-        }
-        <span>{{ i.label }}</span>
-        @if (i.suffixIcon) {
-          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
-        }
-      </nz-tag>
-    }
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTagModule }, { kind: "component", type: i2.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked", "nzBordered"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i3.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }], encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: TagWidget, isStandalone: true, selector: "sf-tag", usesInheritance: true, ngImport: i0, template: `
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
+      <ng-template #icon let-i>
+        <nz-icon
+          [nzType]="i.type"
+          [nzTheme]="i.theme"
+          [nzTwotoneColor]="i.twotoneColor"
+          [nzRotate]="i.rotate"
+          [nzIconfont]="i.iconfont"
+          [nzSpin]="i.spin"
+        />
+      </ng-template>
+      @for (i of data(); track $index) {
+        <nz-tag
+          [nzMode]="ui.mode ?? 'checkable'"
+          [nzChecked]="i.checked"
+          (nzOnClose)="_close($event)"
+          (nzCheckedChange)="onChange(i)"
+        >
+          @if (i.prefixIcon) {
+            <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
+          }
+          <span>{{ i.label }}</span>
+          @if (i.suffixIcon) {
+            <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
+          }
+        </nz-tag>
+      }
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTagModule }, { kind: "component", type: i2.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked", "nzBordered"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i3.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: TagWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-tag',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <ng-template #icon let-i>
-      <nz-icon
-        [nzType]="i.type"
-        [nzTheme]="i.theme"
-        [nzTwotoneColor]="i.twotoneColor"
-        [nzRotate]="i.rotate"
-        [nzIconfont]="i.iconfont"
-        [nzSpin]="i.spin"
-      />
-    </ng-template>
-    @for (i of data(); track $index) {
-      <nz-tag
-        [nzMode]="ui.mode ?? 'checkable'"
-        [nzChecked]="i.checked"
-        (nzOnClose)="_close($event)"
-        (nzCheckedChange)="onChange(i)"
-      >
-        @if (i.prefixIcon) {
-          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
-        }
-        <span>{{ i.label }}</span>
-        @if (i.suffixIcon) {
-          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
-        }
-      </nz-tag>
-    }
-  </sf-item-wrap>`,
+                    template: `
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
+    >
+      <ng-template #icon let-i>
+        <nz-icon
+          [nzType]="i.type"
+          [nzTheme]="i.theme"
+          [nzTwotoneColor]="i.twotoneColor"
+          [nzRotate]="i.rotate"
+          [nzIconfont]="i.iconfont"
+          [nzSpin]="i.spin"
+        />
+      </ng-template>
+      @for (i of data(); track $index) {
+        <nz-tag
+          [nzMode]="ui.mode ?? 'checkable'"
+          [nzChecked]="i.checked"
+          (nzOnClose)="_close($event)"
+          (nzCheckedChange)="onChange(i)"
+        >
+          @if (i.prefixIcon) {
+            <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
+          }
+          <span>{{ i.label }}</span>
+          @if (i.suffixIcon) {
+            <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
+          }
+        </nz-tag>
+      }
+    </sf-item-wrap>
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, NgTemplateOutlet, DelonFormModule, NzTagModule, NzIconModule]
                 }]

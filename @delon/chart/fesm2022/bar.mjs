@@ -1,7 +1,6 @@
 import * as i0 from '@angular/core';
-import { input, numberAttribute, booleanAttribute, output, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent, debounceTime } from 'rxjs';
+import { EventEmitter, booleanAttribute, numberAttribute, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { fromEvent, takeUntil, filter, debounceTime } from 'rxjs';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -10,32 +9,27 @@ import { CommonModule } from '@angular/common';
 const TITLE_HEIGHT = 41;
 class G2BarComponent extends G2BaseComponent {
     // #region fields
-    title = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
-    color = input('rgba(24, 144, 255, 0.85)', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []));
-    height = input(0, { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    padding = input('auto', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "padding" }] : /* istanbul ignore next */ []));
-    data = input([], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
-    autoLabel = input(true, { ...(ngDevMode ? { debugName: "autoLabel" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
-    interaction = input('none', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "interaction" }] : /* istanbul ignore next */ []));
-    clickItem = output();
+    title;
+    color = 'rgba(24, 144, 255, 0.85)';
+    height = 0;
+    padding = 'auto';
+    data = [];
+    autoLabel = true;
+    interaction = 'none';
+    clickItem = new EventEmitter();
     // #endregion
     getHeight() {
-        return this.title() ? this.height() - TITLE_HEIGHT : this.height();
+        return this.title ? this.height - TITLE_HEIGHT : this.height;
     }
     install() {
         const { node, padding, interaction, theme } = this;
-        const container = node().nativeElement;
+        const container = node.nativeElement;
         const chart = (this._chart = new this.winG2.Chart({
             container,
             autoFit: true,
             height: this.getHeight(),
-            padding: padding(),
-            theme: theme()
+            padding,
+            theme
         }));
         this.updatelabel();
         chart.axis('y', {
@@ -54,55 +48,51 @@ class G2BarComponent extends G2BaseComponent {
         chart.tooltip({
             showTitle: false
         });
-        if (interaction() !== 'none') {
-            chart.interaction(interaction());
+        if (interaction !== 'none') {
+            chart.interaction(interaction);
         }
         chart.legend(false);
         chart
             .interval()
             .position('x*y')
             .color('x*y', (x, y) => {
-            const colorItem = this.data().find(w => w.x === x && w.y === y);
-            return colorItem && colorItem.color ? colorItem.color : this.color();
+            const colorItem = this.data.find(w => w.x === x && w.y === y);
+            return colorItem && colorItem.color ? colorItem.color : this.color;
         })
             .tooltip('x*y', (x, y) => ({ name: x, value: y }));
         chart.on(`interval:click`, (ev) => {
-            this.clickItem.emit({ item: ev.data?.data, ev });
+            this.ngZone.run(() => this.clickItem.emit({ item: ev.data?.data, ev }));
         });
-        this.ready.emit(chart);
+        this.ready.next(chart);
         this.changeData();
         chart.render();
         this.installResizeEvent();
     }
     changeData() {
         const { _chart, data } = this;
-        if (!_chart || !Array.isArray(data()) || data().length <= 0)
+        if (!_chart || !Array.isArray(data) || data.length <= 0)
             return;
-        _chart.changeData(data());
+        _chart.changeData(data);
     }
     updatelabel() {
-        const { node, _chart } = this;
-        const data = this.data();
-        const canvasWidth = node().nativeElement.clientWidth;
+        const { node, data, _chart } = this;
+        const canvasWidth = node.nativeElement.clientWidth;
         const minWidth = data.length * 30;
         _chart.axis('x', canvasWidth > minWidth).render();
     }
-    resizeInstalled = false;
     installResizeEvent() {
-        if (!this.autoLabel() || this.resizeInstalled) {
+        if (!this.autoLabel || this.resize$)
             return;
-        }
-        this.resizeInstalled = true;
-        fromEvent(window, 'resize')
-            .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(200))
-            .subscribe(() => this.updatelabel());
+        this.resize$ = fromEvent(window, 'resize')
+            .pipe(takeUntil(this.destroy$), filter(() => !!this._chart), debounceTime(200))
+            .subscribe(() => this.ngZone.runOutsideAngular(() => this.updatelabel()));
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2BarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2BarComponent, isStandalone: true, selector: "g2-bar", inputs: { title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: false, transformFunction: null }, height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, padding: { classPropertyName: "padding", publicName: "padding", isSignal: true, isRequired: false, transformFunction: null }, data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, autoLabel: { classPropertyName: "autoLabel", publicName: "autoLabel", isSignal: true, isRequired: false, transformFunction: null }, interaction: { classPropertyName: "interaction", publicName: "interaction", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height()" } }, exportAs: ["g2Bar"], usesInheritance: true, ngImport: i0, template: `
-    <ng-container *nzStringTemplateOutlet="title()">
-      <h4 style="margin-bottom: 20px;">{{ title() }}</h4>
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2BarComponent, isStandalone: true, selector: "g2-bar", inputs: { title: "title", color: "color", height: ["height", "height", numberAttribute], padding: "padding", data: "data", autoLabel: ["autoLabel", "autoLabel", booleanAttribute], interaction: "interaction" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2Bar"], usesInheritance: true, ngImport: i0, template: `
+    <ng-container *nzStringTemplateOutlet="title">
+      <h4 style="margin-bottom: 20px;">{{ title }}</h4>
     </ng-container>
-    @if (!loaded()) {
+    @if (!loaded) {
       <nz-skeleton />
     }
     <div #container></div>
@@ -114,22 +104,40 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     selector: 'g2-bar',
                     exportAs: 'g2Bar',
                     template: `
-    <ng-container *nzStringTemplateOutlet="title()">
-      <h4 style="margin-bottom: 20px;">{{ title() }}</h4>
+    <ng-container *nzStringTemplateOutlet="title">
+      <h4 style="margin-bottom: 20px;">{{ title }}</h4>
     </ng-container>
-    @if (!loaded()) {
+    @if (!loaded) {
       <nz-skeleton />
     }
     <div #container></div>
   `,
                     host: {
-                        '[style.height.px]': 'height()'
+                        '[style.height.px]': 'height'
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzStringTemplateOutletDirective, NzSkeletonComponent]
                 }]
-        }], propDecorators: { title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], color: [{ type: i0.Input, args: [{ isSignal: true, alias: "color", required: false }] }], height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], padding: [{ type: i0.Input, args: [{ isSignal: true, alias: "padding", required: false }] }], data: [{ type: i0.Input, args: [{ isSignal: true, alias: "data", required: false }] }], autoLabel: [{ type: i0.Input, args: [{ isSignal: true, alias: "autoLabel", required: false }] }], interaction: [{ type: i0.Input, args: [{ isSignal: true, alias: "interaction", required: false }] }], clickItem: [{ type: i0.Output, args: ["clickItem"] }] } });
+        }], propDecorators: { title: [{
+                type: Input
+            }], color: [{
+                type: Input
+            }], height: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
+            }], padding: [{
+                type: Input
+            }], data: [{
+                type: Input
+            }], autoLabel: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
+            }], interaction: [{
+                type: Input
+            }], clickItem: [{
+                type: Output
+            }] } });
 
 const COMPONENTS = [G2BarComponent];
 class G2BarModule {

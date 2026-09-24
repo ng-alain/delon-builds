@@ -1,39 +1,39 @@
 import * as i0 from '@angular/core';
-import { inject, input, numberAttribute, computed, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { inject, ChangeDetectorRef, numberAttribute, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NzTooltipDirective, NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import { CommonModule } from '@angular/common';
 
 class G2MiniProgressComponent {
     locale = inject(DelonLocaleService).valueSignal('miniProgress');
-    color = input('#1890FF', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []));
-    target = input(null, { ...(ngDevMode ? { debugName: "target" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    percent = input(null, { ...(ngDevMode ? { debugName: "percent" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    strokeWidth = input(null, { ...(ngDevMode ? { debugName: "strokeWidth" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    /** 等价旧 ngOnChanges 的钳位；输入本身保持原值 */
-    _target = computed(() => this.fixNum(this.target()), /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "_target" }] : /* istanbul ignore next */ []));
-    _percent = computed(() => this.fixNum(this.percent()), /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "_percent" }] : /* istanbul ignore next */ []));
+    cdr = inject(ChangeDetectorRef);
+    color = '#1890FF';
+    target;
+    percent;
+    strokeWidth;
     fixNum(value) {
         return Math.min(Math.max(numberAttribute(value), 0), 100);
     }
+    ngOnChanges() {
+        this.target = this.fixNum(this.target);
+        this.percent = this.fixNum(this.percent);
+        this.cdr.detectChanges();
+    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2MiniProgressComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.1.7", type: G2MiniProgressComponent, isStandalone: true, selector: "g2-mini-progress", inputs: { color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: false, transformFunction: null }, target: { classPropertyName: "target", publicName: "target", isSignal: true, isRequired: false, transformFunction: null }, percent: { classPropertyName: "percent", publicName: "percent", isSignal: true, isRequired: false, transformFunction: null }, strokeWidth: { classPropertyName: "strokeWidth", publicName: "strokeWidth", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.g2-mini-progress": "true" } }, exportAs: ["g2MiniProgress"], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "22.1.7", type: G2MiniProgressComponent, isStandalone: true, selector: "g2-mini-progress", inputs: { color: "color", target: ["target", "target", numberAttribute], percent: ["percent", "percent", numberAttribute], strokeWidth: ["strokeWidth", "strokeWidth", numberAttribute] }, host: { properties: { "class.g2-mini-progress": "true" } }, exportAs: ["g2MiniProgress"], usesOnChanges: true, ngImport: i0, template: `
     <div
       nz-tooltip
-      [nzTooltipTitle]="locale().targetSuffix + _target() + '%'"
+      [nzTooltipTitle]="locale().targetSuffix + target + '%'"
       class="g2-mini-progress__target"
-      [style]="{ left: _target() + '%' }"
+      [style]="{ left: target + '%' }"
     >
-      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color() }"></span>
-      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color() }"></span>
+      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color }"></span>
+      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color }"></span>
     </div>
     <div class="g2-mini-progress__wrap">
       <div
         class="g2-mini-progress__value"
-        [style]="{ 'background-color': color(), width: _percent() + '%', height: strokeWidth() + 'px' }"
+        [style]="{ 'background-color': color, width: percent + '%', height: strokeWidth + 'px' }"
       ></div>
     </div>
   `, isInline: true, dependencies: [{ kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
@@ -46,17 +46,17 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     template: `
     <div
       nz-tooltip
-      [nzTooltipTitle]="locale().targetSuffix + _target() + '%'"
+      [nzTooltipTitle]="locale().targetSuffix + target + '%'"
       class="g2-mini-progress__target"
-      [style]="{ left: _target() + '%' }"
+      [style]="{ left: target + '%' }"
     >
-      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color() }"></span>
-      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color() }"></span>
+      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color }"></span>
+      <span class="g2-mini-progress__target-item" [style]="{ 'background-color': color }"></span>
     </div>
     <div class="g2-mini-progress__wrap">
       <div
         class="g2-mini-progress__value"
-        [style]="{ 'background-color': color(), width: _percent() + '%', height: strokeWidth() + 'px' }"
+        [style]="{ 'background-color': color, width: percent + '%', height: strokeWidth + 'px' }"
       ></div>
     </div>
   `,
@@ -65,7 +65,18 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzTooltipDirective]
                 }]
-        }], propDecorators: { color: [{ type: i0.Input, args: [{ isSignal: true, alias: "color", required: false }] }], target: [{ type: i0.Input, args: [{ isSignal: true, alias: "target", required: false }] }], percent: [{ type: i0.Input, args: [{ isSignal: true, alias: "percent", required: false }] }], strokeWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "strokeWidth", required: false }] }] } });
+        }], propDecorators: { color: [{
+                type: Input
+            }], target: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
+            }], percent: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
+            }], strokeWidth: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
+            }] } });
 
 const COMPONENTS = [G2MiniProgressComponent];
 class G2MiniProgressModule {

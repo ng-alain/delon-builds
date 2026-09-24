@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { ViewEncapsulation, Component, NgModule } from '@angular/core';
+import { signal, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import * as i1 from '@delon/form';
@@ -19,7 +19,8 @@ import { CommonModule } from '@angular/common';
 class UploadWidget extends ControlUIWidget {
     static KEY = 'upload';
     i;
-    fileList = [];
+    fileList = signal([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "fileList" }] : /* istanbul ignore next */ []));
     btnType = '';
     ngOnInit() {
         const { type, text, hint, action, accept, limit, maxCount, filter, fileSize, fileType, listType, multiple, name, showUploadList, withCredentials, resReName, urlReName, beforeUpload, customRequest, directory, openFileDialogOnClick, limitFileCount } = this.ui;
@@ -58,38 +59,36 @@ class UploadWidget extends ControlUIWidget {
         this.i = res;
     }
     change(args) {
-        if (this.ui.change)
-            this.ui.change(args);
+        this.ui.change?.(args);
         if (args.type !== 'success')
             return;
         this._setValue(args.fileList);
     }
     reset(value) {
-        const { fileList } = this.ui;
-        (fileList ? of(fileList) : Array.isArray(value) ? of(value) : getData(this.schema, this.ui, null)).subscribe(list => {
-            this.fileList = list;
-            this.formProperty._value = this.pureValue(list);
+        const { fileList: uiFileList } = this.ui;
+        (uiFileList ? of(uiFileList) : Array.isArray(value) ? of(value) : getData(this.schema, this.ui, null)).subscribe(items => {
+            this.fileList.set(items);
+            this.formProperty._value = this.pureValue(items);
             this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: false });
-            this.cd.markForCheck();
         });
     }
     _getValue(file) {
         return deepGet(file.response, this.i.resReName, file.response);
     }
-    pureValue(fileList) {
-        fileList
+    pureValue(files) {
+        files
             .filter(file => !file.url)
             .forEach(file => {
             file.url = deepGet(file.response, this.i.urlReName);
         });
-        const res = fileList.filter(w => w.status === 'done').map(file => this._getValue(file));
+        const res = files.filter(w => w.status === 'done').map(file => this._getValue(file));
         return this.i.multiple === true ? res : res.pop();
     }
-    _setValue(fileList) {
-        this.setValue(this.pureValue(fileList));
+    _setValue(files) {
+        this.setValue(this.pureValue(files));
     }
     handleRemove = () => {
-        this._setValue(this.fileList);
+        this._setValue(this.fileList());
         return true;
     };
     handlePreview = (file) => {
@@ -104,117 +103,126 @@ class UploadWidget extends ControlUIWidget {
         this.injector.get(NzImageService, null)?.preview([{ src: _url }]);
     };
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: UploadWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: UploadWidget, isStandalone: true, selector: "sf-upload", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <nz-upload
-      [nzType]="i.type"
-      [(nzFileList)]="fileList"
-      [nzDisabled]="disabled"
-      [nzAction]="i.action"
-      [nzDirectory]="i.directory"
-      [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
-      [nzAccept]="i.accept"
-      [nzLimit]="i.limit"
-      [nzMaxCount]="i.maxCount"
-      [nzFilter]="i.filter"
-      [nzSize]="i.size"
-      [nzFileType]="i.fileType"
-      [nzHeaders]="ui.headers"
-      [nzData]="ui.data"
-      [nzListType]="i.listType"
-      [nzMultiple]="i.multiple"
-      [nzName]="i.name"
-      [nzShowUploadList]="i.showUploadList"
-      [nzWithCredentials]="i.withCredentials"
-      [nzBeforeUpload]="i.beforeUpload"
-      [nzCustomRequest]="i.customRequest"
-      [nzRemove]="ui.remove ?? handleRemove"
-      [nzPreview]="handlePreview"
-      [nzPreviewFile]="ui.previewFile"
-      [nzDownload]="ui.download"
-      (nzChange)="change($event)"
-      [nzShowButton]="fileList.length < i.limitFileCount"
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: UploadWidget, isStandalone: true, selector: "sf-upload", usesInheritance: true, ngImport: i0, template: `
+    @let files = fileList();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @switch (btnType) {
-        @case ('plus') {
-          <nz-icon nzType="plus" />
-          <div class="ant-upload-text" [innerHTML]="i.text"></div>
+      <nz-upload
+        [nzType]="i.type"
+        [nzFileList]="files"
+        (nzFileListChange)="fileList.set($event)"
+        [nzDisabled]="disabled"
+        [nzAction]="i.action"
+        [nzDirectory]="i.directory"
+        [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
+        [nzAccept]="i.accept"
+        [nzLimit]="i.limit"
+        [nzMaxCount]="i.maxCount"
+        [nzFilter]="i.filter"
+        [nzSize]="i.size"
+        [nzFileType]="i.fileType"
+        [nzHeaders]="ui.headers"
+        [nzData]="ui.data"
+        [nzListType]="i.listType"
+        [nzMultiple]="i.multiple"
+        [nzName]="i.name"
+        [nzShowUploadList]="i.showUploadList"
+        [nzWithCredentials]="i.withCredentials"
+        [nzBeforeUpload]="i.beforeUpload"
+        [nzCustomRequest]="i.customRequest"
+        [nzRemove]="ui.remove ?? handleRemove"
+        [nzPreview]="handlePreview"
+        [nzPreviewFile]="ui.previewFile"
+        [nzDownload]="ui.download"
+        (nzChange)="change($event)"
+        [nzShowButton]="files.length < i.limitFileCount"
+      >
+        @switch (btnType) {
+          @case ('plus') {
+            <nz-icon nzType="plus" />
+            <div class="ant-upload-text" [innerHTML]="i.text"></div>
+          }
+          @case ('drag') {
+            <p class="ant-upload-drag-icon"><nz-icon nzType="inbox" /></p>
+            <p class="ant-upload-text" [innerHTML]="i.text"></p>
+            <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
+          }
+          @default {
+            <button type="button" nz-button><nz-icon nzType="upload" /><span [innerHTML]="i.text"></span></button>
+          }
         }
-        @case ('drag') {
-          <p class="ant-upload-drag-icon"><nz-icon nzType="inbox" /></p>
-          <p class="ant-upload-text" [innerHTML]="i.text"></p>
-          <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
-        }
-        @default {
-          <button type="button" nz-button><nz-icon nzType="upload" /><span [innerHTML]="i.text"></span></button>
-        }
-      }
-    </nz-upload>
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzUploadModule }, { kind: "component", type: i2.NzUploadComponent, selector: "nz-upload", inputs: ["nzId", "nzType", "nzLimit", "nzSize", "nzFileType", "nzAccept", "nzAction", "nzDirectory", "nzOpenFileDialogOnClick", "nzBeforeUpload", "nzCustomRequest", "nzData", "nzFilter", "nzFileList", "nzDisabled", "nzHeaders", "nzListType", "nzMultiple", "nzName", "nzShowUploadList", "nzShowButton", "nzWithCredentials", "nzRemove", "nzPreview", "nzPreviewFile", "nzPreviewIsImage", "nzDownload", "nzIconRender", "nzFileListRender", "nzMaxCount"], outputs: ["nzChange", "nzFileListChange"], exportAs: ["nzUpload"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i3.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "ngmodule", type: NzButtonModule }, { kind: "component", type: i4.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i5.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i6.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }], encapsulation: i0.ViewEncapsulation.None });
+      </nz-upload>
+    </sf-item-wrap>
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzUploadModule }, { kind: "component", type: i2.NzUploadComponent, selector: "nz-upload", inputs: ["nzId", "nzType", "nzLimit", "nzSize", "nzFileType", "nzAccept", "nzAction", "nzDirectory", "nzOpenFileDialogOnClick", "nzBeforeUpload", "nzCustomRequest", "nzData", "nzFilter", "nzFileList", "nzDisabled", "nzHeaders", "nzListType", "nzMultiple", "nzName", "nzShowUploadList", "nzShowButton", "nzWithCredentials", "nzRemove", "nzPreview", "nzPreviewFile", "nzPreviewIsImage", "nzDownload", "nzIconRender", "nzFileListRender", "nzMaxCount"], outputs: ["nzChange", "nzFileListChange"], exportAs: ["nzUpload"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i3.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "ngmodule", type: NzButtonModule }, { kind: "component", type: i4.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i5.ɵNzTransitionPatchDirective, selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i6.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: UploadWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-upload',
-                    template: `<sf-item-wrap
-    [id]="id"
-    [schema]="schema"
-    [ui]="ui"
-    [showError]="showError"
-    [error]="error"
-    [showTitle]="schema.title"
-  >
-    <nz-upload
-      [nzType]="i.type"
-      [(nzFileList)]="fileList"
-      [nzDisabled]="disabled"
-      [nzAction]="i.action"
-      [nzDirectory]="i.directory"
-      [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
-      [nzAccept]="i.accept"
-      [nzLimit]="i.limit"
-      [nzMaxCount]="i.maxCount"
-      [nzFilter]="i.filter"
-      [nzSize]="i.size"
-      [nzFileType]="i.fileType"
-      [nzHeaders]="ui.headers"
-      [nzData]="ui.data"
-      [nzListType]="i.listType"
-      [nzMultiple]="i.multiple"
-      [nzName]="i.name"
-      [nzShowUploadList]="i.showUploadList"
-      [nzWithCredentials]="i.withCredentials"
-      [nzBeforeUpload]="i.beforeUpload"
-      [nzCustomRequest]="i.customRequest"
-      [nzRemove]="ui.remove ?? handleRemove"
-      [nzPreview]="handlePreview"
-      [nzPreviewFile]="ui.previewFile"
-      [nzDownload]="ui.download"
-      (nzChange)="change($event)"
-      [nzShowButton]="fileList.length < i.limitFileCount"
+                    template: `
+    @let files = fileList();
+    <sf-item-wrap
+      [id]="id"
+      [schema]="schema"
+      [ui]="ui"
+      [showError]="showError"
+      [error]="error"
+      [showTitle]="schema.title"
     >
-      @switch (btnType) {
-        @case ('plus') {
-          <nz-icon nzType="plus" />
-          <div class="ant-upload-text" [innerHTML]="i.text"></div>
+      <nz-upload
+        [nzType]="i.type"
+        [nzFileList]="files"
+        (nzFileListChange)="fileList.set($event)"
+        [nzDisabled]="disabled"
+        [nzAction]="i.action"
+        [nzDirectory]="i.directory"
+        [nzOpenFileDialogOnClick]="i.openFileDialogOnClick"
+        [nzAccept]="i.accept"
+        [nzLimit]="i.limit"
+        [nzMaxCount]="i.maxCount"
+        [nzFilter]="i.filter"
+        [nzSize]="i.size"
+        [nzFileType]="i.fileType"
+        [nzHeaders]="ui.headers"
+        [nzData]="ui.data"
+        [nzListType]="i.listType"
+        [nzMultiple]="i.multiple"
+        [nzName]="i.name"
+        [nzShowUploadList]="i.showUploadList"
+        [nzWithCredentials]="i.withCredentials"
+        [nzBeforeUpload]="i.beforeUpload"
+        [nzCustomRequest]="i.customRequest"
+        [nzRemove]="ui.remove ?? handleRemove"
+        [nzPreview]="handlePreview"
+        [nzPreviewFile]="ui.previewFile"
+        [nzDownload]="ui.download"
+        (nzChange)="change($event)"
+        [nzShowButton]="files.length < i.limitFileCount"
+      >
+        @switch (btnType) {
+          @case ('plus') {
+            <nz-icon nzType="plus" />
+            <div class="ant-upload-text" [innerHTML]="i.text"></div>
+          }
+          @case ('drag') {
+            <p class="ant-upload-drag-icon"><nz-icon nzType="inbox" /></p>
+            <p class="ant-upload-text" [innerHTML]="i.text"></p>
+            <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
+          }
+          @default {
+            <button type="button" nz-button><nz-icon nzType="upload" /><span [innerHTML]="i.text"></span></button>
+          }
         }
-        @case ('drag') {
-          <p class="ant-upload-drag-icon"><nz-icon nzType="inbox" /></p>
-          <p class="ant-upload-text" [innerHTML]="i.text"></p>
-          <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
-        }
-        @default {
-          <button type="button" nz-button><nz-icon nzType="upload" /><span [innerHTML]="i.text"></span></button>
-        }
-      }
-    </nz-upload>
-  </sf-item-wrap>`,
+      </nz-upload>
+    </sf-item-wrap>
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule]
                 }]
