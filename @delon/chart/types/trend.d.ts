@@ -4,15 +4,13 @@ import * as i2 from 'ng-zorro-antd/icon';
 
 declare class TrendComponent {
     /** 上升下降标识 */
-    flag?: 'up' | 'down';
+    readonly flag: i0.InputSignal<"up" | "down" | undefined>;
     /** 是否彩色标记 */
-    colorful: boolean;
+    readonly colorful: i0.InputSignalWithTransform<boolean, unknown>;
     /** 颜色反转 */
-    reverseColor: boolean;
+    readonly reverseColor: i0.InputSignalWithTransform<boolean, unknown>;
     static ɵfac: i0.ɵɵFactoryDeclaration<TrendComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TrendComponent, "trend", ["trend"], { "flag": { "alias": "flag"; "required": false; }; "colorful": { "alias": "colorful"; "required": false; }; "reverseColor": { "alias": "reverseColor"; "required": false; }; }, {}, never, ["*"], true, never>;
-    static ngAcceptInputType_colorful: unknown;
-    static ngAcceptInputType_reverseColor: unknown;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TrendComponent, "trend", ["trend"], { "flag": { "alias": "flag"; "required": false; "isSignal": true; }; "colorful": { "alias": "colorful"; "required": false; "isSignal": true; }; "reverseColor": { "alias": "reverseColor"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
 
 declare class TrendModule {

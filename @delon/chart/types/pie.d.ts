@@ -1,5 +1,5 @@
-import * as i0 from '@angular/core';
-import { TemplateRef, EventEmitter } from '@angular/core';
+import * as _angular_core from '@angular/core';
+import { TemplateRef } from '@angular/core';
 import { Event } from '@antv/g2';
 import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -28,52 +28,46 @@ interface G2PieRatio {
     inverseColor: string;
 }
 declare class G2PieComponent extends G2BaseComponent {
-    private percentColor;
-    legendData: NzSafeAny[];
-    isPercent: boolean;
-    animate: boolean;
-    color: string;
-    subTitle?: string | TemplateRef<void> | null;
-    total?: string | number | TemplateRef<void> | null;
-    height: number;
-    hasLegend: boolean;
-    inner: number;
-    padding: number | number[] | 'auto';
-    percent?: number;
-    tooltip: boolean;
-    lineWidth: number;
-    blockMaxWidth: number;
-    select: boolean;
-    valueFormat?: (y: number) => string;
-    data: G2PieData[];
-    colors?: string[];
-    interaction: G2InteractionType;
-    ratio: G2PieRatio;
-    readonly clickItem: EventEmitter<G2PieClickItem>;
-    block: boolean;
-    private fixData;
+    readonly legendData: _angular_core.WritableSignal<any[]>;
+    readonly block: _angular_core.WritableSignal<boolean>;
+    /** percent 模式下为迷你图（旧 fixData() 的副作用改为派生量） */
+    readonly isPercent: _angular_core.Signal<boolean>;
+    private readonly runTooltip;
+    private readonly percentColor;
+    /** percent 模式下 data 由 percent / ratio 派生 */
+    private readonly runData;
+    readonly animate: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly color: _angular_core.InputSignal<string>;
+    readonly subTitle: _angular_core.InputSignal<string | TemplateRef<void> | null | undefined>;
+    readonly total: _angular_core.InputSignal<string | number | TemplateRef<void> | null | undefined>;
+    readonly height: _angular_core.InputSignalWithTransform<number, unknown>;
+    readonly hasLegend: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly inner: _angular_core.InputSignal<number>;
+    readonly padding: _angular_core.InputSignal<number | number[] | "auto">;
+    readonly percent: _angular_core.InputSignalWithTransform<number | undefined, unknown>;
+    readonly tooltip: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly lineWidth: _angular_core.InputSignalWithTransform<number, unknown>;
+    readonly blockMaxWidth: _angular_core.InputSignalWithTransform<number, unknown>;
+    readonly select: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly valueFormat: _angular_core.InputSignal<((y: number) => string) | undefined>;
+    readonly data: _angular_core.InputSignal<G2PieData[]>;
+    readonly colors: _angular_core.InputSignal<string[] | undefined>;
+    readonly interaction: _angular_core.InputSignal<G2InteractionType>;
+    readonly ratio: _angular_core.InputSignal<G2PieRatio>;
+    readonly clickItem: _angular_core.OutputEmitterRef<G2PieClickItem>;
     private updateBlock;
     install(): void;
     changeData(): void;
     private genLegend;
     _click(i: number): void;
-    onChanges(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<G2PieComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2PieComponent, "g2-pie", ["g2Pie"], { "animate": { "alias": "animate"; "required": false; }; "color": { "alias": "color"; "required": false; }; "subTitle": { "alias": "subTitle"; "required": false; }; "total": { "alias": "total"; "required": false; }; "height": { "alias": "height"; "required": false; }; "hasLegend": { "alias": "hasLegend"; "required": false; }; "inner": { "alias": "inner"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "percent": { "alias": "percent"; "required": false; }; "tooltip": { "alias": "tooltip"; "required": false; }; "lineWidth": { "alias": "lineWidth"; "required": false; }; "blockMaxWidth": { "alias": "blockMaxWidth"; "required": false; }; "select": { "alias": "select"; "required": false; }; "valueFormat": { "alias": "valueFormat"; "required": false; }; "data": { "alias": "data"; "required": false; }; "colors": { "alias": "colors"; "required": false; }; "interaction": { "alias": "interaction"; "required": false; }; "ratio": { "alias": "ratio"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
-    static ngAcceptInputType_animate: unknown;
-    static ngAcceptInputType_height: unknown;
-    static ngAcceptInputType_hasLegend: unknown;
-    static ngAcceptInputType_percent: unknown;
-    static ngAcceptInputType_tooltip: unknown;
-    static ngAcceptInputType_lineWidth: unknown;
-    static ngAcceptInputType_blockMaxWidth: unknown;
-    static ngAcceptInputType_select: unknown;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<G2PieComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<G2PieComponent, "g2-pie", ["g2Pie"], { "animate": { "alias": "animate"; "required": false; "isSignal": true; }; "color": { "alias": "color"; "required": false; "isSignal": true; }; "subTitle": { "alias": "subTitle"; "required": false; "isSignal": true; }; "total": { "alias": "total"; "required": false; "isSignal": true; }; "height": { "alias": "height"; "required": false; "isSignal": true; }; "hasLegend": { "alias": "hasLegend"; "required": false; "isSignal": true; }; "inner": { "alias": "inner"; "required": false; "isSignal": true; }; "padding": { "alias": "padding"; "required": false; "isSignal": true; }; "percent": { "alias": "percent"; "required": false; "isSignal": true; }; "tooltip": { "alias": "tooltip"; "required": false; "isSignal": true; }; "lineWidth": { "alias": "lineWidth"; "required": false; "isSignal": true; }; "blockMaxWidth": { "alias": "blockMaxWidth"; "required": false; "isSignal": true; }; "select": { "alias": "select"; "required": false; "isSignal": true; }; "valueFormat": { "alias": "valueFormat"; "required": false; "isSignal": true; }; "data": { "alias": "data"; "required": false; "isSignal": true; }; "colors": { "alias": "colors"; "required": false; "isSignal": true; }; "interaction": { "alias": "interaction"; "required": false; "isSignal": true; }; "ratio": { "alias": "ratio"; "required": false; "isSignal": true; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
 }
 
 declare class G2PieModule {
-    static ɵfac: i0.ɵɵFactoryDeclaration<G2PieModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<G2PieModule, never, [typeof i1.CommonModule, typeof i2.NzDividerModule, typeof i3.NzOutletModule, typeof i4.NzSkeletonModule, typeof G2PieComponent], [typeof G2PieComponent]>;
-    static ɵinj: i0.ɵɵInjectorDeclaration<G2PieModule>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<G2PieModule, never>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<G2PieModule, never, [typeof i1.CommonModule, typeof i2.NzDividerModule, typeof i3.NzOutletModule, typeof i4.NzSkeletonModule, typeof G2PieComponent], [typeof G2PieComponent]>;
+    static ɵinj: _angular_core.ɵɵInjectorDeclaration<G2PieModule>;
 }
 
 export { G2PieComponent, G2PieModule };
