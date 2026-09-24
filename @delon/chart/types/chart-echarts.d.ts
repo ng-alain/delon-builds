@@ -1,9 +1,9 @@
-import * as _angular_core from '@angular/core';
-import { OnDestroy } from '@angular/core';
+import * as i0 from '@angular/core';
+import { OnDestroy, OnInit, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlainChartConfig } from '@delon/util/config';
-import * as _echarts from 'echarts';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as _echarts from 'echarts';
 import * as i1 from '@angular/common';
 import * as i2 from 'ng-zorro-antd/skeleton';
 
@@ -20,8 +20,8 @@ declare class ChartEChartsService implements OnDestroy {
     libLoad(): this;
     get notify(): Observable<void>;
     ngOnDestroy(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ChartEChartsService, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
 
 type ChartECharts = _echarts.ECharts;
@@ -41,40 +41,44 @@ interface ChartEChartsOn {
     }) => void;
 }
 
-declare class ChartEChartsComponent implements OnDestroy {
+declare class ChartEChartsComponent implements OnInit, OnDestroy {
     private readonly srv;
-    private readonly destroyRef;
-    private readonly node;
-    readonly width: _angular_core.InputSignalWithTransform<string | number | null, string | number | null | undefined>;
-    readonly height: _angular_core.InputSignalWithTransform<string | number | null, string | number | null | undefined>;
-    readonly theme: _angular_core.InputSignal<string | Record<string, unknown> | null | undefined>;
-    readonly initOpt: _angular_core.InputSignal<any>;
-    readonly option: _angular_core.InputSignal<_echarts.EChartsCoreOption | undefined>;
-    /** 事件绑定；变更时不重建图表（与旧行为一致） */
-    readonly on: _angular_core.InputSignal<ChartEChartsOn[]>;
-    readonly events: _angular_core.OutputEmitterRef<ChartEChartsEvent>;
+    private readonly cdr;
+    private readonly ngZone;
+    private readonly platform;
+    private node;
+    private destroy$;
     private _chart;
-    private readonly _loaded;
-    readonly loaded: _angular_core.Signal<boolean>;
-    private prev?;
+    private _theme?;
+    private _initOpt?;
+    private _option;
+    _width: string;
+    _height: string;
+    set width(val: number | string | null | undefined);
+    set height(val: number | string | null | undefined);
+    set theme(value: string | Record<string, unknown> | null | undefined);
+    set initOpt(value: NzSafeAny);
+    set option(value: ChartEChartsOption);
+    on: ChartEChartsOn[];
+    readonly events: EventEmitter<ChartEChartsEvent>;
     get chart(): ChartECharts | null;
+    loaded: boolean;
     constructor();
-    /** theme / initOpt 变更 → 重建；option 变更 → 增量更新 */
-    private dispatch;
     private emit;
     private load;
     install(): this;
     destroy(): this;
     setOption(option: ChartEChartsOption, notMerge?: boolean, lazyUpdate?: boolean): this;
+    ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ChartEChartsComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ChartEChartsComponent, "chart-echarts, [chart-echarts]", ["chartECharts"], { "width": { "alias": "width"; "required": false; "isSignal": true; }; "height": { "alias": "height"; "required": false; "isSignal": true; }; "theme": { "alias": "theme"; "required": false; "isSignal": true; }; "initOpt": { "alias": "initOpt"; "required": false; "isSignal": true; }; "option": { "alias": "option"; "required": false; "isSignal": true; }; "on": { "alias": "on"; "required": false; "isSignal": true; }; }, { "events": "events"; }, never, never, true, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChartEChartsComponent, "chart-echarts, [chart-echarts]", ["chartECharts"], { "width": { "alias": "width"; "required": false; }; "height": { "alias": "height"; "required": false; }; "theme": { "alias": "theme"; "required": false; }; "initOpt": { "alias": "initOpt"; "required": false; }; "option": { "alias": "option"; "required": false; }; "on": { "alias": "on"; "required": false; }; }, { "events": "events"; }, never, never, true, never>;
 }
 
 declare class ChartEChartsModule {
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ChartEChartsModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<ChartEChartsModule, never, [typeof i1.CommonModule, typeof i2.NzSkeletonModule, typeof ChartEChartsComponent], [typeof ChartEChartsComponent]>;
-    static ɵinj: _angular_core.ɵɵInjectorDeclaration<ChartEChartsModule>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<ChartEChartsModule, never, [typeof i1.CommonModule, typeof i2.NzSkeletonModule, typeof ChartEChartsComponent], [typeof ChartEChartsComponent]>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<ChartEChartsModule>;
 }
 
 export { ChartEChartsComponent, ChartEChartsModule, ChartEChartsService };

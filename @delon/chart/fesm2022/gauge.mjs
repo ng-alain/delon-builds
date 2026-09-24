@@ -1,23 +1,18 @@
 import * as i0 from '@angular/core';
-import { input, numberAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { numberAttribute, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { CommonModule } from '@angular/common';
 
 class G2GaugeComponent extends G2BaseComponent {
     // #region fields
-    title = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
-    height = input(undefined, { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    color = input('#2f9cff', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []));
-    bgColor = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "bgColor" }] : /* istanbul ignore next */ [])); // = '#f0f2f5';
-    format = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "format" }] : /* istanbul ignore next */ []));
-    percent = input(undefined, { ...(ngDevMode ? { debugName: "percent" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    padding = input([10, 10, 30, 10], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "padding" }] : /* istanbul ignore next */ []));
+    title;
+    height;
+    color = '#2f9cff';
+    bgColor; // = '#f0f2f5';
+    format;
+    percent;
+    padding = [10, 10, 30, 10];
     // #endregion
     install() {
         // 自定义Shape 部分
@@ -55,9 +50,9 @@ class G2GaugeComponent extends G2BaseComponent {
         const chart = (this._chart = new this.winG2.Chart({
             container: el.nativeElement,
             autoFit: true,
-            height: height(),
-            padding: padding(),
-            theme: theme()
+            height,
+            padding,
+            theme
         }));
         chart.legend(false);
         chart.animate(false);
@@ -78,13 +73,13 @@ class G2GaugeComponent extends G2BaseComponent {
             line: null,
             label: {
                 offset: -14,
-                formatter: format()
+                formatter: format
             },
             tickLine: null,
             grid: null
         });
         chart.point().position('value*1').shape('pointer');
-        this.ready.emit(chart);
+        this.ready.next(chart);
         this.changeData();
         chart.render();
     }
@@ -92,17 +87,17 @@ class G2GaugeComponent extends G2BaseComponent {
         const { _chart, percent, color, bgColor, title } = this;
         if (!_chart)
             return;
-        const data = [{ name: title(), value: percent() }];
+        const data = [{ name: title, value: percent }];
         const val = data[0].value;
         _chart.annotation().clear(true);
-        _chart.geometries[0].color(color());
+        _chart.geometries[0].color(color);
         // 绘制仪表盘背景
         _chart.annotation().arc({
             top: false,
             start: [0, 0.95],
             end: [100, 0.95],
             style: {
-                stroke: bgColor(),
+                stroke: bgColor,
                 lineWidth: 12,
                 lineDash: null
             }
@@ -111,17 +106,17 @@ class G2GaugeComponent extends G2BaseComponent {
             start: [0, 0.95],
             end: [data[0].value, 0.95],
             style: {
-                stroke: color(),
+                stroke: color,
                 lineWidth: 12,
                 lineDash: null
             }
         });
         _chart.annotation().text({
             position: ['50%', '85%'],
-            content: title(),
+            content: title,
             style: {
                 fontSize: 12,
-                fill: this.theme() === 'dark' ? 'rgba(255, 255, 255, 0.43)' : 'rgba(0, 0, 0, 0.43)',
+                fill: this.theme === 'dark' ? 'rgba(255, 255, 255, 0.43)' : 'rgba(0, 0, 0, 0.43)',
                 textAlign: 'center'
             }
         });
@@ -130,7 +125,7 @@ class G2GaugeComponent extends G2BaseComponent {
             content: `${val} %`,
             style: {
                 fontSize: 20,
-                fill: this.theme() === 'dark' ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)',
+                fill: this.theme === 'dark' ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)',
                 textAlign: 'center'
             },
             offsetY: 15
@@ -138,7 +133,7 @@ class G2GaugeComponent extends G2BaseComponent {
         _chart.changeData(data);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2GaugeComponent, isStandalone: true, selector: "g2-gauge", inputs: { title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: false, transformFunction: null }, bgColor: { classPropertyName: "bgColor", publicName: "bgColor", isSignal: true, isRequired: false, transformFunction: null }, format: { classPropertyName: "format", publicName: "format", isSignal: true, isRequired: false, transformFunction: null }, percent: { classPropertyName: "percent", publicName: "percent", isSignal: true, isRequired: false, transformFunction: null }, padding: { classPropertyName: "padding", publicName: "padding", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.g2-gauge": "true" } }, exportAs: ["g2Gauge"], usesInheritance: true, ngImport: i0, template: `@if (!loaded()) {
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2GaugeComponent, isStandalone: true, selector: "g2-gauge", inputs: { title: "title", height: ["height", "height", numberAttribute], color: "color", bgColor: "bgColor", format: "format", percent: ["percent", "percent", numberAttribute], padding: "padding" }, host: { properties: { "class.g2-gauge": "true" } }, exportAs: ["g2Gauge"], usesInheritance: true, ngImport: i0, template: `@if (!loaded) {
     <nz-skeleton />
   }`, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
@@ -147,7 +142,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             args: [{
                     selector: 'g2-gauge',
                     exportAs: 'g2Gauge',
-                    template: `@if (!loaded()) {
+                    template: `@if (!loaded) {
     <nz-skeleton />
   }`,
                     host: {
@@ -157,7 +152,23 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzSkeletonComponent]
                 }]
-        }], propDecorators: { title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], color: [{ type: i0.Input, args: [{ isSignal: true, alias: "color", required: false }] }], bgColor: [{ type: i0.Input, args: [{ isSignal: true, alias: "bgColor", required: false }] }], format: [{ type: i0.Input, args: [{ isSignal: true, alias: "format", required: false }] }], percent: [{ type: i0.Input, args: [{ isSignal: true, alias: "percent", required: false }] }], padding: [{ type: i0.Input, args: [{ isSignal: true, alias: "padding", required: false }] }] } });
+        }], propDecorators: { title: [{
+                type: Input
+            }], height: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
+            }], color: [{
+                type: Input
+            }], bgColor: [{
+                type: Input
+            }], format: [{
+                type: Input
+            }], percent: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
+            }], padding: [{
+                type: Input
+            }] } });
 
 const COMPONENTS = [G2GaugeComponent];
 class G2GaugeModule {

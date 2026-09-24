@@ -1,4 +1,5 @@
-import * as _angular_core from '@angular/core';
+import * as i0 from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Event } from '@antv/g2';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -15,26 +16,26 @@ interface G2TagCloudClickItem {
     ev: Event;
 }
 declare class G2TagCloudComponent extends G2BaseComponent {
-    private _width;
-    private _height;
-    readonly width: _angular_core.InputSignalWithTransform<number, unknown>;
-    readonly height: _angular_core.InputSignalWithTransform<number, unknown>;
-    readonly padding: _angular_core.InputSignal<number | number[] | "auto">;
-    readonly data: _angular_core.InputSignal<G2TagCloudData[]>;
-    readonly clickItem: _angular_core.OutputEmitterRef<G2TagCloudClickItem>;
+    width: number;
+    height: number;
+    padding: number | number[] | 'auto';
+    data: G2TagCloudData[];
+    readonly clickItem: EventEmitter<G2TagCloudClickItem>;
     private initTagCloud;
     install(): void;
     changeData(): void;
     private installResizeEvent;
     onInit(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<G2TagCloudComponent, never>;
-    static ɵcmp: _angular_core.ɵɵComponentDeclaration<G2TagCloudComponent, "g2-tag-cloud", ["g2TagCloud"], { "width": { "alias": "width"; "required": false; "isSignal": true; }; "height": { "alias": "height"; "required": false; "isSignal": true; }; "padding": { "alias": "padding"; "required": false; "isSignal": true; }; "data": { "alias": "data"; "required": false; "isSignal": true; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2TagCloudComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2TagCloudComponent, "g2-tag-cloud", ["g2TagCloud"], { "width": { "alias": "width"; "required": false; }; "height": { "alias": "height"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "data": { "alias": "data"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
+    static ngAcceptInputType_width: unknown;
+    static ngAcceptInputType_height: unknown;
 }
 
 declare class G2TagCloudModule {
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<G2TagCloudModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<G2TagCloudModule, never, [typeof i1.CommonModule, typeof i2.NzSkeletonModule, typeof G2TagCloudComponent], [typeof G2TagCloudComponent]>;
-    static ɵinj: _angular_core.ɵɵInjectorDeclaration<G2TagCloudModule>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2TagCloudModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<G2TagCloudModule, never, [typeof i1.CommonModule, typeof i2.NzSkeletonModule, typeof G2TagCloudComponent], [typeof G2TagCloudComponent]>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<G2TagCloudModule>;
 }
 
 export { G2TagCloudComponent, G2TagCloudModule };

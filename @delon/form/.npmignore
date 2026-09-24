@@ -12,5 +12,5 @@ widgets/time/package.json
 widgets/transfer/package.json
 widgets/tree-select/package.json
 widgets/upload/package.json
-widgets-third/tinymce/package.json
 widgets-third/monaco-editor/package.json
+widgets-third/tinymce/package.json
