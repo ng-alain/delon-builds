@@ -1,55 +1,39 @@
 import * as i0 from '@angular/core';
-import { inject, ChangeDetectorRef, booleanAttribute, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { input, booleanAttribute, computed, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { NzCardComponent, NzCardModule } from 'ng-zorro-antd/card';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSpinComponent, NzSpinModule } from 'ng-zorro-antd/spin';
 import { CommonModule } from '@angular/common';
 
 class G2CardComponent {
-    cdr = inject(ChangeDetectorRef);
     /** 是否显示边框 */
-    bordered = false;
-    avatar;
-    title;
-    action;
-    total = '';
-    _height = 'auto';
-    _orgHeight;
-    set contentHeight(value) {
-        this._orgHeight = value;
-        this._height = typeof value === 'number' ? (this._height = `${value}px`) : value;
-    }
-    footer;
+    bordered = input(false, { ...(ngDevMode ? { debugName: "bordered" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    avatar = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "avatar" }] : /* istanbul ignore next */ []));
+    title = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
+    action = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "action" }] : /* istanbul ignore next */ []));
+    total = input('', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "total" }] : /* istanbul ignore next */ []));
+    contentHeight = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "contentHeight" }] : /* istanbul ignore next */ []));
+    footer = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "footer" }] : /* istanbul ignore next */ []));
     /** 是否显示Loading */
-    loading = false;
-    ngOnChanges() {
-        this.cdr.detectChanges();
-    }
+    loading = input(false, { ...(ngDevMode ? { debugName: "loading" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
+    _height = computed(() => {
+        const v = this.contentHeight();
+        return typeof v === 'number' ? `${v}px` : v;
+    }, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_height" }] : /* istanbul ignore next */ []));
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2CardComponent, isStandalone: true, selector: "g2-card", inputs: { bordered: ["bordered", "bordered", booleanAttribute], avatar: "avatar", title: "title", action: "action", total: "total", contentHeight: "contentHeight", footer: "footer", loading: ["loading", "loading", booleanAttribute] }, host: { properties: { "class.g2-card": "true" } }, exportAs: ["g2Card"], usesOnChanges: true, ngImport: i0, template: "<nz-card [nzBodyStyle]=\"{ padding: '20px 24px 8px 24px' }\" [nzBordered]=\"bordered\">\n  <nz-spin [nzSpinning]=\"loading\">\n    <div class=\"g2-card__top\">\n      <div class=\"g2-card__avatar\">\n        <ng-container *nzStringTemplateOutlet=\"avatar\">{{ avatar }}</ng-container>\n      </div>\n      <div class=\"g2-card__meta-wrap\">\n        <div class=\"g2-card__meta\">\n          @if (title) {\n            <span class=\"g2-card__meta-title\">\n              <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n            </span>\n          }\n          @if (action) {\n            <span class=\"g2-card__meta-action\">\n              <ng-container *nzStringTemplateOutlet=\"action\">{{ action }}</ng-container>\n            </span>\n          }\n        </div>\n        @if (total) {\n          <p class=\"g2-card__total\" [innerHTML]=\"total\"></p>\n        }\n      </div>\n    </div>\n    <div class=\"g2-card__desc\" [style.height]=\"_height\">\n      <div [class.g2-card__fixed]=\"!!_orgHeight\">\n        <ng-content />\n      </div>\n    </div>\n    @if (footer) {\n      <div class=\"g2-card__footer\">\n        <ng-container *nzStringTemplateOutlet=\"footer\">{{ footer }}</ng-container>\n      </div>\n    }\n  </nz-spin>\n</nz-card>\n", dependencies: [{ kind: "component", type: NzCardComponent, selector: "nz-card", inputs: ["nzBordered", "nzLoading", "nzHoverable", "nzBodyStyle", "nzCover", "nzActions", "nzType", "nzSize", "nzTitle", "nzExtra"], exportAs: ["nzCard"] }, { kind: "component", type: NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2CardComponent, isStandalone: true, selector: "g2-card", inputs: { bordered: { classPropertyName: "bordered", publicName: "bordered", isSignal: true, isRequired: false, transformFunction: null }, avatar: { classPropertyName: "avatar", publicName: "avatar", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, action: { classPropertyName: "action", publicName: "action", isSignal: true, isRequired: false, transformFunction: null }, total: { classPropertyName: "total", publicName: "total", isSignal: true, isRequired: false, transformFunction: null }, contentHeight: { classPropertyName: "contentHeight", publicName: "contentHeight", isSignal: true, isRequired: false, transformFunction: null }, footer: { classPropertyName: "footer", publicName: "footer", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.g2-card": "true" } }, exportAs: ["g2Card"], ngImport: i0, template: "<nz-card [nzBodyStyle]=\"{ padding: '20px 24px 8px 24px' }\" [nzBordered]=\"bordered()\">\n  <nz-spin [nzSpinning]=\"loading()\">\n    <div class=\"g2-card__top\">\n      <div class=\"g2-card__avatar\">\n        <ng-container *nzStringTemplateOutlet=\"avatar()\">{{ avatar() }}</ng-container>\n      </div>\n      <div class=\"g2-card__meta-wrap\">\n        <div class=\"g2-card__meta\">\n          @if (title()) {\n            <span class=\"g2-card__meta-title\">\n              <ng-container *nzStringTemplateOutlet=\"title()\">{{ title() }}</ng-container>\n            </span>\n          }\n          @if (action()) {\n            <span class=\"g2-card__meta-action\">\n              <ng-container *nzStringTemplateOutlet=\"action()\">{{ action() }}</ng-container>\n            </span>\n          }\n        </div>\n        @if (total()) {\n          <p class=\"g2-card__total\" [innerHTML]=\"total()\"></p>\n        }\n      </div>\n    </div>\n    <div class=\"g2-card__desc\" [style.height]=\"_height()\">\n      <div [class.g2-card__fixed]=\"!!contentHeight()\">\n        <ng-content />\n      </div>\n    </div>\n    @if (footer()) {\n      <div class=\"g2-card__footer\">\n        <ng-container *nzStringTemplateOutlet=\"footer()\">{{ footer() }}</ng-container>\n      </div>\n    }\n  </nz-spin>\n</nz-card>\n", dependencies: [{ kind: "component", type: NzCardComponent, selector: "nz-card", inputs: ["nzBordered", "nzLoading", "nzHoverable", "nzBodyStyle", "nzCover", "nzActions", "nzType", "nzSize", "nzTitle", "nzExtra"], exportAs: ["nzCard"] }, { kind: "component", type: NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CardComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'g2-card', exportAs: 'g2Card', host: { '[class.g2-card]': 'true' }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzCardComponent, NzSpinComponent, NzStringTemplateOutletDirective], template: "<nz-card [nzBodyStyle]=\"{ padding: '20px 24px 8px 24px' }\" [nzBordered]=\"bordered\">\n  <nz-spin [nzSpinning]=\"loading\">\n    <div class=\"g2-card__top\">\n      <div class=\"g2-card__avatar\">\n        <ng-container *nzStringTemplateOutlet=\"avatar\">{{ avatar }}</ng-container>\n      </div>\n      <div class=\"g2-card__meta-wrap\">\n        <div class=\"g2-card__meta\">\n          @if (title) {\n            <span class=\"g2-card__meta-title\">\n              <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n            </span>\n          }\n          @if (action) {\n            <span class=\"g2-card__meta-action\">\n              <ng-container *nzStringTemplateOutlet=\"action\">{{ action }}</ng-container>\n            </span>\n          }\n        </div>\n        @if (total) {\n          <p class=\"g2-card__total\" [innerHTML]=\"total\"></p>\n        }\n      </div>\n    </div>\n    <div class=\"g2-card__desc\" [style.height]=\"_height\">\n      <div [class.g2-card__fixed]=\"!!_orgHeight\">\n        <ng-content />\n      </div>\n    </div>\n    @if (footer) {\n      <div class=\"g2-card__footer\">\n        <ng-container *nzStringTemplateOutlet=\"footer\">{{ footer }}</ng-container>\n      </div>\n    }\n  </nz-spin>\n</nz-card>\n" }]
-        }], propDecorators: { bordered: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], avatar: [{
-                type: Input
-            }], title: [{
-                type: Input
-            }], action: [{
-                type: Input
-            }], total: [{
-                type: Input
-            }], contentHeight: [{
-                type: Input
-            }], footer: [{
-                type: Input
-            }], loading: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }] } });
+            args: [{ selector: 'g2-card', exportAs: 'g2Card', host: { '[class.g2-card]': 'true' }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzCardComponent, NzSpinComponent, NzStringTemplateOutletDirective], template: "<nz-card [nzBodyStyle]=\"{ padding: '20px 24px 8px 24px' }\" [nzBordered]=\"bordered()\">\n  <nz-spin [nzSpinning]=\"loading()\">\n    <div class=\"g2-card__top\">\n      <div class=\"g2-card__avatar\">\n        <ng-container *nzStringTemplateOutlet=\"avatar()\">{{ avatar() }}</ng-container>\n      </div>\n      <div class=\"g2-card__meta-wrap\">\n        <div class=\"g2-card__meta\">\n          @if (title()) {\n            <span class=\"g2-card__meta-title\">\n              <ng-container *nzStringTemplateOutlet=\"title()\">{{ title() }}</ng-container>\n            </span>\n          }\n          @if (action()) {\n            <span class=\"g2-card__meta-action\">\n              <ng-container *nzStringTemplateOutlet=\"action()\">{{ action() }}</ng-container>\n            </span>\n          }\n        </div>\n        @if (total()) {\n          <p class=\"g2-card__total\" [innerHTML]=\"total()\"></p>\n        }\n      </div>\n    </div>\n    <div class=\"g2-card__desc\" [style.height]=\"_height()\">\n      <div [class.g2-card__fixed]=\"!!contentHeight()\">\n        <ng-content />\n      </div>\n    </div>\n    @if (footer()) {\n      <div class=\"g2-card__footer\">\n        <ng-container *nzStringTemplateOutlet=\"footer()\">{{ footer() }}</ng-container>\n      </div>\n    }\n  </nz-spin>\n</nz-card>\n" }]
+        }], propDecorators: { bordered: [{ type: i0.Input, args: [{ isSignal: true, alias: "bordered", required: false }] }], avatar: [{ type: i0.Input, args: [{ isSignal: true, alias: "avatar", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], action: [{ type: i0.Input, args: [{ isSignal: true, alias: "action", required: false }] }], total: [{ type: i0.Input, args: [{ isSignal: true, alias: "total", required: false }] }], contentHeight: [{ type: i0.Input, args: [{ isSignal: true, alias: "contentHeight", required: false }] }], footer: [{ type: i0.Input, args: [{ isSignal: true, alias: "footer", required: false }] }], loading: [{ type: i0.Input, args: [{ isSignal: true, alias: "loading", required: false }] }] } });
 
 const COMPONENTS = [G2CardComponent];
 class G2CardModule {

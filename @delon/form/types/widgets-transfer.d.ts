@@ -79,14 +79,14 @@ interface SFTransferWidgetSchema extends SFUISchemaItem {
 
 declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSchema> implements OnInit {
     static readonly KEY = "transfer";
-    protected readonly list: i0.WritableSignal<SFSchemaEnum[]>;
+    list: SFSchemaEnum[];
     i: {
         titles: string[];
         operations: string[];
         itemUnit: string;
         itemsUnit: string;
     };
-    private readonly _data;
+    private _data;
     ngOnInit(): void;
     reset(value: SFValue): void;
     private notify;

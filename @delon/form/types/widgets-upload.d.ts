@@ -141,7 +141,7 @@ interface SFUploadWidgetSchema extends SFUISchemaItem {
 declare class UploadWidget extends ControlUIWidget<SFUploadWidgetSchema> implements OnInit {
     static readonly KEY = "upload";
     i: NzSafeAny;
-    protected readonly fileList: i0.WritableSignal<NzUploadFile[]>;
+    fileList: NzUploadFile[];
     btnType: string;
     ngOnInit(): void;
     change(args: NzUploadChangeParam): void;

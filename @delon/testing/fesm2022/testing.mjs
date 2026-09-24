@@ -1,6 +1,7 @@
 import { tick, TestBed, flush, discardPeriodicTasks } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NzDropdownDirective } from 'ng-zorro-antd/dropdown';
+import { isSignal } from '@angular/core';
 
 /** Utility to dispatch any event on a Node. */
 function dispatchEvent(node, event) {
@@ -67,7 +68,8 @@ class PageG2 {
         return this.fixture.componentInstance;
     }
     get comp() {
-        return this.context['comp'];
+        const c = this.context['comp'];
+        return isSignal(c) ? c() : c;
     }
     get chart() {
         return this.comp.chart;
@@ -83,6 +85,10 @@ class PageG2 {
         this.dc();
         flush();
         discardPeriodicTasks();
+        // `install()` 被推迟到宏任务执行，并在其中写入驱动视图的状态（如图例信号）；
+        // fakeAsync 下调度器的补渲染回调注册在 fakeAsync 区之外，flush() 驱动不了它，
+        // 因此这里由测试夹具显式补一次 CD。
+        this.dc();
         // FIX: `Error during cleanup of component`
         if (this.comp && typeof this.comp.chart !== 'undefined') {
             spyOn(this.comp.chart, 'destroy');
@@ -203,9 +209,10 @@ function checkDelay(comp, page = null) {
         context.delay = 100;
     }
     page.dc();
-    page.comp.ngOnDestroy();
+    page.fixture.destroy();
     expect(page.chart == null).toBe(true);
     tick(201);
+    expect(page.chart == null).toBe(true);
     discardPeriodicTasks();
 }
 

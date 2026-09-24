@@ -34,7 +34,8 @@ interface SFSegmentedWidgetSchema extends SFUISchemaItem {
 
 declare class SegmentedWidget extends ControlUIWidget<SFSegmentedWidgetSchema> {
     static readonly KEY = "segmented";
-    protected readonly list: i0.WritableSignal<NzSegmentedOption[]>;
+    private _list?;
+    get list(): NzSegmentedOption[];
     reset(value: SFValue): void;
     valueChange(v: string | number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SegmentedWidget, never>;

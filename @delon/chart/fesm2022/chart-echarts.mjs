@@ -1,12 +1,10 @@
 import * as i0 from '@angular/core';
-import { inject, Injectable, ChangeDetectorRef, NgZone, DestroyRef, EventEmitter, Output, Input, ViewChild, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { inject, Injectable, DestroyRef, viewChild, input, output, signal, afterNextRender, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { Subject, filter, fromEvent, debounceTime } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
-import { __decorate } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ZoneOutside } from '@delon/util/decorator';
+import { watchInputs } from '@delon/chart/core';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { CommonModule } from '@angular/common';
 
@@ -66,73 +64,90 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [] });
 
+/** 数字补 px；null/undefined 产出空串（旧 setter 会产出字面量 'null'） */
+function toCssSize(value) {
+    if (value == null) {
+        return '';
+    }
+    return typeof value === 'number' ? `${value}px` : `${value}`;
+}
 class ChartEChartsComponent {
     srv = inject(ChartEChartsService);
-    cdr = inject(ChangeDetectorRef);
-    ngZone = inject(NgZone);
-    platform = inject(Platform);
-    node;
-    destroy$ = inject(DestroyRef);
+    destroyRef = inject(DestroyRef);
+    node = viewChild.required('container', /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "node" }] : /* istanbul ignore next */ []));
+    width = input('100%', { ...(ngDevMode ? { debugName: "width" } : /* istanbul ignore next */ {}), transform: toCssSize });
+    height = input('400px', { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: toCssSize });
+    theme = input(this.srv.cog.echartsTheme, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "theme" }] : /* istanbul ignore next */ []));
+    initOpt = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "initOpt" }] : /* istanbul ignore next */ []));
+    option = input(/* @ts-ignore */
+    ...(ngDevMode ? [undefined, { debugName: "option" }] : /* istanbul ignore next */ []));
+    /** 事件绑定；变更时不重建图表（与旧行为一致） */
+    on = input([], /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "on" }] : /* istanbul ignore next */ []));
+    events = output();
     _chart = null;
-    _theme;
-    _initOpt;
-    _option;
-    _width = '100%';
-    _height = '400px';
-    set width(val) {
-        this._width = typeof val === 'number' ? `${val}px` : `${val}`;
-    }
-    set height(val) {
-        this._height = typeof val === 'number' ? `${val}px` : `${val}`;
-    }
-    set theme(value) {
-        this._theme = value;
-        if (this._chart) {
-            this.install();
-        }
-    }
-    set initOpt(value) {
-        this._initOpt = value;
-        if (this._chart) {
-            this.install();
-        }
-    }
-    set option(value) {
-        this._option = value;
-        if (this._chart) {
-            this.setOption(value, true);
-        }
-    }
-    on = [];
-    events = new EventEmitter();
+    _loaded = signal(false, /* @ts-ignore */
+    ...(ngDevMode ? [{ debugName: "_loaded" }] : /* istanbul ignore next */ []));
+    loaded = this._loaded.asReadonly();
+    prev;
     get chart() {
         return this._chart;
     }
-    loaded = false;
     constructor() {
+        watchInputs(this, () => this.dispatch());
         this.srv.notify
-            .pipe(takeUntilDestroyed(), filter(() => !this.loaded))
+            .pipe(takeUntilDestroyed(this.destroyRef), filter(() => !this._loaded()))
             .subscribe(() => this.load());
-        this.theme = this.srv.cog.echartsTheme;
+        afterNextRender(() => {
+            fromEvent(window, 'resize')
+                .pipe(takeUntilDestroyed(this.destroyRef), filter(() => !!this._chart), debounceTime(200))
+                .subscribe(() => this._chart.resize());
+            if (window.echarts) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
+        });
+    }
+    /** theme / initOpt 变更 → 重建；option 变更 → 增量更新 */
+    dispatch() {
+        const theme = this.theme();
+        const initOpt = this.initOpt();
+        const option = this.option();
+        const prev = this.prev;
+        this.prev = { theme, initOpt, option };
+        if (!this._chart || !prev) {
+            return;
+        }
+        if (theme !== prev.theme || initOpt !== prev.initOpt) {
+            this.install();
+        }
+        else if (option !== prev.option) {
+            this.setOption(option, true);
+        }
     }
     emit(type, other) {
         this.events.emit({ type, chart: this.chart, ...other });
     }
     load() {
-        this.ngZone.run(() => {
-            this.loaded = true;
-            this.cdr.detectChanges();
-        });
+        if (this._loaded()) {
+            return;
+        }
+        this._loaded.set(true);
         this.emit('ready');
         this.install();
     }
     install() {
         this.destroy();
-        const chart = (this._chart = window.echarts.init(this.node.nativeElement, this._theme, this._initOpt));
+        const chart = (this._chart = window.echarts.init(this.node().nativeElement, this.theme(), this.initOpt()));
         this.emit('init');
-        this.setOption(this._option);
+        this.setOption(this.option());
         // on
-        this.on.forEach(item => {
+        this.on().forEach(item => {
             if (item.query != null) {
                 chart.on(item.eventName, item.query, event => item.handler({ event, chart }));
             }
@@ -140,6 +155,9 @@ class ChartEChartsComponent {
                 chart.on(item.eventName, event => item.handler({ event, chart }));
             }
         });
+        // 安装即代表图表已与当前输入同步，故以其为 dispatch 的比较基线
+        // （watchInputs 首次执行只建立基线、不回调，不补这一步会把安装后的首次变更吞掉）
+        this.prev = { theme: this.theme(), initOpt: this.initOpt(), option: this.option() };
         return this;
     }
     destroy() {
@@ -156,73 +174,39 @@ class ChartEChartsComponent {
         }
         return this;
     }
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (window.echarts) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-        fromEvent(window, 'resize')
-            .pipe(takeUntilDestroyed(this.destroy$), filter(() => !!this._chart), debounceTime(200))
-            .subscribe(() => this._chart.resize());
-    }
     ngOnDestroy() {
-        this.on.forEach(item => this._chart?.off(item.eventName));
+        this.on().forEach(item => this._chart?.off(item.eventName));
         this.destroy();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ChartEChartsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: ChartEChartsComponent, isStandalone: true, selector: "chart-echarts, [chart-echarts]", inputs: { width: "width", height: "height", theme: "theme", initOpt: "initOpt", option: "option", on: "on" }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "_width", "style.height": "_height" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
-    @if (!loaded) {
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: ChartEChartsComponent, isStandalone: true, selector: "chart-echarts, [chart-echarts]", inputs: { width: { classPropertyName: "width", publicName: "width", isSignal: true, isRequired: false, transformFunction: null }, height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, theme: { classPropertyName: "theme", publicName: "theme", isSignal: true, isRequired: false, transformFunction: null }, initOpt: { classPropertyName: "initOpt", publicName: "initOpt", isSignal: true, isRequired: false, transformFunction: null }, option: { classPropertyName: "option", publicName: "option", isSignal: true, isRequired: false, transformFunction: null }, on: { classPropertyName: "on", publicName: "on", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "width()", "style.height": "height()" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, isSignal: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
+    @if (!loaded()) {
       <nz-skeleton />
     }
-    <div #container [style.width]="_width" [style.height]="_height"></div>
+    <div #container [style.width]="width()" [style.height]="height()"></div>
   `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-__decorate([
-    ZoneOutside()
-], ChartEChartsComponent.prototype, "load", null);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ChartEChartsComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'chart-echarts, [chart-echarts]',
                     exportAs: 'chartECharts',
                     template: `
-    @if (!loaded) {
+    @if (!loaded()) {
       <nz-skeleton />
     }
-    <div #container [style.width]="_width" [style.height]="_height"></div>
+    <div #container [style.width]="width()" [style.height]="height()"></div>
   `,
                     host: {
                         '[style.display]': `'inline-block'`,
-                        '[style.width]': `_width`,
-                        '[style.height]': `_height`
+                        '[style.width]': `width()`,
+                        '[style.height]': `height()`
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzSkeletonComponent]
                 }]
-        }], ctorParameters: () => [], propDecorators: { node: [{
-                type: ViewChild,
-                args: ['container', { static: true }]
-            }], width: [{
-                type: Input
-            }], height: [{
-                type: Input
-            }], theme: [{
-                type: Input
-            }], initOpt: [{
-                type: Input
-            }], option: [{
-                type: Input
-            }], on: [{
-                type: Input
-            }], events: [{
-                type: Output
-            }], load: [] } });
+        }], ctorParameters: () => [], propDecorators: { node: [{ type: i0.ViewChild, args: ['container', { isSignal: true }] }], width: [{ type: i0.Input, args: [{ isSignal: true, alias: "width", required: false }] }], height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], theme: [{ type: i0.Input, args: [{ isSignal: true, alias: "theme", required: false }] }], initOpt: [{ type: i0.Input, args: [{ isSignal: true, alias: "initOpt", required: false }] }], option: [{ type: i0.Input, args: [{ isSignal: true, alias: "option", required: false }] }], on: [{ type: i0.Input, args: [{ isSignal: true, alias: "on", required: false }] }], events: [{ type: i0.Output, args: ["events"] }] } });
 
 const COMPONENTS = [ChartEChartsComponent];
 class ChartEChartsModule {

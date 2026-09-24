@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ViewEncapsulation, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i1$1 from '@delon/form';
@@ -35,72 +35,67 @@ class SliderWidget extends ControlUIWidget {
             return afterChange(value);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SliderWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: SliderWidget, isStandalone: true, selector: "sf-slider", usesInheritance: true, ngImport: i0, template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-slider
-        [ngModel]="value"
-        [ngModelOptions]="{ standalone: true }"
-        (ngModelChange)="setValue($event)"
-        [nzDisabled]="disabled"
-        [nzRange]="ui.range"
-        [nzMin]="min"
-        [nzMax]="max"
-        [nzStep]="step"
-        [nzMarks]="marks"
-        [nzDots]="ui.dots"
-        [nzIncluded]="included"
-        [nzVertical]="ui.vertical"
-        [nzReverse]="ui.reverse"
-        [nzTooltipVisible]="ui.tooltipVisible!"
-        [nzTooltipPlacement]="ui.tooltipPlacement!"
-        [nzTipFormatter]="_formatter"
-        (nzOnAfterChange)="_afterChange($event)"
-      />
-    </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzSliderModule }, { kind: "component", type: i3.NzSliderComponent, selector: "nz-slider", inputs: ["nzDisabled", "nzDots", "nzIncluded", "nzRange", "nzVertical", "nzReverse", "nzDefaultValue", "nzMarks", "nzMax", "nzMin", "nzStep", "nzTooltipVisible", "nzTooltipPlacement", "nzTipFormatter"], outputs: ["nzOnAfterChange"], exportAs: ["nzSlider"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: SliderWidget, isStandalone: true, selector: "sf-slider", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-slider
+      [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzRange]="ui.range"
+      [nzMin]="min"
+      [nzMax]="max"
+      [nzStep]="step"
+      [nzMarks]="marks"
+      [nzDots]="ui.dots"
+      [nzIncluded]="included"
+      [nzVertical]="ui.vertical"
+      [nzReverse]="ui.reverse"
+      [nzTooltipVisible]="ui.tooltipVisible!"
+      [nzTooltipPlacement]="ui.tooltipPlacement!"
+      [nzTipFormatter]="_formatter"
+      (nzOnAfterChange)="_afterChange($event)"
+    />
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzSliderModule }, { kind: "component", type: i3.NzSliderComponent, selector: "nz-slider", inputs: ["nzDisabled", "nzDots", "nzIncluded", "nzRange", "nzVertical", "nzReverse", "nzDefaultValue", "nzMarks", "nzMax", "nzMin", "nzStep", "nzTooltipVisible", "nzTooltipPlacement", "nzTipFormatter"], outputs: ["nzOnAfterChange"], exportAs: ["nzSlider"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: SliderWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-slider',
-                    template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-slider
-        [ngModel]="value"
-        [ngModelOptions]="{ standalone: true }"
-        (ngModelChange)="setValue($event)"
-        [nzDisabled]="disabled"
-        [nzRange]="ui.range"
-        [nzMin]="min"
-        [nzMax]="max"
-        [nzStep]="step"
-        [nzMarks]="marks"
-        [nzDots]="ui.dots"
-        [nzIncluded]="included"
-        [nzVertical]="ui.vertical"
-        [nzReverse]="ui.reverse"
-        [nzTooltipVisible]="ui.tooltipVisible!"
-        [nzTooltipPlacement]="ui.tooltipPlacement!"
-        [nzTipFormatter]="_formatter"
-        (nzOnAfterChange)="_afterChange($event)"
-      />
-    </sf-item-wrap>
-  `,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-slider
+      [ngModel]="value"
+      [ngModelOptions]="{ standalone: true }"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzRange]="ui.range"
+      [nzMin]="min"
+      [nzMax]="max"
+      [nzStep]="step"
+      [nzMarks]="marks"
+      [nzDots]="ui.dots"
+      [nzIncluded]="included"
+      [nzVertical]="ui.vertical"
+      [nzReverse]="ui.reverse"
+      [nzTooltipVisible]="ui.tooltipVisible!"
+      [nzTooltipPlacement]="ui.tooltipPlacement!"
+      [nzTipFormatter]="_formatter"
+      (nzOnAfterChange)="_afterChange($event)"
+    />
+  </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzSliderModule]
                 }]

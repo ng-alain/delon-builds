@@ -1,6 +1,6 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import * as i0 from '@angular/core';
-import { viewChild, signal, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ViewChild, ViewEncapsulation, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { tap, map } from 'rxjs';
@@ -14,13 +14,10 @@ import { CommonModule } from '@angular/common';
 
 class MentionWidget extends ControlUIWidget {
     static KEY = 'mention';
-    mentionChild = viewChild.required('mentions', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "mentionChild" }] : /* istanbul ignore next */ []));
-    data = signal([], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "data" }] : /* istanbul ignore next */ []));
+    mentionChild;
+    data = [];
     i;
-    loading = signal(false, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "loading" }] : /* istanbul ignore next */ []));
+    loading = false;
     ngOnInit() {
         const { valueWith, notFoundContent, placement, prefix, autosize } = this.ui;
         this.i = {
@@ -35,7 +32,7 @@ class MentionWidget extends ControlUIWidget {
         const max = typeof maximum !== 'undefined' ? maximum : -1;
         if (!this.ui.validator && (min !== -1 || max !== -1)) {
             this.ui.validator = (() => {
-                const count = this.mentionChild().getMentions().length;
+                const count = this.mentionChild.getMentions().length;
                 if (min !== -1 && count < min) {
                     return [{ keyword: 'mention', message: `最少提及 ${min} 次` }];
                 }
@@ -48,160 +45,160 @@ class MentionWidget extends ControlUIWidget {
     }
     reset() {
         getData(this.schema, this.ui, null).subscribe(list => {
-            this.data.set(list);
+            this.data = list;
+            this.detectChanges(true);
         });
     }
     _select(options) {
-        this.ui.select?.(options);
+        if (this.ui.select)
+            this.ui.select(options);
     }
     _search(option) {
         if (typeof this.ui.loadData !== 'function')
             return;
-        this.loading.set(true);
+        this.loading = true;
         this.ui
             .loadData(option)
-            .pipe(tap(() => this.loading.set(false)), map(res => getEnum(res, null, this.schema.readOnly)))
+            .pipe(tap(() => (this.loading = false)), map(res => getEnum(res, null, this.schema.readOnly)))
             .subscribe(res => {
-            this.data.set(res);
+            this.data = res;
+            this.detectChanges(true);
         });
     }
     _clear() {
         this.setValue('');
-        this.ui.onClear?.();
+        if (this.ui.onClear)
+            this.ui.onClear();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: MentionWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: MentionWidget, isStandalone: true, selector: "sf-mention", viewQueries: [{ propertyName: "mentionChild", first: true, predicate: ["mentions"], descendants: true, isSignal: true }], usesInheritance: true, ngImport: i0, template: `
-    @let maxLength = schema.maxLength ?? null;
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: MentionWidget, isStandalone: true, selector: "sf-mention", viewQueries: [{ propertyName: "mentionChild", first: true, predicate: ["mentions"], descendants: true, static: true }], usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-mention
+      #mentions
+      [nzSuggestions]="data"
+      [nzValueWith]="i.valueWith"
+      [nzLoading]="loading"
+      [nzNotFoundContent]="i.notFoundContent"
+      [nzPlacement]="i.placement"
+      [nzPrefix]="i.prefix"
+      [nzAllowClear]="ui.allowClear!"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      (nzOnSelect)="_select($event)"
+      (nzOnSearchChange)="_search($event)"
+      (nzOnClear)="_clear()"
     >
-      <nz-mention
-        #mentions
-        [nzSuggestions]="data()"
-        [nzValueWith]="i.valueWith"
-        [nzLoading]="loading()"
-        [nzNotFoundContent]="i.notFoundContent"
-        [nzPlacement]="i.placement"
-        [nzPrefix]="i.prefix"
-        [nzAllowClear]="ui.allowClear!"
-        [nzVariant]="ui.variant ?? 'outlined'"
-        (nzOnSelect)="_select($event)"
-        (nzOnSearchChange)="_search($event)"
-        (nzOnClear)="_clear()"
-      >
-        @if (ui.inputStyle === 'textarea') {
-          <textarea
-            nzMentionTrigger
-            nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size!"
-            [ngModel]="value"
-            [ngModelOptions]="{ standalone: true }"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="maxLength"
-            [attr.placeholder]="ui.placeholder"
-            cdkTextareaAutosize
-            [cdkAutosizeMinRows]="i.autosize?.minRows ?? 1"
-            [cdkAutosizeMaxRows]="i.autosize?.maxRows ?? 0"
-          >
-          </textarea>
-        } @else {
-          <input
-            nzMentionTrigger
-            nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size!"
-            [ngModel]="value"
-            [ngModelOptions]="{ standalone: true }"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="maxLength"
-            [attr.placeholder]="ui.placeholder"
-            autocomplete="off"
-          />
-        }
-      </nz-mention>
-    </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzInputModule }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "ngmodule", type: NzMentionModule }, { kind: "component", type: i4.NzMentionComponent, selector: "nz-mention", inputs: ["nzValueWith", "nzPrefix", "nzLoading", "nzNotFoundContent", "nzPlacement", "nzSuggestions", "nzStatus", "nzVariant", "nzAllowClear", "nzClearIcon"], outputs: ["nzOnSelect", "nzOnSearchChange", "nzOnClear"], exportAs: ["nzMention"] }, { kind: "directive", type: i4.NzMentionTriggerDirective, selector: "input[nzMentionTrigger], textarea[nzMentionTrigger]", outputs: ["onFocusin", "onBlur", "onInput", "onKeydown", "onClick"], exportAs: ["nzMentionTrigger"] }, { kind: "directive", type: CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+      @if (ui.inputStyle === 'textarea') {
+        <textarea
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength ?? null"
+          [attr.placeholder]="ui.placeholder"
+          cdkTextareaAutosize
+          [cdkAutosizeMinRows]="i.autosize?.minRows ?? 1"
+          [cdkAutosizeMaxRows]="i.autosize?.maxRows ?? 0"
+        >
+        </textarea>
+      } @else {
+        <input
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength ?? null"
+          [attr.placeholder]="ui.placeholder"
+          autocomplete="off"
+        />
+      }
+    </nz-mention>
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzInputModule }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "ngmodule", type: NzMentionModule }, { kind: "component", type: i4.NzMentionComponent, selector: "nz-mention", inputs: ["nzValueWith", "nzPrefix", "nzLoading", "nzNotFoundContent", "nzPlacement", "nzSuggestions", "nzStatus", "nzVariant", "nzAllowClear", "nzClearIcon"], outputs: ["nzOnSelect", "nzOnSearchChange", "nzOnClear"], exportAs: ["nzMention"] }, { kind: "directive", type: i4.NzMentionTriggerDirective, selector: "input[nzMentionTrigger], textarea[nzMentionTrigger]", outputs: ["onFocusin", "onBlur", "onInput", "onKeydown", "onClick"], exportAs: ["nzMentionTrigger"] }, { kind: "directive", type: CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: MentionWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-mention',
-                    template: `
-    @let maxLength = schema.maxLength ?? null;
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
+                    template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-mention
+      #mentions
+      [nzSuggestions]="data"
+      [nzValueWith]="i.valueWith"
+      [nzLoading]="loading"
+      [nzNotFoundContent]="i.notFoundContent"
+      [nzPlacement]="i.placement"
+      [nzPrefix]="i.prefix"
+      [nzAllowClear]="ui.allowClear!"
+      [nzVariant]="ui.variant ?? 'outlined'"
+      (nzOnSelect)="_select($event)"
+      (nzOnSearchChange)="_search($event)"
+      (nzOnClear)="_clear()"
     >
-      <nz-mention
-        #mentions
-        [nzSuggestions]="data()"
-        [nzValueWith]="i.valueWith"
-        [nzLoading]="loading()"
-        [nzNotFoundContent]="i.notFoundContent"
-        [nzPlacement]="i.placement"
-        [nzPrefix]="i.prefix"
-        [nzAllowClear]="ui.allowClear!"
-        [nzVariant]="ui.variant ?? 'outlined'"
-        (nzOnSelect)="_select($event)"
-        (nzOnSearchChange)="_search($event)"
-        (nzOnClear)="_clear()"
-      >
-        @if (ui.inputStyle === 'textarea') {
-          <textarea
-            nzMentionTrigger
-            nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size!"
-            [ngModel]="value"
-            [ngModelOptions]="{ standalone: true }"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="maxLength"
-            [attr.placeholder]="ui.placeholder"
-            cdkTextareaAutosize
-            [cdkAutosizeMinRows]="i.autosize?.minRows ?? 1"
-            [cdkAutosizeMaxRows]="i.autosize?.maxRows ?? 0"
-          >
-          </textarea>
-        } @else {
-          <input
-            nzMentionTrigger
-            nz-input
-            [attr.id]="id"
-            [disabled]="disabled"
-            [attr.disabled]="disabled"
-            [nzSize]="ui.size!"
-            [ngModel]="value"
-            [ngModelOptions]="{ standalone: true }"
-            (ngModelChange)="setValue($event)"
-            [attr.maxLength]="maxLength"
-            [attr.placeholder]="ui.placeholder"
-            autocomplete="off"
-          />
-        }
-      </nz-mention>
-    </sf-item-wrap>
-  `,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
+      @if (ui.inputStyle === 'textarea') {
+        <textarea
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength ?? null"
+          [attr.placeholder]="ui.placeholder"
+          cdkTextareaAutosize
+          [cdkAutosizeMinRows]="i.autosize?.minRows ?? 1"
+          [cdkAutosizeMaxRows]="i.autosize?.maxRows ?? 0"
+        >
+        </textarea>
+      } @else {
+        <input
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength ?? null"
+          [attr.placeholder]="ui.placeholder"
+          autocomplete="off"
+        />
+      }
+    </nz-mention>
+  </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzInputModule, NzMentionModule, CdkTextareaAutosize]
                 }]
-        }], propDecorators: { mentionChild: [{ type: i0.ViewChild, args: ['mentions', { isSignal: true }] }] } });
+        }], propDecorators: { mentionChild: [{
+                type: ViewChild,
+                args: ['mentions', { static: true }]
+            }] } });
 
 class MentionWidgetModule {
     constructor(widgetRegistry) {

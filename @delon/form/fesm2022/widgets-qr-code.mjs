@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ViewEncapsulation, Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import * as i1 from '@delon/form';
 import { ControlUIWidget, DelonFormModule } from '@delon/form';
@@ -10,67 +10,63 @@ class QrCodeWidget extends ControlUIWidget {
     static KEY = 'qr-code';
     refresh(qr) {
         this.setValue(qr);
-        this.ui.refresh?.(qr);
+        if (this.ui.refresh)
+            this.ui.refresh(qr);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QrCodeWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: QrCodeWidget, isStandalone: true, selector: "sf-qr-code", usesInheritance: true, ngImport: i0, template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-qrcode
-        [nzValue]="value"
-        [nzPadding]="ui.padding ?? 0"
-        [nzColor]="ui.color ?? '#000'"
-        [nzBgColor]="ui.bgColor ?? '#FFF'"
-        [nzSize]="ui.qrSize ?? 160"
-        [nzIcon]="ui.icon ?? ''"
-        [nzIconSize]="ui.iconSize ?? 40"
-        [nzBordered]="ui.bordered ?? true"
-        [nzType]="ui.type ?? 'canvas'"
-        [nzStatus]="ui.status ?? 'active'"
-        [nzLevel]="ui.level ?? 'M'"
-        [nzBoostLevel]="ui.boostLevel ?? true"
-        (nzRefresh)="refresh($event)"
-      />
-    </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzQRCodeModule }, { kind: "component", type: i2.NzQRCodeComponent, selector: "nz-qrcode", inputs: ["nzValue", "nzType", "nzColor", "nzBgColor", "nzSize", "nzIcon", "nzIconSize", "nzBordered", "nzStatus", "nzLevel", "nzStatusRender", "nzBoostLevel", "nzPadding"], outputs: ["nzRefresh"], exportAs: ["nzQRCode"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "22.1.7", type: QrCodeWidget, isStandalone: true, selector: "sf-qr-code", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-qrcode
+      [nzValue]="value"
+      [nzPadding]="ui.padding ?? 0"
+      [nzColor]="ui.color ?? '#000'"
+      [nzBgColor]="ui.bgColor ?? '#FFF'"
+      [nzSize]="ui.qrSize ?? 160"
+      [nzIcon]="ui.icon ?? ''"
+      [nzIconSize]="ui.iconSize ?? 40"
+      [nzBordered]="ui.bordered ?? true"
+      [nzType]="ui.type ?? 'canvas'"
+      [nzStatus]="ui.status ?? 'active'"
+      [nzLevel]="ui.level ?? 'M'"
+      [nzBoostLevel]="ui.boostLevel ?? true"
+      (nzRefresh)="refresh($event)"
+    />
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzQRCodeModule }, { kind: "component", type: i2.NzQRCodeComponent, selector: "nz-qrcode", inputs: ["nzValue", "nzType", "nzColor", "nzBgColor", "nzSize", "nzIcon", "nzIconSize", "nzBordered", "nzStatus", "nzLevel", "nzStatusRender", "nzBoostLevel", "nzPadding"], outputs: ["nzRefresh"], exportAs: ["nzQRCode"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QrCodeWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-qr-code',
-                    template: `
-    <sf-item-wrap
-      [id]="id"
-      [schema]="schema"
-      [ui]="ui"
-      [showError]="showError"
-      [error]="error"
-      [showTitle]="schema.title"
-    >
-      <nz-qrcode
-        [nzValue]="value"
-        [nzPadding]="ui.padding ?? 0"
-        [nzColor]="ui.color ?? '#000'"
-        [nzBgColor]="ui.bgColor ?? '#FFF'"
-        [nzSize]="ui.qrSize ?? 160"
-        [nzIcon]="ui.icon ?? ''"
-        [nzIconSize]="ui.iconSize ?? 40"
-        [nzBordered]="ui.bordered ?? true"
-        [nzType]="ui.type ?? 'canvas'"
-        [nzStatus]="ui.status ?? 'active'"
-        [nzLevel]="ui.level ?? 'M'"
-        [nzBoostLevel]="ui.boostLevel ?? true"
-        (nzRefresh)="refresh($event)"
-      />
-    </sf-item-wrap>
-  `,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    template: `<sf-item-wrap
+    [id]="id"
+    [schema]="schema"
+    [ui]="ui"
+    [showError]="showError"
+    [error]="error"
+    [showTitle]="schema.title"
+  >
+    <nz-qrcode
+      [nzValue]="value"
+      [nzPadding]="ui.padding ?? 0"
+      [nzColor]="ui.color ?? '#000'"
+      [nzBgColor]="ui.bgColor ?? '#FFF'"
+      [nzSize]="ui.qrSize ?? 160"
+      [nzIcon]="ui.icon ?? ''"
+      [nzIconSize]="ui.iconSize ?? 40"
+      [nzBordered]="ui.bordered ?? true"
+      [nzType]="ui.type ?? 'canvas'"
+      [nzStatus]="ui.status ?? 'active'"
+      [nzLevel]="ui.level ?? 'M'"
+      [nzBoostLevel]="ui.boostLevel ?? true"
+      (nzRefresh)="refresh($event)"
+    />
+  </sf-item-wrap>`,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NzQRCodeModule]
                 }]
