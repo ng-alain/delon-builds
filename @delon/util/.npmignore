@@ -3,13 +3,13 @@ array/package.json
 browser/package.json
 config/package.json
 date-time/package.json
-decorator/package.json
 form/package.json
 format/package.json
+decorator/package.json
 math/package.json
 other/package.json
-pipes/package.json
 token/package.json
+pipes/package.json
 pipes/currency/package.json
 pipes/filter/package.json
 pipes/format/package.json
