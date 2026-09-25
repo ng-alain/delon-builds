@@ -24,9 +24,9 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `eslint-plugin-jsdoc@^64.5.4`,
       `eslint-plugin-prettier@^5.5.6`,
       `eslint-plugin-unused-imports@^4.4.1`,
-      `typescript@~6.0.2`,
+      `typescript@~6.0.3`,
       `typescript-eslint@^8.70.1`,
-      `prettier@^3.9.8`,
+      `prettier@^3.9.9`,
       `husky@^9.1.7`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^18.0.0`,
@@ -49,7 +49,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^22.1.0`]);
+  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^22.1.1`]);
 }
 
 export function addESLintRule(projectName: string): Rule {
