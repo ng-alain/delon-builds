@@ -1,4 +1,5 @@
 import { Platform } from "@angular/cdk/platform";
+import { CommonModule, NgTemplateOutlet } from "@angular/common";
 import * as i0 from "@angular/core";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, Directive, ElementRef, Injectable, Injector, NgModule, NgZone, Renderer2, TemplateRef, ViewContainerRef, ViewEncapsulation, afterNextRender, booleanAttribute, computed, effect, inject, input, linkedSignal, makeEnvironmentProviders, model, numberAttribute, output, provideEnvironmentInitializer, signal, viewChild } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
@@ -8,45 +9,42 @@ import { ACLService } from "@delon/acl";
 import { ALAIN_I18N_TOKEN, DelonLocaleModule, DelonLocaleService } from "@delon/theme";
 import { AlainConfigService } from "@delon/util/config";
 import { deepCopy } from "@delon/util/other";
+import * as i1$1 from "ng-zorro-antd/button";
+import { NzButtonModule } from "ng-zorro-antd/button";
+import * as i5 from "ng-zorro-antd/form";
+import { NzFormModule } from "ng-zorro-antd/form";
+import * as i4$2 from "ng-zorro-antd/grid";
+import { NzGridModule } from "ng-zorro-antd/grid";
+import * as i6 from "ng-zorro-antd/icon";
+import { NzIconModule } from "ng-zorro-antd/icon";
 import { NzFormStatusService } from "ng-zorro-antd/core/form";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import { REGEX } from "@delon/util/format";
-import * as i1$1 from "@angular/common";
-import { CommonModule } from "@angular/common";
-import * as i2$6 from "ng-zorro-antd/button";
-import { NzButtonModule } from "ng-zorro-antd/button";
-import * as i3 from "ng-zorro-antd/core/transition-patch";
-import * as i4$3 from "ng-zorro-antd/core/wave";
-import * as i5$1 from "ng-zorro-antd/grid";
-import { NzGridModule } from "ng-zorro-antd/grid";
-import * as i6 from "ng-zorro-antd/form";
-import { NzFormModule } from "ng-zorro-antd/form";
-import * as i7 from "ng-zorro-antd/icon";
-import { NzIconModule } from "ng-zorro-antd/icon";
+import * as i2$6 from "ng-zorro-antd/core/transition-patch";
+import * as i3$1 from "ng-zorro-antd/core/wave";
 import { withAnimationCheck } from "ng-zorro-antd/core/animation";
-import * as i5 from "ng-zorro-antd/tooltip";
+import * as i4$1 from "ng-zorro-antd/tooltip";
 import { NzTooltipModule } from "ng-zorro-antd/tooltip";
 import * as i1 from "@angular/forms";
 import { FormsModule } from "@angular/forms";
-import * as i4$2 from "ng-zorro-antd/card";
+import * as i4 from "ng-zorro-antd/card";
 import { NzCardModule } from "ng-zorro-antd/card";
-import * as i4$1 from "ng-zorro-antd/checkbox";
+import * as i2$4 from "ng-zorro-antd/checkbox";
 import { NzCheckboxModule } from "ng-zorro-antd/checkbox";
-import * as i2$4 from "ng-zorro-antd/date-picker";
+import * as i2$3 from "ng-zorro-antd/date-picker";
 import { NzDatePickerModule } from "ng-zorro-antd/date-picker";
-import * as i2$1 from "ng-zorro-antd/input";
+import * as i2 from "ng-zorro-antd/input";
 import { NzInputModule } from "ng-zorro-antd/input";
-import * as i2$3 from "ng-zorro-antd/input-number";
+import * as i2$2 from "ng-zorro-antd/input-number";
 import { NzInputNumberModule } from "ng-zorro-antd/input-number";
 import { NzModalModule } from "ng-zorro-antd/modal";
-import * as i2$2 from "ng-zorro-antd/radio";
+import * as i2$1 from "ng-zorro-antd/radio";
 import { NzRadioModule } from "ng-zorro-antd/radio";
-import * as i4 from "ng-zorro-antd/select";
+import * as i3 from "ng-zorro-antd/select";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import * as i2$5 from "ng-zorro-antd/switch";
 import { NzSwitchModule } from "ng-zorro-antd/switch";
-import * as i2 from "@angular/cdk/text-field";
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 import { format } from "date-fns";
 import { toDate } from "@delon/util/date-time";
@@ -835,6 +833,79 @@ var FormPropertyFactory = class {
 		rootProperty._bindVisibility();
 	}
 };
+var SFFixedDirective = class SFFixedDirective {
+	el = inject(ElementRef).nativeElement;
+	render = inject(Renderer2);
+	_inited = false;
+	num = input(0, {
+		...ngDevMode ? { debugName: "num" } : /* istanbul ignore next */ {},
+		alias: "fixed-label",
+		transform: (v) => numberAttribute(v, 0)
+	});
+	init() {
+		const num = this.num();
+		if (!this._inited || num <= 0) return;
+		const el = this.el;
+		const widgetEl = el.querySelector(".ant-row") ?? el;
+		this.render.addClass(widgetEl, "sf__fixed");
+		const labelEl = widgetEl.querySelector(".ant-form-item-label");
+		const controlEl = widgetEl.querySelector(".ant-form-item-control-wrapper,.ant-form-item-control");
+		const unit = `${num}px`;
+		if (labelEl) {
+			this.render.setStyle(labelEl, "flex", `0 0 ${unit}`);
+			this.render.setStyle(controlEl, "max-width", `calc(100% - ${unit})`);
+		} else this.render.setStyle(controlEl, "margin-left", unit);
+	}
+	ngAfterViewInit() {
+		this._inited = true;
+		this.init();
+	}
+	ngOnChanges() {
+		if (this._inited) this.init();
+	}
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: SFFixedDirective,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.Directive
+	});
+	static ɵdir = i0.ɵɵngDeclareDirective({
+		minVersion: "17.1.0",
+		version: "22.2.0",
+		type: SFFixedDirective,
+		isStandalone: true,
+		selector: "[fixed-label]",
+		inputs: { num: {
+			classPropertyName: "num",
+			publicName: "fixed-label",
+			isSignal: true,
+			isRequired: false,
+			transformFunction: null
+		} },
+		usesOnChanges: true,
+		ngImport: i0
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: SFFixedDirective,
+	decorators: [{
+		type: Directive,
+		args: [{ selector: "[fixed-label]" }]
+	}],
+	propDecorators: { num: [{
+		type: i0.Input,
+		args: [{
+			isSignal: true,
+			alias: "fixed-label",
+			required: false
+		}]
+	}] }
+});
 var TerminatorService = class {
 	onDestroy;
 	constructor() {
@@ -844,93 +915,6 @@ var TerminatorService = class {
 		this.onDestroy.next(true);
 	}
 };
-var SchemaValidatorFactory = class SchemaValidatorFactory {
-	static ɵfac = i0.ɵɵngDeclareFactory({
-		minVersion: "12.0.0",
-		version: "22.2.0",
-		ngImport: i0,
-		type: SchemaValidatorFactory,
-		deps: [],
-		target: i0.ɵɵFactoryTarget.Injectable
-	});
-	static ɵprov = i0.ɵɵngDeclareInjectable({
-		minVersion: "12.0.0",
-		version: "22.2.0",
-		ngImport: i0,
-		type: SchemaValidatorFactory
-	});
-};
-i0.ɵɵngDeclareClassMetadata({
-	minVersion: "12.0.0",
-	version: "22.2.0",
-	ngImport: i0,
-	type: SchemaValidatorFactory,
-	decorators: [{ type: Injectable }]
-});
-var AjvSchemaValidatorFactory = class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
-	ngZone = inject(NgZone);
-	cogSrv = inject(AlainConfigService);
-	ajv;
-	options;
-	constructor() {
-		super();
-		if (!(typeof document === "object" && !!document)) return;
-		this.options = mergeConfig(this.cogSrv);
-		const customOptions = this.options.ajv ?? {};
-		this.ngZone.runOutsideAngular(() => {
-			this.ajv = new Ajv({
-				allErrors: true,
-				loopEnum: 50,
-				...customOptions,
-				formats: {
-					"data-url": /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/,
-					color: REGEX.color,
-					mobile: REGEX.mobile,
-					"id-card": REGEX.idCard,
-					...customOptions.formats
-				}
-			});
-			addFormats(this.ajv);
-		});
-	}
-	createValidatorFn(schema, extraOptions) {
-		const ingoreKeywords = [...this.options.ingoreKeywords, ...extraOptions.ingoreKeywords ?? []];
-		return (value) => {
-			try {
-				this.ngZone.runOutsideAngular(() => this.ajv.validate(schema, value));
-			} catch (e) {
-				if (typeof ngDevMode === "undefined" || ngDevMode) {
-					if (extraOptions.debug) console.warn(e);
-				}
-			}
-			let errors = this.ajv.errors;
-			if (this.options && ingoreKeywords && errors) errors = errors.filter((w) => ingoreKeywords.indexOf(w.keyword) === -1);
-			return errors;
-		};
-	}
-	static ɵfac = i0.ɵɵngDeclareFactory({
-		minVersion: "12.0.0",
-		version: "22.2.0",
-		ngImport: i0,
-		type: AjvSchemaValidatorFactory,
-		deps: [],
-		target: i0.ɵɵFactoryTarget.Injectable
-	});
-	static ɵprov = i0.ɵɵngDeclareInjectable({
-		minVersion: "12.0.0",
-		version: "22.2.0",
-		ngImport: i0,
-		type: AjvSchemaValidatorFactory
-	});
-};
-i0.ɵɵngDeclareClassMetadata({
-	minVersion: "12.0.0",
-	version: "22.2.0",
-	ngImport: i0,
-	type: AjvSchemaValidatorFactory,
-	decorators: [{ type: Injectable }],
-	ctorParameters: () => []
-});
 var WidgetRegistry = class {
 	_widgets = {};
 	defaultWidget;
@@ -1034,7 +1018,7 @@ var SFItemComponent = class SFItemComponent {
 		minVersion: "17.2.0",
 		version: "22.2.0",
 		type: SFItemComponent,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-item",
 		inputs: {
 			formProperty: {
@@ -1074,7 +1058,7 @@ var SFItemComponent = class SFItemComponent {
 		isInline: true,
 		dependencies: [{
 			kind: "directive",
-			type: i1$1.NgTemplateOutlet,
+			type: NgTemplateOutlet,
 			selector: "[ngTemplateOutlet]",
 			inputs: [
 				"ngTemplateOutletContext",
@@ -1107,7 +1091,7 @@ i0.ɵɵngDeclareClassMetadata({
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
 			providers: [NzFormStatusService],
-			standalone: false
+			imports: [NgTemplateOutlet]
 		}]
 	}],
 	ctorParameters: () => [],
@@ -1137,81 +1121,92 @@ i0.ɵɵngDeclareClassMetadata({
 		}]
 	}
 });
-var SFFixedDirective = class SFFixedDirective {
-	el = inject(ElementRef).nativeElement;
-	render = inject(Renderer2);
-	_inited = false;
-	num = input(0, {
-		...ngDevMode ? { debugName: "num" } : /* istanbul ignore next */ {},
-		alias: "fixed-label",
-		transform: (v) => numberAttribute(v, 0)
-	});
-	init() {
-		const num = this.num();
-		if (!this._inited || num <= 0) return;
-		const el = this.el;
-		const widgetEl = el.querySelector(".ant-row") ?? el;
-		this.render.addClass(widgetEl, "sf__fixed");
-		const labelEl = widgetEl.querySelector(".ant-form-item-label");
-		const controlEl = widgetEl.querySelector(".ant-form-item-control-wrapper,.ant-form-item-control");
-		const unit = `${num}px`;
-		if (labelEl) {
-			this.render.setStyle(labelEl, "flex", `0 0 ${unit}`);
-			this.render.setStyle(controlEl, "max-width", `calc(100% - ${unit})`);
-		} else this.render.setStyle(controlEl, "margin-left", unit);
-	}
-	ngAfterViewInit() {
-		this._inited = true;
-		this.init();
-	}
-	ngOnChanges() {
-		if (this._inited) this.init();
-	}
+var SchemaValidatorFactory = class SchemaValidatorFactory {
 	static ɵfac = i0.ɵɵngDeclareFactory({
 		minVersion: "12.0.0",
 		version: "22.2.0",
 		ngImport: i0,
-		type: SFFixedDirective,
+		type: SchemaValidatorFactory,
 		deps: [],
-		target: i0.ɵɵFactoryTarget.Directive
+		target: i0.ɵɵFactoryTarget.Injectable
 	});
-	static ɵdir = i0.ɵɵngDeclareDirective({
-		minVersion: "17.1.0",
+	static ɵprov = i0.ɵɵngDeclareInjectable({
+		minVersion: "12.0.0",
 		version: "22.2.0",
-		type: SFFixedDirective,
-		isStandalone: false,
-		selector: "[fixed-label]",
-		inputs: { num: {
-			classPropertyName: "num",
-			publicName: "fixed-label",
-			isSignal: true,
-			isRequired: false,
-			transformFunction: null
-		} },
-		usesOnChanges: true,
-		ngImport: i0
+		ngImport: i0,
+		type: SchemaValidatorFactory
 	});
 };
 i0.ɵɵngDeclareClassMetadata({
 	minVersion: "12.0.0",
 	version: "22.2.0",
 	ngImport: i0,
-	type: SFFixedDirective,
-	decorators: [{
-		type: Directive,
-		args: [{
-			selector: "[fixed-label]",
-			standalone: false
-		}]
-	}],
-	propDecorators: { num: [{
-		type: i0.Input,
-		args: [{
-			isSignal: true,
-			alias: "fixed-label",
-			required: false
-		}]
-	}] }
+	type: SchemaValidatorFactory,
+	decorators: [{ type: Injectable }]
+});
+var AjvSchemaValidatorFactory = class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
+	ngZone = inject(NgZone);
+	cogSrv = inject(AlainConfigService);
+	ajv;
+	options;
+	constructor() {
+		super();
+		if (!(typeof document === "object" && !!document)) return;
+		this.options = mergeConfig(this.cogSrv);
+		const customOptions = this.options.ajv ?? {};
+		this.ngZone.runOutsideAngular(() => {
+			this.ajv = new Ajv({
+				allErrors: true,
+				loopEnum: 50,
+				...customOptions,
+				formats: {
+					"data-url": /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/,
+					color: REGEX.color,
+					mobile: REGEX.mobile,
+					"id-card": REGEX.idCard,
+					...customOptions.formats
+				}
+			});
+			addFormats(this.ajv);
+		});
+	}
+	createValidatorFn(schema, extraOptions) {
+		const ingoreKeywords = [...this.options.ingoreKeywords, ...extraOptions.ingoreKeywords ?? []];
+		return (value) => {
+			try {
+				this.ngZone.runOutsideAngular(() => this.ajv.validate(schema, value));
+			} catch (e) {
+				if (typeof ngDevMode === "undefined" || ngDevMode) {
+					if (extraOptions.debug) console.warn(e);
+				}
+			}
+			let errors = this.ajv.errors;
+			if (this.options && ingoreKeywords && errors) errors = errors.filter((w) => ingoreKeywords.indexOf(w.keyword) === -1);
+			return errors;
+		};
+	}
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: AjvSchemaValidatorFactory,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.Injectable
+	});
+	static ɵprov = i0.ɵɵngDeclareInjectable({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: AjvSchemaValidatorFactory
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: AjvSchemaValidatorFactory,
+	decorators: [{ type: Injectable }],
+	ctorParameters: () => []
 });
 function useFactory(injector, schemaValidatorFactory, cogSrv) {
 	return new FormPropertyFactory(injector, schemaValidatorFactory, cogSrv);
@@ -1708,7 +1703,7 @@ var SFComponent = class SFComponent {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: SFComponent,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf, [sf]",
 		inputs: {
 			expandable: {
@@ -1879,7 +1874,7 @@ var SFComponent = class SFComponent {
 		dependencies: [
 			{
 				kind: "directive",
-				type: i1$1.NgTemplateOutlet,
+				type: NgTemplateOutlet,
 				selector: "[ngTemplateOutlet]",
 				inputs: [
 					"ngTemplateOutletContext",
@@ -1888,8 +1883,12 @@ var SFComponent = class SFComponent {
 				]
 			},
 			{
+				kind: "ngmodule",
+				type: NzButtonModule
+			},
+			{
 				kind: "component",
-				type: i2$6.NzButtonComponent,
+				type: i1$1.NzButtonComponent,
 				selector: "button[nz-button], a[nz-button]",
 				inputs: [
 					"nzBlock",
@@ -1906,20 +1905,24 @@ var SFComponent = class SFComponent {
 			},
 			{
 				kind: "directive",
-				type: i3.ɵNzTransitionPatchDirective,
+				type: i2$6.ɵNzTransitionPatchDirective,
 				selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group",
 				inputs: ["hidden"]
 			},
 			{
 				kind: "directive",
-				type: i4$3.NzWaveDirective,
+				type: i3$1.NzWaveDirective,
 				selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])",
 				inputs: ["nzWaveExtraNode"],
 				exportAs: ["nzWave"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzFormModule
+			},
+			{
 				kind: "directive",
-				type: i5$1.NzColDirective,
+				type: i4$2.NzColDirective,
 				selector: "[nz-col],nz-col,nz-form-control,nz-form-label",
 				inputs: [
 					"nzFlex",
@@ -1940,7 +1943,7 @@ var SFComponent = class SFComponent {
 			},
 			{
 				kind: "directive",
-				type: i5$1.NzRowDirective,
+				type: i4$2.NzRowDirective,
 				selector: "[nz-row],nz-row,nz-form-item",
 				inputs: [
 					"nzAlign",
@@ -1952,7 +1955,7 @@ var SFComponent = class SFComponent {
 			},
 			{
 				kind: "directive",
-				type: i6.NzFormDirective,
+				type: i5.NzFormDirective,
 				selector: "[nz-form]",
 				inputs: [
 					"nzLayout",
@@ -1970,14 +1973,22 @@ var SFComponent = class SFComponent {
 			},
 			{
 				kind: "component",
-				type: i6.NzFormItemComponent,
+				type: i5.NzFormItemComponent,
 				selector: "nz-form-item",
 				inputs: ["nzLayout"],
 				exportAs: ["nzFormItem"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzGridModule
+			},
+			{
+				kind: "ngmodule",
+				type: NzIconModule
+			},
+			{
 				kind: "directive",
-				type: i7.NzIconDirective,
+				type: i6.NzIconDirective,
 				selector: "nz-icon,[nz-icon]",
 				inputs: [
 					"nzType",
@@ -2044,7 +2055,15 @@ i0.ɵɵngDeclareClassMetadata({
 			},
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false,
+			imports: [
+				NgTemplateOutlet,
+				NzButtonModule,
+				NzFormModule,
+				NzGridModule,
+				NzIconModule,
+				SFItemComponent,
+				SFFixedDirective
+			],
 			template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button() !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button()) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading()\"\n                  [disabled]=\"liveValidate() && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading()\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n                @if (expandable() && _hasCollapse()) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    nzType=\"text\"\n                    data-type=\"expand\"\n                    [attr.aria-expanded]=\"expanded()\"\n                    (click)=\"expanded.update(v => !v)\"\n                  >\n                    {{ expanded() ? locale.collapse : locale.expand }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form\n  nz-form\n  ngNoForm\n  novalidate\n  [nzLayout]=\"layout()\"\n  (submit)=\"onSubmit($event)\"\n  [attr.autocomplete]=\"autocomplete()\"\n>\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n"
 		}]
 	}],
@@ -2258,7 +2277,7 @@ var SFItemWrapComponent = class SFItemWrapComponent {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: SFItemWrapComponent,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-item-wrap",
 		inputs: {
 			id: {
@@ -2315,14 +2334,12 @@ var SFItemWrapComponent = class SFItemWrapComponent {
 		template: "@let ui = this.ui();\n@let oh = this.oh();\n<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError()\"\n  [class.ant-form-item-with-help]=\"showError()\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle()) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t()) {\n        <label [attr.for]=\"id()\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t() }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError()) {\n      <div\n        [animate.enter]=\"nzValidateAnimationEnter()\"\n        [animate.leave]=\"nzValidateAnimationLeave()\"\n        class=\"ant-form-item-explain ant-form-item-explain-connected\"\n      >\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error() }}\n        </div>\n      </div>\n    }\n    @if (schema().description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n",
 		dependencies: [
 			{
-				kind: "directive",
-				type: i3.ɵNzTransitionPatchDirective,
-				selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group",
-				inputs: ["hidden"]
+				kind: "ngmodule",
+				type: NzFormModule
 			},
 			{
 				kind: "directive",
-				type: i5$1.NzColDirective,
+				type: i4$2.NzColDirective,
 				selector: "[nz-col],nz-col,nz-form-control,nz-form-label",
 				inputs: [
 					"nzFlex",
@@ -2343,7 +2360,7 @@ var SFItemWrapComponent = class SFItemWrapComponent {
 			},
 			{
 				kind: "directive",
-				type: i5$1.NzRowDirective,
+				type: i4$2.NzRowDirective,
 				selector: "[nz-row],nz-row,nz-form-item",
 				inputs: [
 					"nzAlign",
@@ -2355,14 +2372,22 @@ var SFItemWrapComponent = class SFItemWrapComponent {
 			},
 			{
 				kind: "component",
-				type: i6.NzFormItemComponent,
+				type: i5.NzFormItemComponent,
 				selector: "nz-form-item",
 				inputs: ["nzLayout"],
 				exportAs: ["nzFormItem"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzGridModule
+			},
+			{
+				kind: "ngmodule",
+				type: NzIconModule
+			},
+			{
 				kind: "directive",
-				type: i7.NzIconDirective,
+				type: i6.NzIconDirective,
 				selector: "nz-icon,[nz-icon]",
 				inputs: [
 					"nzType",
@@ -2376,8 +2401,12 @@ var SFItemWrapComponent = class SFItemWrapComponent {
 				exportAs: ["nzIcon"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzTooltipModule
+			},
+			{
 				kind: "directive",
-				type: i5.NzTooltipDirective,
+				type: i4$1.NzTooltipDirective,
 				selector: "[nz-tooltip]",
 				inputs: [
 					"nzTooltipTitle",
@@ -2413,7 +2442,12 @@ i0.ɵɵngDeclareClassMetadata({
 			selector: "sf-item-wrap",
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false,
+			imports: [
+				NzFormModule,
+				NzGridModule,
+				NzIconModule,
+				NzTooltipModule
+			],
 			template: "@let ui = this.ui();\n@let oh = this.oh();\n<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError()\"\n  [class.ant-form-item-with-help]=\"showError()\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle()) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t()) {\n        <label [attr.for]=\"id()\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t() }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError()) {\n      <div\n        [animate.enter]=\"nzValidateAnimationEnter()\"\n        [animate.leave]=\"nzValidateAnimationLeave()\"\n        class=\"ant-form-item-explain ant-form-item-explain-connected\"\n      >\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error() }}\n        </div>\n      </div>\n    }\n    @if (schema().description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n"
 		}]
 	}],
@@ -2500,7 +2534,7 @@ var SFTemplateDirective = class SFTemplateDirective {
 		minVersion: "17.1.0",
 		version: "22.2.0",
 		type: SFTemplateDirective,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "[sf-template]",
 		inputs: { path: {
 			classPropertyName: "path",
@@ -2519,10 +2553,7 @@ i0.ɵɵngDeclareClassMetadata({
 	type: SFTemplateDirective,
 	decorators: [{
 		type: Directive,
-		args: [{
-			selector: "[sf-template]",
-			standalone: false
-		}]
+		args: [{ selector: "[sf-template]" }]
 	}],
 	propDecorators: { path: [{
 		type: i0.Input,
@@ -2813,7 +2844,7 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: ArrayWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-array",
 		host: { properties: { "class.sf__array": "true" } },
 		usesInheritance: true,
@@ -2882,8 +2913,12 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: NzButtonModule
+			},
+			{
 				kind: "component",
-				type: i2$6.NzButtonComponent,
+				type: i1$1.NzButtonComponent,
 				selector: "button[nz-button], a[nz-button]",
 				inputs: [
 					"nzBlock",
@@ -2900,20 +2935,24 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 			},
 			{
 				kind: "directive",
-				type: i3.ɵNzTransitionPatchDirective,
+				type: i2$6.ɵNzTransitionPatchDirective,
 				selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group",
 				inputs: ["hidden"]
 			},
 			{
 				kind: "directive",
-				type: i4$3.NzWaveDirective,
+				type: i3$1.NzWaveDirective,
 				selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])",
 				inputs: ["nzWaveExtraNode"],
 				exportAs: ["nzWave"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzCardModule
+			},
+			{
 				kind: "component",
-				type: i4$2.NzCardComponent,
+				type: i4.NzCardComponent,
 				selector: "nz-card",
 				inputs: [
 					"nzBordered",
@@ -2930,8 +2969,12 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 				exportAs: ["nzCard"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzFormModule
+			},
+			{
 				kind: "directive",
-				type: i5$1.NzColDirective,
+				type: i4$2.NzColDirective,
 				selector: "[nz-col],nz-col,nz-form-control,nz-form-label",
 				inputs: [
 					"nzFlex",
@@ -2952,7 +2995,7 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 			},
 			{
 				kind: "directive",
-				type: i5$1.NzRowDirective,
+				type: i4$2.NzRowDirective,
 				selector: "[nz-row],nz-row,nz-form-item",
 				inputs: [
 					"nzAlign",
@@ -2964,14 +3007,22 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 			},
 			{
 				kind: "component",
-				type: i6.NzFormItemComponent,
+				type: i5.NzFormItemComponent,
 				selector: "nz-form-item",
 				inputs: ["nzLayout"],
 				exportAs: ["nzFormItem"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzGridModule
+			},
+			{
+				kind: "ngmodule",
+				type: NzIconModule
+			},
+			{
 				kind: "directive",
-				type: i7.NzIconDirective,
+				type: i6.NzIconDirective,
 				selector: "nz-icon,[nz-icon]",
 				inputs: [
 					"nzType",
@@ -2985,8 +3036,12 @@ var ArrayWidget = class ArrayWidget extends ArrayLayoutWidget {
 				exportAs: ["nzIcon"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzTooltipModule
+			},
+			{
 				kind: "directive",
-				type: i5.NzTooltipDirective,
+				type: i4$1.NzTooltipDirective,
 				selector: "[nz-tooltip]",
 				inputs: [
 					"nzTooltipTitle",
@@ -3091,7 +3146,15 @@ i0.ɵɵngDeclareClassMetadata({
 			host: { "[class.sf__array]": "true" },
 			encapsulation: ViewEncapsulation.None,
 			changeDetection: ChangeDetectionStrategy.OnPush,
-			standalone: false
+			imports: [
+				NzButtonModule,
+				NzCardModule,
+				NzFormModule,
+				NzGridModule,
+				NzIconModule,
+				NzTooltipModule,
+				SFItemComponent
+			]
 		}]
 	}]
 });
@@ -3108,7 +3171,7 @@ var BooleanWidget = class BooleanWidget extends ControlUIWidget {
 		minVersion: "14.0.0",
 		version: "22.2.0",
 		type: BooleanWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-boolean",
 		usesInheritance: true,
 		ngImport: i0,
@@ -3135,6 +3198,10 @@ var BooleanWidget = class BooleanWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
 				kind: "directive",
 				type: i1.NgControlStatus,
 				selector: "[formControlName],[ngModel],[formControl]"
@@ -3151,6 +3218,10 @@ var BooleanWidget = class BooleanWidget extends ControlUIWidget {
 				],
 				outputs: ["ngModelChange"],
 				exportAs: ["ngModel"]
+			},
+			{
+				kind: "ngmodule",
+				type: NzSwitchModule
 			},
 			{
 				kind: "component",
@@ -3217,7 +3288,11 @@ i0.ɵɵngDeclareClassMetadata({
   </sf-item-wrap>`,
 			encapsulation: ViewEncapsulation.None,
 			changeDetection: ChangeDetectionStrategy.OnPush,
-			standalone: false
+			imports: [
+				FormsModule,
+				NzSwitchModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -3288,7 +3363,7 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: CheckboxWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-checkbox",
 		usesInheritance: true,
 		ngImport: i0,
@@ -3391,14 +3466,8 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
-				kind: "directive",
-				type: i1$1.NgTemplateOutlet,
-				selector: "[ngTemplateOutlet]",
-				inputs: [
-					"ngTemplateOutletContext",
-					"ngTemplateOutlet",
-					"ngTemplateOutletInjector"
-				]
+				kind: "ngmodule",
+				type: FormsModule
 			},
 			{
 				kind: "directive",
@@ -3420,13 +3489,21 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 			},
 			{
 				kind: "directive",
-				type: i3.ɵNzTransitionPatchDirective,
-				selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group",
-				inputs: ["hidden"]
+				type: NgTemplateOutlet,
+				selector: "[ngTemplateOutlet]",
+				inputs: [
+					"ngTemplateOutletContext",
+					"ngTemplateOutlet",
+					"ngTemplateOutletInjector"
+				]
+			},
+			{
+				kind: "ngmodule",
+				type: NzCheckboxModule
 			},
 			{
 				kind: "component",
-				type: i4$1.NzCheckboxComponent,
+				type: i2$4.NzCheckboxComponent,
 				selector: "[nz-checkbox]",
 				inputs: [
 					"nzValue",
@@ -3442,7 +3519,7 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 			},
 			{
 				kind: "component",
-				type: i4$1.NzCheckboxGroupComponent,
+				type: i2$4.NzCheckboxGroupComponent,
 				selector: "nz-checkbox-group",
 				inputs: [
 					"nzName",
@@ -3452,8 +3529,12 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 				exportAs: ["nzCheckboxGroup"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzGridModule
+			},
+			{
 				kind: "directive",
-				type: i5$1.NzColDirective,
+				type: i4$2.NzColDirective,
 				selector: "[nz-col],nz-col,nz-form-control,nz-form-label",
 				inputs: [
 					"nzFlex",
@@ -3474,7 +3555,7 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 			},
 			{
 				kind: "directive",
-				type: i5$1.NzRowDirective,
+				type: i4$2.NzRowDirective,
 				selector: "[nz-row],nz-row,nz-form-item",
 				inputs: [
 					"nzAlign",
@@ -3485,8 +3566,12 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 				exportAs: ["nzRow"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzIconModule
+			},
+			{
 				kind: "directive",
-				type: i7.NzIconDirective,
+				type: i6.NzIconDirective,
 				selector: "nz-icon,[nz-icon]",
 				inputs: [
 					"nzType",
@@ -3500,8 +3585,12 @@ var CheckboxWidget = class CheckboxWidget extends ControlUIWidget {
 				exportAs: ["nzIcon"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzTooltipModule
+			},
+			{
 				kind: "directive",
-				type: i5.NzTooltipDirective,
+				type: i4$1.NzTooltipDirective,
 				selector: "[nz-tooltip]",
 				inputs: [
 					"nzTooltipTitle",
@@ -3647,7 +3736,15 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false
+			imports: [
+				FormsModule,
+				NgTemplateOutlet,
+				NzCheckboxModule,
+				NzGridModule,
+				NzIconModule,
+				NzTooltipModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -3664,7 +3761,7 @@ var CustomWidget = class CustomWidget extends ControlUIWidget {
 		minVersion: "14.0.0",
 		version: "22.2.0",
 		type: CustomWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-custom",
 		usesInheritance: true,
 		ngImport: i0,
@@ -3686,7 +3783,7 @@ var CustomWidget = class CustomWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [{
 			kind: "directive",
-			type: i1$1.NgTemplateOutlet,
+			type: NgTemplateOutlet,
 			selector: "[ngTemplateOutlet]",
 			inputs: [
 				"ngTemplateOutletContext",
@@ -3737,7 +3834,7 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			encapsulation: ViewEncapsulation.None,
 			changeDetection: ChangeDetectionStrategy.OnPush,
-			standalone: false
+			imports: [NgTemplateOutlet, SFItemWrapComponent]
 		}]
 	}]
 });
@@ -3830,7 +3927,7 @@ var DateWidget = class DateWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: DateWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-date",
 		usesInheritance: true,
 		ngImport: i0,
@@ -3977,6 +4074,10 @@ var DateWidget = class DateWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
 				kind: "directive",
 				type: i1.NgControlStatus,
 				selector: "[formControlName],[ngModel],[formControl]"
@@ -3995,8 +4096,12 @@ var DateWidget = class DateWidget extends ControlUIWidget {
 				exportAs: ["ngModel"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzDatePickerModule
+			},
+			{
 				kind: "component",
-				type: i2$4.NzDatePickerComponent,
+				type: i2$3.NzDatePickerComponent,
 				selector: "nz-date-picker,nz-week-picker,nz-month-picker,nz-quarter-picker,nz-year-picker,nz-range-picker",
 				inputs: [
 					"nzInline",
@@ -4040,25 +4145,25 @@ var DateWidget = class DateWidget extends ControlUIWidget {
 			},
 			{
 				kind: "directive",
-				type: i2$4.NzRangePickerComponent,
+				type: i2$3.NzRangePickerComponent,
 				selector: "nz-range-picker",
 				exportAs: ["nzRangePicker"]
 			},
 			{
 				kind: "directive",
-				type: i2$4.NzMonthPickerComponent,
+				type: i2$3.NzMonthPickerComponent,
 				selector: "nz-month-picker",
 				exportAs: ["nzMonthPicker"]
 			},
 			{
 				kind: "directive",
-				type: i2$4.NzYearPickerComponent,
+				type: i2$3.NzYearPickerComponent,
 				selector: "nz-year-picker",
 				exportAs: ["nzYearPicker"]
 			},
 			{
 				kind: "directive",
-				type: i2$4.NzWeekPickerComponent,
+				type: i2$3.NzWeekPickerComponent,
 				selector: "nz-week-picker",
 				exportAs: ["nzWeekPicker"]
 			},
@@ -4232,7 +4337,11 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false
+			imports: [
+				FormsModule,
+				NzDatePickerModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -4288,7 +4397,7 @@ var NumberWidget = class NumberWidget extends ControlUIWidget {
 		minVersion: "14.0.0",
 		version: "22.2.0",
 		type: NumberWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-number",
 		usesInheritance: true,
 		ngImport: i0,
@@ -4328,6 +4437,10 @@ var NumberWidget = class NumberWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
 				kind: "directive",
 				type: i1.NgControlStatus,
 				selector: "[formControlName],[ngModel],[formControl]"
@@ -4346,8 +4459,12 @@ var NumberWidget = class NumberWidget extends ControlUIWidget {
 				exportAs: ["ngModel"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzInputNumberModule
+			},
+			{
 				kind: "component",
-				type: i2$3.NzInputNumberComponent,
+				type: i2$2.NzInputNumberComponent,
 				selector: "nz-input-number",
 				inputs: [
 					"nzId",
@@ -4442,7 +4559,11 @@ i0.ɵɵngDeclareClassMetadata({
   </sf-item-wrap>`,
 			encapsulation: ViewEncapsulation.None,
 			changeDetection: ChangeDetectionStrategy.OnPush,
-			standalone: false
+			imports: [
+				FormsModule,
+				NzInputNumberModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -4490,7 +4611,7 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: ObjectWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-object",
 		usesInheritance: true,
 		ngImport: i0,
@@ -4574,7 +4695,7 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 		dependencies: [
 			{
 				kind: "directive",
-				type: i1$1.NgTemplateOutlet,
+				type: NgTemplateOutlet,
 				selector: "[ngTemplateOutlet]",
 				inputs: [
 					"ngTemplateOutletContext",
@@ -4583,14 +4704,12 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 				]
 			},
 			{
-				kind: "directive",
-				type: i3.ɵNzTransitionPatchDirective,
-				selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group",
-				inputs: ["hidden"]
+				kind: "ngmodule",
+				type: NzCardModule
 			},
 			{
 				kind: "component",
-				type: i4$2.NzCardComponent,
+				type: i4.NzCardComponent,
 				selector: "nz-card",
 				inputs: [
 					"nzBordered",
@@ -4607,8 +4726,12 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 				exportAs: ["nzCard"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzGridModule
+			},
+			{
 				kind: "directive",
-				type: i5$1.NzColDirective,
+				type: i4$2.NzColDirective,
 				selector: "[nz-col],nz-col,nz-form-control,nz-form-label",
 				inputs: [
 					"nzFlex",
@@ -4629,7 +4752,7 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 			},
 			{
 				kind: "directive",
-				type: i5$1.NzRowDirective,
+				type: i4$2.NzRowDirective,
 				selector: "[nz-row],nz-row,nz-form-item",
 				inputs: [
 					"nzAlign",
@@ -4640,8 +4763,12 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 				exportAs: ["nzRow"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzIconModule
+			},
+			{
 				kind: "directive",
-				type: i7.NzIconDirective,
+				type: i6.NzIconDirective,
 				selector: "nz-icon,[nz-icon]",
 				inputs: [
 					"nzType",
@@ -4655,8 +4782,12 @@ var ObjectWidget = class ObjectWidget extends ObjectLayoutWidget {
 				exportAs: ["nzIcon"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzTooltipModule
+			},
+			{
 				kind: "directive",
-				type: i5.NzTooltipDirective,
+				type: i4$1.NzTooltipDirective,
 				selector: "[nz-tooltip]",
 				inputs: [
 					"nzTooltipTitle",
@@ -4781,7 +4912,15 @@ i0.ɵɵngDeclareClassMetadata({
     }`,
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false
+			imports: [
+				NgTemplateOutlet,
+				NzCardModule,
+				NzGridModule,
+				NzIconModule,
+				NzTooltipModule,
+				SFItemComponent,
+				SFFixedDirective
+			]
 		}]
 	}]
 });
@@ -4810,7 +4949,7 @@ var RadioWidget = class RadioWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: RadioWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-radio",
 		usesInheritance: true,
 		ngImport: i0,
@@ -4851,6 +4990,10 @@ var RadioWidget = class RadioWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
 				kind: "directive",
 				type: i1.NgControlStatus,
 				selector: "[formControlName],[ngModel],[formControl]"
@@ -4869,8 +5012,12 @@ var RadioWidget = class RadioWidget extends ControlUIWidget {
 				exportAs: ["ngModel"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzRadioModule
+			},
+			{
 				kind: "component",
-				type: i2$2.NzRadioComponent,
+				type: i2$1.NzRadioComponent,
 				selector: "[nz-radio],[nz-radio-button]",
 				inputs: [
 					"nzValue",
@@ -4882,7 +5029,7 @@ var RadioWidget = class RadioWidget extends ControlUIWidget {
 			},
 			{
 				kind: "component",
-				type: i2$2.NzRadioGroupComponent,
+				type: i2$1.NzRadioGroupComponent,
 				selector: "nz-radio-group",
 				inputs: [
 					"nzDisabled",
@@ -4956,7 +5103,11 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false
+			imports: [
+				FormsModule,
+				NzRadioModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -5036,7 +5187,7 @@ var SelectWidget = class SelectWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: SelectWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-select",
 		usesInheritance: true,
 		ngImport: i0,
@@ -5114,6 +5265,10 @@ var SelectWidget = class SelectWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
 				kind: "directive",
 				type: i1.NgControlStatus,
 				selector: "[formControlName],[ngModel],[formControl]"
@@ -5132,14 +5287,12 @@ var SelectWidget = class SelectWidget extends ControlUIWidget {
 				exportAs: ["ngModel"]
 			},
 			{
-				kind: "directive",
-				type: i3.ɵNzTransitionPatchDirective,
-				selector: "[nz-button], [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group",
-				inputs: ["hidden"]
+				kind: "ngmodule",
+				type: NzIconModule
 			},
 			{
 				kind: "directive",
-				type: i7.NzIconDirective,
+				type: i6.NzIconDirective,
 				selector: "nz-icon,[nz-icon]",
 				inputs: [
 					"nzType",
@@ -5153,8 +5306,12 @@ var SelectWidget = class SelectWidget extends ControlUIWidget {
 				exportAs: ["nzIcon"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzSelectModule
+			},
+			{
 				kind: "component",
-				type: i4.NzOptionComponent,
+				type: i3.NzOptionComponent,
 				selector: "nz-option",
 				inputs: [
 					"nzTitle",
@@ -5169,7 +5326,7 @@ var SelectWidget = class SelectWidget extends ControlUIWidget {
 			},
 			{
 				kind: "component",
-				type: i4.NzSelectComponent,
+				type: i3.NzSelectComponent,
 				selector: "nz-select",
 				inputs: [
 					"nzId",
@@ -5223,7 +5380,7 @@ var SelectWidget = class SelectWidget extends ControlUIWidget {
 			},
 			{
 				kind: "component",
-				type: i4.NzOptionGroupComponent,
+				type: i3.NzOptionGroupComponent,
 				selector: "nz-option-group",
 				inputs: ["nzLabel"],
 				exportAs: ["nzOptionGroup"]
@@ -5329,7 +5486,12 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false
+			imports: [
+				FormsModule,
+				NzIconModule,
+				NzSelectModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -5386,7 +5548,7 @@ var StringWidget = class StringWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: StringWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-string",
 		usesInheritance: true,
 		ngImport: i0,
@@ -5455,6 +5617,10 @@ var StringWidget = class StringWidget extends ControlUIWidget {
 		isInline: true,
 		dependencies: [
 			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
 				kind: "directive",
 				type: i1.DefaultValueAccessor,
 				selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]"
@@ -5478,8 +5644,12 @@ var StringWidget = class StringWidget extends ControlUIWidget {
 				exportAs: ["ngModel"]
 			},
 			{
+				kind: "ngmodule",
+				type: NzInputModule
+			},
+			{
 				kind: "directive",
-				type: i2$1.NzInputDirective,
+				type: i2.NzInputDirective,
 				selector: "input[nz-input],textarea[nz-input]",
 				inputs: [
 					"nzVariant",
@@ -5492,7 +5662,7 @@ var StringWidget = class StringWidget extends ControlUIWidget {
 			},
 			{
 				kind: "component",
-				type: i2$1.NzInputWrapperComponent,
+				type: i2.NzInputWrapperComponent,
 				selector: "nz-input-wrapper,nz-input-password,nz-input-search",
 				inputs: [
 					"nzAllowClear",
@@ -5598,7 +5768,11 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			changeDetection: ChangeDetectionStrategy.OnPush,
 			encapsulation: ViewEncapsulation.None,
-			standalone: false
+			imports: [
+				FormsModule,
+				NzInputModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -5623,7 +5797,7 @@ var TextWidget = class TextWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: TextWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-text",
 		usesInheritance: true,
 		ngImport: i0,
@@ -5693,7 +5867,7 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			encapsulation: ViewEncapsulation.None,
 			changeDetection: ChangeDetectionStrategy.OnPush,
-			standalone: false
+			imports: [SFItemWrapComponent]
 		}]
 	}]
 });
@@ -5725,7 +5899,7 @@ var TextareaWidget = class TextareaWidget extends ControlUIWidget {
 		minVersion: "17.0.0",
 		version: "22.2.0",
 		type: TextareaWidget,
-		isStandalone: false,
+		isStandalone: true,
 		selector: "sf-textarea",
 		usesInheritance: true,
 		ngImport: i0,
@@ -5812,6 +5986,22 @@ var TextareaWidget = class TextareaWidget extends ControlUIWidget {
 		dependencies: [
 			{
 				kind: "directive",
+				type: CdkTextareaAutosize,
+				selector: "textarea[cdkTextareaAutosize]",
+				inputs: [
+					"cdkAutosizeMinRows",
+					"cdkAutosizeMaxRows",
+					"cdkTextareaAutosize",
+					"placeholder"
+				],
+				exportAs: ["cdkTextareaAutosize"]
+			},
+			{
+				kind: "ngmodule",
+				type: FormsModule
+			},
+			{
+				kind: "directive",
 				type: i1.DefaultValueAccessor,
 				selector: "input:not([type=checkbox]):not([ngNoCva])[formControlName],textarea:not([ngNoCva])[formControlName],input:not([type=checkbox]):not([ngNoCva])[formControl],textarea:not([ngNoCva])[formControl],input:not([type=checkbox]):not([ngNoCva])[ngModel],textarea:not([ngNoCva])[ngModel],[ngDefaultControl]"
 			},
@@ -5834,20 +6024,12 @@ var TextareaWidget = class TextareaWidget extends ControlUIWidget {
 				exportAs: ["ngModel"]
 			},
 			{
-				kind: "directive",
-				type: i2.CdkTextareaAutosize,
-				selector: "textarea[cdkTextareaAutosize]",
-				inputs: [
-					"cdkAutosizeMinRows",
-					"cdkAutosizeMaxRows",
-					"cdkTextareaAutosize",
-					"placeholder"
-				],
-				exportAs: ["cdkTextareaAutosize"]
+				kind: "ngmodule",
+				type: NzInputModule
 			},
 			{
 				kind: "component",
-				type: i2$1.NzTextareaCountComponent,
+				type: i2.NzTextareaCountComponent,
 				selector: "nz-textarea-count",
 				inputs: [
 					"nzMaxCharacterCount",
@@ -5857,7 +6039,7 @@ var TextareaWidget = class TextareaWidget extends ControlUIWidget {
 			},
 			{
 				kind: "directive",
-				type: i2$1.NzInputDirective,
+				type: i2.NzInputDirective,
 				selector: "input[nz-input],textarea[nz-input]",
 				inputs: [
 					"nzVariant",
@@ -5870,7 +6052,7 @@ var TextareaWidget = class TextareaWidget extends ControlUIWidget {
 			},
 			{
 				kind: "component",
-				type: i2$1.NzInputWrapperComponent,
+				type: i2.NzInputWrapperComponent,
 				selector: "nz-input-wrapper,nz-input-password,nz-input-search",
 				inputs: [
 					"nzAllowClear",
@@ -5993,7 +6175,12 @@ i0.ɵɵngDeclareClassMetadata({
   `,
 			encapsulation: ViewEncapsulation.None,
 			changeDetection: ChangeDetectionStrategy.OnPush,
-			standalone: false
+			imports: [
+				CdkTextareaAutosize,
+				FormsModule,
+				NzInputModule,
+				SFItemWrapComponent
+			]
 		}]
 	}]
 });
@@ -6080,25 +6267,6 @@ var DelonFormModule = class DelonFormModule {
 		version: "22.2.0",
 		ngImport: i0,
 		type: DelonFormModule,
-		declarations: [
-			SFComponent,
-			SFItemComponent,
-			SFItemWrapComponent,
-			SFTemplateDirective,
-			SFFixedDirective,
-			ObjectWidget,
-			ArrayWidget,
-			StringWidget,
-			NumberWidget,
-			DateWidget,
-			RadioWidget,
-			CheckboxWidget,
-			BooleanWidget,
-			TextareaWidget,
-			SelectWidget,
-			CustomWidget,
-			TextWidget
-		],
 		imports: [
 			CommonModule,
 			FormsModule,
@@ -6117,7 +6285,24 @@ var DelonFormModule = class DelonFormModule {
 			NzRadioModule,
 			NzSelectModule,
 			NzSwitchModule,
-			NzTooltipModule
+			NzTooltipModule,
+			SFComponent,
+			SFItemComponent,
+			SFItemWrapComponent,
+			SFTemplateDirective,
+			SFFixedDirective,
+			ObjectWidget,
+			ArrayWidget,
+			StringWidget,
+			NumberWidget,
+			DateWidget,
+			RadioWidget,
+			CheckboxWidget,
+			BooleanWidget,
+			TextareaWidget,
+			SelectWidget,
+			CustomWidget,
+			TextWidget
 		],
 		exports: [
 			SFComponent,
@@ -6136,7 +6321,10 @@ var DelonFormModule = class DelonFormModule {
 			CommonModule,
 			FormsModule,
 			DelonLocaleModule,
-			ZORROS
+			ZORROS,
+			SFComponent,
+			SFItemWrapComponent,
+			WIDGETS
 		]
 	});
 };
@@ -6153,9 +6341,10 @@ i0.ɵɵngDeclareClassMetadata({
 				FormsModule,
 				DelonLocaleModule,
 				CdkTextareaAutosize,
-				...ZORROS
+				...ZORROS,
+				...COMPONENTS,
+				...WIDGETS
 			],
-			declarations: [...COMPONENTS, ...WIDGETS],
 			exports: COMPONENTS
 		}]
 	}]

@@ -1,35 +1,35 @@
 import { AlainConfigService, AlainSFConfig } from "@delon/util/config";
 import * as i0 from "@angular/core";
 import { AfterViewInit, ComponentRef, EnvironmentProviders, Injector, ModuleWithProviders, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef, ViewContainerRef } from "@angular/core";
-import * as i20 from "@delon/theme";
+import * as i3 from "@delon/theme";
 import { LocaleData } from "@delon/theme";
 import { NgClassType, NgStyleInterface, NzSafeAny, NzSizeDSType, NzSizeLDSType, NzVariant } from "ng-zorro-antd/core/types";
-import * as i26 from "ng-zorro-antd/form";
+import * as i9 from "ng-zorro-antd/form";
 import { NzFormControlStatusType } from "ng-zorro-antd/form";
 import { BehaviorSubject, Observable, Subject } from "rxjs";
-import * as i22 from "ng-zorro-antd/button";
+import * as i5 from "ng-zorro-antd/button";
 import { NzButtonType } from "ng-zorro-antd/button";
 import { ACLCanType } from "@delon/acl";
 import Ajv from "ajv";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
-import * as i25 from "ng-zorro-antd/date-picker";
+import * as i8 from "ng-zorro-antd/date-picker";
 import { DisabledDateFn, DisabledTimeFn, NzDatePickerSizeType, SupportTimeOptions } from "ng-zorro-antd/date-picker";
 import { NzDatePickerI18nInterface, NzI18nService } from "ng-zorro-antd/i18n";
-import * as i33 from "ng-zorro-antd/select";
+import * as i16 from "ng-zorro-antd/select";
 import { NzOptionComponent, NzSelectModeType } from "ng-zorro-antd/select";
-import * as i18 from "@angular/common";
-import * as i19 from "@angular/forms";
-import * as i21 from "@angular/cdk/text-field";
-import * as i23 from "ng-zorro-antd/card";
-import * as i24 from "ng-zorro-antd/checkbox";
-import * as i27 from "ng-zorro-antd/grid";
-import * as i28 from "ng-zorro-antd/icon";
-import * as i29 from "ng-zorro-antd/input";
-import * as i30 from "ng-zorro-antd/input-number";
-import * as i31 from "ng-zorro-antd/modal";
-import * as i32 from "ng-zorro-antd/radio";
-import * as i34 from "ng-zorro-antd/switch";
-import * as i35 from "ng-zorro-antd/tooltip";
+import * as i1 from "@angular/common";
+import * as i2 from "@angular/forms";
+import * as i4 from "@angular/cdk/text-field";
+import * as i6 from "ng-zorro-antd/card";
+import * as i7 from "ng-zorro-antd/checkbox";
+import * as i10 from "ng-zorro-antd/grid";
+import * as i11 from "ng-zorro-antd/icon";
+import * as i12 from "ng-zorro-antd/input";
+import * as i13 from "ng-zorro-antd/input-number";
+import * as i14 from "ng-zorro-antd/modal";
+import * as i15 from "ng-zorro-antd/radio";
+import * as i17 from "ng-zorro-antd/switch";
+import * as i18 from "ng-zorro-antd/tooltip";
 export declare const SF_DEFAULT_CONFIG: AlainSFConfig;
 export declare function mergeConfig(srv: AlainConfigService): AlainSFConfig;
 export type SFSchemaDefinition = Record<string, SFSchema>;
@@ -330,7 +330,7 @@ export declare class SFItemComponent implements OnInit, OnDestroy {
       "required": false;
       "isSignal": true;
     };
-  }, {}, never, never, false, never>;
+  }, {}, never, never, true, never>;
 }
 export type SFObjectWidgetRenderType = 'card' | 'default';
 export interface SFObjectWidgetSchema extends SFUISchemaItem {
@@ -384,7 +384,7 @@ export declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
   ngOnInit(): void;
   changeExpand(): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<ObjectWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<ObjectWidget, "sf-object", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<ObjectWidget, "sf-object", never, {}, {}, never, never, true, never>;
 }
 declare namespace array_widget_d_exports {
   export { ArrayWidget };
@@ -402,7 +402,7 @@ export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
   addItem(): void;
   removeItem(index: number): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<ArrayWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<ArrayWidget, "sf-array", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<ArrayWidget, "sf-array", never, {}, {}, never, never, true, never>;
 }
 export interface SFArrayWidgetSchema extends SFUISchemaItem {
   /**
@@ -532,7 +532,7 @@ export declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> 
   blur(e: FocusEvent): void;
   enter(e: Event): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<StringWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<StringWidget, "sf-string", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<StringWidget, "sf-string", never, {}, {}, never, never, true, never>;
 }
 export interface SFNumberWidgetSchema extends SFUISchemaItem {
   size?: NzSizeLDSType;
@@ -617,7 +617,7 @@ export declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> 
   focus(): void;
   blur(): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<NumberWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never, true, never>;
 }
 export interface SFDateWidgetSchema extends SFUISchemaItem {
   mode?: 'date' | 'week' | 'month' | 'year' | 'range';
@@ -747,7 +747,7 @@ export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> impl
   private get endProperty();
   private setEnd;
   static ɵfac: i0.ɵɵFactoryDeclaration<DateWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<DateWidget, "sf-date", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<DateWidget, "sf-date", never, {}, {}, never, never, true, never>;
 }
 export interface SFRadioWidgetSchema extends SFUISchemaItem {
   /**
@@ -777,7 +777,7 @@ export declare class RadioWidget extends ControlUIWidget<SFRadioWidgetSchema> {
   reset(value: SFValue): void;
   _setValue(value: SFValue): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<RadioWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<RadioWidget, "sf-radio", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<RadioWidget, "sf-radio", never, {}, {}, never, never, true, never>;
 }
 export interface SFCheckboxWidgetSchema extends SFUISchemaItem {
   /**
@@ -825,7 +825,7 @@ export declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSche
   private bumpData;
   private notifyChange;
   static ɵfac: i0.ɵɵFactoryDeclaration<CheckboxWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never, true, never>;
 }
 interface SFBooleanWidgetSchema extends SFUISchemaItem {
   /**
@@ -850,7 +850,7 @@ declare namespace boolean_widget_d_exports {
 }
 export declare class BooleanWidget extends ControlUIWidget<SFBooleanWidgetSchema> {
   static ɵfac: i0.ɵɵFactoryDeclaration<BooleanWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<BooleanWidget, "sf-boolean", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<BooleanWidget, "sf-boolean", never, {}, {}, never, never, true, never>;
 }
 export interface SFTextareaWidgetSchema extends SFUISchemaItem {
   size?: NzSizeLDSType;
@@ -909,7 +909,7 @@ export declare class TextareaWidget extends ControlUIWidget<SFTextareaWidgetSche
   focus(e: FocusEvent): void;
   blur(e: FocusEvent): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<TextareaWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<TextareaWidget, "sf-textarea", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<TextareaWidget, "sf-textarea", never, {}, {}, never, never, true, never>;
 }
 export interface SFSelectWidgetSchema extends SFUISchemaItem {
   /**
@@ -1070,7 +1070,7 @@ export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> 
   scrollToBottom(): void;
   onSearch(value: string): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<SelectWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never, true, never>;
 }
 export interface SFTextWidgetSchema extends SFUISchemaItem {
   /**
@@ -1094,7 +1094,7 @@ export declare class TextWidget extends ControlUIWidget<SFTextWidgetSchema> impl
   ngOnInit(): void;
   reset(value: SFValue): void;
   static ɵfac: i0.ɵɵFactoryDeclaration<TextWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<TextWidget, "sf-text", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<TextWidget, "sf-text", never, {}, {}, never, never, true, never>;
 }
 export type SFCustomWidgetSchema = SFUISchemaItem;
 declare namespace custom_widget_d_exports {
@@ -1103,7 +1103,7 @@ declare namespace custom_widget_d_exports {
 /** 自定义模板 widget：模板里的 `ui._render` 由 `SFTemplateDirective` 注册，经 `SFComponent.attachCustomRender()` 注入 */
 export declare class CustomWidget extends ControlUIWidget<SFCustomWidgetSchema> {
   static ɵfac: i0.ɵɵFactoryDeclaration<CustomWidget, never>;
-  static ɵcmp: i0.ɵɵComponentDeclaration<CustomWidget, "sf-custom", never, {}, {}, never, never, false, never>;
+  static ɵcmp: i0.ɵɵComponentDeclaration<CustomWidget, "sf-custom", never, {}, {}, never, never, true, never>;
 }
 declare namespace sf_template_directive_d_exports {
   export { SFTemplateDirective };
@@ -1120,7 +1120,7 @@ export declare class SFTemplateDirective implements OnInit {
       "required": true;
       "isSignal": true;
     };
-  }, {}, never, never, false, never>;
+  }, {}, never, never, true, never>;
 }
 export declare class WidgetRegistry {
   private _widgets;
@@ -1991,7 +1991,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy, AfterV
     "formSubmit": "formSubmit";
     "formReset": "formReset";
     "formError": "formError";
-  }, never, ["*"], false, never>;
+  }, never, ["*"], true, never>;
 }
 declare namespace sf_fixed_directive_d_exports {
   export { SFFixedDirective };
@@ -2012,7 +2012,7 @@ export declare class SFFixedDirective implements AfterViewInit, OnChanges {
       "required": false;
       "isSignal": true;
     };
-  }, {}, never, never, false, never>;
+  }, {}, never, never, true, never>;
 }
 declare namespace sf_item_wrap_component_d_exports {
   export { SFItemWrapComponent };
@@ -2068,12 +2068,12 @@ export declare class SFItemWrapComponent {
       "required": false;
       "isSignal": true;
     };
-  }, {}, never, ["*"], false, never>;
+  }, {}, never, ["*"], true, never>;
 }
 export declare class DelonFormModule {
   static forRoot(): ModuleWithProviders<DelonFormModule>;
   static ɵfac: i0.ɵɵFactoryDeclaration<DelonFormModule, never>;
-  static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof i20.DelonLocaleModule, typeof i21.CdkTextareaAutosize, typeof i22.NzButtonModule, typeof i23.NzCardModule, typeof i24.NzCheckboxModule, typeof i25.NzDatePickerModule, typeof i26.NzFormModule, typeof i27.NzGridModule, typeof i28.NzIconModule, typeof i29.NzInputModule, typeof i30.NzInputNumberModule, typeof i31.NzModalModule, typeof i32.NzRadioModule, typeof i33.NzSelectModule, typeof i34.NzSwitchModule, typeof i35.NzTooltipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
+  static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, never, [typeof i1.CommonModule, typeof i2.FormsModule, typeof i3.DelonLocaleModule, typeof i4.CdkTextareaAutosize, typeof i5.NzButtonModule, typeof i6.NzCardModule, typeof i7.NzCheckboxModule, typeof i8.NzDatePickerModule, typeof i9.NzFormModule, typeof i10.NzGridModule, typeof i11.NzIconModule, typeof i12.NzInputModule, typeof i13.NzInputNumberModule, typeof i14.NzModalModule, typeof i15.NzRadioModule, typeof i16.NzSelectModule, typeof i17.NzSwitchModule, typeof i18.NzTooltipModule, typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
   static ɵinj: i0.ɵɵInjectorDeclaration<DelonFormModule>;
 }
 export declare abstract class AtomicProperty extends FormProperty {
