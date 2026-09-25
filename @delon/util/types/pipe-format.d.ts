@@ -1,7 +1,9 @@
-import * as i0 from '@angular/core';
-import { PipeTransform } from '@angular/core';
-import { FormatMaskOption } from '@delon/util/format';
-
+import * as i0 from "@angular/core";
+import { PipeTransform } from "@angular/core";
+import { FormatMaskOption } from "@delon/util/format";
+declare namespace mask_pipe_d_exports {
+  export { FormatMaskPipe };
+}
 /**
  * Format mask
  *
@@ -21,16 +23,13 @@ import { FormatMaskOption } from '@delon/util/format';
  * formatMask('15900000000', '999****9999') => 159****0000
  * ```
  */
-declare class FormatMaskPipe implements PipeTransform {
-    transform(value: string, mask: string | FormatMaskOption): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FormatMaskPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<FormatMaskPipe, "mask", true>;
+export declare class FormatMaskPipe implements PipeTransform {
+  transform(value: string, mask: string | FormatMaskOption): string;
+  static ɵfac: i0.ɵɵFactoryDeclaration<FormatMaskPipe, never>;
+  static ɵpipe: i0.ɵɵPipeDeclaration<FormatMaskPipe, "mask", true>;
 }
-
-declare class FormatPipeModule {
-    static ɵfac: i0.ɵɵFactoryDeclaration<FormatPipeModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<FormatPipeModule, never, [typeof FormatMaskPipe], [typeof FormatMaskPipe]>;
-    static ɵinj: i0.ɵɵInjectorDeclaration<FormatPipeModule>;
+export declare class FormatPipeModule {
+  static ɵfac: i0.ɵɵFactoryDeclaration<FormatPipeModule, never>;
+  static ɵmod: i0.ɵɵNgModuleDeclaration<FormatPipeModule, never, [typeof FormatMaskPipe], [typeof FormatMaskPipe]>;
+  static ɵinj: i0.ɵɵInjectorDeclaration<FormatPipeModule>;
 }
-
-export { FormatMaskPipe, FormatPipeModule };

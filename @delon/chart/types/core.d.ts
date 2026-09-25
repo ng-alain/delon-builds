@@ -1,104 +1,161 @@
-import * as _angular_core from '@angular/core';
-import { OnDestroy, ElementRef, DestroyRef, Signal } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AlainChartConfig } from '@delon/util/config';
-import { Types, Chart } from '@antv/g2';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-
-type G2InteractionType = 'none' | 'element-active' | 'active-region' | 'brush' | 'drag-move';
-
-type G2Time = Date | string | number;
-
-declare class G2Service implements OnDestroy {
-    private readonly cogSrv;
-    private readonly lazySrv;
-    private _cog;
-    private loading;
-    private loaded;
-    private notify$;
-    get cog(): AlainChartConfig;
-    set cog(val: AlainChartConfig);
-    constructor();
-    libLoad(): this;
-    get notify(): Observable<void>;
-    ngOnDestroy(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<G2Service, never>;
-    static ɵprov: _angular_core.ɵɵInjectableDeclaration<any>;
+import { Chart, G2Spec, Theme, TooltipComponent } from "@antv/g2";
+import { NzSafeAny } from "ng-zorro-antd/core/types";
+import * as i0 from "@angular/core";
+import { DestroyRef, ElementRef, OnDestroy, Signal } from "@angular/core";
+import { Observable } from "rxjs";
+import { AlainChartConfig } from "@delon/util/config";
+/** 交互类型词汇表（自 v4 保留的公开 API）；v5 的名称不同，映射见 `toInteraction()` */
+export type G2InteractionType = 'none' | 'element-active' | 'active-region' | 'brush' | 'drag-move';
+/** `G2InteractionType` → v5 `interaction` spec；无忠实对应物的值降级为无交互 */
+export declare function toInteraction(type: G2InteractionType | undefined): G2Spec['interaction'];
+/** G2 v5 未导出事件类型，这里给出图表交互事件的最小结构约定，供各组件的 `ev` 字段使用 */
+export interface G2Event {
+  /** 命中元素对应的数据项 */
+  data?: {
+    data?: NzSafeAny;
+  };
+  /** 被命中的元素（`@antv/g` DisplayObject），不得依赖其内部结构 */
+  target?: NzSafeAny;
+  /** 画布坐标 */
+  x?: number;
+  y?: number;
+  nativeEvent?: NzSafeAny;
+  [key: string]: NzSafeAny;
 }
-
-declare abstract class G2BaseComponent implements OnDestroy {
-    protected readonly srv: G2Service;
-    protected readonly el: ElementRef<HTMLElement>;
-    protected readonly destroyRef: DestroyRef;
-    /** 图表容器 */
-    protected readonly node: Signal<ElementRef<HTMLElement>>;
-    readonly delay: _angular_core.InputSignalWithTransform<number, unknown>;
-    readonly repaint: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    readonly theme: _angular_core.InputSignal<string | Types.LooseObject>;
-    readonly ready: _angular_core.OutputEmitterRef<Chart>;
-    private readonly _loaded;
-    /** 是否已进入安装流程（模板据此切换骨架屏） */
-    readonly loaded: Signal<boolean>;
-    protected _chart?: Chart;
-    get chart(): Chart;
-    get winG2(): NzSafeAny;
-    /** 约定：名为 `data` 的输入即数据输入（全包唯一一处字符串） */
-    private dataInput?;
-    private destroyed;
-    constructor();
-    private dispatchInputChanges;
-    /** 输入变更前置钩子；等价旧 `onChanges(changes)` */
-    protected onInputChanges(_changed: ReadonlyArray<Signal<unknown>>): void;
-    /**
-     * 本次变更是否可以只调用 `changeData()` 而不重建图表。
-     * 默认：变更集里只有名为 `data` 的输入 —— 等价旧 `onlyChangeData` 的默认实现。
-     *
-     * `Object.is` 与 `===` 对信号对象按引用比较完全等价；写成 `===` 会被
-     * `@angular-eslint/no-uncalled-signals` 误判为「忘记调用信号」。
-     */
-    protected isDataOnly(changed: ReadonlyArray<Signal<unknown>>): boolean;
-    /** 创建并渲染图表 */
-    abstract install(): void;
-    /** 仅数据变更时调用（G2 平滑过渡） */
-    changeData(): void;
-    /** 等同旧 `ngOnInit`，但在首次渲染后调用 */
-    onInit(): void;
-    /** 安装入口：幂等；delay 未到时组件已销毁则不会安装 */
-    private load;
-    protected destroyChart(): this;
-    ngOnDestroy(): void;
-    static ɵfac: _angular_core.ɵɵFactoryDeclaration<G2BaseComponent, never>;
-    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<G2BaseComponent, never, never, { "delay": { "alias": "delay"; "required": false; "isSignal": true; }; "repaint": { "alias": "repaint"; "required": false; "isSignal": true; }; "theme": { "alias": "theme"; "required": false; "isSignal": true; }; }, { "ready": "ready"; }, never, never, true, never>;
+export type G2Time = Date | string | number;
+export declare class G2Service implements OnDestroy {
+  private readonly cogSrv;
+  private readonly lazySrv;
+  private _cog;
+  private loading;
+  private loaded;
+  private notify$;
+  get cog(): AlainChartConfig;
+  set cog(val: AlainChartConfig);
+  constructor();
+  libLoad(): this;
+  get notify(): Observable<void>;
+  ngOnDestroy(): void;
+  static ɵfac: i0.ɵɵFactoryDeclaration<G2Service, never>;
+  static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
-
-declare function genMiniTooltipOptions(type: 'mini' | 'default', options?: Types.TooltipCfg): Types.TooltipCfg;
-
-interface G2Input {
-    name: string;
-    signal: Signal<unknown>;
+export declare abstract class G2BaseComponent implements OnDestroy {
+  protected readonly srv: G2Service;
+  protected readonly el: ElementRef<any>;
+  protected readonly destroyRef: DestroyRef;
+  protected readonly node: Signal<ElementRef<HTMLElement>>;
+  readonly delay: import("@angular/core").InputSignalWithTransform<number, unknown>;
+  readonly repaint: import("@angular/core").InputSignalWithTransform<boolean, unknown>;
+  readonly theme: import("@angular/core").InputSignal<string | Record<string, unknown>>;
+  /** 首帧渲染完成后 emit 一次 */
+  readonly ready: import("@angular/core").OutputEmitterRef<Chart>;
+  /** 渲染失败（含未加载 G2、`buildSpec()` 抛错） */
+  readonly error: import("@angular/core").OutputEmitterRef<unknown>;
+  private readonly _loaded;
+  readonly loaded: Signal<boolean>;
+  protected _chart?: Chart;
+  get chart(): Chart;
+  get winG2(): NzSafeAny;
+  /** 约定：名为 `data` 的输入即数据输入 */
+  private dataInput?;
+  private destroyed;
+  private installed;
+  private readySettled;
+  /** 串行链：所有 v5 调用串行执行，保证不交错 */
+  private pending;
+  /** 帧序号：超过当前值的帧一律丢弃 */
+  private epoch;
+  constructor();
+  changeData(): void;
+  /** 组件声明的 v5 spec */
+  protected buildSpec(): G2Spec;
+  protected chartOptions(): G2Spec;
+  protected containerOf(): HTMLElement;
+  protected dataOf(): unknown;
+  protected afterCreate(_chart: Chart): void;
+  protected onRendered(): void;
+  protected onDataChange(): void;
+  protected onInputChanges(_changed: ReadonlyArray<Signal<unknown>>): void;
+  /** 本次变更是否可以只调用 `changeData()` 而不重下 spec；默认仅名为 `data` 的输入 */
+  protected isDataOnly(changed: ReadonlyArray<Signal<unknown>>): boolean;
+  protected repaintSpec(): Promise<void>;
+  private dispatchInputChanges;
+  /** 安装入口：幂等；delay 未到时组件已销毁则不会安装 */
+  private load;
+  /** 安装入口：默认创建 v5 Chart 并应用 spec；自行管理图表的组件可覆盖本方法 */
+  protected install(): void;
+  /** 标记首次渲染完成（收起骨架屏）；覆盖 `install()` 的组件需自行调用 */
+  protected markLoaded(): void;
+  private settleReady;
+  private applySpec;
+  private applyData;
+  private enqueue;
+  ngOnDestroy(): void;
+  static ɵfac: i0.ɵɵFactoryDeclaration<G2BaseComponent, never>;
+  static ɵdir: i0.ɵɵDirectiveDeclaration<G2BaseComponent, never, never, {
+    "delay": {
+      "alias": "delay";
+      "required": false;
+      "isSignal": true;
+    };
+    "repaint": {
+      "alias": "repaint";
+      "required": false;
+      "isSignal": true;
+    };
+    "theme": {
+      "alias": "theme";
+      "required": false;
+      "isSignal": true;
+    };
+  }, {
+    "ready": "ready";
+    "error": "error";
+  }, never, never, true, never>;
 }
-/**
- * 读取组件（含继承链）上声明的 signal input。
+/** mini tooltip 的 spec 片段：外观由 theme 承担，位置/偏移/指示线由 `interaction.tooltip` 承担 */
+export declare function genMiniTooltipOptions(type: 'mini' | 'default', options?: {
+  crosshairs?: boolean;
+}): {
+  tooltip: TooltipComponent;
+  interaction: G2Spec['interaction'];
+};
+export type G2Padding = number | number[] | 'auto';
+export interface G2ViewSpecOptions {
+  theme: Theme | undefined;
+  padding?: G2Padding;
+  height?: number;
+  width?: number;
+  animate?: boolean;
+  autoFit?: boolean;
+  interaction?: G2InteractionType;
+}
+/** 主题归一化：空值（`undefined` 或空串）统一取内置默认主题 `{ type: 'classic' }`，对象按 v5 `Theme` 结构透传 */
+export declare function toTheme(theme: Theme | undefined): Theme;
+/** 内边距归一化：四元数组需拆成 `paddingTop/Right/Bottom/Left`（v5 的 `Padding` 只接受 `number | 'auto'`） */
+export declare function toPadding(padding: G2Padding | undefined): Record<string, unknown>;
+/** 组件共用：产出 v5 view 的公共片段，组件再补 `data` / `children` 等 */
+export type G2ViewSpecFragment = G2Spec & {
+  animate?: boolean;
+  autoFit?: boolean;
+  interaction?: G2Spec['interaction'];
+};
+export declare function viewSpec(options: G2ViewSpecOptions): G2ViewSpecFragment;
+/** 一个 signal input 的登记项：输入名 + 读取它的 signal。
  *
- * `reflectComponentType` 是 Angular 公共 API，`inputs[].isSignal` 直接来自框架元数据
- * （`InputFlags.SignalBased`），因此清单与旧 `SimpleChanges` 的覆盖范围完全一致：
- * 框架声明了哪些输入就 diff 哪些输入，子类新增 `input()` 自动生效，无需登记。
- *
- * **副作用**：读 `host[propName]`，因此必须在子类字段初始化完成之后调用
- * （见 `watchInputs` 的懒解析注释）。
+ * @internal
  */
-declare function resolveInputs(host: object): readonly G2Input[];
-/**
- * 监听本组件全部 signal input 的变更；首次执行只建立基线、不回调。
+export interface G2Input {
+  name: string;
+  signal: Signal<unknown>;
+}
+/** 读取组件（含继承链）上声明的 signal input；读 `host[propName]`，须待子类字段初始化完成。
  *
- * 必须在注入上下文中调用（内部创建 effect）。副作用已用 `untracked` 隔离，
- * 避免 `install()` 读取 `viewChild` 查询等信号时污染依赖图。
- *
- * 懒解析：`resolveInputs` 读的是 `host[propName]`，而子类的 `input()` 字段在 `super()`
- * 之后才初始化；放进字段初始化器会拿到 `undefined`。effect 首次执行发生在 CD 期间，
- * 此时子类构造已完成，因此安全。
+ * @internal
  */
-declare function watchInputs(host: object, handler: (changed: ReadonlyArray<Signal<unknown>>, inputs: readonly G2Input[]) => void): void;
-
-export { G2BaseComponent, G2Service, genMiniTooltipOptions, resolveInputs, watchInputs };
-export type { G2Input, G2InteractionType, G2Time };
+export declare function resolveInputs(host: object): readonly G2Input[];
+/** 监听本组件全部 signal input 的变更；须在注入上下文中调用，首次执行只建立基线、不回调。
+ *
+ * @internal
+ */
+export declare function watchInputs(host: object, handler: (changed: ReadonlyArray<Signal<unknown>>, inputs: readonly G2Input[]) => void): void;

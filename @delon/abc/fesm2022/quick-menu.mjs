@@ -1,76 +1,119 @@
-import * as i0 from '@angular/core';
-import { inject, ElementRef, Renderer2, input, numberAttribute, booleanAttribute, output, signal, computed, effect, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
-import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
-import { CommonModule } from '@angular/common';
-
-class QuickMenuComponent {
-    el = inject(ElementRef).nativeElement;
-    render = inject(Renderer2);
-    icon = input('question-circle', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "icon" }] : /* istanbul ignore next */ []));
-    top = input(120, { ...(ngDevMode ? { debugName: "top" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    width = input(200, { ...(ngDevMode ? { debugName: "width" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    bgColor = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "bgColor" }] : /* istanbul ignore next */ []));
-    borderColor = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "borderColor" }] : /* istanbul ignore next */ []));
-    expand = input(false, { ...(ngDevMode ? { debugName: "expand" } : /* istanbul ignore next */ {}), transform: booleanAttribute });
-    expandChange = output();
-    show = signal(false, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "show" }] : /* istanbul ignore next */ []));
-    ctrlStyle = computed(() => {
-        const ret = {
-            'background-color': this.bgColor(),
-            'border-color': this.borderColor()
-        };
-        return ret;
-    }, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "ctrlStyle" }] : /* istanbul ignore next */ []));
-    constructor() {
-        effect(() => {
-            this.show.set(this.expand());
-        });
-        effect(() => {
-            const res = [
-                `top:${this.top()}px`,
-                `width:${this.width()}px`,
-                `margin-right:-${this.show() ? 0 : this.width()}px`
-            ];
-            if (this.bgColor) {
-                res.push(`background-color:${this.bgColor()}`);
-            }
-            if (this.borderColor) {
-                res.push(`border-color:${this.borderColor()}`);
-            }
-            this.render.setAttribute(this.el, 'style', res.join(';'));
-        });
-    }
-    _click() {
-        this.show.set(!this.show());
-        this.expandChange.emit(this.show());
-    }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QuickMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "22.1.7", type: QuickMenuComponent, isStandalone: true, selector: "quick-menu", inputs: { icon: { classPropertyName: "icon", publicName: "icon", isSignal: true, isRequired: false, transformFunction: null }, top: { classPropertyName: "top", publicName: "top", isSignal: true, isRequired: false, transformFunction: null }, width: { classPropertyName: "width", publicName: "width", isSignal: true, isRequired: false, transformFunction: null }, bgColor: { classPropertyName: "bgColor", publicName: "bgColor", isSignal: true, isRequired: false, transformFunction: null }, borderColor: { classPropertyName: "borderColor", publicName: "borderColor", isSignal: true, isRequired: false, transformFunction: null }, expand: { classPropertyName: "expand", publicName: "expand", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { expandChange: "expandChange" }, host: { listeners: { "click": "_click()" }, classAttribute: "quick-menu" }, exportAs: ["quickMenu"], ngImport: i0, template: `
-    <div class="quick-menu__inner">
-      <div class="quick-menu__ctrl" [style]="ctrlStyle()">
-        <div class="quick-menu__ctrl-icon">
-          @let ic = icon();
-          <ng-container *nzStringTemplateOutlet="ic">
-            <nz-icon [nzType]="$any(ic)" />
-          </ng-container>
-        </div>
-      </div>
-      <ng-content />
-    </div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzType", "nzTheme", "nzTwotoneColor", "nzSpin", "nzRotate", "nzIconfont", "aria-label"], exportAs: ["nzIcon"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QuickMenuComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'quick-menu',
-                    exportAs: 'quickMenu',
-                    template: `
+import * as i0 from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, NgModule, Renderer2, ViewEncapsulation, booleanAttribute, computed, effect, inject, input, numberAttribute, output, signal } from "@angular/core";
+import { NzOutletModule, NzStringTemplateOutletDirective } from "ng-zorro-antd/core/outlet";
+import { NzIconDirective, NzIconModule } from "ng-zorro-antd/icon";
+import { CommonModule } from "@angular/common";
+var QuickMenuComponent = class QuickMenuComponent {
+	el = inject(ElementRef).nativeElement;
+	render = inject(Renderer2);
+	icon = input("question-circle", ...ngDevMode ? [{ debugName: "icon" }] : /* istanbul ignore next */ []);
+	top = input(120, {
+		...ngDevMode ? { debugName: "top" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	width = input(200, {
+		...ngDevMode ? { debugName: "width" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	bgColor = input(...ngDevMode ? [void 0, { debugName: "bgColor" }] : /* istanbul ignore next */ []);
+	borderColor = input(...ngDevMode ? [void 0, { debugName: "borderColor" }] : /* istanbul ignore next */ []);
+	expand = input(false, {
+		...ngDevMode ? { debugName: "expand" } : /* istanbul ignore next */ {},
+		transform: booleanAttribute
+	});
+	expandChange = output();
+	show = signal(false, ...ngDevMode ? [{ debugName: "show" }] : /* istanbul ignore next */ []);
+	ctrlStyle = computed(() => {
+		return {
+			"background-color": this.bgColor(),
+			"border-color": this.borderColor()
+		};
+	}, ...ngDevMode ? [{ debugName: "ctrlStyle" }] : /* istanbul ignore next */ []);
+	constructor() {
+		effect(() => {
+			this.show.set(this.expand());
+		});
+		effect(() => {
+			const res = [
+				`top:${this.top()}px`,
+				`width:${this.width()}px`,
+				`margin-right:-${this.show() ? 0 : this.width()}px`
+			];
+			if (this.bgColor) res.push(`background-color:${this.bgColor()}`);
+			if (this.borderColor) res.push(`border-color:${this.borderColor()}`);
+			this.render.setAttribute(this.el, "style", res.join(";"));
+		});
+	}
+	_click() {
+		this.show.set(!this.show());
+		this.expandChange.emit(this.show());
+	}
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: QuickMenuComponent,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.Component
+	});
+	static ɵcmp = i0.ɵɵngDeclareComponent({
+		minVersion: "17.1.0",
+		version: "22.2.0",
+		type: QuickMenuComponent,
+		isStandalone: true,
+		selector: "quick-menu",
+		inputs: {
+			icon: {
+				classPropertyName: "icon",
+				publicName: "icon",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			top: {
+				classPropertyName: "top",
+				publicName: "top",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			width: {
+				classPropertyName: "width",
+				publicName: "width",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			bgColor: {
+				classPropertyName: "bgColor",
+				publicName: "bgColor",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			borderColor: {
+				classPropertyName: "borderColor",
+				publicName: "borderColor",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			expand: {
+				classPropertyName: "expand",
+				publicName: "expand",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			}
+		},
+		outputs: { expandChange: "expandChange" },
+		host: {
+			listeners: { "click": "_click()" },
+			classAttribute: "quick-menu"
+		},
+		exportAs: ["quickMenu"],
+		ngImport: i0,
+		template: `
     <div class="quick-menu__inner">
       <div class="quick-menu__ctrl" [style]="ctrlStyle()">
         <div class="quick-menu__ctrl-icon">
@@ -83,33 +126,173 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       <ng-content />
     </div>
   `,
-                    host: {
-                        class: 'quick-menu',
-                        '(click)': '_click()'
-                    },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    imports: [NzIconDirective, NzStringTemplateOutletDirective]
-                }]
-        }], ctorParameters: () => [], propDecorators: { icon: [{ type: i0.Input, args: [{ isSignal: true, alias: "icon", required: false }] }], top: [{ type: i0.Input, args: [{ isSignal: true, alias: "top", required: false }] }], width: [{ type: i0.Input, args: [{ isSignal: true, alias: "width", required: false }] }], bgColor: [{ type: i0.Input, args: [{ isSignal: true, alias: "bgColor", required: false }] }], borderColor: [{ type: i0.Input, args: [{ isSignal: true, alias: "borderColor", required: false }] }], expand: [{ type: i0.Input, args: [{ isSignal: true, alias: "expand", required: false }] }], expandChange: [{ type: i0.Output, args: ["expandChange"] }] } });
-
+		isInline: true,
+		dependencies: [{
+			kind: "directive",
+			type: NzIconDirective,
+			selector: "nz-icon,[nz-icon]",
+			inputs: [
+				"nzType",
+				"nzTheme",
+				"nzTwotoneColor",
+				"nzSpin",
+				"nzRotate",
+				"nzIconfont",
+				"aria-label"
+			],
+			exportAs: ["nzIcon"]
+		}, {
+			kind: "directive",
+			type: NzStringTemplateOutletDirective,
+			selector: "[nzStringTemplateOutlet]",
+			inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"],
+			exportAs: ["nzStringTemplateOutlet"]
+		}],
+		changeDetection: i0.ChangeDetectionStrategy.OnPush,
+		encapsulation: i0.ViewEncapsulation.None
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: QuickMenuComponent,
+	decorators: [{
+		type: Component,
+		args: [{
+			selector: "quick-menu",
+			exportAs: "quickMenu",
+			template: `
+    <div class="quick-menu__inner">
+      <div class="quick-menu__ctrl" [style]="ctrlStyle()">
+        <div class="quick-menu__ctrl-icon">
+          @let ic = icon();
+          <ng-container *nzStringTemplateOutlet="ic">
+            <nz-icon [nzType]="$any(ic)" />
+          </ng-container>
+        </div>
+      </div>
+      <ng-content />
+    </div>
+  `,
+			host: {
+				class: "quick-menu",
+				"(click)": "_click()"
+			},
+			changeDetection: ChangeDetectionStrategy.OnPush,
+			encapsulation: ViewEncapsulation.None,
+			imports: [NzIconDirective, NzStringTemplateOutletDirective]
+		}]
+	}],
+	ctorParameters: () => [],
+	propDecorators: {
+		icon: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "icon",
+				required: false
+			}]
+		}],
+		top: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "top",
+				required: false
+			}]
+		}],
+		width: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "width",
+				required: false
+			}]
+		}],
+		bgColor: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "bgColor",
+				required: false
+			}]
+		}],
+		borderColor: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "borderColor",
+				required: false
+			}]
+		}],
+		expand: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "expand",
+				required: false
+			}]
+		}],
+		expandChange: [{
+			type: i0.Output,
+			args: ["expandChange"]
+		}]
+	}
+});
 const COMPONENTS = [QuickMenuComponent];
-class QuickMenuModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QuickMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.7", ngImport: i0, type: QuickMenuModule, imports: [CommonModule, NzIconModule, NzOutletModule, QuickMenuComponent], exports: [QuickMenuComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QuickMenuModule, imports: [CommonModule, NzIconModule, NzOutletModule] });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: QuickMenuModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [CommonModule, NzIconModule, NzOutletModule, ...COMPONENTS],
-                    exports: COMPONENTS
-                }]
-        }] });
-
-/**
- * Generated bundle index. Do not edit.
- */
-
+var QuickMenuModule = class QuickMenuModule {
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: QuickMenuModule,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.NgModule
+	});
+	static ɵmod = i0.ɵɵngDeclareNgModule({
+		minVersion: "14.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: QuickMenuModule,
+		imports: [
+			CommonModule,
+			NzIconModule,
+			NzOutletModule,
+			QuickMenuComponent
+		],
+		exports: [QuickMenuComponent]
+	});
+	static ɵinj = i0.ɵɵngDeclareInjector({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: QuickMenuModule,
+		imports: [
+			CommonModule,
+			NzIconModule,
+			NzOutletModule
+		]
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: QuickMenuModule,
+	decorators: [{
+		type: NgModule,
+		args: [{
+			imports: [
+				CommonModule,
+				NzIconModule,
+				NzOutletModule,
+				...COMPONENTS
+			],
+			exports: COMPONENTS
+		}]
+	}]
+});
 export { QuickMenuComponent, QuickMenuModule };
+
 //# sourceMappingURL=quick-menu.mjs.map

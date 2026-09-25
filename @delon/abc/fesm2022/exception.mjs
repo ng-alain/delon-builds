@@ -1,109 +1,131 @@
-import { Directionality } from '@angular/cdk/bidi';
-import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
-import * as i0 from '@angular/core';
-import { inject, viewChild, signal, input, computed, effect, afterNextRender, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { RouterLink, RouterModule } from '@angular/router';
-import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { isEmpty } from '@delon/util/browser';
-import { AlainConfigService } from '@delon/util/config';
-import { NzButtonComponent, NzButtonModule } from 'ng-zorro-antd/button';
-import { CommonModule } from '@angular/common';
-
-class ExceptionComponent {
-    dom = inject(DomSanitizer);
-    cogSrv = inject(AlainConfigService);
-    conTpl = viewChild.required('conTpl', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "conTpl" }] : /* istanbul ignore next */ []));
-    locale = inject(DelonLocaleService).valueSignal('exception');
-    dir = inject(Directionality).valueSignal;
-    hasCon = signal(false, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "hasCon" }] : /* istanbul ignore next */ []));
-    typeDict;
-    typeItem = signal(null, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "typeItem" }] : /* istanbul ignore next */ []));
-    type = input(404, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "type" }] : /* istanbul ignore next */ []));
-    img = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "img" }] : /* istanbul ignore next */ []));
-    title = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
-    desc = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "desc" }] : /* istanbul ignore next */ []));
-    backRouterLink = input('/', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "backRouterLink" }] : /* istanbul ignore next */ []));
-    _img = computed(() => {
-        const v = this.img() ?? this.typeItem()?.img;
-        return v == null ? null : this.dom.bypassSecurityTrustStyle(`url('${v}')`);
-    }, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "_img" }] : /* istanbul ignore next */ []));
-    _title = computed(() => {
-        const v = this.title() ?? this.typeItem()?.title;
-        return v == null ? null : this.dom.bypassSecurityTrustHtml(v);
-    }, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "_title" }] : /* istanbul ignore next */ []));
-    _desc = computed(() => {
-        const v = this.desc() ?? this.typeItem()?.desc ?? this.locale()[this.type()];
-        return v == null ? null : this.dom.bypassSecurityTrustHtml(v);
-    }, /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "_desc" }] : /* istanbul ignore next */ []));
-    constructor() {
-        this.cogSrv.attach(this, 'exception', {
-            typeDict: {
-                403: {
-                    img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
-                    title: '403'
-                },
-                404: {
-                    img: 'https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg',
-                    title: '404'
-                },
-                500: {
-                    img: 'https://gw.alipayobjects.com/zos/rmsportal/RVRUAYdCGeYNBWoKiIwB.svg',
-                    title: '500'
-                }
-            }
-        });
-        effect(() => {
-            const type = this.type();
-            this.typeItem.set(this.typeDict?.[type]);
-        });
-        afterNextRender(() => {
-            this.checkContent();
-        });
-    }
-    checkContent() {
-        this.hasCon.set(!isEmpty(this.conTpl().nativeElement));
-    }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ExceptionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: ExceptionComponent, isStandalone: true, selector: "exception", inputs: { type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, img: { classPropertyName: "img", publicName: "img", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, desc: { classPropertyName: "desc", publicName: "desc", isSignal: true, isRequired: false, transformFunction: null }, backRouterLink: { classPropertyName: "backRouterLink", publicName: "backRouterLink", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.exception-rtl": "dir() === 'rtl'" }, classAttribute: "exception" }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], descendants: true, isSignal: true }], exportAs: ["exception"], ngImport: i0, template: `
-    <div class="exception__img-block">
-      <div class="exception__img" [style.backgroundImage]="_img()"></div>
-    </div>
-    <div class="exception__cont">
-      @if (_title()) {
-        <h1 class="exception__cont-title" [innerHTML]="_title()"></h1>
-      }
-      <div class="exception__cont-desc" [innerHTML]="_desc()"></div>
-      <div class="exception__cont-actions">
-        <div (cdkObserveContent)="checkContent()" #conTpl>
-          <ng-content />
-        </div>
-        @if (!hasCon()) {
-          <button nz-button [routerLink]="backRouterLink()" nzType="primary">
-            {{ locale().backToHome }}
-          </button>
-        }
-      </div>
-    </div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { kind: "component", type: NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: RouterLink, selector: "[routerLink]", inputs: ["target", "queryParams", "fragment", "queryParamsHandling", "state", "info", "relativeTo", "preserveFragment", "skipLocationChange", "replaceUrl", "browserUrl", "routerLink"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ExceptionComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'exception',
-                    exportAs: 'exception',
-                    template: `
+import { Directionality } from "@angular/cdk/bidi";
+import { CdkObserveContent, ObserversModule } from "@angular/cdk/observers";
+import * as i0 from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgModule, ViewEncapsulation, afterNextRender, computed, effect, inject, input, signal, viewChild } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
+import { RouterLink, RouterModule } from "@angular/router";
+import { DelonLocaleModule, DelonLocaleService } from "@delon/theme";
+import { isEmpty } from "@delon/util/browser";
+import { AlainConfigService } from "@delon/util/config";
+import { NzButtonComponent, NzButtonModule } from "ng-zorro-antd/button";
+import { CommonModule } from "@angular/common";
+var ExceptionComponent = class ExceptionComponent {
+	dom = inject(DomSanitizer);
+	cogSrv = inject(AlainConfigService);
+	conTpl = viewChild.required("conTpl", ...ngDevMode ? [{ debugName: "conTpl" }] : /* istanbul ignore next */ []);
+	locale = inject(DelonLocaleService).valueSignal("exception");
+	dir = inject(Directionality).valueSignal;
+	hasCon = signal(false, ...ngDevMode ? [{ debugName: "hasCon" }] : /* istanbul ignore next */ []);
+	typeDict;
+	typeItem = signal(null, ...ngDevMode ? [{ debugName: "typeItem" }] : /* istanbul ignore next */ []);
+	type = input(404, ...ngDevMode ? [{ debugName: "type" }] : /* istanbul ignore next */ []);
+	img = input(...ngDevMode ? [void 0, { debugName: "img" }] : /* istanbul ignore next */ []);
+	title = input(...ngDevMode ? [void 0, { debugName: "title" }] : /* istanbul ignore next */ []);
+	desc = input(...ngDevMode ? [void 0, { debugName: "desc" }] : /* istanbul ignore next */ []);
+	backRouterLink = input("/", ...ngDevMode ? [{ debugName: "backRouterLink" }] : /* istanbul ignore next */ []);
+	_img = computed(() => {
+		const v = this.img() ?? this.typeItem()?.img;
+		return v == null ? null : this.dom.bypassSecurityTrustStyle(`url('${v}')`);
+	}, ...ngDevMode ? [{ debugName: "_img" }] : /* istanbul ignore next */ []);
+	_title = computed(() => {
+		const v = this.title() ?? this.typeItem()?.title;
+		return v == null ? null : this.dom.bypassSecurityTrustHtml(v);
+	}, ...ngDevMode ? [{ debugName: "_title" }] : /* istanbul ignore next */ []);
+	_desc = computed(() => {
+		const v = this.desc() ?? this.typeItem()?.desc ?? this.locale()[this.type()];
+		return v == null ? null : this.dom.bypassSecurityTrustHtml(v);
+	}, ...ngDevMode ? [{ debugName: "_desc" }] : /* istanbul ignore next */ []);
+	constructor() {
+		this.cogSrv.attach(this, "exception", { typeDict: {
+			403: {
+				img: "https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg",
+				title: "403"
+			},
+			404: {
+				img: "https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg",
+				title: "404"
+			},
+			500: {
+				img: "https://gw.alipayobjects.com/zos/rmsportal/RVRUAYdCGeYNBWoKiIwB.svg",
+				title: "500"
+			}
+		} });
+		effect(() => {
+			const type = this.type();
+			this.typeItem.set(this.typeDict?.[type]);
+		});
+		afterNextRender(() => {
+			this.checkContent();
+		});
+	}
+	checkContent() {
+		this.hasCon.set(!isEmpty(this.conTpl().nativeElement));
+	}
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: ExceptionComponent,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.Component
+	});
+	static ɵcmp = i0.ɵɵngDeclareComponent({
+		minVersion: "17.0.0",
+		version: "22.2.0",
+		type: ExceptionComponent,
+		isStandalone: true,
+		selector: "exception",
+		inputs: {
+			type: {
+				classPropertyName: "type",
+				publicName: "type",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			img: {
+				classPropertyName: "img",
+				publicName: "img",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			title: {
+				classPropertyName: "title",
+				publicName: "title",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			desc: {
+				classPropertyName: "desc",
+				publicName: "desc",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			backRouterLink: {
+				classPropertyName: "backRouterLink",
+				publicName: "backRouterLink",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			}
+		},
+		host: {
+			properties: { "class.exception-rtl": "dir() === 'rtl'" },
+			classAttribute: "exception"
+		},
+		viewQueries: [{
+			propertyName: "conTpl",
+			first: true,
+			predicate: ["conTpl"],
+			descendants: true,
+			isSignal: true
+		}],
+		exportAs: ["exception"],
+		ngImport: i0,
+		template: `
     <div class="exception__img-block">
       <div class="exception__img" [style.backgroundImage]="_img()"></div>
     </div>
@@ -124,33 +146,209 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImpor
       </div>
     </div>
   `,
-                    host: {
-                        class: 'exception',
-                        '[class.exception-rtl]': `dir() === 'rtl'`
-                    },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    imports: [CdkObserveContent, NzButtonComponent, RouterLink]
-                }]
-        }], ctorParameters: () => [], propDecorators: { conTpl: [{ type: i0.ViewChild, args: ['conTpl', { isSignal: true }] }], type: [{ type: i0.Input, args: [{ isSignal: true, alias: "type", required: false }] }], img: [{ type: i0.Input, args: [{ isSignal: true, alias: "img", required: false }] }], title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], desc: [{ type: i0.Input, args: [{ isSignal: true, alias: "desc", required: false }] }], backRouterLink: [{ type: i0.Input, args: [{ isSignal: true, alias: "backRouterLink", required: false }] }] } });
-
+		isInline: true,
+		dependencies: [
+			{
+				kind: "directive",
+				type: CdkObserveContent,
+				selector: "[cdkObserveContent]",
+				inputs: ["cdkObserveContentDisabled", "debounce"],
+				outputs: ["cdkObserveContent"],
+				exportAs: ["cdkObserveContent"]
+			},
+			{
+				kind: "component",
+				type: NzButtonComponent,
+				selector: "button[nz-button], a[nz-button]",
+				inputs: [
+					"nzBlock",
+					"nzGhost",
+					"nzLoading",
+					"nzDanger",
+					"disabled",
+					"tabIndex",
+					"nzType",
+					"nzShape",
+					"nzSize"
+				],
+				exportAs: ["nzButton"]
+			},
+			{
+				kind: "directive",
+				type: RouterLink,
+				selector: "[routerLink]",
+				inputs: [
+					"target",
+					"queryParams",
+					"fragment",
+					"queryParamsHandling",
+					"state",
+					"info",
+					"relativeTo",
+					"preserveFragment",
+					"skipLocationChange",
+					"replaceUrl",
+					"browserUrl",
+					"routerLink"
+				]
+			}
+		],
+		changeDetection: i0.ChangeDetectionStrategy.OnPush,
+		encapsulation: i0.ViewEncapsulation.None
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: ExceptionComponent,
+	decorators: [{
+		type: Component,
+		args: [{
+			selector: "exception",
+			exportAs: "exception",
+			template: `
+    <div class="exception__img-block">
+      <div class="exception__img" [style.backgroundImage]="_img()"></div>
+    </div>
+    <div class="exception__cont">
+      @if (_title()) {
+        <h1 class="exception__cont-title" [innerHTML]="_title()"></h1>
+      }
+      <div class="exception__cont-desc" [innerHTML]="_desc()"></div>
+      <div class="exception__cont-actions">
+        <div (cdkObserveContent)="checkContent()" #conTpl>
+          <ng-content />
+        </div>
+        @if (!hasCon()) {
+          <button nz-button [routerLink]="backRouterLink()" nzType="primary">
+            {{ locale().backToHome }}
+          </button>
+        }
+      </div>
+    </div>
+  `,
+			host: {
+				class: "exception",
+				"[class.exception-rtl]": `dir() === 'rtl'`
+			},
+			changeDetection: ChangeDetectionStrategy.OnPush,
+			encapsulation: ViewEncapsulation.None,
+			imports: [
+				CdkObserveContent,
+				NzButtonComponent,
+				RouterLink
+			]
+		}]
+	}],
+	ctorParameters: () => [],
+	propDecorators: {
+		conTpl: [{
+			type: i0.ViewChild,
+			args: ["conTpl", { isSignal: true }]
+		}],
+		type: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "type",
+				required: false
+			}]
+		}],
+		img: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "img",
+				required: false
+			}]
+		}],
+		title: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "title",
+				required: false
+			}]
+		}],
+		desc: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "desc",
+				required: false
+			}]
+		}],
+		backRouterLink: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "backRouterLink",
+				required: false
+			}]
+		}]
+	}
+});
 const COMPONENTS = [ExceptionComponent];
-class ExceptionModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ExceptionModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.7", ngImport: i0, type: ExceptionModule, imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule, ExceptionComponent], exports: [ExceptionComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ExceptionModule, imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule, COMPONENTS] });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: ExceptionModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule, ...COMPONENTS],
-                    exports: COMPONENTS
-                }]
-        }] });
-
-/**
- * Generated bundle index. Do not edit.
- */
-
+var ExceptionModule = class ExceptionModule {
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: ExceptionModule,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.NgModule
+	});
+	static ɵmod = i0.ɵɵngDeclareNgModule({
+		minVersion: "14.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: ExceptionModule,
+		imports: [
+			CommonModule,
+			ObserversModule,
+			RouterModule,
+			DelonLocaleModule,
+			NzButtonModule,
+			ExceptionComponent
+		],
+		exports: [ExceptionComponent]
+	});
+	static ɵinj = i0.ɵɵngDeclareInjector({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: ExceptionModule,
+		imports: [
+			CommonModule,
+			ObserversModule,
+			RouterModule,
+			DelonLocaleModule,
+			NzButtonModule,
+			COMPONENTS
+		]
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: ExceptionModule,
+	decorators: [{
+		type: NgModule,
+		args: [{
+			imports: [
+				CommonModule,
+				ObserversModule,
+				RouterModule,
+				DelonLocaleModule,
+				NzButtonModule,
+				...COMPONENTS
+			],
+			exports: COMPONENTS
+		}]
+	}]
+});
 export { ExceptionComponent, ExceptionModule };
+
 //# sourceMappingURL=exception.mjs.map

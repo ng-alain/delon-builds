@@ -1,181 +1,377 @@
-import * as i0 from '@angular/core';
-import { input, numberAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import { G2BaseComponent } from '@delon/chart/core';
-import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { CommonModule } from '@angular/common';
-
-class G2GaugeComponent extends G2BaseComponent {
-    // #region fields
-    title = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "title" }] : /* istanbul ignore next */ []));
-    height = input(undefined, { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    color = input('#2f9cff', /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []));
-    bgColor = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "bgColor" }] : /* istanbul ignore next */ [])); // = '#f0f2f5';
-    format = input(/* @ts-ignore */
-    ...(ngDevMode ? [undefined, { debugName: "format" }] : /* istanbul ignore next */ []));
-    percent = input(undefined, { ...(ngDevMode ? { debugName: "percent" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    padding = input([10, 10, 30, 10], /* @ts-ignore */
-    ...(ngDevMode ? [{ debugName: "padding" }] : /* istanbul ignore next */ []));
-    // #endregion
-    install() {
-        // 自定义Shape 部分
-        this.winG2.registerShape('point', 'pointer', {
-            draw(cfg, container) {
-                const group = container.addGroup({});
-                // 获取极坐标系下画布中心点
-                const center = this.parsePoint({ x: 0, y: 0 });
-                // 绘制指针
-                group.addShape('line', {
-                    attrs: {
-                        x1: center.x,
-                        y1: center.y,
-                        x2: cfg.x,
-                        y2: cfg.y,
-                        stroke: cfg.color,
-                        lineWidth: 2.5,
-                        lineCap: 'round'
-                    }
-                });
-                group.addShape('circle', {
-                    attrs: {
-                        x: center.x,
-                        y: center.y,
-                        r: 5.75,
-                        stroke: cfg.color,
-                        lineWidth: 2,
-                        fill: '#fff'
-                    }
-                });
-                return group;
-            }
-        });
-        const { el, height, padding, format, theme } = this;
-        const chart = (this._chart = new this.winG2.Chart({
-            container: el.nativeElement,
-            autoFit: true,
-            height: height(),
-            padding: padding(),
-            theme: theme()
-        }));
-        chart.legend(false);
-        chart.animate(false);
-        chart.tooltip(false);
-        chart.coordinate('polar', {
-            startAngle: (-9 / 8) * Math.PI,
-            endAngle: (1 / 8) * Math.PI,
-            radius: 0.75
-        });
-        chart.scale('value', {
-            min: 0,
-            max: 100,
-            nice: true,
-            tickCount: 6
-        });
-        chart.axis('1', false);
-        chart.axis('value', {
-            line: null,
-            label: {
-                offset: -14,
-                formatter: format()
-            },
-            tickLine: null,
-            grid: null
-        });
-        chart.point().position('value*1').shape('pointer');
-        this.ready.emit(chart);
-        this.changeData();
-        chart.render();
+import * as i0 from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgModule, ViewEncapsulation, input, numberAttribute } from "@angular/core";
+import { G2BaseComponent, viewSpec } from "@delon/chart/core";
+import { NzSkeletonComponent, NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { CommonModule } from "@angular/common";
+var G2GaugeComponent = class G2GaugeComponent extends G2BaseComponent {
+	title = input(...ngDevMode ? [void 0, { debugName: "title" }] : /* istanbul ignore next */ []);
+	height = input(void 0, {
+		...ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	width = input(void 0, {
+		...ngDevMode ? { debugName: "width" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	fontSize = input(14, {
+		...ngDevMode ? { debugName: "fontSize" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	color = input("#2f9cff", ...ngDevMode ? [{ debugName: "color" }] : /* istanbul ignore next */ []);
+	bgColor = input("#f0f2f5", ...ngDevMode ? [{ debugName: "bgColor" }] : /* istanbul ignore next */ []);
+	format = input(...ngDevMode ? [void 0, { debugName: "format" }] : /* istanbul ignore next */ []);
+	percent = input(void 0, {
+		...ngDevMode ? { debugName: "percent" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	padding = input(16, ...ngDevMode ? [{ debugName: "padding" }] : /* istanbul ignore next */ []);
+	buildSpec() {
+		const { percent, color, bgColor, title, theme, padding, height, width, format } = this;
+		return {
+			...viewSpec({
+				theme: theme(),
+				padding: padding(),
+				height: height(),
+				width: width(),
+				animate: false
+			}),
+			legend: false,
+			tooltip: false,
+			children: [{
+				type: "gauge",
+				animate: false,
+				data: { value: {
+					target: percent() ?? 0,
+					total: 100,
+					name: title()
+				} },
+				scale: { color: { range: [color(), bgColor()] } },
+				style: {
+					arcShape: "round",
+					arcLineWidth: 2,
+					pinR: 4,
+					textContent: () => ""
+				},
+				axis: { y: {
+					tick: false,
+					labelSpacing: -30,
+					labelAlign: "horizontal",
+					...format() ? { labelFormatter: format() } : {}
+				} },
+				tooltip: false
+			}]
+		};
+	}
+	centerTop() {
+		const raw = this.padding();
+		const h = this.height() ?? 0;
+		const p = typeof raw === "number" ? raw : 0;
+		if (h <= 0) return 0;
+		const padTop = Math.round((h + p) / 3);
+		const radius = (h - padTop - p) / 2;
+		return Math.round(padTop + radius);
+	}
+	titleColor() {
+		return this.theme() === "dark" ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.45)";
+	}
+	valueColor() {
+		return this.theme() === "dark" ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.85)";
+	}
+	isDataOnly() {
+		return false;
+	}
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2GaugeComponent,
+		deps: null,
+		target: i0.ɵɵFactoryTarget.Component
+	});
+	static ɵcmp = i0.ɵɵngDeclareComponent({
+		minVersion: "17.0.0",
+		version: "22.2.0",
+		type: G2GaugeComponent,
+		isStandalone: true,
+		selector: "g2-gauge",
+		inputs: {
+			title: {
+				classPropertyName: "title",
+				publicName: "title",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			height: {
+				classPropertyName: "height",
+				publicName: "height",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			width: {
+				classPropertyName: "width",
+				publicName: "width",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			fontSize: {
+				classPropertyName: "fontSize",
+				publicName: "fontSize",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			color: {
+				classPropertyName: "color",
+				publicName: "color",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			bgColor: {
+				classPropertyName: "bgColor",
+				publicName: "bgColor",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			format: {
+				classPropertyName: "format",
+				publicName: "format",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			percent: {
+				classPropertyName: "percent",
+				publicName: "percent",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			padding: {
+				classPropertyName: "padding",
+				publicName: "padding",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			}
+		},
+		host: {
+			properties: {
+				"style.width.px": "width()",
+				"style.height.px": "height()",
+				"style.font-size.px": "fontSize()",
+				"style.position": "\"relative\""
+			},
+			classAttribute: "g2-gauge"
+		},
+		exportAs: ["g2Gauge"],
+		usesInheritance: true,
+		ngImport: i0,
+		template: `
+    @if (!loaded()) {
+      <div style="position: absolute; inset: 0; z-index: 1;">
+        <nz-skeleton />
+      </div>
     }
-    changeData() {
-        const { _chart, percent, color, bgColor, title } = this;
-        if (!_chart)
-            return;
-        const data = [{ name: title(), value: percent() }];
-        const val = data[0].value;
-        _chart.annotation().clear(true);
-        _chart.geometries[0].color(color());
-        // 绘制仪表盘背景
-        _chart.annotation().arc({
-            top: false,
-            start: [0, 0.95],
-            end: [100, 0.95],
-            style: {
-                stroke: bgColor(),
-                lineWidth: 12,
-                lineDash: null
-            }
-        });
-        _chart.annotation().arc({
-            start: [0, 0.95],
-            end: [data[0].value, 0.95],
-            style: {
-                stroke: color(),
-                lineWidth: 12,
-                lineDash: null
-            }
-        });
-        _chart.annotation().text({
-            position: ['50%', '85%'],
-            content: title(),
-            style: {
-                fontSize: 12,
-                fill: this.theme() === 'dark' ? 'rgba(255, 255, 255, 0.43)' : 'rgba(0, 0, 0, 0.43)',
-                textAlign: 'center'
-            }
-        });
-        _chart.annotation().text({
-            position: ['50%', '90%'],
-            content: `${val} %`,
-            style: {
-                fontSize: 20,
-                fill: this.theme() === 'dark' ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.85)',
-                textAlign: 'center'
-            },
-            offsetY: 15
-        });
-        _chart.changeData(data);
+    <div
+      class="g2-gauge__center"
+      [style.top.px]="centerTop()"
+      style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; pointer-events: none; white-space: nowrap;"
+    >
+      @if (title()) {
+        <span style="font-size: .8em;" [style.color]="titleColor()">{{ title() }}</span>
+      }
+      <span style="font-size: 1.4em;" [style.color]="valueColor()">{{ percent() ?? 0 }} %</span>
+    </div>
+  `,
+		isInline: true,
+		dependencies: [{
+			kind: "component",
+			type: NzSkeletonComponent,
+			selector: "nz-skeleton",
+			inputs: [
+				"nzActive",
+				"nzLoading",
+				"nzRound",
+				"nzTitle",
+				"nzAvatar",
+				"nzParagraph"
+			],
+			exportAs: ["nzSkeleton"]
+		}],
+		changeDetection: i0.ChangeDetectionStrategy.OnPush,
+		encapsulation: i0.ViewEncapsulation.None
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: G2GaugeComponent,
+	decorators: [{
+		type: Component,
+		args: [{
+			selector: "g2-gauge",
+			exportAs: "g2Gauge",
+			template: `
+    @if (!loaded()) {
+      <div style="position: absolute; inset: 0; z-index: 1;">
+        <nz-skeleton />
+      </div>
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2GaugeComponent, isStandalone: true, selector: "g2-gauge", inputs: { title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, color: { classPropertyName: "color", publicName: "color", isSignal: true, isRequired: false, transformFunction: null }, bgColor: { classPropertyName: "bgColor", publicName: "bgColor", isSignal: true, isRequired: false, transformFunction: null }, format: { classPropertyName: "format", publicName: "format", isSignal: true, isRequired: false, transformFunction: null }, percent: { classPropertyName: "percent", publicName: "percent", isSignal: true, isRequired: false, transformFunction: null }, padding: { classPropertyName: "padding", publicName: "padding", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.g2-gauge": "true" } }, exportAs: ["g2Gauge"], usesInheritance: true, ngImport: i0, template: `@if (!loaded()) {
-    <nz-skeleton />
-  }`, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'g2-gauge',
-                    exportAs: 'g2Gauge',
-                    template: `@if (!loaded()) {
-    <nz-skeleton />
-  }`,
-                    host: {
-                        '[class.g2-gauge]': 'true'
-                    },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    imports: [NzSkeletonComponent]
-                }]
-        }], propDecorators: { title: [{ type: i0.Input, args: [{ isSignal: true, alias: "title", required: false }] }], height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], color: [{ type: i0.Input, args: [{ isSignal: true, alias: "color", required: false }] }], bgColor: [{ type: i0.Input, args: [{ isSignal: true, alias: "bgColor", required: false }] }], format: [{ type: i0.Input, args: [{ isSignal: true, alias: "format", required: false }] }], percent: [{ type: i0.Input, args: [{ isSignal: true, alias: "percent", required: false }] }], padding: [{ type: i0.Input, args: [{ isSignal: true, alias: "padding", required: false }] }] } });
-
+    <div
+      class="g2-gauge__center"
+      [style.top.px]="centerTop()"
+      style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; pointer-events: none; white-space: nowrap;"
+    >
+      @if (title()) {
+        <span style="font-size: .8em;" [style.color]="titleColor()">{{ title() }}</span>
+      }
+      <span style="font-size: 1.4em;" [style.color]="valueColor()">{{ percent() ?? 0 }} %</span>
+    </div>
+  `,
+			host: {
+				class: "g2-gauge",
+				"[style.width.px]": "width()",
+				"[style.height.px]": "height()",
+				"[style.font-size.px]": "fontSize()",
+				"[style.position]": "\"relative\""
+			},
+			changeDetection: ChangeDetectionStrategy.OnPush,
+			encapsulation: ViewEncapsulation.None,
+			imports: [NzSkeletonComponent]
+		}]
+	}],
+	propDecorators: {
+		title: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "title",
+				required: false
+			}]
+		}],
+		height: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "height",
+				required: false
+			}]
+		}],
+		width: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "width",
+				required: false
+			}]
+		}],
+		fontSize: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "fontSize",
+				required: false
+			}]
+		}],
+		color: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "color",
+				required: false
+			}]
+		}],
+		bgColor: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "bgColor",
+				required: false
+			}]
+		}],
+		format: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "format",
+				required: false
+			}]
+		}],
+		percent: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "percent",
+				required: false
+			}]
+		}],
+		padding: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "padding",
+				required: false
+			}]
+		}]
+	}
+});
 const COMPONENTS = [G2GaugeComponent];
-class G2GaugeModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeModule, imports: [CommonModule, NzSkeletonModule, G2GaugeComponent], exports: [G2GaugeComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2GaugeModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [CommonModule, NzSkeletonModule, ...COMPONENTS],
-                    exports: COMPONENTS
-                }]
-        }] });
-
-/**
- * Generated bundle index. Do not edit.
- */
-
+var G2GaugeModule = class G2GaugeModule {
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2GaugeModule,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.NgModule
+	});
+	static ɵmod = i0.ɵɵngDeclareNgModule({
+		minVersion: "14.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2GaugeModule,
+		imports: [
+			CommonModule,
+			NzSkeletonModule,
+			G2GaugeComponent
+		],
+		exports: [G2GaugeComponent]
+	});
+	static ɵinj = i0.ɵɵngDeclareInjector({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2GaugeModule,
+		imports: [
+			CommonModule,
+			NzSkeletonModule,
+			COMPONENTS
+		]
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: G2GaugeModule,
+	decorators: [{
+		type: NgModule,
+		args: [{
+			imports: [
+				CommonModule,
+				NzSkeletonModule,
+				...COMPONENTS
+			],
+			exports: COMPONENTS
+		}]
+	}]
+});
 export { G2GaugeComponent, G2GaugeModule };
+
 //# sourceMappingURL=gauge.mjs.map

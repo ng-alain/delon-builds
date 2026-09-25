@@ -12292,6 +12292,8 @@ textarea.ant-input {
 .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
   padding-top: 0;
   padding-bottom: 0;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
   border-start-end-radius: 2px;
   border-end-end-radius: 2px;
 }

@@ -1,79 +1,202 @@
-import * as i0 from '@angular/core';
-import { input, numberAttribute, output, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { fromEvent, debounceTime } from 'rxjs';
-import { G2BaseComponent } from '@delon/chart/core';
-import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { CommonModule } from '@angular/common';
-
-class G2CustomComponent extends G2BaseComponent {
-    // #region fields
-    height = input(undefined, { ...(ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    resizeTime = input(0, { ...(ngDevMode ? { debugName: "resizeTime" } : /* istanbul ignore next */ {}), transform: numberAttribute });
-    render = output();
-    resize = output();
-    destroy = output();
-    // #endregion
-    install() {
-        this.el.nativeElement.innerHTML = '';
-        this.render.emit(this.el);
-        this.installResizeEvent();
-    }
-    resize$;
-    installResizeEvent() {
-        this.resize$?.unsubscribe();
-        if (this.resizeTime() <= 0) {
-            return;
-        }
-        this.resize$ = fromEvent(window, 'resize')
-            .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(Math.min(200, this.resizeTime())))
-            .subscribe(() => this.resize.emit(this.el));
-    }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CustomComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "22.1.7", type: G2CustomComponent, isStandalone: true, selector: "g2,g2-custom", inputs: { height: { classPropertyName: "height", publicName: "height", isSignal: true, isRequired: false, transformFunction: null }, resizeTime: { classPropertyName: "resizeTime", publicName: "resizeTime", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { render: "render", resize: "resize", destroy: "destroy" }, host: { properties: { "style.height.px": "height()" } }, exportAs: ["g2Custom"], usesInheritance: true, ngImport: i0, template: `
-    @if (!loaded()) {
-      <nz-skeleton />
-    }
-    <ng-content />
-  `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CustomComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'g2,g2-custom',
-                    exportAs: 'g2Custom',
-                    template: `
+import * as i0 from "@angular/core";
+import { ChangeDetectionStrategy, Component, NgModule, ViewEncapsulation, input, numberAttribute, output } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { debounceTime, fromEvent } from "rxjs";
+import { G2BaseComponent } from "@delon/chart/core";
+import { NzSkeletonComponent, NzSkeletonModule } from "ng-zorro-antd/skeleton";
+import { CommonModule } from "@angular/common";
+var G2CustomComponent = class G2CustomComponent extends G2BaseComponent {
+	height = input(void 0, {
+		...ngDevMode ? { debugName: "height" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	resizeTime = input(0, {
+		...ngDevMode ? { debugName: "resizeTime" } : /* istanbul ignore next */ {},
+		transform: numberAttribute
+	});
+	render = output();
+	resize = output();
+	destroy = output();
+	install() {
+		this.el.nativeElement.innerHTML = "";
+		this.markLoaded();
+		this.render.emit(this.el);
+		this.installResizeEvent();
+	}
+	resize$;
+	installResizeEvent() {
+		this.resize$?.unsubscribe();
+		if (this.resizeTime() <= 0) return;
+		this.resize$ = fromEvent(window, "resize").pipe(takeUntilDestroyed(this.destroyRef), debounceTime(Math.min(200, this.resizeTime()))).subscribe(() => this.resize.emit(this.el));
+	}
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2CustomComponent,
+		deps: null,
+		target: i0.ɵɵFactoryTarget.Component
+	});
+	static ɵcmp = i0.ɵɵngDeclareComponent({
+		minVersion: "17.0.0",
+		version: "22.2.0",
+		type: G2CustomComponent,
+		isStandalone: true,
+		selector: "g2,g2-custom",
+		inputs: {
+			height: {
+				classPropertyName: "height",
+				publicName: "height",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			},
+			resizeTime: {
+				classPropertyName: "resizeTime",
+				publicName: "resizeTime",
+				isSignal: true,
+				isRequired: false,
+				transformFunction: null
+			}
+		},
+		outputs: {
+			render: "render",
+			resize: "resize",
+			destroy: "destroy"
+		},
+		host: { properties: { "style.height.px": "height()" } },
+		exportAs: ["g2Custom"],
+		usesInheritance: true,
+		ngImport: i0,
+		template: `
     @if (!loaded()) {
       <nz-skeleton />
     }
     <ng-content />
   `,
-                    host: {
-                        '[style.height.px]': 'height()'
-                    },
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    imports: [NzSkeletonComponent]
-                }]
-        }], propDecorators: { height: [{ type: i0.Input, args: [{ isSignal: true, alias: "height", required: false }] }], resizeTime: [{ type: i0.Input, args: [{ isSignal: true, alias: "resizeTime", required: false }] }], render: [{ type: i0.Output, args: ["render"] }], resize: [{ type: i0.Output, args: ["resize"] }], destroy: [{ type: i0.Output, args: ["destroy"] }] } });
-
+		isInline: true,
+		dependencies: [{
+			kind: "component",
+			type: NzSkeletonComponent,
+			selector: "nz-skeleton",
+			inputs: [
+				"nzActive",
+				"nzLoading",
+				"nzRound",
+				"nzTitle",
+				"nzAvatar",
+				"nzParagraph"
+			],
+			exportAs: ["nzSkeleton"]
+		}],
+		changeDetection: i0.ChangeDetectionStrategy.OnPush,
+		encapsulation: i0.ViewEncapsulation.None
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: G2CustomComponent,
+	decorators: [{
+		type: Component,
+		args: [{
+			selector: "g2,g2-custom",
+			exportAs: "g2Custom",
+			template: `
+    @if (!loaded()) {
+      <nz-skeleton />
+    }
+    <ng-content />
+  `,
+			host: { "[style.height.px]": "height()" },
+			changeDetection: ChangeDetectionStrategy.OnPush,
+			encapsulation: ViewEncapsulation.None,
+			imports: [NzSkeletonComponent]
+		}]
+	}],
+	propDecorators: {
+		height: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "height",
+				required: false
+			}]
+		}],
+		resizeTime: [{
+			type: i0.Input,
+			args: [{
+				isSignal: true,
+				alias: "resizeTime",
+				required: false
+			}]
+		}],
+		render: [{
+			type: i0.Output,
+			args: ["render"]
+		}],
+		resize: [{
+			type: i0.Output,
+			args: ["resize"]
+		}],
+		destroy: [{
+			type: i0.Output,
+			args: ["destroy"]
+		}]
+	}
+});
 const COMPONENTS = [G2CustomComponent];
-class G2CustomModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CustomModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "22.1.7", ngImport: i0, type: G2CustomModule, imports: [CommonModule, NzSkeletonModule, G2CustomComponent], exports: [G2CustomComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CustomModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] });
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "22.1.7", ngImport: i0, type: G2CustomModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [CommonModule, NzSkeletonModule, ...COMPONENTS],
-                    exports: COMPONENTS
-                }]
-        }] });
-
-/**
- * Generated bundle index. Do not edit.
- */
-
+var G2CustomModule = class G2CustomModule {
+	static ɵfac = i0.ɵɵngDeclareFactory({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2CustomModule,
+		deps: [],
+		target: i0.ɵɵFactoryTarget.NgModule
+	});
+	static ɵmod = i0.ɵɵngDeclareNgModule({
+		minVersion: "14.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2CustomModule,
+		imports: [
+			CommonModule,
+			NzSkeletonModule,
+			G2CustomComponent
+		],
+		exports: [G2CustomComponent]
+	});
+	static ɵinj = i0.ɵɵngDeclareInjector({
+		minVersion: "12.0.0",
+		version: "22.2.0",
+		ngImport: i0,
+		type: G2CustomModule,
+		imports: [
+			CommonModule,
+			NzSkeletonModule,
+			COMPONENTS
+		]
+	});
+};
+i0.ɵɵngDeclareClassMetadata({
+	minVersion: "12.0.0",
+	version: "22.2.0",
+	ngImport: i0,
+	type: G2CustomModule,
+	decorators: [{
+		type: NgModule,
+		args: [{
+			imports: [
+				CommonModule,
+				NzSkeletonModule,
+				...COMPONENTS
+			],
+			exports: COMPONENTS
+		}]
+	}]
+});
 export { G2CustomComponent, G2CustomModule };
+
 //# sourceMappingURL=custom.mjs.map

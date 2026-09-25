@@ -11,8 +11,7 @@
  * inRange(-3, -2, -6); // true
  * ```
  */
-declare function inRange(value: number, start: number, end?: number): boolean;
-
+export declare function inRange(value: number, start: number, end?: number): boolean;
 /**
  * Computes `number` rounded up to `precision`.
  *
@@ -23,7 +22,7 @@ declare function inRange(value: number, start: number, end?: number): boolean;
  * ceil(6040, -2); // 6100
  * ```
  */
-declare function ceil(number: number, precision?: number): number;
+export declare function ceil(number: number, precision?: number): number;
 /**
  * Computes `number` rounded down to `precision`.
  *
@@ -34,7 +33,7 @@ declare function ceil(number: number, precision?: number): number;
  * floor(4060, -2); // 4000
  * ```
  */
-declare function floor(number: number, precision?: number): number;
+export declare function floor(number: number, precision?: number): number;
 /**
  * Computes `number` rounded to `precision`.
  *
@@ -45,6 +44,4 @@ declare function floor(number: number, precision?: number): number;
  * round(4060, -2); // 4100
  * ```
  */
-declare function round(number: number, precision?: number): number;
-
-export { ceil, floor, inRange, round };
+export declare function round(number: number, precision?: number): number;

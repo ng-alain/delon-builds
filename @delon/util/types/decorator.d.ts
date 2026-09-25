@@ -1,5 +1,5 @@
-interface ZoneOptions {
-    ngZoneName?: string;
+export interface ZoneOptions {
+  ngZoneName?: string;
 }
 type DecoratorType = (target: unknown, fn: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 /**
@@ -16,7 +16,7 @@ type DecoratorType = (target: unknown, fn: string, descriptor: PropertyDescripto
  * }
  * ```
  */
-declare function ZoneOutside(options?: ZoneOptions): DecoratorType;
+export declare function ZoneOutside(options?: ZoneOptions): DecoratorType;
 /**
  * The decoration method runs in `run`
  *
@@ -31,7 +31,4 @@ declare function ZoneOutside(options?: ZoneOptions): DecoratorType;
  * }
  * ```
  */
-declare function ZoneRun(options?: ZoneOptions): DecoratorType;
-
-export { ZoneOutside, ZoneRun };
-export type { ZoneOptions };
+export declare function ZoneRun(options?: ZoneOptions): DecoratorType;

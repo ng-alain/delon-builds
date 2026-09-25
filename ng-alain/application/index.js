@@ -170,7 +170,6 @@ function addCodeStylesToPackageJson() {
  */
 const PNPM_PUBLIC_HOIST_PATTERN = [
     `@ant-design/icons-angular`,
-    `@antv/data-set`,
     `@antv/g2`,
     `@faker-js/faker`,
     `@github/hotkey`,
