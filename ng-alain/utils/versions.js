@@ -29,9 +29,9 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `eslint-plugin-jsdoc@^64.5.4`,
         `eslint-plugin-prettier@^5.5.6`,
         `eslint-plugin-unused-imports@^4.4.1`,
-        `typescript@~6.0.2`,
+        `typescript@~6.0.3`,
         `typescript-eslint@^8.70.1`,
-        `prettier@^3.9.8`,
+        `prettier@^3.9.9`,
         `husky@^9.1.7`,
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^18.0.0`,
@@ -52,7 +52,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `vitest@^4.1.11`,
         `jsdom@^30.0.1`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^22.1.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^22.1.1`]);
 }
 function addESLintRule(projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
