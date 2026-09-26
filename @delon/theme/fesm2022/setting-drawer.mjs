@@ -1,5 +1,5 @@
 import * as i0 from "@angular/core";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule, NgZone, booleanAttribute, inject, isDevMode } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgModule, booleanAttribute, inject, isDevMode } from "@angular/core";
 import * as i1 from "@angular/forms";
 import { FormsModule } from "@angular/forms";
 import * as i2 from "ng-zorro-antd/drawer";
@@ -8,12 +8,10 @@ import { NzInputDirective } from "ng-zorro-antd/input";
 import { NzInputNumberComponent } from "ng-zorro-antd/input-number";
 import * as i5 from "ng-zorro-antd/switch";
 import { NzSwitchComponent, NzSwitchModule } from "ng-zorro-antd/switch";
-import { __decorate } from "tslib";
 import { Directionality } from "@angular/cdk/bidi";
 import { DOCUMENT } from "@angular/common";
 import { SettingsService } from "@delon/theme";
 import { copy } from "@delon/util/browser";
-import { ZoneOutside } from "@delon/util/decorator";
 import { LazyService, deepCopy } from "@delon/util/other";
 import { NzAlertComponent } from "ng-zorro-antd/alert";
 import { NzButtonComponent } from "ng-zorro-antd/button";
@@ -436,7 +434,6 @@ var SettingDrawerComponent = class SettingDrawerComponent {
 	msg = inject(NzMessageService);
 	settingSrv = inject(SettingsService);
 	lazy = inject(LazyService);
-	ngZone = inject(NgZone);
 	doc = inject(DOCUMENT);
 	autoApplyColor = true;
 	compilingText = "Compiling...";
@@ -492,14 +489,14 @@ var SettingDrawerComponent = class SettingDrawerComponent {
 		return vars;
 	}
 	runLess() {
-		const { ngZone, msg, cdr } = this;
+		const { msg } = this;
 		const msgId = msg.loading(this.compilingText, { nzDuration: 0 }).messageId;
 		setTimeout(() => {
 			this.loadLess().then(() => {
 				window.less.modifyVars(this.genVars()).then(() => {
 					msg.success("成功");
 					msg.remove(msgId);
-					ngZone.run(() => cdr.detectChanges());
+					this.cdr.detectChanges();
 				});
 			});
 		}, 200);
@@ -820,8 +817,6 @@ var SettingDrawerComponent = class SettingDrawerComponent {
 		changeDetection: i0.ChangeDetectionStrategy.OnPush
 	});
 };
-__decorate([ZoneOutside()], SettingDrawerComponent.prototype, "loadLess", null);
-__decorate([ZoneOutside()], SettingDrawerComponent.prototype, "runLess", null);
 i0.ɵɵngDeclareClassMetadata({
 	minVersion: "12.0.0",
 	version: "22.2.0",
@@ -859,9 +854,7 @@ i0.ɵɵngDeclareClassMetadata({
 		}],
 		compilingText: [{ type: Input }],
 		devTips: [{ type: Input }],
-		lessJs: [{ type: Input }],
-		loadLess: [],
-		runLess: []
+		lessJs: [{ type: Input }]
 	}
 });
 const COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];

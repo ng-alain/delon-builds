@@ -29,7 +29,6 @@ export interface XlsxExportResult {
 export declare class XlsxService {
   private readonly http;
   private readonly lazy;
-  private readonly ngZone;
   private readonly cogSrv;
   private cog;
   constructor();

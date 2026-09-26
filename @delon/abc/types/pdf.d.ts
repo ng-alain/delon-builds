@@ -46,7 +46,6 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
   private readonly _el;
   private readonly doc;
   private readonly cdr;
-  private readonly ngZone;
   private readonly destroy$;
   private readonly cogSrv;
   inited: boolean;

@@ -27,7 +27,6 @@ export declare class SettingDrawerComponent implements OnInit {
   private readonly msg;
   private readonly settingSrv;
   private readonly lazy;
-  private readonly ngZone;
   private readonly doc;
   autoApplyColor: boolean;
   compilingText: string;

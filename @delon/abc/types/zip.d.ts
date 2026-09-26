@@ -30,7 +30,6 @@ export interface ZipSaveOptions {
 export declare class ZipService {
   private readonly http;
   private readonly lazy;
-  private readonly ngZone;
   private readonly cogSrv;
   private cog;
   constructor();

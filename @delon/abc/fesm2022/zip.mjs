@@ -1,15 +1,12 @@
-import { __decorate } from "tslib";
 import { HttpClient } from "@angular/common/http";
 import * as i0 from "@angular/core";
-import { Injectable, NgZone, inject } from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { saveAs } from "file-saver";
 import { AlainConfigService } from "@delon/util/config";
-import { ZoneOutside } from "@delon/util/decorator";
 import { LazyService } from "@delon/util/other";
 var ZipService = class ZipService {
 	http = inject(HttpClient);
 	lazy = inject(LazyService);
-	ngZone = inject(NgZone);
 	cogSrv = inject(AlainConfigService);
 	cog;
 	constructor() {
@@ -26,9 +23,7 @@ var ZipService = class ZipService {
 	}
 	read(fileOrUrl, options) {
 		return new Promise((resolve, reject) => {
-			const resolveCallback = (data) => {
-				this.ngZone.run(() => resolve(data));
-			};
+			const resolveCallback = resolve;
 			this.init().then(() => {
 				if (typeof fileOrUrl === "string") {
 					this.http.request("GET", fileOrUrl, { responseType: "arraybuffer" }).subscribe({
@@ -108,7 +103,6 @@ var ZipService = class ZipService {
 		providedIn: "root"
 	});
 };
-__decorate([ZoneOutside()], ZipService.prototype, "read", null);
 i0.ɵɵngDeclareClassMetadata({
 	minVersion: "12.0.0",
 	version: "22.2.0",
@@ -118,8 +112,7 @@ i0.ɵɵngDeclareClassMetadata({
 		type: Injectable,
 		args: [{ providedIn: "root" }]
 	}],
-	ctorParameters: () => [],
-	propDecorators: { read: [] }
+	ctorParameters: () => []
 });
 export { ZipService };
 

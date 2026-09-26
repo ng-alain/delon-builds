@@ -1,12 +1,10 @@
-import { __decorate } from "tslib";
 import { Platform } from "@angular/cdk/platform";
 import { CommonModule, DOCUMENT } from "@angular/common";
 import * as i0 from "@angular/core";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, Input, NgModule, NgZone, Output, ViewEncapsulation, booleanAttribute, inject, numberAttribute } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, ElementRef, EventEmitter, Input, NgModule, Output, ViewEncapsulation, booleanAttribute, inject, numberAttribute } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { debounceTime, filter, fromEvent, timer } from "rxjs";
 import { AlainConfigService } from "@delon/util/config";
-import { ZoneOutside } from "@delon/util/decorator";
 import { LazyService } from "@delon/util/other";
 import { NzSkeletonComponent, NzSkeletonModule } from "ng-zorro-antd/skeleton";
 const PDF_DEFULAT_CONFIG = {
@@ -39,7 +37,6 @@ var PdfComponent = class PdfComponent {
 	_el = inject(ElementRef).nativeElement;
 	doc = inject(DOCUMENT);
 	cdr = inject(ChangeDetectorRef);
-	ngZone = inject(NgZone);
 	destroy$ = inject(DestroyRef);
 	cogSrv = inject(AlainConfigService);
 	inited = false;
@@ -138,13 +135,13 @@ var PdfComponent = class PdfComponent {
 		return pdf && pi > pdf.numPages ? pdf.numPages : pi;
 	}
 	emit(type, opt) {
-		this.ngZone.run(() => this.change.emit({
+		this.change.emit({
 			type,
 			pdf: this._pdf,
 			pi: this._pi,
 			total: this._total,
 			...opt
-		}));
+		});
 	}
 	initDelay() {
 		if (!this.win.pdfjsLib) throw new Error(`No window.pdfjsLib found, please make sure that cdn or local path exists, the current referenced path is: ${JSON.stringify(this.lib)}`);
@@ -154,10 +151,8 @@ var PdfComponent = class PdfComponent {
 		timer(this.delay ?? 0).pipe(takeUntilDestroyed(this.destroy$)).subscribe(() => this.load());
 	}
 	setLoading(status) {
-		this.ngZone.run(() => {
-			this._loading = status;
-			this.cdr.detectChanges();
-		});
+		this._loading = status;
+		this.cdr.detectChanges();
 	}
 	load() {
 		const { _src } = this;
@@ -167,10 +162,6 @@ var PdfComponent = class PdfComponent {
 			return;
 		}
 		this.destroy();
-		this.ngZone.run(() => {
-			this._loading = true;
-			this.cdr.detectChanges();
-		});
 		this.setLoading(true);
 		const loadingTask = this.loadingTask = this.win.pdfjsLib.getDocument(_src);
 		loadingTask.onProgress = (progress) => this.emit("load-progress", { progress });
@@ -212,9 +203,7 @@ var PdfComponent = class PdfComponent {
 		this.updateSize();
 	}
 	timeExec(fn) {
-		this.ngZone.runOutsideAngular(() => {
-			timer(0).pipe(takeUntilDestroyed(this.destroy$)).subscribe(() => this.ngZone.runOutsideAngular(() => fn()));
-		});
+		timer(0).pipe(takeUntilDestroyed(this.destroy$)).subscribe(() => fn());
 	}
 	updateSize() {
 		const currentViewer = this.pageViewer;
@@ -335,7 +324,7 @@ var PdfComponent = class PdfComponent {
 		}
 		const { lib } = this;
 		this.lazySrv.load(`${lib}build/pdf.min.js`).then(() => this.lazySrv.load([`${lib}web/pdf_viewer.js`, `${lib}web/pdf_viewer.css`])).then(() => this.initDelay());
-		this.ngZone.runOutsideAngular(() => this.initResize());
+		this.initResize();
 	}
 	initResize() {
 		fromEvent(this.win, "resize").pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf != null), takeUntilDestroyed(this.destroy$)).subscribe(() => this.updateSize());
@@ -453,10 +442,6 @@ var PdfComponent = class PdfComponent {
 		encapsulation: i0.ViewEncapsulation.None
 	});
 };
-__decorate([ZoneOutside()], PdfComponent.prototype, "load", null);
-__decorate([ZoneOutside()], PdfComponent.prototype, "resetDoc", null);
-__decorate([ZoneOutside()], PdfComponent.prototype, "updateSize", null);
-__decorate([ZoneOutside()], PdfComponent.prototype, "destroy", null);
 i0.ɵɵngDeclareClassMetadata({
 	minVersion: "12.0.0",
 	version: "22.2.0",
@@ -531,11 +516,7 @@ i0.ɵɵngDeclareClassMetadata({
 			type: Input,
 			args: [{ transform: numberAttribute }]
 		}],
-		change: [{ type: Output }],
-		load: [],
-		resetDoc: [],
-		updateSize: [],
-		destroy: []
+		change: [{ type: Output }]
 	}
 });
 const COMPONENTS = [PdfComponent];

@@ -1,15 +1,12 @@
-import { __decorate } from "tslib";
 import { HttpClient } from "@angular/common/http";
 import * as i0 from "@angular/core";
-import { Directive, Injectable, NgModule, NgZone, inject, input } from "@angular/core";
+import { Directive, Injectable, NgModule, inject, input } from "@angular/core";
 import isUtf8 from "isutf8";
 import { AlainConfigService } from "@delon/util/config";
-import { ZoneOutside } from "@delon/util/decorator";
 import { LazyService } from "@delon/util/other";
 var XlsxService = class XlsxService {
 	http = inject(HttpClient);
 	lazy = inject(LazyService);
-	ngZone = inject(NgZone);
 	cogSrv = inject(AlainConfigService);
 	cog;
 	constructor() {
@@ -39,7 +36,7 @@ var XlsxService = class XlsxService {
 	}
 	import(fileOrUrl) {
 		return new Promise((resolve, reject) => {
-			const r = (data) => this.ngZone.run(() => resolve(this.read(data)));
+			const r = (data) => resolve(this.read(data));
 			this.init().then(() => {
 				if (typeof fileOrUrl === "string") {
 					this.http.request("GET", fileOrUrl, { responseType: "arraybuffer" }).subscribe({
@@ -113,8 +110,6 @@ var XlsxService = class XlsxService {
 		providedIn: "root"
 	});
 };
-__decorate([ZoneOutside()], XlsxService.prototype, "read", null);
-__decorate([ZoneOutside()], XlsxService.prototype, "export", null);
 i0.ɵɵngDeclareClassMetadata({
 	minVersion: "12.0.0",
 	version: "22.2.0",
@@ -124,11 +119,7 @@ i0.ɵɵngDeclareClassMetadata({
 		type: Injectable,
 		args: [{ providedIn: "root" }]
 	}],
-	ctorParameters: () => [],
-	propDecorators: {
-		read: [],
-		export: []
-	}
+	ctorParameters: () => []
 });
 var XlsxDirective = class XlsxDirective {
 	srv = inject(XlsxService);

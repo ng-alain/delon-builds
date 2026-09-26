@@ -1,3 +1,6 @@
+/**
+ * @deprecated Will be removed in v24.0.0
+ */
 export interface ZoneOptions {
   ngZoneName?: string;
 }
@@ -6,6 +9,8 @@ type DecoratorType = (target: unknown, fn: string, descriptor: PropertyDescripto
  * The decoration method runs in `runOutsideAngular`
  *
  * 装饰方法运行在 `runOutsideAngular` 内
+ *
+ * @deprecated Will be removed in v24.0.0
  *
  * ```ts
  * class MockClass {
@@ -21,6 +26,8 @@ export declare function ZoneOutside(options?: ZoneOptions): DecoratorType;
  * The decoration method runs in `run`
  *
  * 装饰方法运行在 `run` 内
+ *
+ * @deprecated Will be removed in v24.0.0
  *
  * ```ts
  * class MockClass {
