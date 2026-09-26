@@ -21,10 +21,10 @@ import { yn } from "@delon/theme";
 import { AlainConfigService } from "@delon/util/config";
 import { formatDate } from "@delon/util/date-time";
 import { CurrencyService, formatMask } from "@delon/util/format";
-import { NZ_DATE_LOCALE } from "ng-zorro-antd/i18n";
+import { NzI18nService } from "ng-zorro-antd/i18n";
 import { NzImageModule as NzImageModule$1 } from "ng-zorro-antd/experimental/image";
 var CellService = class CellService {
-	dateLocale = inject(NZ_DATE_LOCALE, { optional: true }) ?? void 0;
+	nzI18n = inject(NzI18nService);
 	currency = inject(CurrencyService);
 	dom = inject(DomSanitizer);
 	configSrv = inject(AlainConfigService);
@@ -38,7 +38,7 @@ var CellService = class CellService {
 			type: "fn",
 			ref: (value, opt) => {
 				return { text: formatDate(value, opt.date.format, {
-					locale: this.dateLocale,
+					locale: this.nzI18n.getDateLocale(),
 					customFormat: this.configSrv.get("themePipe")?.dateFormatCustom
 				}) };
 			}

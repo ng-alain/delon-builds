@@ -23,7 +23,7 @@ export declare function dispatchFakeEvent(node: Node | Window, type: string | Ev
 export declare function typeInElement(value: string, element: HTMLInputElement): void;
 export declare const DROPDOWN_MIN_TIME = 1000;
 /**
- * 触发 dropdown
+ * 触发 dropdown；不推进时间，调用方需自行推进其假定时器
  */
 export declare function dispatchDropDown(dl: DebugElement, trigger: 'mouseleave' | 'click', allowNull?: boolean): boolean;
 export declare const PageG2DataCount = 2;

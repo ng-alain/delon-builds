@@ -317,7 +317,7 @@ export declare class CellModule {
   static ɵinj: i0.ɵɵInjectorDeclaration<CellModule>;
 }
 export declare class CellService {
-  private readonly dateLocale;
+  private readonly nzI18n;
   private readonly currency;
   private readonly dom;
   private readonly configSrv;
