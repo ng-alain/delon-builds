@@ -40,11 +40,11 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@ng-util/monaco-editor@^22.0.0`,
         `@delon/testing@${version}`,
         // vi test
-        // `@playwright/test@DEP-22.0.0`,
-        // `@vitest/browser-playwright@DEP-22.0.0`,
-        // `@vitest/coverage-v8@DEP-22.0.0`,
-        // `vitest@DEP-22.0.0`,
-        // `jsdom@DEP-22.0.0`,
+        // `@playwright/test@DEP-22.1.0`,
+        // `@vitest/browser-playwright@DEP-22.1.0`,
+        // `@vitest/coverage-v8@DEP-22.1.0`,
+        // `vitest@DEP-22.1.0`,
+        // `jsdom@DEP-22.1.0`,
         // When use vitest
         `@playwright/test@^1.62.1`,
         `@vitest/browser-playwright@^4.1.11`,
