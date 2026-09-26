@@ -1,7 +1,7 @@
+import { TestBed, tick } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { NzDropdownDirective } from "ng-zorro-antd/dropdown";
 import { isSignal } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
 function dispatchEvent(node, event) {
 	node.dispatchEvent(event);
 	return event;
@@ -29,6 +29,7 @@ function dispatchDropDown(dl, trigger, allowNull = true) {
 	const el = directive.injector.get(NzDropdownDirective).elementRef.nativeElement;
 	if (trigger === "click") dispatchFakeEvent(el, "click");
 	else dispatchFakeEvent(el, "mouseenter");
+	tick(DROPDOWN_MIN_TIME);
 	return true;
 }
 const PageG2DataCount = 2;
