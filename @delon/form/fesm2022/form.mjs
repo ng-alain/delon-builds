@@ -285,10 +285,8 @@ function getData(schema, ui, formData, asyncArgs) {
 	if (typeof ui.asyncData === "function") return ui.asyncData(asyncArgs).pipe(map((list) => getCopyEnum(list, formData, schema.readOnly)));
 	return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
-function isDateFns(srv) {
-	if (!srv) return false;
-	const data = srv.getDateLocale();
-	return data != null && !!data.formatDistance;
+function isDateFns(dateLocale) {
+	return dateLocale != null && !!dateLocale.formatDistance;
 }
 var FormProperty = class {
 	injector;

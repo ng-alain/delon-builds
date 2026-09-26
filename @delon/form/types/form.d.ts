@@ -14,7 +14,7 @@ import Ajv from "ajv";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import * as i8 from "ng-zorro-antd/date-picker";
 import { DisabledDateFn, DisabledTimeFn, NzDatePickerSizeType, SupportTimeOptions } from "ng-zorro-antd/date-picker";
-import { NzDatePickerI18nInterface, NzI18nService } from "ng-zorro-antd/i18n";
+import { NzDatePickerI18nInterface } from "ng-zorro-antd/i18n";
 import * as i16 from "ng-zorro-antd/select";
 import { NzOptionComponent, NzSelectModeType } from "ng-zorro-antd/select";
 import * as i1 from "@angular/common";
@@ -30,6 +30,7 @@ import * as i14 from "ng-zorro-antd/modal";
 import * as i15 from "ng-zorro-antd/radio";
 import * as i17 from "ng-zorro-antd/switch";
 import * as i18 from "ng-zorro-antd/tooltip";
+import { Locale } from "date-fns";
 export declare const SF_DEFAULT_CONFIG: AlainSFConfig;
 export declare function mergeConfig(srv: AlainConfigService): AlainSFConfig;
 export type SFSchemaDefinition = Record<string, SFSchema>;
@@ -2119,4 +2120,4 @@ export declare function getData(schema: SFSchema, ui: SFUISchemaItem, formData: 
 /**
  * Whether to using date-fns to format a date
  */
-export declare function isDateFns(srv: NzI18nService): boolean;
+export declare function isDateFns(dateLocale: Locale | null): boolean;
