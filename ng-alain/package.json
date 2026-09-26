@@ -1,9 +1,10 @@
 {
   "name": "ng-alain",
-  "version": "22.0.0-bf62a2b",
+  "version": "22.0.0-ae38f90",
   "description": "Schematics specific to NG-ALAIN",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ng-alain/ng-alain.git"

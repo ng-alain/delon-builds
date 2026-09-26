@@ -1,9 +1,9 @@
 # Nested package.json's are only needed for development.
 auto-focus/package.json
+cell/package.json
 count-down/package.json
 date-picker/package.json
 down-file/package.json
-cell/package.json
 ellipsis/package.json
 error-collect/package.json
 exception/package.json
@@ -13,8 +13,8 @@ global-footer/package.json
 hotkey/package.json
 loading/package.json
 lodop/package.json
-media/package.json
 notice-icon/package.json
+media/package.json
 observers/package.json
 onboarding/package.json
 page-header/package.json
