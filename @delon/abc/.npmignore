@@ -13,15 +13,15 @@ global-footer/package.json
 hotkey/package.json
 loading/package.json
 lodop/package.json
-notice-icon/package.json
 media/package.json
+notice-icon/package.json
 observers/package.json
 onboarding/package.json
 page-header/package.json
 pdf/package.json
 quick-menu/package.json
-reuse-tab/package.json
 se/package.json
+reuse-tab/package.json
 sg/package.json
 st/package.json
 sv/package.json
