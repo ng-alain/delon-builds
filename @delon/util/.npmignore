@@ -7,9 +7,9 @@ decorator/package.json
 form/package.json
 format/package.json
 math/package.json
-other/package.json
 pipes/package.json
+other/package.json
 token/package.json
+pipes/filter/package.json
 pipes/currency/package.json
 pipes/format/package.json
-pipes/filter/package.json
