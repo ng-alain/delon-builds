@@ -60,7 +60,10 @@ var G2SingleBarComponent = class G2SingleBarComponent extends G2BaseComponent {
 				formatter: format(),
 				style: { ...textStyle() }
 			}],
-			scale: { y: { domain: [min(), max()] } },
+			scale: {
+				y: { domain: [min(), max()] },
+				color: { type: "identity" }
+			},
 			legend: false,
 			axis: false,
 			tooltip: false

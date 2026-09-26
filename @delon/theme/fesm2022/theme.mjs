@@ -3673,7 +3673,7 @@ var PreloadOptionalModules = class {
 		return route.data?.preload === true ? fn().pipe(catchError(() => of(null))) : of(null);
 	}
 };
-const VERSION = new Version("22.1.0");
+const VERSION = new Version("22.0.0");
 export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, ar_SA_default as ar_SA, el_GR_default as el_GR, en_US_default as en_US, es_ES_default as es_ES, fr_FR_default as fr_FR, hr_HR_default as hr_HR, id_ID_default as id_ID, it_IT_default as it_IT, ja_JP_default as ja_JP, km_KH_default as km_KH, ko_KR_default as ko_KR, ms_MY_default as ms_MY, pl_PL_default as pl_PL, provideAlain, sl_SI_default as sl_SI, stepPreloader, th_TH_default as th_TH, tr_TR_default as tr_TR, vi_VN_default as vi_VN, yn, zh_CN_default as zh_CN, zh_HK_default as zh_HK, zh_TW_default as zh_TW };
 
 //# sourceMappingURL=theme.mjs.map

@@ -50,7 +50,8 @@ var G2BarComponent = class G2BarComponent extends G2BaseComponent {
 			},
 			scale: {
 				x: { type: "band" },
-				y: { zero: true }
+				y: { zero: true },
+				color: { type: "identity" }
 			},
 			legend: false,
 			tooltip: { title: false },

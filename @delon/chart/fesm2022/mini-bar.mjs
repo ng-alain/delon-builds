@@ -34,7 +34,8 @@ var G2MiniBarComponent = class G2MiniBarComponent extends G2BaseComponent {
 			data: data(),
 			scale: {
 				x: { type: "band" },
-				y: { zero: true }
+				y: { zero: true },
+				color: { type: "identity" }
 			},
 			legend: false,
 			axis: false,
