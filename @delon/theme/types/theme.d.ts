@@ -1537,7 +1537,7 @@ declare namespace date_pipe_d_exports {
   export { DatePipe };
 }
 export declare class DatePipe implements PipeTransform {
-  private nzI18n;
+  private readonly dateLocale;
   private cog;
   transform(value: Date | string | number, formatString?: string | null): string;
   static ɵfac: i0.ɵɵFactoryDeclaration<DatePipe, never>;

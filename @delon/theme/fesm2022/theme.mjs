@@ -17,7 +17,7 @@ import { NzModalModule, NzModalService } from "ng-zorro-antd/modal";
 import { NzDrawerModule, NzDrawerService } from "ng-zorro-antd/drawer";
 import { HttpClient, HttpContextToken, HttpParams } from "@angular/common/http";
 import { formatDate } from "@delon/util/date-time";
-import { NzI18nModule, NzI18nService, provideNzI18n } from "ng-zorro-antd/i18n";
+import { NZ_DATE_LOCALE, NzI18nModule, provideNzI18n } from "ng-zorro-antd/i18n";
 import { OverlayModule } from "@angular/cdk/overlay";
 import { BellOutline, DeleteOutline, InboxOutline, MenuFoldOutline, MenuUnfoldOutline, PlusOutline } from "@ant-design/icons-angular/icons";
 import * as i1 from "ng-zorro-antd/icon";
@@ -3329,12 +3329,12 @@ var th_TH_default = {
 	pageHeader: { home: "หน้าหลัก" }
 };
 var DatePipe = class DatePipe {
-	nzI18n = inject(NzI18nService);
+	dateLocale = inject(NZ_DATE_LOCALE, { optional: true }) ?? void 0;
 	cog = inject(AlainConfigService).get("themePipe");
 	transform(value, formatString) {
 		const formatStr = formatString ?? this.cog?.dateFormat ?? "yyyy-MM-dd HH:mm";
 		return formatDate(value, formatStr, {
-			locale: this.nzI18n.getDateLocale(),
+			locale: this.dateLocale,
 			customFormat: this.cog?.dateFormatCustom
 		});
 	}
