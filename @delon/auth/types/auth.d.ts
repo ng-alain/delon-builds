@@ -335,6 +335,9 @@ export declare class TokenService implements ITokenService, OnDestroy {
   static ɵfac: i0.ɵɵFactoryDeclaration<TokenService, never>;
   static ɵprov: i0.ɵɵInjectableDeclaration<any>;
 }
+declare function CheckSimple(model: SimpleTokenModel | null): boolean;
+declare function CheckJwt(model: JWTTokenModel, offset: number): boolean;
+export declare function ToLogin(options: AlainAuthConfig, url?: string): void;
 /**
  * Whether to allow anonymous login
  *
