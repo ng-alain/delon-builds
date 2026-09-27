@@ -265,19 +265,19 @@ function CheckJwt(model, offset) {
 		return false;
 	}
 }
-function GetLoginUrl(o) {
+function getLoginUrl(o) {
 	const doc = inject(DOCUMENT);
 	const loginUrl = o.options.login_url;
 	const search = doc.location.search ?? "";
 	return search.length === 0 ? loginUrl : `${loginUrl}${loginUrl.includes("?") ? "&" : "?"}${search.slice(1)}`;
 }
-function ToLogin(o) {
+function toLogin(o) {
 	const token = inject(DA_SERVICE_TOKEN);
 	const config = o?.options ?? token.options;
 	const router = inject(Router);
 	token.referrer.url = o?.url ?? router.url;
 	if (config.token_invalid_redirect !== true) return;
-	const url = GetLoginUrl({
+	const url = getLoginUrl({
 		options: config,
 		url: o?.url
 	});
@@ -340,7 +340,7 @@ var AuthJWTGuardService = class AuthJWTGuardService {
 	process(url) {
 		const cog = this.srv.options;
 		const res = CheckJwt(this.srv.get(JWTTokenModel), cog.token_exp_offset);
-		if (!res) ToLogin({ url });
+		if (!res) toLogin({ url });
 		return res;
 	}
 	static ɵfac = i0.ɵɵngDeclareFactory({
@@ -381,7 +381,7 @@ function isAnonymous(req, options) {
 	return false;
 }
 function throwErr(req, config) {
-	ToLogin({ options: config });
+	toLogin({ options: config });
 	return new Observable((observer) => {
 		let statusText = "";
 		if (typeof ngDevMode === "undefined" || ngDevMode) statusText = `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 new HttpContext().set(ALLOW_ANONYMOUS, true) 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add new HttpContext().set(ALLOW_ANONYMOUS, true) to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`;
@@ -409,7 +409,7 @@ var AuthSimpleGuardService = class AuthSimpleGuardService {
 	srv = inject(DA_SERVICE_TOKEN);
 	process(url) {
 		const res = CheckSimple(this.srv.get());
-		if (!res) ToLogin({ url });
+		if (!res) toLogin({ url });
 		return res;
 	}
 	static ɵfac = i0.ɵɵngDeclareFactory({
@@ -510,6 +510,6 @@ function withMemoryStorage() {
 		useClass: MemoryStore
 	}]);
 }
-export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthFeatureKind, AuthJWTGuardService, AuthSimpleGuardService, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, GetLoginUrl, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleTokenModel, SocialService, ToLogin, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authJWTInterceptor, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, authSimpleInterceptor, isAnonymous, mergeConfig, provideAuth, throwErr, urlBase64Decode, withCookie, withLocalStorage, withMemoryStorage, withSessionStorage };
+export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthFeatureKind, AuthJWTGuardService, AuthSimpleGuardService, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleTokenModel, SocialService, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authJWTInterceptor, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, authSimpleInterceptor, getLoginUrl, isAnonymous, mergeConfig, provideAuth, throwErr, toLogin, urlBase64Decode, withCookie, withLocalStorage, withMemoryStorage, withSessionStorage };
 
 //# sourceMappingURL=auth.mjs.map

@@ -337,11 +337,11 @@ export declare class TokenService implements ITokenService, OnDestroy {
 }
 declare function CheckSimple(model: SimpleTokenModel | null): boolean;
 declare function CheckJwt(model: JWTTokenModel, offset: number): boolean;
-export declare function GetLoginUrl(o: {
+export declare function getLoginUrl(o: {
   options: AlainAuthConfig;
   url?: string;
 }): string;
-export declare function ToLogin(o?: {
+export declare function toLogin(o?: {
   options?: AlainAuthConfig;
   url?: string;
 }): void;
