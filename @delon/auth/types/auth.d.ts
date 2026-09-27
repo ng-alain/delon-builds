@@ -304,7 +304,7 @@ export declare class SimpleTokenModel implements ITokenModel {
   expired?: number;
 }
 export declare function isAnonymous(req: HttpRequest<unknown>, options: AlainAuthConfig): boolean;
-export declare function throwErr(req: HttpRequest<unknown>, options: AlainAuthConfig): Observable<HttpEvent<unknown>>;
+export declare function throwErr(req: HttpRequest<unknown>, config: AlainAuthConfig): Observable<HttpEvent<unknown>>;
 export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
 /**
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
@@ -337,7 +337,14 @@ export declare class TokenService implements ITokenService, OnDestroy {
 }
 declare function CheckSimple(model: SimpleTokenModel | null): boolean;
 declare function CheckJwt(model: JWTTokenModel, offset: number): boolean;
-export declare function ToLogin(options: AlainAuthConfig, url?: string): void;
+export declare function GetLoginUrl(o: {
+  options: AlainAuthConfig;
+  url?: string;
+}): string;
+export declare function ToLogin(o?: {
+  options?: AlainAuthConfig;
+  url?: string;
+}): void;
 /**
  * Whether to allow anonymous login
  *
