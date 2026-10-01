@@ -1,24 +1,7 @@
-import * as i0 from "@angular/core";
-import { Injectable, inject, signal } from "@angular/core";
 import { Platform } from "@angular/cdk/platform";
 import { DOCUMENT } from "@angular/common";
-const DARK_MEDIA_QUERY = "(prefers-color-scheme: dark)";
-function getMediaQueryList() {
-	if (typeof window === "undefined" || typeof window.matchMedia !== "function") return null;
-	return window.matchMedia(DARK_MEDIA_QUERY);
-}
-function createColorScheme(options) {
-	const mediaQueryList = getMediaQueryList();
-	const scheme = signal(mediaQueryList ? mediaQueryList.matches ? "dark" : "light" : options?.fallback ?? "light", ...ngDevMode ? [{ debugName: "scheme" }] : /* istanbul ignore next */ []);
-	mediaQueryList?.addEventListener("change", (e) => scheme.set(e.matches ? "dark" : "light"));
-	return scheme;
-}
-let _scheme = null;
-function colorScheme(options) {
-	if (_scheme) return _scheme;
-	_scheme = createColorScheme(options);
-	return _scheme;
-}
+import * as i0 from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 var CookieService = class CookieService {
 	_doc = inject(DOCUMENT);
 	platform = inject(Platform);
@@ -187,6 +170,6 @@ function updateHostClass(el, renderer, classMap, preClean = false) {
 	classMap = { ...classMap };
 	addClass(el, classMap, renderer);
 }
-export { CookieService, ScrollService, colorScheme, copy, createColorScheme, isEmpty, updateHostClass };
+export { CookieService, ScrollService, copy, isEmpty, updateHostClass };
 
 //# sourceMappingURL=browser.mjs.map

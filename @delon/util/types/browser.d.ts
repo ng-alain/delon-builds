@@ -1,29 +1,5 @@
 import * as i0 from "@angular/core";
-import { Renderer2, Signal } from "@angular/core";
-/**
- * System color scheme
- *
- * 系统颜色方案
- */
-export type ColorScheme = 'light' | 'dark';
-export interface ColorSchemeOptions {
-  /**
-   * Fallback value used when the environment does not support `matchMedia`, e.g. SSR, default `light`
-   *
-   * 运行环境不支持 `matchMedia`（如 SSR）时使用的兜底值，默认 `light`
-   */
-  fallback?: ColorScheme;
-}
-/**
- * System color scheme, updates in real time by following `prefers-color-scheme`
- *
- * 系统颜色方案，跟随 `prefers-color-scheme` 实时更新
- *
- * It is a global singleton, so `options` only takes effect on the first call.
- *
- * 全局单例，`options` 仅在首次调用时生效。
- */
-export declare function colorScheme(options?: ColorSchemeOptions): Signal<ColorScheme>;
+import { Renderer2 } from "@angular/core";
 export interface CookieOptions {
   path?: string;
   domain?: string;
