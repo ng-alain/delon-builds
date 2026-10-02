@@ -267,8 +267,19 @@ function CheckJwt(model, offset) {
 }
 function getLoginUrl(o) {
 	const loginUrl = o.options.login_url;
-	const search = inject(Router).url.split("?")[1] ?? "";
+	const search = getSearch();
 	return search.length === 0 ? loginUrl : `${loginUrl}${loginUrl.includes("?") ? "&" : "?"}${search}`;
+}
+function getSearch() {
+	const search = inject(Router).url.split("?")[1];
+	if (search != null) return search;
+	const { hash, search: locationSearch } = inject(DOCUMENT).location;
+	const idx = (hash ?? "").indexOf("?");
+	return idx === -1 ? (locationSearch ?? "").replace(/^\?/, "") : hash.slice(idx + 1);
+}
+function getLocationPath() {
+	const { hash, pathname } = inject(DOCUMENT).location;
+	return (hash ? hash.slice(1) : pathname ?? "").split("?")[0];
 }
 function toLogin(o) {
 	const token = inject(DA_SERVICE_TOKEN);
@@ -280,6 +291,7 @@ function toLogin(o) {
 		options: config,
 		url: o?.url
 	});
+	if (getLocationPath() === url.split("?")[0]) return;
 	const doc = inject(DOCUMENT);
 	setTimeout(() => {
 		if (/^https?:\/\//.test(url)) doc.location.href = url;

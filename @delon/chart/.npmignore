@@ -6,13 +6,13 @@ core/package.json
 custom/package.json
 gauge/package.json
 mini-area/package.json
-mini-bar/package.json
 mini-progress/package.json
 number-info/package.json
+mini-bar/package.json
 pie/package.json
 radar/package.json
 single-bar/package.json
-tag-cloud/package.json
 timeline/package.json
+tag-cloud/package.json
 trend/package.json
 water-wave/package.json
