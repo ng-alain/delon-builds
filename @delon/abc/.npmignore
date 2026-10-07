@@ -13,8 +13,8 @@ global-footer/package.json
 hotkey/package.json
 loading/package.json
 lodop/package.json
-media/package.json
 notice-icon/package.json
+media/package.json
 observers/package.json
 onboarding/package.json
 page-header/package.json
@@ -26,5 +26,5 @@ sg/package.json
 st/package.json
 sv/package.json
 tag-select/package.json
-zip/package.json
 xlsx/package.json
+zip/package.json
