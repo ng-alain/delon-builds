@@ -13,8 +13,8 @@ global-footer/package.json
 hotkey/package.json
 loading/package.json
 lodop/package.json
-notice-icon/package.json
 media/package.json
+notice-icon/package.json
 observers/package.json
 onboarding/package.json
 page-header/package.json
