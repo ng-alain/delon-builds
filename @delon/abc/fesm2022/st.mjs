@@ -3865,6 +3865,6 @@ function provideSTWidgets(...widgets) {
 		widgets.forEach((widget) => srv.register(widget.KEY, widget.type));
 	})]);
 }
-export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetHostDirective, STWidgetRegistry, ST_DEFAULT_CONFIG, provideSTWidgets };
+export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STRowSource, STWidgetHostDirective, STWidgetRegistry, ST_DEFAULT_CONFIG, provideSTWidgets };
 
 //# sourceMappingURL=st.mjs.map

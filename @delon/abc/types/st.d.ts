@@ -1936,7 +1936,7 @@ export declare class STWidgetHostDirective implements OnInit {
 declare namespace st_row_directive_d_exports {
   export { STRowDirective, STRowSource };
 }
-declare class STRowSource {
+export declare class STRowSource {
   private titles;
   private rows;
   add(type: string | undefined, path: string, ref: TemplateRef<void>): void;
