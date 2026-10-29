@@ -21,10 +21,10 @@ page-header/package.json
 pdf/package.json
 quick-menu/package.json
 reuse-tab/package.json
+se/package.json
 sg/package.json
 st/package.json
-se/package.json
 sv/package.json
 tag-select/package.json
-zip/package.json
 xlsx/package.json
+zip/package.json
